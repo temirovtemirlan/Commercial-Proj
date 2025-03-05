@@ -1,0 +1,31 @@
+/* Sass/SCSS function to convert from px to rem */
+/* Usage - font-size: rem(16); */
+
+@use "sass:math";
+
+@import "./base/reset.scss";
+@import "./base/set.scss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+@function rem($pixel) {
+  @if math.is-unitless($pixel) {
+    @return math.div($pixel, 16) + rem;
+    // ? EXAMPLE: font-size: rem(16);
+  } @else {
+    @error 'Don\'t use units when using the rem() function; only numbers.';
+  }
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

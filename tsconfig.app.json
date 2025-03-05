@@ -1,0 +1,52 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    "baseUrl": "src",
+    "paths": {
+      "app/*": ["app/*"],
+      "assets/*": ["app/assets/*"],
+      "pages/*": ["pages/*"],
+      "styles/*": ["app/styles/*"],
+
+      "core/*": ["core/*"],
+      "components/*": ["components/*"],
+      "common/*": ["common/*"],
+      "layout/*": ["layout/*"],
+      "test/*": ["test/*"],
+
+      "ts/*": ["fusion/ts/*"],
+      "helpers/*": ["fusion/helpers/*"],
+      "hooks/*": ["fusion/hooks/*"],
+      "data/*": ["fusion/data/*"],
+      "routes/*": ["fusion/routes/*"],
+      "api/*": ["fusion/api/*"],
+      "store/*": ["store/*"]
+    }
+  },
+  "rules": {
+    "@typescript-eslint/no-empty-interface": [
+      "error",
+      { "allowInterfaces": true }
+    ]
+  },
+  "include": ["src"]
+}
