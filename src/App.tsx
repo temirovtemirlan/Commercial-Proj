@@ -23,10 +23,7 @@ const App: FC = () => {
       <Container className={"py-[70px]"}>
         <div className={"flex justify-between items-center"}>
           <Header title={"Monster"} />
-          <p className={"text-black text-2xl grow-1 "}>
-            maximus ante fermentum sit amet. <br /> Pellentesque commodo lacus
-            at sodales sodales.
-          </p>
+          <p className={"text-black text-2xl grow-1 "}>Разработка...</p>
         </div>
       </Container>
 
