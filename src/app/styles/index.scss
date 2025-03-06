@@ -9,7 +9,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+//@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap'); 
 
 @function rem($pixel) {
   @if math.is-unitless($pixel) {
@@ -21,11 +22,41 @@
 }
 
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Nunito Sans", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
 
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+//  удалить потом
+//  height: 10000px;
+}
+
+.monsreel-carousel {
+  overflow: visible;
+  .swiper-slide {
+    //width: 394px !important;
+  }
+}
+
+.super-center {
+  @apply flex items-center justify-center;
+}
+
+.Mosnreel-tabs {
+  @apply transition-all;
+  .tab__delivery_panels {
+    cursor: pointer;
+
+    &:focus-visible {
+        outline: none;
+    }
+  }
+  .react-tabs__tab--selected {
+   background-color: #1d1d1f;
+  color: #fff;
+    border-radius: 100px;
+  }
 }
