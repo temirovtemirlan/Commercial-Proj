@@ -1,7 +1,7 @@
 import { type FC } from "react";
 import { cn } from "helpers/style.ts";
 
-import ADIDAS from "../../public/ADIDAS.png";
+// import ADIDAS from "../../public/ADIDAS.png";
 import BAKAI from "assets/picture/BAKAI.png";
 import BMW from "assets/picture/BMW.png";
 import BOOBLIK from "assets/picture/BOOBLIK.png";
@@ -21,7 +21,7 @@ import PAUL from "assets/picture/PAUL.png";
 import PEPSI from "assets/picture/PEPSI.png";
 import PUMA from "assets/picture/PUMA.png";
 import SILKWAY from "assets/picture/SILKWAY.png";
-import SONUN from "../../public/SONUN.png";
+// import SONUN from "../../public/SONUN.png";
 import CALIPSO from "assets/picture/CALIPSO.png";
 import QADYR from "assets/picture/QADYR.png";
 import ENESAI from "assets/picture/ENESAI.png";
