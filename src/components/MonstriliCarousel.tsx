@@ -27,9 +27,10 @@ const MonstriliCarousel: React.FC<MonstriliCarouselProps> = ({
   return (
     <div className={cn("", coreClassName)}>
       <Swiper
-        className={cn("", className)}
+        className={cn("static z-0", className)}
         modules={[Pagination, Navigation]}
         speed={1500}
+        cssMode={true}
         spaceBetween={30} // Расстояние между слайдами
         slidesPerView={4} // Количество видимых слайдов за раз
         navigation={{
@@ -52,7 +53,9 @@ const MonstriliCarousel: React.FC<MonstriliCarouselProps> = ({
         }}
       >
         {items.map((item, index) => (
-          <SwiperSlide key={index}>{item}</SwiperSlide>
+          <SwiperSlide key={index}>
+            <div>{item}</div>
+          </SwiperSlide>
         ))}
       </Swiper>
 

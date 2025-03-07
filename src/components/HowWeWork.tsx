@@ -18,7 +18,7 @@ const commonCn = " flex items-start px-5 py-10 flex-col justify-between";
 
 const howWeWorkCarousel = [
   <div
-    className={cn("bg-gradient-to-b from-[#fda504] to-[#f96a1b]", commonCn)}
+    className={cn("bg-gradient-to-b from-[#fda504] to-[#f96a1b] ", commonCn)}
     style={weWorkcarouselStyle}
   >
     <svg

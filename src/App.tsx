@@ -6,8 +6,10 @@ import HowWeWork from "components/HowWeWork.tsx";
 
 import PartnersAndClients from "components/PartnersAndClients.tsx";
 import MonsReels from "components/MonsReels.tsx";
-import VimeoEmbed from "components/VimeoEmbed.tsx";
+import Footer from "components/Footer";
+import VimeoEmbed from "components/VimeoEmbed";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
+// import VimeoEmbedTest from "components/VimeoEmbedTest";
 
 interface HeaderProps {
   title: string;
@@ -111,10 +113,10 @@ const App: FC = () => {
             videoURL="a20cba6903"
           />
         </div>
-        <div className={"flex gap-5 mt-5"}>
-          <div className={"bg-[#f5f5f7] w-full h-[517.61px]"}></div>
-          <div className={"bg-[#f5f5f7] w-full h-[517.61px]"}></div>
-        </div>
+        {/*<div className={"flex gap-5 mt-5"}>*/}
+        {/*  <div className={"bg-[#f5f5f7] w-full h-[517.61px]"}></div>*/}
+        {/*  <div className={"bg-[#f5f5f7] w-full h-[517.61px]"}></div>*/}
+        {/*</div>*/}
         <div className={"mt-5"}>
           <VimeoEmbed
             className={"object-center object-cover bg-black"}
@@ -123,14 +125,7 @@ const App: FC = () => {
             videoURL="ba1d2644d3"
           />
         </div>
-        <div className="mt-5">
-          <VimeoEmbed
-            className={"object-center object-cover bg-black"}
-            height={"700px"}
-            videoId="1062541479"
-            videoURL="8723c86694"
-          />
-        </div>
+        <div className="mt-5">{/* замена */}</div>
 
         <div className="mt-5">
           <VimeoEmbed
@@ -141,10 +136,14 @@ const App: FC = () => {
           />
         </div>
       </Container>
-      <Container className={"pt-[100px] pb-[200px]"}>
-        <Header className={"text-[56px] mb-[60px]"} title={"Наши клиенты"} />
+      <Container className={"mt-[100px] pt-[100px] pb-[200px] bg-black"}>
         <PartnersAndClients />
       </Container>
+
+      <Footer />
+
+      {/*src="https://player.vimeo.com/video/?h=&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"*/}
+
       {/*<script src="https://player.vimeo.com/api/player.js"></script>*/}
     </div>
   );

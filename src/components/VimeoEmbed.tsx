@@ -1,5 +1,5 @@
 import type { CSSProperties, FC } from "react";
-import { cn } from "helpers/style.ts";
+import { cn } from "fusion/helpers/style";
 
 interface VimeoEmbedProps {
   videoId: string;

@@ -1,7 +1,7 @@
 import { CSSProperties, type FC } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import MonstriliCarousel from "components/MonstriliCarousel.tsx";
-import VimeoEmbed from "components/VimeoEmbed.tsx";
+import VimeoEmbed from "../../../Preview/src/components/VimeoEmbed.tsx";
 import { cn } from "helpers/style.ts";
 
 interface MonsReelsProps {
@@ -124,8 +124,79 @@ const CGReelData = [
       videoURL="1dbc48b70d"
     />
   </div>,
+  <div style={carouselStyle}>
+    {" "}
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1063644726"
+      videoURL="d73b72292c"
+    />
+  </div>,
+  <div style={carouselStyle}>
+    {" "}
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1063642509"
+      videoURL="48e6415e3c"
+    />
+  </div>,
+  <div style={carouselStyle}>
+    {" "}
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1063643914"
+      videoURL="44364efc22"
+    />
+  </div>,
+  <div style={carouselStyle}>
+    {" "}
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1063640697"
+      videoURL="f02a9c5820"
+    />
+  </div>,
+  <div style={carouselStyle}>
+    {" "}
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1063639201"
+      videoURL="4a42e58be4"
+    />
+  </div>,
+  <div style={carouselStyle}>
+    {" "}
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1063636329"
+      videoURL="44bafe9d75"
+    />
+  </div>,
+  <div style={carouselStyle}>
+    {" "}
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1063635945"
+      videoURL="6317c7570f"
+    />
+  </div>,
+  <div style={carouselStyle}>
+    {" "}
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1063638711"
+      videoURL="fb67c41de4"
+    />
+  </div>,
 ];
-
 const commonCn = "";
 
 const AIReelData = [
