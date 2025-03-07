@@ -1,7 +1,7 @@
 import { type FC } from "react";
 import { cn } from "helpers/style.ts";
 
-import ADIDAS from "assets/picture/ADIDAS.png";
+import ADIDAS from "../../public/ADIDAS.png";
 import BAKAI from "assets/picture/BAKAI.png";
 import BMW from "assets/picture/BMW.png";
 import BOOBLIK from "assets/picture/BOOBLIK.png";
@@ -21,7 +21,7 @@ import PAUL from "assets/picture/PAUL.png";
 import PEPSI from "assets/picture/PEPSI.png";
 import PUMA from "assets/picture/PUMA.png";
 import SILKWAY from "assets/picture/SILKWAY.png";
-import SONUN from "assets/picture/SONUN.png";
+import SONUN from "../../public/SONUN.png";
 import CALIPSO from "assets/picture/CALIPSO.png";
 import QADYR from "assets/picture/QADYR.png";
 import ENESAI from "assets/picture/ENESAI.png";
@@ -42,8 +42,8 @@ const partners = [
   { src: PEPSI, alt: "PEPSI", className: "h-16" },
   { src: PUMA, alt: "PUMA", className: "h-16" },
   { src: SILKWAY, alt: "SILKWAY", className: "h-16" },
-  { src: SONUN, alt: "SONUN", className: "h-16" },
-  { src: ADIDAS, alt: "ADIDAS", className: "h-16" },
+  { src: "/SONUN.png", alt: "SONUN", className: "h-16" },
+  { src: "/ADIDAS.png", alt: "ADIDAS", className: "h-16" },
   { src: BAKAI, alt: "BAKAI", className: "h-16" },
   { src: BMW, alt: "BMW", className: "h-16" },
   { src: BOOBLIK, alt: "BOOBLIK", className: "h-16" },
