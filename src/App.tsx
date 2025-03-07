@@ -6,6 +6,8 @@ import HowWeWork from "components/HowWeWork.tsx";
 
 import PartnersAndClients from "components/PartnersAndClients.tsx";
 import MonsReels from "components/MonsReels.tsx";
+import VimeoEmbed from "components/VimeoEmbed.tsx";
+import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 
 interface HeaderProps {
   title: string;
@@ -26,12 +28,37 @@ const App: FC = () => {
           <p className={"text-black text-2xl grow-1 "}>Разработка...</p>
         </div>
       </Container>
-
       {/* Showreel */}
       <div>
-        <div className="bg-[#eee] w-full h-dvh"></div>
+        <Tabs className={cn("Monstr-Showreel")}>
+          <TabPanel>
+            <VimeoEmbed
+              className={"object-center object-cover bg-black"}
+              height={"700px"}
+              videoId="1062541479"
+              videoURL="8723c86694"
+            />
+          </TabPanel>
+          <TabPanel>
+            <VimeoEmbed
+              className={"object-center object-cover bg-black"}
+              height={"700px"}
+              videoId="1062541728"
+              videoURL="09b53bea7e"
+            />
+          </TabPanel>
+          <div className={"bg-[#f5f5f7] w-full super-center pt-5"}>
+            <TabList className="inline-flex gap-3.5 p-[5px] bg-white rounded-full">
+              <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
+                CG REEL
+              </Tab>
+              <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
+                AI REEL
+              </Tab>
+            </TabList>
+          </div>
+        </Tabs>
       </div>
-
       {/*  */}
       <div></div>
       <Container className="bg-[#f5f5f7] pt-[150px] pb-[100px] overflow-hidden">
@@ -39,24 +66,17 @@ const App: FC = () => {
 
         <MonsReels />
       </Container>
-
       {/*  How we work */}
-
       <HowWeWork />
-
       {/* Tariff */}
-
       {/*<Container className={"py-[100px]"}>*/}
       {/*  <Header className={"text-[56px] mb-[60px]"} title={"Изучите тарифы."} />*/}
-
       {/*  <div className={"flex justify-evenly"}>*/}
       {/*    <TariffStart />*/}
       {/*    <TariffStart />*/}
       {/*    <TariffStart />*/}
       {/*  </div>*/}
-
       {/*  <hr className={"my-[50px] border-[#d2d2d7]"} />*/}
-
       {/*  <div className={"flex justify-evenly w-full"}>*/}
       {/*    <div className={"w-[360px]"}>*/}
       {/*      <div className="text-center text-black text-[28px] font-semibold font-['Nunito Sans']">*/}
@@ -75,50 +95,51 @@ const App: FC = () => {
       {/*  </div>*/}
       {/*</Container>*/}
 
-      <Container>
-        <div className={"h-[950px] w-full bg-[#f5f5f7] super-center"}>
-          <svg
-            width="60"
-            height="61"
-            viewBox="0 0 60 61"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect y="0.385742" width="60" height="60" rx="30" fill="#ADADAD" />
-            <path
-              d="M45.4746 30.3857L22.2627 43.7871V16.9843L45.4746 30.3857Z"
-              fill="white"
-            />
-          </svg>
-        </div>
+      {/*<VimeoEmbed videoId={"1062552326"} videoURL={"e4348904e6"} />*/}
 
+      <Container>
+        <div>
+          <VimeoEmbed
+            className={"object-center object-cover bg-black"}
+            height={"700px"}
+            videoId="1062549483"
+            videoURL="a20cba6903"
+          />
+        </div>
         <div className={"flex gap-5 mt-5"}>
           <div className={"bg-[#f5f5f7] w-full h-[517.61px]"}></div>
           <div className={"bg-[#f5f5f7] w-full h-[517.61px]"}></div>
         </div>
+        <div className={"mt-5"}>
+          <VimeoEmbed
+            className={"object-center object-cover bg-black"}
+            height={"700px"}
+            videoId="1062549677"
+            videoURL="ba1d2644d3"
+          />
+        </div>
+        <div className="mt-5">
+          <VimeoEmbed
+            className={"object-center object-cover bg-black"}
+            height={"700px"}
+            videoId="1062541479"
+            videoURL="8723c86694"
+          />
+        </div>
 
-        <div className={"h-[950px] w-full bg-[#f5f5f7] super-center mt-5"}>
-          <svg
-            width="60"
-            height="61"
-            viewBox="0 0 60 61"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect y="0.385742" width="60" height="60" rx="30" fill="#ADADAD" />
-            <path
-              d="M45.4746 30.3857L22.2627 43.7871V16.9843L45.4746 30.3857Z"
-              fill="white"
-            />
-          </svg>
+        <div className="mt-5">
+          <VimeoEmbed
+            className={"object-center object-cover bg-black"}
+            height={"700px"}
+            videoId="1062541728"
+            videoURL="09b53bea7e"
+          />
         </div>
       </Container>
-
       <Container className={"pt-[100px] pb-[200px]"}>
         <Header className={"text-[56px] mb-[60px]"} title={"Наши клиенты"} />
         <PartnersAndClients />
       </Container>
-
       {/*<script src="https://player.vimeo.com/api/player.js"></script>*/}
     </div>
   );

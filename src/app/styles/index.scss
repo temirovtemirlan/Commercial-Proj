@@ -45,7 +45,7 @@ body {
   @apply flex items-center justify-center;
 }
 
-.Mosnreel-tabs {
+.Mosnreel-tabs, .Monstr-Showreel {
   @apply transition-all;
   .tab__delivery_panels {
     cursor: pointer;

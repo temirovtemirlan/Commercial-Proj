@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import { CSSProperties, type FC } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import MonstriliCarousel from "components/MonstriliCarousel.tsx";
 import VimeoEmbed from "components/VimeoEmbed.tsx";
@@ -8,25 +8,122 @@ interface MonsReelsProps {
   className?: string;
 }
 
-const carouselStyle = {
+const carouselStyle: CSSProperties = {
   background: "#f0f0f0",
   width: "100%",
   height: "700px",
   borderRadius: "28px",
+  overflow: "hidden",
 };
 
 const CGReelData = [
-  <div className={"overflow-hidden"} style={carouselStyle}></div>,
-  <div style={carouselStyle}>Слайд 2</div>,
-  <div style={carouselStyle}>Слайд 3</div>,
-  <div style={carouselStyle}>Слайд 4</div>,
-  <div style={carouselStyle}>Слайд 5</div>,
-  <div style={carouselStyle}>Слайд 5</div>,
-  <div style={carouselStyle}>Слайд 5</div>,
-  <div style={carouselStyle}>Слайд 5</div>,
-  <div style={carouselStyle}>Слайд 5</div>,
-  <div style={carouselStyle}>Слайд 5</div>,
-  <div style={carouselStyle}>Сл айд 5</div>,
+  <div className={"overflow-hidden"} style={carouselStyle}>
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062541479"
+      videoURL="8723c86694"
+    />
+  </div>,
+  <div style={carouselStyle}>
+    {" "}
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062541728"
+      videoURL="09b53bea7e"
+    />
+  </div>,
+  <div style={carouselStyle}>
+    {" "}
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062542176"
+      videoURL="901de6ae1e"
+    />
+  </div>,
+  <div style={carouselStyle}>
+    {" "}
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062541781"
+      videoURL="b7f04f29da"
+    />
+  </div>,
+  <div style={carouselStyle}>
+    {" "}
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062541904"
+      videoURL="731c4ed8de"
+    />
+  </div>,
+  <div style={carouselStyle}>
+    {" "}
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062541950"
+      videoURL="bdec51d703"
+    />
+  </div>,
+  <div style={carouselStyle}>
+    {" "}
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062542062"
+      videoURL="d5f04ccb0c"
+    />
+  </div>,
+  <div style={carouselStyle}>
+    {" "}
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062542328"
+      videoURL="b97a07c69a"
+    />
+  </div>,
+  <div style={carouselStyle}>
+    {" "}
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062542385"
+      videoURL="46b0e7deec"
+    />
+  </div>,
+  <div style={carouselStyle}>
+    {" "}
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062542508"
+      videoURL="ede78a5812"
+    />
+  </div>,
+  <div style={carouselStyle}>
+    {" "}
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062542238"
+      videoURL="69de612b96"
+    />
+  </div>,
+  <div style={carouselStyle}>
+    {" "}
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062541863"
+      videoURL="1dbc48b70d"
+    />
+  </div>,
 ];
 
 const commonCn = "";
@@ -37,36 +134,168 @@ const AIReelData = [
       className={"object-center object-cover bg-black"}
       height={"700px"}
       videoId="1062549233"
+      videoURL="5a009f461e"
     />
   </div>,
-  <div className={cn("", commonCn)} style={carouselStyle}>
+  <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
     <VimeoEmbed
       className={"object-center object-cover bg-black"}
       height={"700px"}
-      videoId="1062542508"
+      videoId="1062549407"
+      videoURL="cb6a6c8b09"
     />
   </div>,
-  <div style={carouselStyle}>
+  <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
     <VimeoEmbed
       className={"object-center object-cover bg-black"}
       height={"700px"}
-      videoId="1062549483"
+      videoId="1062549593"
+      videoURL="99b51a0fc7"
     />
   </div>,
-  <div style={carouselStyle}>
+  <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
     <VimeoEmbed
       className={"object-center object-cover bg-black"}
       height={"700px"}
-      videoId="1062549677"
+      videoId="1062549632"
+      videoURL="91397564b6"
+      // https://player.vimeo.com/video/1062549632?h=91397564b6&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
     />
   </div>,
-  <div style={carouselStyle}>Слайд 5</div>,
-  <div style={carouselStyle}>Слайд 5</div>,
-  <div style={carouselStyle}>Слайд 5</div>,
-  <div style={carouselStyle}>Слайд 5</div>,
-  <div style={carouselStyle}>Слайд 5</div>,
-  <div style={carouselStyle}>Слайд 5</div>,
-  <div style={carouselStyle}>Сл айд 5</div>,
+  <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062549737"
+      videoURL="77a5ea7f39"
+      // https://player.vimeo.com/video/1062549737?h=77a5ea7f39&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
+    />
+  </div>,
+  <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062552326"
+      videoURL="e4348904e6"
+      // https://player.vimeo.com/video/1062552326?h=e4348904e6&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
+    />
+  </div>,
+  <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062552051"
+      videoURL="646255a00f"
+      // https://player.vimeo.com/video/1062552051?h=646255a00f&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
+    />
+  </div>,
+  <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062552292"
+      videoURL="65ae959128"
+      // https://player.vimeo.com/video/1062552292?h=65ae959128&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
+    />
+  </div>,
+  <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062552161"
+      videoURL="c87bd13a6a"
+      // https://player.vimeo.com/video/1062552161?h=c87bd13a6a&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
+    />
+  </div>,
+  <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062552211"
+      videoURL="2476f9ff5d"
+      // https://player.vimeo.com/video/1062552211?h=2476f9ff5d&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
+    />
+  </div>,
+  <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062551983"
+      videoURL="7fcae73275"
+      title={"DODO PIZZA"}
+      // https://player.vimeo.com/video/1062551983?h=7fcae73275&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
+    />
+  </div>,
+  <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062553874"
+      videoURL="14a7a9b71a"
+      title={"DODO PIZZA"}
+      // https://player.vimeo.com/video/1062553874?h=14a7a9b71a&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
+    />
+  </div>,
+  <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062554263"
+      videoURL="03ca465e99"
+      title={"DODO PIZZA"}
+      //https://player.vimeo.com/video/1062554263?h=03ca465e99&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
+    />
+  </div>,
+  <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062554165"
+      videoURL="dbdbcbf50f"
+      title={"DODO PIZZA"}
+      // https://player.vimeo.com/video/1062554165?h=dbdbcbf50f&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
+    />
+  </div>,
+  <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062553945"
+      videoURL="b5b26c2c81"
+      title="ENESAI"
+      // https://player.vimeo.com/video/1062553945?h=b5b26c2c81&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479    />
+    />
+  </div>,
+  <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062554332"
+      videoURL="45924735dd"
+      title="ENESAI"
+      // https://player.vimeo.com/video/1062554332?h=45924735dd&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
+    />
+  </div>,
+  <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062554055"
+      videoURL="2ff8b042f4"
+      title="ENESAI"
+      // https://player.vimeo.com/video/1062554055?h=2ff8b042f4&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479    />
+    />
+  </div>,
+  <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
+    <VimeoEmbed
+      className={"object-center object-cover bg-black"}
+      height={"700px"}
+      videoId="1062556025"
+      videoURL="7938f2cf9b"
+      title="ENESAI"
+      // https://player.vimeo.com/video/1062556025?h=7938f2cf9b&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
+    />
+  </div>,
 ];
 
 const MonsReels: FC<MonsReelsProps> = ({ className }) => {

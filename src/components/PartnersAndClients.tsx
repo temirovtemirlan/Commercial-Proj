@@ -22,6 +22,9 @@ import PEPSI from "assets/picture/PEPSI.png";
 import PUMA from "assets/picture/PUMA.png";
 import SILKWAY from "assets/picture/SILKWAY.png";
 import SONUN from "assets/picture/SONUN.png";
+import CALIPSO from "assets/picture/CALIPSO.png";
+import QADYR from "assets/picture/QADYR.png";
+import ENESAI from "assets/picture/ENESAI.png";
 
 const partners = [
   { src: BOSS, alt: "BOSS", className: "h-10" },
@@ -44,6 +47,9 @@ const partners = [
   { src: BAKAI, alt: "BAKAI", className: "h-16" },
   { src: BMW, alt: "BMW", className: "h-16" },
   { src: BOOBLIK, alt: "BOOBLIK", className: "h-16" },
+  { src: CALIPSO, alt: "CALIPSO", className: "h-12" },
+  { src: QADYR, alt: "QADYR", className: "h-12" },
+  { src: ENESAI, alt: "ENESAI", className: "h-20" },
 ];
 
 const absoluteCn = "select-none pointer-events-none";

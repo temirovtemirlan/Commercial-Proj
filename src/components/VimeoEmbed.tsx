@@ -3,21 +3,26 @@ import { cn } from "helpers/style.ts";
 
 interface VimeoEmbedProps {
   videoId: string;
+  videoURL: string;
   width?: string | number;
   height?: string | number;
   responsive?: boolean;
 
   className?: string;
+
+  title?: string;
 }
 
 const VimeoEmbed: FC<VimeoEmbedProps> = ({
   videoId,
+  videoURL,
   width = "100%", // По умолчанию 100% ширины контейнера
   height = "auto", // Автоматическая высота
   responsive = true, // Адаптивность включена по умолчанию
   className,
+  title,
 }) => {
-  const videoUrl = `https://player.vimeo.com/video/${videoId}?h=5a009f461e&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479`;
+  const videoUrl = `https://player.vimeo.com/video/${videoId}?h=${videoURL}&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479`;
 
   const iframeStyle: CSSProperties = {
     position: responsive ? "absolute" : "relative", // Адаптивность или фиксированные размеры
@@ -43,7 +48,7 @@ const VimeoEmbed: FC<VimeoEmbedProps> = ({
         frameBorder="0"
         allow="autoplay; fullscreen; picture-in-picture" // Убрал clipboard-write и encrypted-media (не всегда нужны)
         allowFullScreen // Более современный способ запросить полноэкранный режим
-        title="Embedded Vimeo Video" // Важно для доступности
+        title={title} // Важно для доступности
       />
     </div>
   );
