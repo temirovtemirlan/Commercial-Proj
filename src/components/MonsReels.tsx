@@ -1,7 +1,7 @@
 import { CSSProperties, type FC } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import MonstriliCarousel from "components/MonstriliCarousel.tsx";
-import VimeoEmbed from "../../../Preview/src/components/VimeoEmbed.tsx";
+import VimeoEmbed from "components/VimeoEmbed";
 import { cn } from "helpers/style.ts";
 
 interface MonsReelsProps {
