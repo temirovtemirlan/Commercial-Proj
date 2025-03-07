@@ -2,54 +2,54 @@ import { type FC } from "react";
 import { cn } from "helpers/style.ts";
 
 // import ADIDAS from "../../public/ADIDAS.png";
-import BAKAI from "assets/picture/BAKAI.png";
-import BMW from "assets/picture/BMW.png";
-import BOOBLIK from "assets/picture/BOOBLIK.png";
+// import BAKAI from "../../public/BAKAI.png";
+// import BMW from "../../public/BMW.png";
+// import BOOBLIK from "../../public/BOOBLIK.png";
 
-import BOSS from "assets/picture/BOSS.png";
-import BR from "assets/picture/BR.png";
-import COCA_COLA from "assets/picture/COCA_COLA.png";
-import DAIRY_SPRING from "assets/picture/DAIRY_SPRING.png";
-import DODO from "assets/picture/DODO.png";
-import ECO_MILK from "assets/picture/ECO_MILK.png";
-import GLOVO from "assets/picture/GLOVO.png";
-import JOY from "assets/picture/JOY.png";
-import KONTI from "assets/picture/KONTI.png";
-import NIKE from "assets/picture/NIKE.png";
-import PAPAJOHNS from "assets/picture/PAPAJOHNS.png";
-import PAUL from "assets/picture/PAUL.png";
-import PEPSI from "assets/picture/PEPSI.png";
-import PUMA from "assets/picture/PUMA.png";
-import SILKWAY from "assets/picture/SILKWAY.png";
+// import BOSS from "../../public/BOSS.png";
+// import BR from "../../public/BR.png";
+// import COCA_COLA from "../../public/COCA_COLA.png";
+// import DAIRY_SPRING from "../../public/DAIRY_SPRING.png";
+// import DODO from "../../public/DODO.png";
+// import ECO_MILK from "../../public/ECO_MILK.png";
+// import GLOVO from "../../public/GLOVO.png";
+// import JOY from "../../public/JOY.png";
+// import KONTI from "../../public/KONTI.png";
+// import NIKE from "../../public/NIKE.png";
+// import PAPAJOHNS from "../../public/PAPAJOHNS.png";
+// import PAUL from "../../public/PAUL.png";
+// import PEPSI from "../../public/PEPSI.png";
+// import PUMA from "../../public/PUMA.png";
+// import SILKWAY from "../../public/SILKWAY.png";
 // import SONUN from "../../public/SONUN.png";
-import CALIPSO from "assets/picture/CALIPSO.png";
-import QADYR from "assets/picture/QADYR.png";
-import ENESAI from "assets/picture/ENESAI.png";
+// import CALIPSO from "../../public/CALIPSO.png";
+// import QADYR from "../../public/QADYR.png";
+// import ENESAI from "../../public/ENESAI.png";
 
 const partners = [
-  { src: BOSS, alt: "BOSS", className: "h-10" },
-  { src: BR, alt: "BR", className: "h-16" },
-  { src: COCA_COLA, alt: "COCA_COLA", className: "h-16" },
-  { src: DAIRY_SPRING, alt: "DAIRY_SPRING", className: "h-16" },
-  { src: DODO, alt: "DODO", className: "h-16" },
-  { src: ECO_MILK, alt: "ECO_MILK", className: "h-16" },
-  { src: GLOVO, alt: "GLOVO", className: "h-16" },
-  { src: JOY, alt: "JOY", className: "h-16" },
-  { src: KONTI, alt: "KONTI", className: "h-16" },
-  { src: NIKE, alt: "NIKE", className: "h-12" },
-  { src: PAPAJOHNS, alt: "PAPAJOHNS", className: "h-12" },
-  { src: PAUL, alt: "PAUL", className: "h-16" },
-  { src: PEPSI, alt: "PEPSI", className: "h-16" },
-  { src: PUMA, alt: "PUMA", className: "h-16" },
-  { src: SILKWAY, alt: "SILKWAY", className: "h-16" },
+  { src: "/BOSS.png", alt: "BOSS", className: "h-10" },
+  { src: "/BR.png", alt: "BR", className: "h-16" },
+  { src: "/COCA_COLA.png", alt: "COCA_COLA", className: "h-16" },
+  { src: "/DAIRY_SPRING.png", alt: "DAIRY_SPRING", className: "h-16" },
+  { src: "/DODO.png", alt: "DODO", className: "h-16" },
+  { src: "/ECO_MILK.png", alt: "ECO_MILK", className: "h-16" },
+  { src: "/GLOVO.png", alt: "GLOVO", className: "h-16" },
+  { src: "/JOY.png", alt: "JOY", className: "h-16" },
+  { src: "/KONTI.png", alt: "KONTI", className: "h-16" },
+  { src: "/NIKE.png", alt: "NIKE", className: "h-12" },
+  { src: "/PAPAJOHNS.png", alt: "PAPAJOHNS", className: "h-12" },
+  { src: "/PAUL.png", alt: "PAUL", className: "h-16" },
+  { src: "/PEPSI.png", alt: "PEPSI", className: "h-16" },
+  { src: "/PUMA.png", alt: "PUMA", className: "h-16" },
+  { src: "/SILKWAY.png", alt: "SILKWAY", className: "h-16" },
   { src: "/SONUN.png", alt: "SONUN", className: "h-16" },
   { src: "/ADIDAS.png", alt: "ADIDAS", className: "h-16" },
-  { src: BAKAI, alt: "BAKAI", className: "h-16" },
-  { src: BMW, alt: "BMW", className: "h-16" },
-  { src: BOOBLIK, alt: "BOOBLIK", className: "h-16" },
-  { src: CALIPSO, alt: "CALIPSO", className: "h-12" },
-  { src: QADYR, alt: "QADYR", className: "h-12" },
-  { src: ENESAI, alt: "ENESAI", className: "h-20" },
+  { src: "/BAKAI.png", alt: "BAKAI", className: "h-16" },
+  { src: "/BMW.png", alt: "BMW", className: "h-16" },
+  { src: "/BOOBLIK.png", alt: "BOOBLIK", className: "h-16" },
+  { src: "/CALIPSO.png", alt: "CALIPSO", className: "h-12" },
+  { src: "/QADYR.png", alt: "QADYR", className: "h-12" },
+  { src: "/ENESAI.png", alt: "ENESAI", className: "h-20" },
 ];
 
 const absoluteCn = "select-none pointer-events-none";
