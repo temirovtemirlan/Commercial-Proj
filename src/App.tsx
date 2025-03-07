@@ -25,7 +25,12 @@ const App: FC = () => {
       <Container className={"py-[70px]"}>
         <div className={"flex justify-between items-center"}>
           <Header title={"Monster"} />
-          <p className={"text-black text-2xl grow-1 "}>Разработка...</p>
+          <p className={"text-black text-2xl grow-1 max-w-[700px]"}>
+            Мы – не просто digital-агентство. «Монстр» – это экосистема
+            креативных и технологичных решений, созданная для того, чтобы
+            выводить бренды на новый уровень. Мы – ваш сокрушительный аргумент в
+            борьбе за лидерство.
+          </p>
         </div>
       </Container>
       {/* Showreel */}
