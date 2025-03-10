@@ -50,8 +50,8 @@ const App: FC = () => {
             <VimeoEmbed
               className={"object-center object-cover bg-black"}
               height={"700px"}
-              videoId="1062541728"
-              videoURL="09b53bea7e"
+              videoId="1063823034"
+              videoURL="7c9d9e721f"
             />
           </TabPanel>
           <div className={"bg-[#f5f5f7] w-full super-center pt-5"}>
