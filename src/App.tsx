@@ -149,9 +149,20 @@ const App: FC = () => {
             </div>
           </Container>
 
-          <Container>
-            <div className={"w-full my-[150px] "}>
+          <Container
+            className={"our-works w-full bg-[#f5f5f7] mt-[50px] py-[150px] "}
+          >
+            <div>
               <OurWorks />
+
+              {/*<div className="our-works__buttons inline-flex gap-3.5 p-[5px] bg-white rounded-full">*/}
+              {/*  <div className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">*/}
+              {/*    CG REEL*/}
+              {/*  </div>*/}
+              {/*  <div className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">*/}
+              {/*    AI REEL*/}
+              {/*  </div>*/}
+              {/*</div>*/}
             </div>
           </Container>
 

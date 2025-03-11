@@ -10,7 +10,7 @@
 @tailwind utilities;
 
 //@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap'); 
 
 @function rem($pixel) {
   @if math.is-unitless($pixel) {
@@ -32,8 +32,8 @@ body {
 
   position: relative !important;
 
-  //  удалить потом
-  //  height: 10000px;
+//  удалить потом
+//  height: 10000px;
 }
 
 .monsreel-carousel {
@@ -47,33 +47,64 @@ body {
   @apply flex items-center justify-center;
 }
 
-.Mosnreel-tabs,
-.Monstr-Showreel {
+
+.Mosnreel-tabs, .Monstr-Showreel {
   @apply transition-all;
   .tab__delivery_panels {
     cursor: pointer;
 
     &:focus-visible {
-      outline: none;
+        outline: none;
     }
   }
   .react-tabs__tab--selected {
-    background-color: #1d1d1f;
-    color: #fff;
+   background-color: #0171E3;
+  color: #fff;
     border-radius: 100px;
   }
 }
 
-.szh-accordion__item-content {
-  transition: height 250ms cubic-bezier(0, 0, 0, 1);
-}
+.our-works {
 
-.szh-accordion_header_chevron {
-  transition: transform 250ms cubic-bezier(0, 0, 0, 1);
-}
-
-.szh-accordion_header_BtnExpanded {
-  .szh-accordion_header_chevron {
-    transform: rotate(180deg);
+  &__buttons {
+    background: white;
+    @apply inline-flex gap-3.5 p-[5px] bg-white rounded-full ;
   }
+}
+
+.our-works-container {
+  position: relative; /* Чтобы пагинация позиционировалась относительно контейнера */
+}
+
+.swiper-works {
+  /* Стили для Swiper, если нужно */
+}
+
+.custom-pagination {
+  display: flex; /* Горизонтальное расположение элементов пагинации */
+  justify-content: center; /* Выравнивание по центру */
+  margin-top: 20px; /* Отступ сверху от Swiper */
+
+  &__wrapper {
+  @apply bg-white flex rounded-full overflow-hidden;
+
+  }
+
+}
+
+.pagination-item {
+  width: auto;
+  height: auto;
+  background-color: #fff; /* Цвет неактивных элементов */
+  color : #000;
+  cursor: pointer; /* Курсор "рука" при наведении */
+
+
+  @apply px-6 py-2.5;
+}
+
+.pagination-item.swiper-pagination-bullet-active { /* Класс для активного элемента (добавим позже в JS) */
+  background-color: #007aff; /* Цвет активного элемента, пример - синий */
+  border-radius: 100px;
+  color: #fff;
 }
