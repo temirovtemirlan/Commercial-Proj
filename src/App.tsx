@@ -13,6 +13,7 @@ import Footer from "components/Footer";
 // import VimeoEmbed from "components/VimeoEmbed";
 import LazyVideoFrame from "components/LazyVideoFrame.tsx";
 import LazyLoadLayout from "components/LazyLoadLayout.tsx";
+import OurWorks from "components/OurWorks.tsx";
 // import Tariff from "components/Tariff";
 
 // import { TariffStart } from "components/TariffBlock";
@@ -177,19 +178,23 @@ const App: FC = () => {
             </div>
           </Container>
 
+          <Container>
+            <div className={"w-full my-[150px] "}>
+              <OurWorks />
+            </div>
+          </Container>
+
           <Container className={"mt-[100px] pt-[100px] pb-[100px] bg-black"}>
             <LazyLoadLayout>
               <PartnersAndClients />
             </LazyLoadLayout>
           </Container>
-
           <Container className={"py-[100px] bg-black"}>
             <img
               src="https://storage.googleapis.com/mkit_monster_bucket/Poster/JOY_COMMERCIAL_H.webp"
               alt="banner"
             />
           </Container>
-
           <Footer />
         </div>
       </div>
