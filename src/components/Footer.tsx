@@ -84,7 +84,7 @@ const Footer: FC<FooterProps> = ({ className }) => {
     <footer className={cn("bg-black py-[80px]", className)}>
       <div className={"w-full flex justify-between items-center px-5"}>
         {/* <div className={"w-full flex justify-center items-center"}> */}
-        <div className="flex gap-2 items-center">
+        <div className="flex flex-col gap-2 items-center">
           {socialNetwork.map((el) => (
             <Link to={el.href}>{el.icon}</Link>
           ))}
