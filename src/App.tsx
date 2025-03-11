@@ -33,8 +33,6 @@ const App: FC = () => {
   return (
     <LazyMotion features={domAnimation}>
       <div>
-        {/* eslint-disable-next-line no-constant-binary-expression */}
-
         <>
           <Container className={"py-[70px]"}>
             <div className={"flex justify-between  xl:flex-row flex-col"}>
@@ -163,8 +161,10 @@ const App: FC = () => {
             <LazyLoadLayout>
               <PartnersAndClients />
             </LazyLoadLayout>
+            <LazyLoadLayout>
+              <PartnersAndClients />
+            </LazyLoadLayout>
           </Container>
-
           <Container className={"py-[100px] bg-black"}>
             <img
               src="https://storage.googleapis.com/mkit_monster_bucket/Poster/JOY_COMMERCIAL_H.webp"
@@ -172,7 +172,6 @@ const App: FC = () => {
               alt="banner"
             />
           </Container>
-
           <Footer />
         </div>
       </div>
