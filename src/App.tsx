@@ -11,8 +11,9 @@ import PartnersAndClients from "components/PartnersAndClients.tsx";
 import MonsReels from "components/MonsReels.tsx";
 import Footer from "components/Footer";
 // import VimeoEmbed from "components/VimeoEmbed";
-import VideoFrame from "components/VideoFrame.tsx";
-import Tariff from "components/Tariff";
+import LazyVideoFrame from "components/LazyVideoFrame.tsx";
+import LazyLoadLayout from "components/LazyLoadLayout.tsx";
+// import Tariff from "components/Tariff";
 
 // import { TariffStart } from "components/TariffBlock";
 
@@ -30,8 +31,6 @@ const App: FC = () => {
   return (
     <LazyMotion features={domAnimation}>
       <div>
-        {/* eslint-disable-next-line no-constant-binary-expression */}
-
         <>
           <Container className={"py-[70px]"}>
             <div className={"flex justify-between  xl:flex-row flex-col"}>
@@ -48,7 +47,7 @@ const App: FC = () => {
           <div>
             <Tabs className={cn("Monstr-Showreel")}>
               <TabPanel>
-                <VideoFrame
+                <LazyVideoFrame
                   videoSrc={
                     "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/CG_REEL_HORIZONTAL_2.mp4"
                   }
@@ -56,7 +55,7 @@ const App: FC = () => {
                 />
               </TabPanel>
               <TabPanel>
-                <VideoFrame
+                <LazyVideoFrame
                   videoSrc={
                     "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/AI_REEL_HORIZONTAL_NEW.mp4"
                   }
@@ -123,7 +122,7 @@ const App: FC = () => {
         <div>
           <Container>
             <div>
-              <VideoFrame
+              <LazyVideoFrame
                 videoSrc={
                   "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/COCA_COLA_AI_COMMERCIAL.mp4"
                 }
@@ -137,7 +136,7 @@ const App: FC = () => {
             </div>
             <div className={"flex gap-5 mt-5"}>
               <div className={"bg-[#f5f5f7] w-full h-[517.61px]"}>
-                <VideoFrame
+                <LazyVideoFrame
                   className={"h-full"}
                   videoSrc={
                     "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/BAKAI_GPT_REMAKE.mov"
@@ -146,7 +145,7 @@ const App: FC = () => {
                 />
               </div>
               <div className={"bg-[#f5f5f7] w-full h-[517.61px]"}>
-                <VideoFrame
+                <LazyVideoFrame
                   className={"h-full"}
                   videoSrc={
                     "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/INTERSPORT.mp4"
@@ -156,7 +155,7 @@ const App: FC = () => {
               </div>
             </div>
             <div className={"mt-5"}>
-              <VideoFrame
+              <LazyVideoFrame
                 className={"h-full"}
                 videoSrc={
                   "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/organic_juice_commercial%20(1080p).mp4"
@@ -167,7 +166,7 @@ const App: FC = () => {
             <div className="mt-5">{/* замена */}</div>
 
             <div className="mt-5">
-              <VideoFrame
+              <LazyVideoFrame
                 videoSrc={
                   "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/3D_JOY_COMMERCIAL.mp4"
                 }
@@ -179,7 +178,9 @@ const App: FC = () => {
           </Container>
 
           <Container className={"mt-[100px] pt-[100px] pb-[100px] bg-black"}>
-            <PartnersAndClients />
+            <LazyLoadLayout>
+              <PartnersAndClients />
+            </LazyLoadLayout>
           </Container>
 
           <Container className={"py-[100px] bg-black"}>

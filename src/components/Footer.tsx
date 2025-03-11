@@ -86,13 +86,15 @@ const Footer: FC<FooterProps> = ({ className }) => {
         {/* <div className={"w-full flex justify-center items-center"}> */}
         <div className="flex gap-2 items-center">
           {socialNetwork.map((el) => (
-            <Link to={el.href}>{el.icon}</Link>
+            <Link key={el.href} to={el.href}>
+              {el.icon}
+            </Link>
           ))}
         </div>
 
         <div className={"flex gap-x-[65px]  xl:flex-row flex-col"}>
           {clockData?.map((item, index) => (
-            <div className={"text-center"}>
+            <div key={index} className={"text-center"}>
               <Clock key={index} timeZone={item.timeZone} />
               <span className={"text-white block mt-4 text-xl font-normal"}>
                 {item.title}
@@ -110,7 +112,7 @@ const Footer: FC<FooterProps> = ({ className }) => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <g opacity="0.7" clip-path="url(#clip0_1705_1175)">
+            <g opacity="0.7" clipPath="url(#clip0_1705_1175)">
               <path
                 d="M79.9953 5.21981H85.6118V7.27425H80.4482V10.5775H85.6118V13.1367H79.7979V16.44H89.4748V1.89062H79.9953V5.21656V5.21981Z"
                 fill="white"

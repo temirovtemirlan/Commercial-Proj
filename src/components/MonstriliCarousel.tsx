@@ -83,16 +83,16 @@ const MonstriliCarousel: React.FC<MonstriliCarouselProps> = ({
               <path
                 d="M20 11.3859L14 18.3859L20 25.3859"
                 stroke="#B8B8B9"
-                stroke-width="3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 d="M20 11.3859L14 18.3859L20 25.3859"
                 stroke="#535354"
-                stroke-width="3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </button>
@@ -116,9 +116,9 @@ const MonstriliCarousel: React.FC<MonstriliCarouselProps> = ({
               <path
                 d="M16 11.3859L22 18.3859L16 25.3859"
                 stroke="#535354"
-                stroke-width="3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </button>

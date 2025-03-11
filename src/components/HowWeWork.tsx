@@ -155,8 +155,8 @@ const HowWeWork: FC<HowWeWorkProps> = ({ className }) => {
           className="relative justify-start text-white text-[32px] font-bold leading-9"
           variants={{
             initial: { y: 0 },
-            hover: { y: -180, transition: { duration: 0.3 }},
-            exit: { y: 0, transition: { duration: 0.3, delay: 0.3 }},
+            hover: { y: -180, transition: { duration: 0.3 , ease: 'linear' }},
+            exit: { y: 0, transition: { duration: 0.3, delay: 0.3, ease: 'linear' }},
           }}
         >
           {el.title}

@@ -1,9 +1,9 @@
 import { CSSProperties, type FC } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import MonstriliCarousel from "components/MonstriliCarousel.tsx";
-import VimeoEmbed from "components/VimeoEmbed";
 import { cn } from "helpers/style.ts";
-import VideoFrame, { VideoFrameProps } from "components/VideoFrame.tsx";
+import { type VideoFrameProps } from "components/VideoFrame.tsx";
+import LazyVideoFrame from "components/LazyVideoFrame.tsx";
 
 interface MonsReelsProps {
   className?: string;
@@ -696,18 +696,12 @@ const AIReelData = [
 function videoCreaterComponents(data: VideoFrameProps[]) {
   return data?.map((el, index) => (
     <div key={index} className={"overflow-hidden"} style={carouselStyle}>
-      <VideoFrame {...el} />
+      <LazyVideoFrame {...el} />
     </div>
   ));
 }
 
-const commonCn = "";
-
 const MonsReels: FC<MonsReelsProps> = ({ className }) => {
-  const h = videoCreaterComponents(CGReelData);
-
-  console.log("videoCreaterComponents ", h);
-
   return (
     <Tabs className={cn("Mosnreel-tabs", className)}>
       <TabList className="inline-flex gap-3.5 p-[5px] bg-white rounded-full mb-[80px]">

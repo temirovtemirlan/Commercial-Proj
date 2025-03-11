@@ -1,4 +1,4 @@
-import { useState, type FC } from "react";
+import { type FC } from "react";
 import Container from "./Container";
 import { Header } from "../App";
 import { TariffEnd, TariffStart } from "./TariffBlock";
