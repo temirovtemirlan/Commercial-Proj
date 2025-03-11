@@ -43,6 +43,11 @@ const VideoFrame: FC<VideoFrameProps> = ({
     const video = videoRef.current;
     if (!video) return;
 
+    // Предзагрузка видео
+    if (video.readyState < 3) {
+      video.load();
+    }
+
     const updatePlayState = () => setIsPlaying(!video.paused);
 
     video.addEventListener("play", updatePlayState);
@@ -67,6 +72,8 @@ const VideoFrame: FC<VideoFrameProps> = ({
         className="w-full h-full object-cover"
         width={width}
         height={height}
+        playsInline
+        preload="none"
       />
       <div className="absolute inset-0 w-full" onClick={togglePlay} />
       <button className="absolute bottom-5 right-5" onClick={togglePlay}>

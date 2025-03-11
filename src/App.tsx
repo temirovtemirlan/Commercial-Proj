@@ -11,8 +11,10 @@ import PartnersAndClients from "components/PartnersAndClients.tsx";
 import MonsReels from "components/MonsReels.tsx";
 import Footer from "components/Footer";
 // import VimeoEmbed from "components/VimeoEmbed";
-import VideoFrame from "components/VideoFrame.tsx";
-import Tariff from "components/Tariff";
+import LazyVideoFrame from "components/LazyVideoFrame.tsx";
+import LazyLoadLayout from "components/LazyLoadLayout.tsx";
+import OurWorks from "components/OurWorks.tsx";
+// import Tariff from "components/Tariff";
 import AccordionWrapperImg from "components/AccordionWrapperImg";
 
 // import { TariffStart } from "components/TariffBlock";
@@ -31,136 +33,148 @@ const App: FC = () => {
   return (
     <LazyMotion features={domAnimation}>
       <div>
-        <Container className={"py-[70px]"}>
-          <div className={"flex justify-between  xl:flex-row flex-col"}>
-            <Header title={"Monster"} />
-            <p className={"text-black text-2xl grow-1 xl:max-w-[700px]"}>
-              Мы – не просто digital-агентство. «Монстр» – это экосистема
-              креативных и технологичных решений, созданная для того, чтобы
-              выводить бренды на новый уровень. Мы – ваш сокрушительный аргумент
-              в борьбе за лидерство.
-            </p>
-          </div>
-        </Container>
+        {/* eslint-disable-next-line no-constant-binary-expression */}
 
-        {/* Showreel */}
-        <div>
-          <Tabs className={cn("Monstr-Showreel")}>
-            <TabPanel>
-              <VideoFrame
-                videoSrc={
-                  "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/CG_REEL_HORIZONTAL_2.mp4"
-                }
-                posterSrc={""}
-              />
-            </TabPanel>
-            <TabPanel>
-              <VideoFrame
-                videoSrc={
-                  "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/AI_REEL_HORIZONTAL_NEW.mp4"
-                }
-                posterSrc={""}
-              />
-            </TabPanel>
-            <div className={"bg-[#f5f5f7] w-full super-center pt-5"}>
-              <TabList className="inline-flex gap-3.5 p-[5px] bg-white rounded-full">
-                <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
-                  CG REEL
-                </Tab>
-                <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
-                  AI REEL
-                </Tab>
-              </TabList>
+        <>
+          <Container className={"py-[70px]"}>
+            <div className={"flex justify-between  xl:flex-row flex-col"}>
+              <Header title={"Monster"} />
+              <p className={"text-black text-2xl grow-1 xl:max-w-[700px]"}>
+                Мы – не просто digital-агентство. «Монстр» – это экосистема
+                креативных и технологичных решений, созданная для того, чтобы
+                выводить бренды на новый уровень. Мы – ваш сокрушительный
+                аргумент в борьбе за лидерство.
+              </p>
             </div>
-          </Tabs>
-        </div>
-        {/*  */}
-        <div></div>
-        <Container className="bg-[#f5f5f7] pt-[150px] pb-[100px] overflow-hidden">
-          <Header className={"text-[56px] pb-[80px]"} title={"Monsreels"} />
-          <MonsReels />
-        </Container>
-        {/*  How we work */}
-        <HowWeWork />
+          </Container>
+          {/* Showreel */}
+          <div>
+            <Tabs className={cn("Monstr-Showreel")}>
+              <TabPanel>
+                <LazyVideoFrame
+                  videoSrc={
+                    "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/CG_REEL_HORIZONTAL_2.mp4"
+                  }
+                  posterSrc={""}
+                />
+              </TabPanel>
+              <TabPanel>
+                <LazyVideoFrame
+                  videoSrc={
+                    "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/AI_REEL_HORIZONTAL_NEW.mp4"
+                  }
+                  posterSrc={""}
+                />
+              </TabPanel>
+              <div className={"bg-[#f5f5f7] w-full super-center pt-5"}>
+                <TabList className="inline-flex gap-3.5 p-[5px] bg-white rounded-full">
+                  <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
+                    CG REEL
+                  </Tab>
+                  <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
+                    AI REEL
+                  </Tab>
+                </TabList>
+              </div>
+            </Tabs>
+          </div>
+          {/*  */}
+          <div></div>
+          <Container className="bg-[#f5f5f7] pt-[150px] pb-[100px] overflow-hidden">
+            <Header className={"text-[56px] pb-[80px]"} title={"Monsreels"} />
+            <MonsReels />
+          </Container>
+          {/*  How we work */}
+          <HowWeWork />
+        </>
 
         {/* Tariff */}
-        <Tariff />
+        {/* <Tariff /> */}
 
         {/*<VimeoEmbed videoId={"1062552326"} videoURL={"e4348904e6"} />*/}
 
-        <Container>
-          <div>
-            <VideoFrame
-              videoSrc={
-                "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/COCA_COLA_AI_COMMERCIAL.mp4"
-              }
-            />
-            {/*<VimeoEmbed*/}
-            {/*  className={"object-center object-cover bg-black"}*/}
-            {/*  height={"700px"}*/}
-            {/*  videoId="1062549483"*/}
-            {/*  videoURL="a20cba6903"*/}
-            {/*/>*/}
-          </div>
-          <div className={"flex gap-5 mt-5"}>
-            <div className={"bg-[#f5f5f7] w-full h-[517.61px]"}>
-              <VideoFrame
+        <div>
+          <Container>
+            <div>
+              <LazyVideoFrame
+                videoSrc={
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/COCA_COLA_AI_COMMERCIAL.mp4"
+                }
+              />
+              {/*<VimeoEmbed*/}
+              {/*  className={"object-center object-cover bg-black"}*/}
+              {/*  height={"700px"}*/}
+              {/*  videoId="1062549483"*/}
+              {/*  videoURL="a20cba6903"*/}
+              {/*/>*/}
+            </div>
+            <div className={"flex gap-5 mt-5"}>
+              <div className={"bg-[#f5f5f7] w-full h-[517.61px]"}>
+                <LazyVideoFrame
+                  className={"h-full"}
+                  videoSrc={
+                    "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/BAKAI_GPT_REMAKE.mov"
+                  }
+                  height={"100%"}
+                />
+              </div>
+              <div className={"bg-[#f5f5f7] w-full h-[517.61px]"}>
+                <LazyVideoFrame
+                  className={"h-full"}
+                  videoSrc={
+                    "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/INTERSPORT.mp4"
+                  }
+                  height={"100%"}
+                />
+              </div>
+            </div>
+            <div className={"mt-5"}>
+              <LazyVideoFrame
                 className={"h-full"}
                 videoSrc={
-                  "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/BAKAI_GPT_REMAKE.mov"
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/organic_juice_commercial%20(1080p).mp4"
                 }
                 height={"100%"}
               />
             </div>
-            <div className={"bg-[#f5f5f7] w-full h-[517.61px]"}>
-              <VideoFrame
-                className={"h-full"}
+            <div className="mt-5">{/* замена */}</div>
+
+            <div className="mt-5">
+              <LazyVideoFrame
                 videoSrc={
-                  "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/INTERSPORT.mp4"
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/3D_JOY_COMMERCIAL.mp4"
                 }
-                height={"100%"}
+                posterSrc={
+                  "https://storage.googleapis.com/mkit_monster_bucket/Poster/JOY_COMMERCIAL_H.webp"
+                }
               />
             </div>
-          </div>
-          <div className={"mt-5"}>
-            <VideoFrame
-              className={"h-full"}
-              videoSrc={
-                "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/organic_juice_commercial%20(1080p).mp4"
-              }
-              height={"100%"}
+          </Container>
+
+          <Container>
+            <div className={"w-full my-[150px] "}>
+              <OurWorks />
+            </div>
+          </Container>
+
+          <AccordionWrapperImg />
+
+          <Container className={"mt-[100px] pt-[100px] pb-[100px] bg-black"}>
+            <LazyLoadLayout>
+              <PartnersAndClients />
+            </LazyLoadLayout>
+          </Container>
+
+          <Container className={"py-[100px] bg-black"}>
+            <img
+              src="https://storage.googleapis.com/mkit_monster_bucket/Poster/JOY_COMMERCIAL_H.webp"
+              className="max-h-[580px] h-full w-full rounded-[28px]"
+              alt="banner"
             />
-          </div>
-          <div className="mt-5">{/* замена */}</div>
+          </Container>
 
-          <div className="mt-5">
-            <VideoFrame
-              videoSrc={
-                "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/3D_JOY_COMMERCIAL.mp4"
-              }
-              posterSrc={
-                "https://storage.googleapis.com/mkit_monster_bucket/Poster/JOY_COMMERCIAL_H.webp"
-              }
-            />
-          </div>
-        </Container>
-
-        <AccordionWrapperImg />
-
-        <Container className={"mt-[100px] pt-[100px] pb-[100px] bg-black"}>
-          <PartnersAndClients />
-        </Container>
-
-        <Container className={"py-[100px] bg-black"}>
-          <div className="w-full h-[582px] rounded-[28px] bg-gray-400" />
-          {/* <img
-                    className="w-full h-[582px] rounded-[28px]"
-                    src="https://storage.googleapis.com/mkit_monster_bucket/Poster/JOY_COMMERCIAL_H.webp"
-                    alt="banner"
-                  /> */}
-        </Container>
-
-        <Footer />
+          <Footer />
+        </div>
       </div>
     </LazyMotion>
   );

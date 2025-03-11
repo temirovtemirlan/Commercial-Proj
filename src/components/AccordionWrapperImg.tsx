@@ -32,7 +32,8 @@ const AccordionWrapperImg: FC = () => {
 
   return (
     <Container className="my-[100px]">
-      <div className="grid grid-cols-[590px_1fr] bg-[#f5f5f7] rounded-[28px] w-full min-h-[784px] overflow-hidden">
+      <div className="grid grid-cols-[590px_1fr] bg-[#f5f5f7] rounded-[28px] w-full h-[810px] overflow-hidden">
+        {/* <div className="grid grid-cols-[590px_1fr] bg-[#f5f5f7] rounded-[28px] w-full min-h-[784px] overflow-hidden"> */}
         <Accordion
           className="p-32"
           transition
