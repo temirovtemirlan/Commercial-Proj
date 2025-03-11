@@ -111,15 +111,10 @@ const Tariff: FC = () => {
           </div>
 
           <div className="pt-12 w-[360px]">
-            <Accordion>
-              <AccordionItem header={"What is More"}>HI</AccordionItem>
-              <AccordionItem header={"What is More"}>HI</AccordionItem>
-            </Accordion>
-
-            {/* <Accordion>
+            <Accordion className="w-full">
               <AccordionItem
                 header={({ state }) => (
-                  <div className="flex justify-evenly w-full">
+                  <div className="flex justify-evenly w-[360px]">
                     <svg
                       width="20"
                       height="20"
@@ -127,7 +122,7 @@ const Tariff: FC = () => {
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                       className={`transition-transform duration-300 ${
-                        state ? "scale-y-[1]" : "-scale-y-[1]"
+                        state.isEnter ? "scale-y-[1]" : "-scale-y-[1]"
                         //   isOpen ? "rotate-180" : "rotate-0"
                       }`}
                     >
@@ -136,19 +131,28 @@ const Tariff: FC = () => {
                         fill="black"
                       />
                     </svg>
+
+                    <div className="pt-6">
+                      <TariffEnd
+                        head={item.footer[0].title}
+                        descriptions={item.footer[0].descriptions}
+                      />
+                    </div>
                   </div>
                 )}
               >
-                <div className="flex flex-col justify-evenly gap-14 pt-6">
-                  {item.footer?.map((footer) => (
-                    <TariffEnd
-                      head={footer.title}
-                      descriptions={footer.descriptions}
-                    />
-                  ))}
+                <div className="flex flex-col justify-evenly gap-14 pt-14">
+                  {item.footer
+                    .slice(1)
+                    ?.map((footer) => (
+                      <TariffEnd
+                        head={footer.title}
+                        descriptions={footer.descriptions}
+                      />
+                    ))}
                 </div>
               </AccordionItem>
-            </Accordion> */}
+            </Accordion>
           </div>
         </>
       ))}

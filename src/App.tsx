@@ -12,7 +12,7 @@ import MonsReels from "components/MonsReels.tsx";
 import Footer from "components/Footer";
 // import VimeoEmbed from "components/VimeoEmbed";
 import VideoFrame from "components/VideoFrame.tsx";
-// import Tariff from "components/Tariff";
+import Tariff from "components/Tariff";
 
 // import { TariffStart } from "components/TariffBlock";
 
@@ -86,6 +86,9 @@ const App: FC = () => {
         </>
 
         {/* Tariff */}
+        {/* <>
+          <Tariff />
+        </> */}
 
         <>
           {/*<Container className={"py-[100px]"}>*/}
@@ -117,9 +120,7 @@ const App: FC = () => {
 
         {/*<VimeoEmbed videoId={"1062552326"} videoURL={"e4348904e6"} />*/}
 
-        {/* eslint-disable-next-line no-constant-binary-expression */}
-
-        <>
+        <div>
           <Container>
             <div>
               <VideoFrame
@@ -189,7 +190,7 @@ const App: FC = () => {
           </Container>
 
           <Footer />
-        </>
+        </div>
       </div>
     </LazyMotion>
   );
