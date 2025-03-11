@@ -9,7 +9,7 @@ import MonsReels from "components/MonsReels.tsx";
 import Footer from "components/Footer";
 import VimeoEmbed from "components/VimeoEmbed";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
-// import VimeoEmbedTest from "components/VimeoEmbedTest";
+import VideoFrame from "components/VideoFrame.tsx";
 
 interface HeaderProps {
   title: string;
@@ -39,19 +39,19 @@ const App: FC = () => {
       <div>
         <Tabs className={cn("Monstr-Showreel")}>
           <TabPanel>
-            <VimeoEmbed
-              className={"object-center object-cover bg-black"}
-              height={"700px"}
-              videoId="1062541479"
-              videoURL="8723c86694"
+            <VideoFrame
+              videoSrc={
+                "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/CG_REEL_HORIZONTAL_2.mp4"
+              }
+              posterSrc={""}
             />
           </TabPanel>
           <TabPanel>
-            <VimeoEmbed
-              className={"object-center object-cover bg-black"}
-              height={"700px"}
-              videoId="1063823034"
-              videoURL="7c9d9e721f"
+            <VideoFrame
+              videoSrc={
+                "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/AI_REEL_HORIZONTAL_NEW.mp4"
+              }
+              posterSrc={""}
             />
           </TabPanel>
           <div className={"bg-[#f5f5f7] w-full super-center pt-5"}>
@@ -70,7 +70,6 @@ const App: FC = () => {
       <div></div>
       <Container className="bg-[#f5f5f7] pt-[150px] pb-[100px] overflow-hidden">
         <Header className={"text-[56px] pb-[80px]"} title={"Monsreels"} />
-
         <MonsReels />
       </Container>
       {/*  How we work */}
@@ -106,33 +105,57 @@ const App: FC = () => {
 
       <Container>
         <div>
-          <VimeoEmbed
-            className={"object-center object-cover bg-black"}
-            height={"700px"}
-            videoId="1062549483"
-            videoURL="a20cba6903"
+          <VideoFrame
+            videoSrc={
+              "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/COCA_COLA_AI_COMMERCIAL.mp4"
+            }
           />
+          {/*<VimeoEmbed*/}
+          {/*  className={"object-center object-cover bg-black"}*/}
+          {/*  height={"700px"}*/}
+          {/*  videoId="1062549483"*/}
+          {/*  videoURL="a20cba6903"*/}
+          {/*/>*/}
         </div>
-        {/*<div className={"flex gap-5 mt-5"}>*/}
-        {/*  <div className={"bg-[#f5f5f7] w-full h-[517.61px]"}></div>*/}
-        {/*  <div className={"bg-[#f5f5f7] w-full h-[517.61px]"}></div>*/}
-        {/*</div>*/}
+        <div className={"flex gap-5 mt-5"}>
+          <div className={"bg-[#f5f5f7] w-full h-[517.61px]"}>
+            <VideoFrame
+              className={"h-full"}
+              videoSrc={
+                "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/BAKAI_GPT_REMAKE.mov"
+              }
+              height={"100%"}
+            />
+          </div>
+          <div className={"bg-[#f5f5f7] w-full h-[517.61px]"}>
+            <VideoFrame
+              className={"h-full"}
+              videoSrc={
+                "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/INTERSPORT.mp4"
+              }
+              height={"100%"}
+            />
+          </div>
+        </div>
         <div className={"mt-5"}>
-          <VimeoEmbed
-            className={"object-center object-cover bg-black"}
-            height={"700px"}
-            videoId="1062549677"
-            videoURL="ba1d2644d3"
+          <VideoFrame
+            className={"h-full"}
+            videoSrc={
+              "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/organic_juice_commercial%20(1080p).mp4"
+            }
+            height={"100%"}
           />
         </div>
         <div className="mt-5">{/* замена */}</div>
 
         <div className="mt-5">
-          <VimeoEmbed
-            className={"object-center object-cover bg-black"}
-            height={"700px"}
-            videoId="1062541728"
-            videoURL="09b53bea7e"
+          <VideoFrame
+            videoSrc={
+              "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/3D_JOY_COMMERCIAL.mp4"
+            }
+            posterSrc={
+              "https://storage.googleapis.com/mkit_monster_bucket/Poster/JOY_COMMERCIAL_H.webp"
+            }
           />
         </div>
       </Container>
@@ -141,10 +164,6 @@ const App: FC = () => {
       </Container>
 
       <Footer />
-
-      {/*src="https://player.vimeo.com/video/?h=&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"*/}
-
-      {/*<script src="https://player.vimeo.com/api/player.js"></script>*/}
     </div>
   );
 };

@@ -8,6 +8,14 @@ interface HowWeWorkProps {
   className?: string;
 }
 
+// className : "w-[357px] h-full rounded-2.5xl overflow-hidden",
+//   videoSrc: "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/1.3.mp4",
+//   posterSrc: "bhttps://storage.googleapis.com/mkit_monster_bucket/Poster/ORGANIC_CHARACTER.png",
+//   posterSrc: "",
+//   title: "",
+//   width: "",
+//   height: "",
+
 const weWorkcarouselStyle = {
   width: "100%",
   height: "300px",
@@ -22,6 +30,7 @@ const howWeWorkCarousel = [
     style={weWorkcarouselStyle}
   >
     <svg
+      // className={"opacity-0"}
       width="67"
       height="55"
       viewBox="0 0 67 55"
@@ -81,9 +90,9 @@ const howWeWorkCarousel = [
       />
     </svg>
 
-    <p className="relative justify-start text-white text-[32px] font-bold leading-9">
-      Первая встреча и брифинг
-    </p>
+    {/*<p className="relative justify-start text-white text-[32px] font-bold leading-9">*/}
+    {/*  Первая встреча и брифинг*/}
+    {/*</p>*/}
   </div>,
   <div
     className={cn("bg-gradient-to-b from-[#fea800] to-[#ffcb03]", commonCn)}

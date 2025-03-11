@@ -62,6 +62,11 @@ const partners = [
   { src: "/ENESAI.png", alt: "ENESAI", className: "h-20" },
   { src: "/BOOBLIK.png", alt: "BOOBLIK", className: "h-16" },
   { src: "/BAKAI.png", alt: "BAKAI", className: "h-16" },
+  {
+    src: "https://ffa2e641cff63ca7e575d8869c7e232d2f976727a4539fc017db063-apidata.googleusercontent.com/download/storage/v1/b/mkit_monster_bucket/o/ELBATA.png?jk=AVyuY3iLhDUc6ni2LPM7-0V_UfYemMZOqFfyV4uuSvktfnZfEW6sgRblyO4FhXtuYOL-ofWSzpEft-jKMUW2NmDjrXl03-PNGWWVVvvfZtA_jNbma33GfKe4DsMjedu2hsTbhL78x_E7uamM0XCMAlpmr7Trie7R-GtSvz6vPIbbySk3ngOTxXBTbGGAQAx8aP8mqSUMjbPXfZsqav2IQKuZDS6b2PO-aKDyjTHhWxI4GSqr_vRNpgXVwXIEa0gh6A4x28f1IXr-3GuurDCCyaxv16pcNfQPvxlqxcOKWefG8qdA7vNDlTm4pSGhjdvXFeQN4giBRc4aCm3Sv6-Jth-mwoIVtjx0WEuUDL-qQO8W1p24sM7NJV4LkhYdNRPT9lOSYx4516JCWL0ziUvCUWBINqrtGWAi1NfDFunubyRuPal5wBHV7Xx2LuTtkwaOuwiFS05OH6868yO22ad7RVX2jltg6HSYj55Uan69ls2fZozxZdHkfkiPqhT8XRJLxGJVLwLKp9RyP5GdBSfSx6qtiWOVEw_ViMzNE1WyaBO9wc2oXxuVBi1YbwqwxWxX7i-n_aPH5LzngKJE_2xdRxJnE7AS1q_4WrN_Vkb2QWjGbgJ0nCkVGMQVPtfdc7TEsKcvuNpsOj7Ix-Q2xYYtexfmpiOAZNkYH_uP1sm59IfXtvnY2ourZs6GFtU93f_jcn0tIK4Q8uqq8OHtXHmFYdq5QlD5Y7lrQZtwDeGOac2AuQT15j69YjQMDIu4kbtHswRNoedVnhx_rzNPrqvpjuIm3mzLXXGjHrX9zktoDNmVjYj8lPXGGzftjNLFgMppIzZ_R0a6ErnkoceiYXYP_p6teN8tR6G6WLkzNDV9tQ80dtn_kCHJrFyth_oeJ42fv-_NoA1gcDz6EUEx2XVEpBlQqPqSpi3-UXO4T_9ZYuQYLYrSDWV71kIxwrw7dAMz33OjI3W0sNTXogBzY_I8lLb2bU4gwOjOiYiKJq1UGhSfybTx21RxRcE-Ej1D0tP0wJQciyFSHx78X5k9KPTB7i6K77igbD3S4spJrzxQig15CO6kATIX-OY4YoS8TNTTr7YlbHd0uQIaMWx0X80RFJJXeJuGaJAPiigxkmbbBNMNRpiXxpuc_iVe&isca=1",
+    alt: "ELBATA",
+    className: "h-20",
+  },
 ];
 
 const absoluteCn = "select-none pointer-events-none";
