@@ -15,7 +15,7 @@ import LazyVideoFrame from "components/LazyVideoFrame.tsx";
 import LazyLoadLayout from "components/LazyLoadLayout.tsx";
 import OurWorks from "components/OurWorks.tsx";
 import { motion } from "framer-motion";
-import { TariffStart } from "components/TariffBlock.tsx";
+// import { TariffStart } from "components/TariffBlock.tsx";
 // import Tariff from "components/Tariff";
 
 // import { TariffStart } from "components/TariffBlock";
