@@ -12,6 +12,7 @@ interface MonstriliCarouselProps {
   className?: string;
   coreClassName?: string;
   items: React.ReactNode[];
+  slidesPerView?: number;
 
   nextEl: string;
   prevEl: string;
@@ -21,6 +22,7 @@ const MonstriliCarousel: React.FC<MonstriliCarouselProps> = ({
   items,
   className,
   coreClassName,
+  slidesPerView,
   nextEl,
   prevEl,
 }) => {
@@ -32,14 +34,14 @@ const MonstriliCarousel: React.FC<MonstriliCarouselProps> = ({
         speed={1500}
         cssMode={true}
         spaceBetween={30} // Расстояние между слайдами
-        slidesPerView={4} // Количество видимых слайдов за раз
+        slidesPerView={slidesPerView || 4} // Количество видимых слайдов за раз
         navigation={{
-          nextEl: `.${nextEl}`, // ".cdf26213a150dc23a",
-          prevEl: `.${prevEl}`, // ".d41d8cd98f00b2dee",
+          nextEl: `.${nextEl}`,
+          prevEl: `.${prevEl}`,
         }}
         breakpoints={{
           1700: {
-            slidesPerView: 4,
+            slidesPerView: slidesPerView === 3 ? 3 : 4,
           },
           1500: {
             slidesPerView: 3,
@@ -52,7 +54,7 @@ const MonstriliCarousel: React.FC<MonstriliCarouselProps> = ({
           },
         }}
       >
-        {items.map((item, index) => (
+        {items?.map((item, index) => (
           <SwiperSlide key={index}>
             <div>{item}</div>
           </SwiperSlide>
@@ -63,7 +65,7 @@ const MonstriliCarousel: React.FC<MonstriliCarouselProps> = ({
 
       <div className={"flex w-full justify-end"}>
         <div className={"gap-5 flex mt-[40px] *:cursor-pointer *:select-none"}>
-          <div className={prevEl}>
+          <button className={prevEl}>
             <svg
               width="36"
               height="37"
@@ -93,10 +95,10 @@ const MonstriliCarousel: React.FC<MonstriliCarouselProps> = ({
                 stroke-linejoin="round"
               />
             </svg>
-          </div>
+          </button>
           {/*  */}
 
-          <div className={nextEl}>
+          <button className={nextEl}>
             <svg
               width="36"
               height="37"
@@ -119,7 +121,7 @@ const MonstriliCarousel: React.FC<MonstriliCarouselProps> = ({
                 stroke-linejoin="round"
               />
             </svg>
-          </div>
+          </button>
         </div>
       </div>
     </div>
