@@ -2,19 +2,41 @@ import { type FC, useRef, useEffect, useState } from "react"; // useEffect им�
 import { cn } from "helpers/style.ts";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
+import { Swiper as SwiperType } from "swiper/types";
 
 interface OurWorksProps {
   className?: string;
 }
 
 const OurWorks: FC<OurWorksProps> = ({ className }) => {
-  const swiperRef = useRef<any>();
+  const swiperRef = useRef<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState<number>(0); // Состояние для активного индекса
+  // const [isPrevDisabled, setIsPrevDisabled] = useState<boolean>(true);
+  // const [isNextDisabled, setIsNextDisabled] = useState<boolean>(false);
 
   const handlePaginationClick = (index: number) => {
     // Обработчик клика на пагинацию
     swiperRef.current?.slideTo(index); // Используем API Swiper для переключения слайда
   };
+
+  useEffect(() => {
+    const swiperInstance = swiperRef.current;
+    if (!swiperInstance) return;
+
+    const updatePagination = () => {
+      const { activeIndex /*isBeginning, isEnd */ } = swiperInstance;
+      setActiveIndex(activeIndex);
+      // setIsPrevDisabled(isBeginning);
+      // setIsNextDisabled(isEnd);
+    };
+
+    swiperInstance.on("slideChange", updatePagination);
+    updatePagination(); // Обновляем состояния сразу при монтировании
+
+    return () => {
+      swiperInstance.off("slideChange", updatePagination);
+    };
+  }, []);
 
   useEffect(() => {
     const swiperInstance = swiperRef.current;
@@ -89,7 +111,7 @@ const OurWorks: FC<OurWorksProps> = ({ className }) => {
       </Swiper>
 
       <div className="custom-pagination">
-        <div className={"custom-pagination__wrapper"}>
+        <div className={"custom-pagination__wrapper p-[5px]"}>
           {/* Используем map для рендеринга элементов пагинации */}
           {Array.from({ length: 3 }).map((_, index) => (
             <div

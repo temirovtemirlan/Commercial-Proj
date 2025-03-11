@@ -14,8 +14,9 @@ import Footer from "components/Footer";
 import LazyVideoFrame from "components/LazyVideoFrame.tsx";
 import LazyLoadLayout from "components/LazyLoadLayout.tsx";
 import OurWorks from "components/OurWorks.tsx";
+import { motion } from "framer-motion";
+import { TariffStart } from "components/TariffBlock.tsx";
 // import Tariff from "components/Tariff";
-import AccordionWrapperImg from "components/AccordionWrapperImg";
 
 // import { TariffStart } from "components/TariffBlock";
 
@@ -46,7 +47,7 @@ const App: FC = () => {
             </div>
           </Container>
           {/* Showreel */}
-          <div>
+          <div className={"text-center"}>
             <Tabs className={cn("Monstr-Showreel")}>
               <TabPanel>
                 <LazyVideoFrame
@@ -64,8 +65,13 @@ const App: FC = () => {
                   posterSrc={""}
                 />
               </TabPanel>
-              <div className={"bg-[#f5f5f7] w-full super-center pt-5"}>
-                <TabList className="inline-flex gap-3.5 p-[5px] bg-white rounded-full">
+              <motion.div
+                className={"switcher sticky bottom-5 pt-5 inline-block"}
+                initial={{ y: 100, scale: 0 }}
+                animate={{ y: 0, scale: 1 }}
+                transition={{ duration: 0.9, ease: "backOut", delay: 0.2 }}
+              >
+                <TabList className="flex p-[5px] bg-white rounded-full">
                   <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
                     CG REEL
                   </Tab>
@@ -73,7 +79,7 @@ const App: FC = () => {
                     AI REEL
                   </Tab>
                 </TabList>
-              </div>
+              </motion.div>
             </Tabs>
           </div>
           {/*  */}
@@ -86,8 +92,36 @@ const App: FC = () => {
           <HowWeWork />
         </>
 
-        {/* Tariff */}
-        {/* <Tariff /> */}
+        <>
+          <Container className={"py-[100px]"}>
+            <Header
+              className={"text-[56px] mb-[60px]"}
+              title={"Изучите тарифы."}
+            />
+            {/*<div className={"flex justify-evenly"}>*/}
+            {/*  <TariffStart title={"afsd"} />*/}
+            {/*  <TariffStart title={"afds"} />*/}
+            {/*  <TariffStart title={"afdsf"} />*/}
+            {/*</div>*/}
+            <hr className={"my-[50px] border-[#d2d2d7]"} />
+            <div className={"flex justify-evenly w-full"}>
+              <div className={"w-[360px]"}>
+                <div className="text-center text-black text-[28px] font-semibold font-['Nunito Sans']">
+                  13” or 11”
+                  <span
+                    className={"text-xs block mt-3 font-normal leading-relaxed"}
+                  >
+                    Ultra Retina XDR display4 <br /> ProMotion technology <br />{" "}
+                    P3 wide color <br /> Nano-texture display glass option{" "}
+                    <br /> on 1TB and 2TB models
+                  </span>
+                </div>
+              </div>
+              <div className={"w-[360px]"}></div>
+              <div className={"w-[360px]"}></div>
+            </div>
+          </Container>
+        </>
 
         {/*<VimeoEmbed videoId={"1062552326"} videoURL={"e4348904e6"} />*/}
 
@@ -166,20 +200,15 @@ const App: FC = () => {
             </div>
           </Container>
 
-          <AccordionWrapperImg />
-
           <Container className={"mt-[100px] pt-[100px] pb-[100px] bg-black"}>
-            <LazyLoadLayout>
-              <PartnersAndClients />
-            </LazyLoadLayout>
             <LazyLoadLayout>
               <PartnersAndClients />
             </LazyLoadLayout>
           </Container>
           <Container className={"py-[100px] bg-black"}>
             <img
+              className={"rounded-xl overflow-hidden"}
               src="https://storage.googleapis.com/mkit_monster_bucket/Poster/JOY_COMMERCIAL_H.webp"
-              className="max-h-[580px] h-full w-full rounded-[28px]"
               alt="banner"
             />
           </Container>
