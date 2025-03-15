@@ -20,16 +20,16 @@ const IndicatorsLoading: FC<IndicatorsLoadingProps> = ({
         className
       )}
     >
-      <div className="flex-1 inline-flex flex-col justify-start items-start gap-3">
-        <div className="self-stretch h-3.5 bg-gradient-to-r from-[#f5baff] to-[#694bff] rounded-[100px]" />
-        <div className="justify-start text-white text-2xl font-semibold">
+      <div className="flex-1 inline-flex flex-col justify-start items-start">
+        <div className="self-stretch h-2.5 bg-gradient-to-r from-[#f5baff] to-[#694bff] rounded-[100px]" />
+        <p className="justify-start text-white text-2xl mt-3 font-normal">
           {title}
-        </div>
+        </p>
       </div>
 
       <CountUp
         className={
-          "justify-start text-[#f5baff] xl:text-[45px] text-[28px] font-bold leading-[20px] xl:leading-[50px]"
+          "justify-start text-[#f5baff] xl:text-[45px] text-[28px] font-semibold leading-[20px] xl:leading-[38px]"
         }
         end={percent}
         duration={3}

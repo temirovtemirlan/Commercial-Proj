@@ -291,13 +291,15 @@ const App: FC = () => {
           </div>
         </Container>
 
-        <Container className={"py-[200px] overflow-hidden"}>
-          <legend className="text-center justify-center text-[#222] text-[80px] font-bold leading-[75px]">
-            <span className={"text-[#0057e2]"}>Мы не создаем контент.</span>
+        <Container className={"xl:py-[200px] py-[100px] overflow-hidden"}>
+          <legend className="legend-2lvl">
+            <span className={"gradient-legend-1lvl"}>
+              Мы не создаем контент.
+            </span>
             <br /> Мы создаем культуру.
           </legend>
 
-          <div className={"mt-11 flex gap-5"}>
+          <div className={"mt- flex gap-5"}>
             <div
               className={
                 "w-1/2 h-[660px] px-[60px] bg-[#f5f5f7] py-2.5 rounded-[28px] inline-flex flex-col justify-center items-start gap-[30px]"
@@ -335,9 +337,9 @@ const App: FC = () => {
                   </defs>
                 </svg>
 
-                <div>
+                <p>
                   Реклама должна <br /> быть больше, <br /> чем креатив.
-                </div>
+                </p>
               </div>
 
               <div
