@@ -18,7 +18,8 @@ const DirectionsItems: FC<DirectionsItemsProps> = ({ className, item }) => {
   return (
     <div
       className={cn(
-        "grid lg:grid-cols-2 w-full bg-black lg:max-h-[680px] min-h-[680px] rounded-[28px] overflow-hidden",
+        "grid lg:grid-cols-2 w-full bg-black h-[910px] md:h-[850px] lg:max-h-[680px] lg:min-h-[680px] rounded-[28px] overflow-hidden",
+        // "grid lg:grid-cols-2 w-full bg-black max-h-[900px] min-h-[900px] md:max-h-[680px] md:min-h-[680px] rounded-[28px] overflow-hidden",
         className
       )}
     >

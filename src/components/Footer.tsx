@@ -81,7 +81,7 @@ const socialNetwork = [
 
 const Footer: FC<FooterProps> = ({ className }) => {
   return (
-    <footer className={cn("bg-black py-[80px]", className)}>
+    <footer className={cn("bg-[#161617] py-[80px]", className)}>
       <div className={"w-full flex justify-between items-center px-5"}>
         {/* <div className={"w-full flex justify-center items-center"}> */}
         <div className="flex flex-col gap-2 items-center">

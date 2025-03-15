@@ -103,7 +103,8 @@ const Directions: FC = () => {
         onSwiper={() => {}}
         className="px-5 w-full"
         modules={[Pagination, Navigation]}
-        speed={1500}
+        speed={500}
+        // speed={1500}
         spaceBetween={30} // Расстояние между слайдами
         loop
         // cssMode

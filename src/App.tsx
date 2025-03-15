@@ -217,11 +217,7 @@ const App: FC = () => {
                     </>
                   ))}
                 </div>
-                <TabPanel
-                  className={
-                    "w-full xl:px-[100px] mt-[30px] flex flex-col gap-10"
-                  }
-                >
+                <TabPanel className="w-full xl:px-[100px] mt-[30px] flex flex-col gap-10">
                   {indicatorsLoading
                     ?.filter((item) => item.filter === tappad)
                     ?.map((el, index) => (
@@ -295,7 +291,7 @@ const App: FC = () => {
             <LazyVideoFrame
               videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/CG/3D_JOY_COMMERCIAL.mp4"
               posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/JOY_COMMERCIAL_H.webp"
-              coreClassName="h-[400px] lg:h-auto"
+              coreClassName="h-[400px] lg:h-auto rounded-[28px] overflow-hidden"
               className="h-full lg:h-auto"
             />
           </div>
@@ -321,14 +317,14 @@ const App: FC = () => {
             </Tabs>
           </Container>
 
-          <Container className="pt-[100px] pb-[100px] bg-black">
+          <Container className="pt-[100px] pb-[100px] bg-[#161617]">
             <LogoCubeAnimation />
           </Container>
 
-          <Container className="py-[100px] bg-black">
+          <Container className="py-[100px] bg-[#161617]">
             <img
               src="https://storage.googleapis.com/mkit_monster_bucket/Poster/JOY_COMMERCIAL_H.webp"
-              className="max-h-[580px] h-full w-full rounded-[28px]"
+              className="max-h-[640px] mac:max-h-[960px] h-full w-full rounded-md"
               alt="banner"
             />
           </Container>
