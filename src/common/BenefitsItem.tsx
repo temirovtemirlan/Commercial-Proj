@@ -1,4 +1,5 @@
 import { type FC } from "react";
+import { cn } from "helpers/style";
 
 interface BenefitsItemProps {
   className?: string;
@@ -6,7 +7,7 @@ interface BenefitsItemProps {
 
 const BenefitsItem: FC<BenefitsItemProps> = ({ className }) => {
   return (
-    <div className="flex flex-col gap-5">
+    <div className={cn("flex flex-col gap-5", className)}>
       <svg
         width="31"
         height="30"

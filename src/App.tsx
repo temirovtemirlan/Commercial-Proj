@@ -260,10 +260,12 @@ const App: FC = () => {
           <Directions />
 
           <div className={"text-center w-full"}>
-            <legend className="custom-legend-2lvl">Наши показатели</legend>
+            <legend className="custom-legend-2lvl mt-[100px]">
+              Наши показатели
+            </legend>
 
             <Tabs className={cn("Our-Indicators")}>
-              <TabList className="inline-flex p-[5px] rounded-full bg-white">
+              <TabList className="inline-flex p-[5px] my-[20px] rounded-full bg-white">
                 <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
                   CG REEL
                 </Tab>
@@ -272,12 +274,13 @@ const App: FC = () => {
                 </Tab>
               </TabList>
               <TabPanel
-                className={"w-full px-[100px] mt-[30px] flex flex-col gap-10"}
+                className={
+                  "w-full xl:px-[100px] mt-[30px] flex flex-col gap-10"
+                }
               >
-                <IndicatorsLoading />
-                <IndicatorsLoading />
-                <IndicatorsLoading />
-                <IndicatorsLoading />
+                <IndicatorsLoading title={"Blender"} percent={"95"} />
+                <IndicatorsLoading title={"Blender"} percent={"95"} />
+                <IndicatorsLoading title={"Blender"} percent={"95"} />
               </TabPanel>
             </Tabs>
           </div>
