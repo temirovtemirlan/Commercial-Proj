@@ -3,21 +3,22 @@ import { cn } from "helpers/style.ts";
 
 interface DirectionsItemsProps {
   className?: string;
-  title: string;
-  text: string;
+  title?: string;
+  text?: string;
 }
 
 const DirectionsItems: FC<DirectionsItemsProps> = ({ className }) => {
   return (
     <div
       className={cn(
-        "w-full bg-black h-[680px] rounded-[28px] overflow-hidden flex gap-[50px]",
+        "grid grid-cols-2 w-full bg-black h-[680px] rounded-[28px] overflow-hidden",
+        // "w-full bg-black h-[680px] rounded-[28px] overflow-hidden flex gap-[50px]",
         className
       )}
     >
-      <div className={"w-1/2"}>
-        <div className="inline-flex flex-col justify-start items-start gap-[22px] pl-[50px] pt-[60px]">
-          <legend className="w-[492.18px] justify-center text-[#eeadff] text-[55px] font-bold leading-tight">
+      <div className="w-full px-[50px] py-16">
+        <div className="inline-flex flex-col justify-start items-start gap-[22px]">
+          <legend className="justify-center text-[#eeadff] text-[55px] font-bold leading-tight">
             Monster Design & Branding
           </legend>
           <div className="self-stretch justify-start">
@@ -43,7 +44,8 @@ const DirectionsItems: FC<DirectionsItemsProps> = ({ className }) => {
           </div>
         </div>
       </div>
-      <div className="h-[680px] bg-[#adadad] w-1/2" />
+
+      <div className="h-[680px] bg-[#adadad] w-full" />
     </div>
   );
 };
