@@ -1,8 +1,3 @@
-/* Sass/SCSS function to convert from px to rem */
-/* Usage - font-size: rem(16); */
-
-@use "sass:math";
-
 @import "./base/reset.scss";
 @import "./base/set.scss";
 @tailwind base;
@@ -11,18 +6,6 @@
 
 //@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
-
-@function rem($pixel) {
-  @if math.is-unitless($pixel) {
-    @return math.div($pixel, 16) + rem;
-    // ? EXAMPLE: font-size: rem(16);
-  } @else {
-    @error 'Don\'t use units when using the rem() function; only numbers.';
-  }
-}
-
-div {
-}
 
 body {
   font-family: "Nunito Sans", sans-serif;
