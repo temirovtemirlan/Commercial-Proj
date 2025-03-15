@@ -1,6 +1,7 @@
 import { type FC, useState } from "react";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 import { domAnimation, LazyMotion, motion } from "motion/react";
+import { useInView } from "react-intersection-observer";
 
 import Container from "components/Container";
 import { cn } from "helpers/style";
@@ -25,56 +26,203 @@ export const Header: FC<HeaderProps> = (props) => (
   </h1>
 );
 
-const indicatorsLoading = [
+type indicatorsFilter = "CG" | "VFX" | "AI" | "WEBSITE";
+
+interface IIndicatorsLoading {
+  gradientClass: string;
+  title: string;
+  end: number;
+  filter: indicatorsFilter;
+}
+interface IIndicatorsAppsLogo {
+  title: string;
+  app: string;
+  className: string;
+  filter: indicatorsFilter;
+}
+
+const indicatorsLoading: IIndicatorsLoading[] = [
+  {
+    gradientClass: "gradient-one",
+    title: "GeoGen",
+    end: 91,
+    filter: "VFX",
+  },
+  {
+    gradientClass: "gradient-two",
+    title: "Liquigen",
+    end: 92,
+    filter: "VFX",
+  },
   {
     gradientClass: "gradient-three",
-    title: "Cinema 4D",
+    title: "Embergen",
     end: 91,
+    filter: "VFX",
+  },
+  {
+    gradientClass: "gradient-four",
+    title: "Marvelous Designer",
+    end: 94,
     filter: "CG",
   },
   {
     gradientClass: "gradient-one",
-    title: "Unity",
-    end: 90,
-    filter: "AI",
-  },
-  {
-    gradientClass: "gradient-four",
     title: "Blender",
-    end: 97,
+    end: 98,
     filter: "CG",
   },
   {
     gradientClass: "gradient-two",
-    title: "Marvelous Design",
-    end: 91,
+    title: "PF Tracker",
+    end: 95,
+    filter: "VFX",
+  },
+  {
+    gradientClass: "gradient-three",
+    title: "Unreal Engine",
+    end: 92,
     filter: "CG",
+  },
+  {
+    gradientClass: "gradient-four",
+    title: "Houdini",
+    end: 94,
+    filter: "VFX",
+  },
+  {
+    gradientClass: "gradient-one",
+    title: "Cinema 4D",
+    end: 92,
+    filter: "CG",
+  },
+  {
+    gradientClass: "gradient-two",
+    title: "Adobe After Effects",
+    end: 91,
+    filter: "VFX",
+  },
+  {
+    gradientClass: "gradient-three",
+    title: "Adobe Photoshop",
+    end: 98,
+    filter: "VFX",
+  },
+  {
+    gradientClass: "gradient-four",
+    title: "Premiere Pro",
+    end: 96,
+    filter: "VFX",
+  },
+  {
+    gradientClass: "gradient-one",
+    title: "Adobe Illustrator",
+    end: 94,
+    filter: "VFX",
+  },
+  {
+    gradientClass: "gradient-two",
+    title: "Davinci Resolve",
+    end: 98,
+    filter: "VFX",
   },
 ];
 
-const indicatorsAppsLogo = [
+const indicatorsAppsLogo: IIndicatorsAppsLogo[] = [
   {
-    title: "",
+    title: "GeoGen",
+    app: "/one.png",
+    className: "",
+    filter: "VFX",
+  },
+  {
+    title: "Liquigen",
+    app: "/two.png",
+    className: "",
+    filter: "VFX",
+  },
+  {
+    title: "Embergen",
+    app: "/image.png",
+    className: "",
+    filter: "VFX",
+  },
+  {
+    title: "Marvelous Designer",
+    app: "/image-1.png",
+    className: "",
+    filter: "CG",
+  },
+  {
+    title: "Blender",
     app: "/image 28.png",
     className: "",
     filter: "CG",
   },
   {
-    title: "",
-    app: "/image-1.png",
+    title: "PF Tracker",
+    app: "/three.png",
     className: "",
-    filter: "AI",
+    filter: "VFX",
   },
   {
-    title: "",
-    app: "/image.png",
+    title: "Unreal Engine",
+    app: "/four.png",
     className: "",
     filter: "CG",
+  },
+  {
+    title: "Houdini",
+    app: "/five.png",
+    className: "",
+    filter: "VFX",
+  },
+  {
+    title: "Cinema 4D",
+    app: "/six.png",
+    className: "",
+    filter: "CG",
+  },
+  {
+    title: "Adobe After Effects",
+    app: "/seven.png",
+    className: "",
+    filter: "VFX",
+  },
+  {
+    title: "Adobe Photoshop",
+    app: "/eight.png",
+    className: "",
+    filter: "VFX",
+  },
+  {
+    title: "Premiere Pro",
+    app: "/nine.png",
+    className: "",
+    filter: "VFX",
+  },
+  {
+    title: "Adobe Illustrator",
+    app: "/ten.png",
+    className: "",
+    filter: "VFX",
+  },
+  {
+    title: "Davinci Resolve",
+    app: "/eleven.png",
+    className: "",
+    filter: "VFX",
   },
 ];
 
 const App: FC = () => {
-  const [tappad, setTaped] = useState<string>("CG");
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0,
+  });
+  console.log("inView: ", inView);
+
+  const [tappad, setTaped] = useState<indicatorsFilter>("CG");
 
   return (
     <LazyMotion features={domAnimation}>
@@ -228,83 +376,74 @@ const App: FC = () => {
               />
             </video>
           </div>
+        </>
 
-          <div className="bg-[#161617] py-[100px] mt-[50px] overflow-hidden">
-            <Directions />
+        <div className="bg-[#161617] py-[100px] mt-[50px] overflow-hidden">
+          <Directions />
 
-            <Container className="text-center w-full">
-              <legend className="custom-legend-2lvl mt-[100px]">
-                Наши показатели
-              </legend>
+          <Container className="text-center w-full">
+            <legend className="custom-legend-2lvl mt-[100px]" ref={ref}>
+              Наши показатели
+            </legend>
 
-              <Tabs className={cn("Our-Indicators")}>
-                <TabList className="inline-flex p-[5px] my-[20px] rounded-full bg-white">
-                  <Tab
-                    onClick={() => setTaped("CG")}
-                    className="tab__delivery_panels whitespace-nowrap px-6 py-2.5"
-                  >
-                    CG REEL
-                  </Tab>
-                  <Tab
-                    onClick={() => setTaped("AI")}
-                    className="tab__delivery_panels whitespace-nowrap px-6 py-2.5"
-                  >
-                    AI REEL
-                  </Tab>
-                </TabList>
-                <div className={"flex gap-x-9"}>
-                  {indicatorsAppsLogo?.map((app, index) => (
-                    <>
-                      <img
-                        className={cn(app.className, {
-                          "opacity-30": app.filter !== tappad,
-                        })}
-                        key={index}
-                        src={app.app}
-                        alt={app.title}
-                        onClick={() => setTaped(app.filter)}
-                      />
-                    </>
-                  ))}
-                </div>
-                <TabPanel className="w-full xl:px-[100px] mt-[30px] flex flex-col gap-10">
-                  {indicatorsLoading
-                    ?.filter((item) => item.filter === tappad)
-                    ?.map((el, index) => (
+            <Tabs className="Our-Indicators">
+              <TabList className="inline-flex p-[5px] my-[20px] rounded-full bg-white">
+                <Tab
+                  onClick={() => setTaped("CG")}
+                  className="tab__delivery_panels whitespace-nowrap px-6 py-2.5"
+                >
+                  CG
+                </Tab>
+                <Tab
+                  onClick={() => setTaped("VFX")}
+                  className="tab__delivery_panels whitespace-nowrap px-6 py-2.5"
+                >
+                  VFX
+                </Tab>
+              </TabList>
+
+              <div className="flex justify-center gap-x-9 xl:px-[100px] mt-6">
+                {indicatorsAppsLogo?.map((app, index) => (
+                  <img
+                    className={cn(app.className, "pointer-events-none", {
+                      "opacity-30": app.filter !== tappad,
+                    })}
+                    key={index}
+                    src={app.app}
+                    alt={app.title}
+                    onClick={() => setTaped(app.filter)}
+                  />
+                ))}
+              </div>
+              {[1, 2].map((_, index) => (
+                <TabPanel
+                  className="w-full xl:px-[100px] mt-10 flex flex-col gap-10"
+                  key={index}
+                >
+                  {indicatorsLoading?.map((el, index) =>
+                    el.filter === tappad ? (
                       <IndicatorsLoading
                         key={index}
                         title={el.title}
                         percent={el.end}
                         gradientClassName={el.gradientClass}
+                        inView={inView}
                       />
-                    ))}
-                  {/*<IndicatorsLoading*/}
-                  {/*  title={"Blender"}*/}
-                  {/*  gradientClassName={"gradient-one "}*/}
-                  {/*  percent={95}*/}
-                  {/*/>*/}
-                  {/*<IndicatorsLoading*/}
-                  {/*  gradientClassName={"gradient-two"}*/}
-                  {/*  title={"Blender"}*/}
-                  {/*  percent={95}*/}
-                  {/*/>{" "}*/}
-                  {/*<IndicatorsLoading*/}
-                  {/*  gradientClassName={"gradient-four"}*/}
-                  {/*  title={"Blender"}*/}
-                  {/*  percent={95}*/}
-                  {/*/>*/}
+                    ) : null
+                  )}
                 </TabPanel>
-              </Tabs>
-            </Container>
-          </div>
+              ))}
+            </Tabs>
+          </Container>
+        </div>
 
-          {/* Мы не создаем контент. */}
-          <CultureSection />
-        </>
+        {/* Мы не создаем контент. */}
+        <CultureSection />
 
         <Container>
           <LazyVideoFrame
             videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/AI/COCA_COLA_AI_COMMERCIAL.mp4"
+            posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/COLA_H.webp"
             coreClassName="h-[400px] lg:h-auto"
             className="rounded-[28px] overflow-hidden h-full lg:h-auto"
           />
@@ -313,28 +452,33 @@ const App: FC = () => {
               coreClassName="h-full w-full rounded-[28px] overflow-hidden h-[700px] md:h-[900px] lg:h-[518px]"
               className="h-full"
               videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/AI/BAKAI_GPT_REMAKE.mov"
+              posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/BAKAI_H.webp"
             />
             <LazyVideoFrame
               coreClassName="h-full w-full bg-[#f5f5f7] rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
               className="h-full"
               videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/CG/INTERSPORT.mp4"
+              posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/INTERSPORT_H.webp"
             />
           </div>
           <LazyVideoFrame
             coreClassName="mt-5 rounded-[28px] h-[700px] md:h-[900px] lg:h-auto overflow-hidden"
             className="h-full"
             videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/AI/organic_juice_commercial%20(1080p).mp4"
+            posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/ORGANIC_2_H.webp"
           />
           <div className="grid lg:grid-cols-2 gap-5 mt-5 h-full">
             <LazyVideoFrame
               coreClassName="h-full w-full rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
               className="h-full"
               videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/AI/BAKAI_GPT_REMAKE.mov"
+              posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/BAKAI_H.webp"
             />
             <LazyVideoFrame
               coreClassName="h-full w-full bg-[#f5f5f7] rounded-[28px] overflow-hidden h-[700px] md:h-[900px] lg:h-[518px]"
               className="h-full"
               videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/CG/INTERSPORT.mp4"
+              posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/INTERSPORT_H.webp"
             />
           </div>
           <div className="mt-5">
