@@ -7,12 +7,10 @@ import { cn } from "helpers/style.ts";
 // import HowWeWork from "components/HowWeWork.tsx";
 // import { TariffStart } from "components/TariffBlock.tsx";
 
-import PartnersAndClients from "components/PartnersAndClients.tsx";
 import MonsReels from "components/MonsReels.tsx";
 import Footer from "components/Footer";
 // import VimeoEmbed from "components/VimeoEmbed";
 import LazyVideoFrame from "components/LazyVideoFrame.tsx";
-import LazyLoadLayout from "components/LazyLoadLayout.tsx";
 import { motion } from "framer-motion";
 // import DirectionsItems from "components/DirectionsItems.tsx";
 import Directions from "components/Directions.tsx";
@@ -20,6 +18,7 @@ import IndicatorsLoading from "common/IndicatorsLoading.tsx";
 import Tariff from "components/Tariff.tsx";
 import BenefitsItem from "common/BenefitsItem.tsx";
 import { useInView } from "react-intersection-observer";
+import LogoCubeAnimation from "common/LogoCubeAnimation";
 
 // import FrameAnimationProps from "components/FrameAnimation.tsx";
 
@@ -521,7 +520,7 @@ const App: FC = () => {
             </div>
           </Container>
 
-          <Container className={"overflow-hidden"}>
+          <Container className={"overflow-hidden my-[100px]"}>
             <legend className="text-[#222] text-[80px] font-bold leading-[75px] mt-[80px]">
               Изучите тариф.
             </legend>
@@ -541,15 +540,14 @@ const App: FC = () => {
             </Tabs>
           </Container>
 
-          <Container className={"mt-[100px] pt-[100px] pb-[100px] bg-black"}>
-            <LazyLoadLayout>
-              <PartnersAndClients />
-            </LazyLoadLayout>
+          <Container className={"pt-[100px] pb-[100px] bg-black"}>
+            <LogoCubeAnimation />
           </Container>
+
           <Container className={"py-[100px] bg-black"}>
             <img
-              className={"rounded-xl overflow-hidden"}
               src="https://storage.googleapis.com/mkit_monster_bucket/Poster/JOY_COMMERCIAL_H.webp"
+              className="max-h-[580px] h-full w-full rounded-[28px]"
               alt="banner"
             />
           </Container>
