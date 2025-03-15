@@ -35,9 +35,20 @@ const LogoCubeAnimation: FC = () => {
 
   return (
     <div>
-      <legend className={"legend-3lvl text-white mb-20 text-center"}>
-        Наши клиенты
-      </legend>
+      <div
+        className={
+          "flex justify-between w-full mb-[150px] md:flex-row flex-col"
+        }
+      >
+        <legend className={"legend-3lvl text-white text-left"}>
+          Наши клиенты
+        </legend>
+
+        <div className="justify-start text-white text-[32px] font-semibold translate-y-3.5 text-balance">
+          Мы гордимся работой с компаниями, <br /> которые задают правила игры
+          на своих рынках.
+        </div>
+      </div>
 
       <div className="flex flex-wrap ss:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-24 gap-x-6  w-full h-full">
         <CompanyLogoCubeAnimation
