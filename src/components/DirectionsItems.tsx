@@ -28,7 +28,10 @@ const DirectionsItems: FC<DirectionsItemsProps> = ({ className, item }) => {
       <div className="w-full px-6 py-8 md:p-10">
         <div className="inline-flex flex-col justify-start items-start gap-[22px]">
           <legend
-            className="justify-center text-[55px] font-bold leading-tight"
+            className={cn(
+              "justify-center text-[55px] font-bold leading-tight",
+              item.titleGradient
+            )}
             style={{
               background: item.titleGradient,
               WebkitBackgroundClip: "text",

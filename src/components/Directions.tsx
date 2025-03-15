@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import DirectionsItems from "components/DirectionsItems";
 import "swiper/css";
 import "swiper/css/navigation";
-import { divideArray } from "helpers/array.ts";
+// import { divideArray } from "helpers/array.ts";
 
 const directionsData = [
   {

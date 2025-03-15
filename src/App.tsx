@@ -402,7 +402,7 @@ const App: FC = () => {
                 </Tab>
               </TabList>
 
-              <div className="flex justify-center gap-x-9 xl:px-[100px] mt-6">
+              <div className="flex justify-center gap-x-9 xl:px-[100px] mt-6 overflow-x-scroll">
                 {indicatorsAppsLogo?.map((app, index) => (
                   <img
                     className={cn(app.className, "pointer-events-none", {
