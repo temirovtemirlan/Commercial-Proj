@@ -1,27 +1,19 @@
-import { type FC } from "react";
+import { type FC, useState } from "react";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 import { domAnimation, LazyMotion } from "motion/react";
 
 import Container from "components/Container.tsx";
 import { cn } from "helpers/style.ts";
-// import HowWeWork from "components/HowWeWork.tsx";
-// import { TariffStart } from "components/TariffBlock.tsx";
 
 import MonsReels from "components/MonsReels.tsx";
 import Footer from "components/Footer";
-// import VimeoEmbed from "components/VimeoEmbed";
 import LazyVideoFrame from "components/LazyVideoFrame.tsx";
 import { motion } from "framer-motion";
-// import DirectionsItems from "components/DirectionsItems.tsx";
 import Directions from "components/Directions.tsx";
 import IndicatorsLoading from "common/IndicatorsLoading.tsx";
 import Tariff from "components/Tariff.tsx";
-import BenefitsItem from "common/BenefitsItem.tsx";
-import { useInView } from "react-intersection-observer";
 import LogoCubeAnimation from "common/LogoCubeAnimation";
 import WhyMonsterCorp from "components/WhyMonsterCorp";
-
-// import FrameAnimationProps from "components/FrameAnimation.tsx";
 
 interface HeaderProps {
   title: string;
@@ -33,10 +25,56 @@ export const Header: FC<HeaderProps> = (props) => (
   </h1>
 );
 
+const indicatorsLoading = [
+  {
+    gradientClass: "gradient-three",
+    title: "Cinema 4D",
+    end: 91,
+    filter: "CG",
+  },
+  {
+    gradientClass: "gradient-one",
+    title: "Unity",
+    end: 90,
+    filter: "AI",
+  },
+  {
+    gradientClass: "gradient-four",
+    title: "Blender",
+    end: 97,
+    filter: "CG",
+  },
+  {
+    gradientClass: "gradient-two",
+    title: "Marvelous Design",
+    end: 91,
+    filter: "CG",
+  },
+];
+
+const indicatorsAppsLogo = [
+  {
+    title: "",
+    app: "/image 28.png",
+    className: "",
+    filter: "CG",
+  },
+  {
+    title: "",
+    app: "/image-1.png",
+    className: "",
+    filter: "AI",
+  },
+  {
+    title: "",
+    app: "/image.png",
+    className: "",
+    filter: "CG",
+  },
+];
+
 const App: FC = () => {
-  const [inViewRef, inView] = useInView({
-    triggerOnce: false,
-  });
+  const [tappad, setTaped] = useState<string>("CG");
 
   return (
     <LazyMotion features={domAnimation}>
@@ -126,14 +164,14 @@ const App: FC = () => {
         <WhyMonsterCorp />
 
         {/*video content*/}
-        <div className="w-full max-lg:max-w-[100%] max-lg:mx-auto lg:max-w-full overflow-hidden relative px-5 md:px-10 lg:px-0">
+        <div className="relative w-full max-w-full px-5 md:px-10 lg:px-0 overflow-hidden">
           <video
             autoPlay
             muted
             playsInline
             preload="none"
             loop
-            className="max-lg:w-full max-md:h-[260px] max-lg:h-[400px]"
+            className="max-lg:w-full max-md:h-[260px] max-lg:h-[400px] object-cover"
           >
             <source
               src="https://storage.googleapis.com/mkit_monster_bucket/Video/MKIT/IMAC_V3.mp4"
@@ -143,7 +181,6 @@ const App: FC = () => {
         </div>
 
         <div className="bg-[#161617] py-[100px] mt-[50px] overflow-hidden">
-          {/* <Container className="bg-[#161617] py-[100px] mt-[50px] overflow-hidden"> */}
           <Container>
             <legend className="legend-3lvl text-white mb-[80px]">
               Наши направления
@@ -159,21 +196,64 @@ const App: FC = () => {
 
             <Tabs className={cn("Our-Indicators")}>
               <TabList className="inline-flex p-[5px] my-[20px] rounded-full bg-white">
-                <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
+                <Tab
+                  onClick={() => setTaped("CG")}
+                  className="tab__delivery_panels whitespace-nowrap px-6 py-2.5"
+                >
                   CG REEL
                 </Tab>
-                <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
+                <Tab
+                  onClick={() => setTaped("AI")}
+                  className="tab__delivery_panels whitespace-nowrap px-6 py-2.5"
+                >
                   AI REEL
                 </Tab>
               </TabList>
+              <div className={"flex gap-x-9"}>
+                {indicatorsAppsLogo?.map((app, index) => (
+                  <>
+                    <img
+                      className={cn(app.className, {
+                        "opacity-30": app.filter !== tappad,
+                      })}
+                      key={index}
+                      src={app.app}
+                      alt={app.title}
+                      onClick={() => setTaped(app.filter)}
+                    />
+                  </>
+                ))}
+              </div>
               <TabPanel
                 className={
                   "w-full xl:px-[100px] mt-[30px] flex flex-col gap-10"
                 }
               >
-                <IndicatorsLoading title={"Blender"} percent={95} />
-                <IndicatorsLoading title={"Blender"} percent={95} />
-                <IndicatorsLoading title={"Blender"} percent={95} />
+                {indicatorsLoading
+                  ?.filter((item) => item.filter === tappad)
+                  ?.map((el, index) => (
+                    <IndicatorsLoading
+                      key={index}
+                      title={el.title}
+                      percent={el.end}
+                      gradientClassName={el.gradientClass}
+                    />
+                  ))}
+                {/*<IndicatorsLoading*/}
+                {/*  title={"Blender"}*/}
+                {/*  gradientClassName={"gradient-one "}*/}
+                {/*  percent={95}*/}
+                {/*/>*/}
+                {/*<IndicatorsLoading*/}
+                {/*  gradientClassName={"gradient-two"}*/}
+                {/*  title={"Blender"}*/}
+                {/*  percent={95}*/}
+                {/*/>{" "}*/}
+                {/*<IndicatorsLoading*/}
+                {/*  gradientClassName={"gradient-four"}*/}
+                {/*  title={"Blender"}*/}
+                {/*  percent={95}*/}
+                {/*/>*/}
               </TabPanel>
             </Tabs>
           </Container>
@@ -411,10 +491,8 @@ const App: FC = () => {
             </div>
           </Container>
 
-          <Container className={"overflow-hidden my-[100px]"}>
-            <legend className="text-[#222] text-[80px] font-bold leading-[75px] mt-[80px]">
-              Изучите тариф.
-            </legend>
+          <Container className={"overflow-hidden xl:py-[100px] py-[50px]"}>
+            <legend className="legend-3lvl">Изучите тариф.</legend>
 
             <Tabs className={cn("Our-Indicators")}>
               <TabList className="inline-flex p-[5px] rounded-full bg-white">

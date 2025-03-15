@@ -15,14 +15,11 @@ const Directions: FC<DirectionsProps> = ({ className }) => {
       className={cn("w-full", className)}
       modules={[Pagination, Navigation]}
       speed={1500}
-      cssMode={true}
       spaceBetween={30} // Расстояние между слайдами
-      slidesPerView={3} // Количество видимых слайдов за раз
-      // navigation={
-      // {
-      // nextEl: "",
-      // prevEl: "",
-      // }
+      slidesPerView={2} // Количество видимых слайдов за раз
+      centeredSlides
+      cssMode
+      loop
       breakpoints={
         {
           // 1700: {
@@ -45,7 +42,13 @@ const Directions: FC<DirectionsProps> = ({ className }) => {
       {/*    <div>{item}</div>*/}
       {/*  </SwiperSlide>*/}
       {/*))}*/}
-      <SwiperSlide style={{ width: "100%" }} className={"w-full"}>
+      <SwiperSlide className="w-[1000px]">
+        <DirectionsItems />
+      </SwiperSlide>
+      <SwiperSlide className="w-[1000px]">
+        <DirectionsItems />
+      </SwiperSlide>
+      <SwiperSlide className="w-[1000px]">
         <DirectionsItems />
       </SwiperSlide>
 

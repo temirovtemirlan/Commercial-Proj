@@ -165,3 +165,90 @@ body {
   @extend .legend-2lvl;
   color: white;
 }
+
+// градиент для второй полоски
+//
+
+.gradient-one {
+  &:is(div) {
+    @apply rounded-full;
+    background: -webkit-linear-gradient(
+      57deg,
+      rgb(131, 113, 250),
+      rgb(194, 95, 249)
+    );
+  }
+
+  &:is(span) {
+    background: -webkit-linear-gradient(
+      57deg,
+      rgb(131, 113, 250),
+      rgb(194, 95, 249)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.gradient-two {
+  &:is(div) {
+    @apply rounded-full;
+    background: -webkit-linear-gradient(
+      57deg,
+      rgb(223, 79, 202),
+      rgb(237, 68, 146)
+    );
+  }
+
+  &:is(span) {
+    background: -webkit-linear-gradient(
+      57deg,
+      rgb(223, 79, 202),
+      rgb(237, 68, 146)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.gradient-three {
+  &:is(div) {
+    @apply rounded-full;
+    background: -webkit-linear-gradient(
+      57deg,
+      rgb(0, 143, 247),
+      rgb(73, 127, 250)
+    );
+  }
+
+  &:is(span) {
+    background: -webkit-linear-gradient(
+      57deg,
+      rgb(0, 143, 247),
+      rgb(73, 127, 250)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.gradient-four {
+  &:is(div) {
+    @apply rounded-full;
+    background: -webkit-linear-gradient(
+      57deg,
+      rgb(242, 66, 94),
+      rgb(245, 78, 26)
+    );
+  }
+
+  &:is(span) {
+    background: -webkit-linear-gradient(
+      57deg,
+      rgb(242, 66, 94),
+      rgb(245, 78, 26)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}

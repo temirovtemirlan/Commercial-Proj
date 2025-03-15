@@ -35,10 +35,9 @@ const LogoCubeAnimation: FC = () => {
 
   return (
     <div>
-      <Header
-        className={"text-[56px] mb-[60px] text-white"}
-        title={"Наши клиенты"}
-      />
+      <legend className={"legend-3lvl text-white mb-20 text-center"}>
+        Наши клиенты
+      </legend>
 
       <div className="flex flex-wrap ss:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-24 gap-x-6  w-full h-full">
         <CompanyLogoCubeAnimation
