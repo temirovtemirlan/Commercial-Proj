@@ -133,7 +133,7 @@ const App: FC = () => {
                   />
                 </svg>
               </div>
-              <p className="text-black text-2xl grow-1 xl:max-w-[700px] mt-8">
+              <p className="text-black text-2xl grow-1 xl:max-w-[700px] mt-8 md:mt-0">
                 Мы – не просто digital-агентство. «Монстр» – это экосистема
                 креативных и технологичных решений, созданная для того, чтобы
                 выводить бренды на новый уровень. Мы – ваш сокрушительный

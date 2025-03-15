@@ -4,12 +4,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import DirectionsItems from "components/DirectionsItems";
 import "swiper/css";
 import "swiper/css/navigation";
+import { divideArray } from "helpers/array.ts";
 
 const directionsData = [
   {
     title: "Monster Design & Branding",
-    titleGradient:
-      "linear-gradient(87.52deg, #EEADFF -0.45%, #AC4AFF 47.92%, #784BFE 99.04%)",
+    titleGradient: "blue-gradient-1lvl",
     descOne:
       "Форма, которая передает смысл. Мир визуального потребления требует айдентики, которая выделяется. Мы создаем дизайн, который становится языком бренда и говорит за него, даже без слов.",
     list: [
@@ -105,6 +105,7 @@ const Directions: FC = () => {
         modules={[Pagination, Navigation]}
         speed={500}
         // speed={1500}
+
         spaceBetween={30} // Расстояние между слайдами
         loop
         // cssMode

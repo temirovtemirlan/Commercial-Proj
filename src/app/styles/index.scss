@@ -235,3 +235,11 @@ body {
     -webkit-text-fill-color: transparent;
   }
 }
+
+.blue-gradient-1lvl {
+  background: -webkit-linear-gradient(102deg, #00cec9, #004ae6);
+  @apply w-full text-center text-black xl:text-[80px] text-[40px] font-bold xl:leading-[70px] leading-[45px];
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
