@@ -1,7 +1,6 @@
 import type { FC } from "react";
 import { divideArray } from "helpers/array";
 import CompanyLogoCubeAnimation from "./CubeAnimationSwiper";
-import { Header } from "../../App";
 
 const companyLogo = [
   "https://storage.googleapis.com/mkit_monster_bucket/Logo/DODO.png",

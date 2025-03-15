@@ -36,7 +36,7 @@ const AccordionWrapperImg: FC = () => {
         <div className="flex items-center max-xl:py-8 px-11 xl:px-32">
           <Accordion.Root
             type="single"
-            onValueChange={(value) => setPublicKey(+value)}
+            onValueChange={(value: string) => setPublicKey(+value)}
             defaultValue="0"
           >
             {accordionData.map((el, index) => (
