@@ -537,7 +537,7 @@ function videoCreaterComponents(data: VideoFrameProps[]) {
 const MonsReels: FC<MonsReelsProps> = ({ className }) => {
   return (
     <Tabs className={cn("Mosnreel-tabs", className)}>
-      <TabList className="xs:w-auto w-full inline-flex gap-3.5 p-[5px] bg-white rounded-full xl:my-[80px] mt-[20px] my-[40px] overflow-x-scroll ">
+      <TabList className="xs:w-auto w-full inline-flex gap-3.5 p-[5px] bg-white rounded-full xl:my-[80px] mt-[20px] my-[40px]">
         <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
           CG REEL
         </Tab>
