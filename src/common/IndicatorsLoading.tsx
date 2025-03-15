@@ -1,6 +1,6 @@
-import { type FC } from "react";
-import { cn } from "helpers/style";
+import type { FC } from "react";
 import CountUp from "react-countup";
+import { cn } from "helpers/style";
 
 interface IndicatorsLoadingProps {
   className?: string;
@@ -8,6 +8,7 @@ interface IndicatorsLoadingProps {
   percent: number;
   gradientClassName?: string;
   indicatorClassName?: string;
+  inView: boolean;
 }
 
 const IndicatorsLoading: FC<IndicatorsLoadingProps> = ({
@@ -15,6 +16,7 @@ const IndicatorsLoading: FC<IndicatorsLoadingProps> = ({
   title,
   percent,
   gradientClassName,
+  inView,
 }) => {
   return (
     <div
@@ -25,8 +27,7 @@ const IndicatorsLoading: FC<IndicatorsLoadingProps> = ({
     >
       <div className="flex-1 inline-flex flex-col justify-start items-start">
         <div
-          className={cn("self-stretch h-2.5", gradientClassName)}
-          // bg-gradient-to-r from-[#f5baff] to-[#694bff] rounded-[100px]
+          className={cn("self-stretch h-2.5 animate-expand", gradientClassName)}
         />
         <p className="justify-start text-white text-2xl mt-3 font-normal">
           {title}
@@ -42,13 +43,9 @@ const IndicatorsLoading: FC<IndicatorsLoadingProps> = ({
         duration={3}
         separator=","
         suffix="%"
-        delay={2}
         scrollSpyOnce={true}
-        enableScrollSpy={true}
+        startOnMount={inView}
       />
-      {/*<div className="justify-start text-[#f5baff] xl:text-[45px] text-[28px] font-bold leading-[20px] xl:leading-normal">*/}
-      {/*  {percent}%*/}
-      {/*</div>*/}
     </div>
   );
 };

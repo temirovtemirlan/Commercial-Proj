@@ -155,19 +155,11 @@ body {
 .gradient-one {
   &:is(div) {
     @apply rounded-full;
-    background: -webkit-linear-gradient(
-      57deg,
-      rgb(131, 113, 250),
-      rgb(194, 95, 249)
-    );
+    background: -webkit-linear-gradient(57deg, #8371fa, #c25ff9);
   }
 
   &:is(span) {
-    background: -webkit-linear-gradient(
-      57deg,
-      rgb(131, 113, 250),
-      rgb(194, 95, 249)
-    );
+    background: -webkit-linear-gradient(57deg, #8371fa, #c25ff9);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -176,19 +168,11 @@ body {
 .gradient-two {
   &:is(div) {
     @apply rounded-full;
-    background: -webkit-linear-gradient(
-      57deg,
-      rgb(223, 79, 202),
-      rgb(237, 68, 146)
-    );
+    background: -webkit-linear-gradient(57deg, #df4fca, #ed4492);
   }
 
   &:is(span) {
-    background: -webkit-linear-gradient(
-      57deg,
-      rgb(223, 79, 202),
-      rgb(237, 68, 146)
-    );
+    background: -webkit-linear-gradient(57deg, #df4fca, #ed4492);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -197,19 +181,11 @@ body {
 .gradient-three {
   &:is(div) {
     @apply rounded-full;
-    background: -webkit-linear-gradient(
-      57deg,
-      rgb(0, 143, 247),
-      rgb(73, 127, 250)
-    );
+    background: -webkit-linear-gradient(57deg, #008ff7, #497ffa);
   }
 
   &:is(span) {
-    background: -webkit-linear-gradient(
-      57deg,
-      rgb(0, 143, 247),
-      rgb(73, 127, 250)
-    );
+    background: -webkit-linear-gradient(57deg, #008ff7, #497ffa);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -218,20 +194,25 @@ body {
 .gradient-four {
   &:is(div) {
     @apply rounded-full;
-    background: -webkit-linear-gradient(
-      57deg,
-      rgb(242, 66, 94),
-      rgb(245, 78, 26)
-    );
+    background: -webkit-linear-gradient(57deg, #f2425e, #f54e1a);
   }
 
   &:is(span) {
-    background: -webkit-linear-gradient(
-      57deg,
-      rgb(242, 66, 94),
-      rgb(245, 78, 26)
-    );
+    background: -webkit-linear-gradient(57deg, #f2425e, #f54e1a);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+}
+
+@keyframes expand {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.animate-expand {
+  animation: expand 1.9s ease-out forwards;
 }

@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import DirectionsItems from "components/DirectionsItems";
 import "swiper/css";
 import "swiper/css/navigation";
+import Container from "./Container";
 
 const directionsData = [
   {
@@ -95,9 +96,11 @@ const directionsData = [
 const Directions: FC = () => {
   return (
     <div>
-      <legend className="legend-3lvl text-white mb-10 md:mb-20 ml-5 lg:ml-[25%]">
-        Наши направления
-      </legend>
+      <Container>
+        <legend className="legend-3lvl text-white mb-10 md:mb-20">
+          Наши направления
+        </legend>
+      </Container>
 
       <Swiper
         onSwiper={() => {}}
