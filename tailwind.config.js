@@ -20,7 +20,9 @@ export default {
         "2xl": "1537px",
         lxl: "1440px",
       },
-      colors: {},
+      colors: {
+        "blue-1000": "#0171E3",
+      },
       borderRadius: {
         "1xl": "15px",
         "2.5xl": "20px",

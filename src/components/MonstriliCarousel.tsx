@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 
@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { cn } from "helpers/style.ts";
+import { Swiper as SwiperType } from "swiper/types";
 
 interface MonstriliCarouselProps {
   className?: string;
@@ -26,9 +27,34 @@ const MonstriliCarousel: React.FC<MonstriliCarouselProps> = ({
   nextEl,
   prevEl,
 }) => {
+  const swiperRef = useRef<SwiperType | null>(null);
+  // const [isPrevDisabled, setIsPrevDisabled] = React.useState<boolean>(true);
+  // const [isNextDisabled, setIsNextDisabled] = React.useState<boolean>(false);
+
+  useEffect(() => {
+    const swiperInstance = swiperRef.current;
+    if (!swiperInstance) return;
+
+    const updatePagination = () => {
+      // const { isBeginning, isEnd } = swiperInstance;
+      // setIsPrevDisabled(isBeginning);
+      // setIsNextDisabled(isEnd);
+    };
+
+    swiperInstance.on("slideChange", updatePagination);
+    updatePagination(); // Обновляем состояния сразу при монтировании
+
+    return () => {
+      swiperInstance.off("slideChange", updatePagination);
+    };
+  }, []);
+
   return (
     <div className={cn("", coreClassName)}>
       <Swiper
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+        }}
         className={cn("static z-0", className)}
         modules={[Pagination, Navigation]}
         speed={1500}

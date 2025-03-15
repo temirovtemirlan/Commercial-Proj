@@ -76,21 +76,26 @@ interface PartnersAndClientsProps {
 const PartnersAndClients: FC<PartnersAndClientsProps> = ({ className }) => {
   return (
     <div className={cn("", className)}>
-      <Header
-        className={"text-[56px] mb-[60px] text-white"}
-        title={"Наши клиенты"}
-      />
+      <div className={"w-full mb-[60px] flex justify-between items-start"}>
+        <Header
+          className={
+            "text-[56px] leading-[45px] text-white text-nowrap -translate-y-3"
+          }
+          title={"Наши клиенты"}
+        />
+
+        <p className="w-full max-w-[700px] justify-start text-white text-[32px] font-semibold leading-[35px]">
+          Мы гордимся работой с компаниями, которые задают правила игры на своих
+          рынках.
+        </p>
+      </div>
 
       <div className={"flex justify-center"}>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-[repeat(4,200px)] gap-x-20 gap-y-20 justify-items-center items-center ">
           {partners?.map((el, index) => (
             <img
               key={index}
-              className={cn(
-                "",
-                "select-none pointer-events-none",
-                el.className
-              )}
+              className={cn("select-none pointer-events-none", el.className)}
               src={el.src}
               alt={el.alt}
             />

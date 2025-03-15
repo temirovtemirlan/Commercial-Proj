@@ -1,11 +1,16 @@
 import { type FC, useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import VideoFrame, { VideoFrameProps } from "components/VideoFrame.tsx";
+import { cn } from "helpers/style.ts";
 
 // Кэш загруженных видео (чтобы не перезапускались при повторном появлении)
 const loadedVideos = new Set<string>();
 
-const LazyVideoFrame: FC<VideoFrameProps> = (props) => {
+interface LazyVideoFrame extends VideoFrameProps {
+  coreClassName?: string;
+}
+
+const LazyVideoFrame: FC<LazyVideoFrame> = (props) => {
   const { ref, inView } = useInView({
     triggerOnce: true, // Загружает видео только один раз
     threshold: 0.5, // Срабатывает, когда видео видно на 50%
@@ -21,7 +26,7 @@ const LazyVideoFrame: FC<VideoFrameProps> = (props) => {
   }, [inView, isLoaded, props.videoSrc]);
 
   return (
-    <div className="h-full" ref={ref}>
+    <div className={cn("h-full", props.coreClassName)} ref={ref}>
       {isLoaded ? (
         <VideoFrame {...props} />
       ) : (

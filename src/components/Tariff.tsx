@@ -267,9 +267,7 @@ const tariffData = [
 
 const Tariff: FC = () => {
   return (
-    <Container className="py-[100px]">
-      <Header className="text-[56px] mb-[60px]" title="Изучите тарифы." />
-
+    <>
       <div>
         <div className="relative flex justify-evenly">
           {/* <div className="relative max-w-[360px] w-full"> */}
@@ -333,7 +331,7 @@ const Tariff: FC = () => {
           ))}
         </div>
       </div>
-    </Container>
+    </>
   );
 };
 

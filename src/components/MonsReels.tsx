@@ -324,7 +324,8 @@ const CGReelData: VideoFrameProps[] = [
   {
     videoSrc:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/3D_BIOKEFIR_VKUSY.mp4",
-    posterSrc: "",
+    posterSrc:
+      "https://storage.googleapis.com/mkit_monster_bucket/Poster/BR_BIOKEFIR.webp",
     width: "357",
     height: "700",
     className: " h-full rounded-2.5xl overflow-hidden",
@@ -487,7 +488,7 @@ const AIReelData = [
     videoSrc:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/SILK_VERTICAL_3.mp4",
     posterSrc:
-      "https://storage.googleapis.com/mkit_monster_bucket/Poster/ENESAI_5.webp",
+      "https://storage.googleapis.com/mkit_monster_bucket/Poster/ENESAI_3.webp",
     width: "357",
     height: "700",
     className: " h-full rounded-2.5xl overflow-hidden",
@@ -496,7 +497,8 @@ const AIReelData = [
   {
     videoSrc:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/VERTICAL.mp4",
-    posterSrc: "https://storage.googleapis.com/mkit_monster_bucket/Poster/",
+    posterSrc:
+      "https://storage.googleapis.com/mkit_monster_bucket/Poster/PAPA_JOHNS.webp",
     width: "357",
     height: "700",
     className: " h-full rounded-2.5xl overflow-hidden",
@@ -522,175 +524,6 @@ const AIReelData = [
     className: " h-full rounded-2.5xl overflow-hidden",
     title: "",
   },
-
-  //
-  // <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
-  //   <VimeoEmbed
-  //     className={"object-center object-cover bg-black"}
-  //     height={"700px"}
-  //     videoId="1062549233"
-  //     videoURL="5a009f461e"
-  //   />
-  // </div>,
-  // <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
-  //   <VimeoEmbed
-  //     className={"object-center object-cover bg-black"}
-  //     height={"700px"}
-  //     videoId="1062549407"
-  //     videoURL="cb6a6c8b09"
-  //   />
-  // </div>,
-  // <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
-  //   <VimeoEmbed
-  //     className={"object-center object-cover bg-black"}
-  //     height={"700px"}
-  //     videoId="1062549593"
-  //     videoURL="99b51a0fc7"
-  //   />
-  // </div>,
-  // <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
-  //   <VimeoEmbed
-  //     className={"object-center object-cover bg-black"}
-  //     height={"700px"}
-  //     videoId="1062549632"
-  //     videoURL="91397564b6"
-  //     // https://player.vimeo.com/video/1062549632?h=91397564b6&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
-  //   />
-  // </div>,
-  // <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
-  //   <VimeoEmbed
-  //     className={"object-center object-cover bg-black"}
-  //     height={"700px"}
-  //     videoId="1062549737"
-  //     videoURL="77a5ea7f39"
-  //     // https://player.vimeo.com/video/1062549737?h=77a5ea7f39&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
-  //   />
-  // </div>,
-  // <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
-  //   <VimeoEmbed
-  //     className={"object-center object-cover bg-black"}
-  //     height={"700px"}
-  //     videoId="1062552326"
-  //     videoURL="e4348904e6"
-  //     // https://player.vimeo.com/video/1062552326?h=e4348904e6&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
-  //   />
-  // </div>,
-  // <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
-  //   <VimeoEmbed
-  //     className={"object-center object-cover bg-black"}
-  //     height={"700px"}
-  //     videoId="1062552051"
-  //     videoURL="646255a00f"
-  //     // https://player.vimeo.com/video/1062552051?h=646255a00f&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
-  //   />
-  // </div>,
-  // <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
-  //   <VimeoEmbed
-  //     className={"object-center object-cover bg-black"}
-  //     height={"700px"}
-  //     videoId="1062552292"
-  //     videoURL="65ae959128"
-  //     // https://player.vimeo.com/video/1062552292?h=65ae959128&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
-  //   />
-  // </div>,
-  // <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
-  //   <VimeoEmbed
-  //     className={"object-center object-cover bg-black"}
-  //     height={"700px"}
-  //     videoId="1062552161"
-  //     videoURL="c87bd13a6a"
-  //     // https://player.vimeo.com/video/1062552161?h=c87bd13a6a&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
-  //   />
-  // </div>,
-  // <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
-  //   <VimeoEmbed
-  //     className={"object-center object-cover bg-black"}
-  //     height={"700px"}
-  //     videoId="1062552211"
-  //     videoURL="2476f9ff5d"
-  //     // https://player.vimeo.com/video/1062552211?h=2476f9ff5d&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
-  //   />
-  // </div>,
-  // <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
-  //   <VimeoEmbed
-  //     className={"object-center object-cover bg-black"}
-  //     height={"700px"}
-  //     videoId="1062551983"
-  //     videoURL="7fcae73275"
-  //     title={"DODO PIZZA"}
-  //     // https://player.vimeo.com/video/1062551983?h=7fcae73275&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
-  //   />
-  // </div>,
-  // <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
-  //   <VimeoEmbed
-  //     className={"object-center object-cover bg-black"}
-  //     height={"700px"}
-  //     videoId="1062553874"
-  //     videoURL="14a7a9b71a"
-  //     title={"DODO PIZZA"}
-  //     // https://player.vimeo.com/video/1062553874?h=14a7a9b71a&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
-  //   />
-  // </div>,
-  // <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
-  //   <VimeoEmbed
-  //     className={"object-center object-cover bg-black"}
-  //     height={"700px"}
-  //     videoId="1062554263"
-  //     videoURL="03ca465e99"
-  //     title={"DODO PIZZA"}
-  //     //https://player.vimeo.com/video/1062554263?h=03ca465e99&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
-  //   />
-  // </div>,
-  // <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
-  //   <VimeoEmbed
-  //     className={"object-center object-cover bg-black"}
-  //     height={"700px"}
-  //     videoId="1062554165"
-  //     videoURL="dbdbcbf50f"
-  //     title={"DODO PIZZA"}
-  //     // https://player.vimeo.com/video/1062554165?h=dbdbcbf50f&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
-  //   />
-  // </div>,
-  // <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
-  //   <VimeoEmbed
-  //     className={"object-center object-cover bg-black"}
-  //     height={"700px"}
-  //     videoId="1062553945"
-  //     videoURL="b5b26c2c81"
-  //     title="ENESAI"
-  //     // https://player.vimeo.com/video/1062553945?h=b5b26c2c81&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479    />
-  //   />
-  // </div>,
-  // <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
-  //   <VimeoEmbed
-  //     className={"object-center object-cover bg-black"}
-  //     height={"700px"}
-  //     videoId="1062554332"
-  //     videoURL="45924735dd"
-  //     title="ENESAI"
-  //     // https://player.vimeo.com/video/1062554332?h=45924735dd&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
-  //   />
-  // </div>,
-  // <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
-  //   <VimeoEmbed
-  //     className={"object-center object-cover bg-black"}
-  //     height={"700px"}
-  //     videoId="1062554055"
-  //     videoURL="2ff8b042f4"
-  //     title="ENESAI"
-  //     // https://player.vimeo.com/video/1062554055?h=2ff8b042f4&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479    />
-  //   />
-  // </div>,
-  // <div className={cn("overflow-hidden", commonCn)} style={carouselStyle}>
-  //   <VimeoEmbed
-  //     className={"object-center object-cover bg-black"}
-  //     height={"700px"}
-  //     videoId="1062556025"
-  //     videoURL="7938f2cf9b"
-  //     title="ENESAI"
-  //     // https://player.vimeo.com/video/1062556025?h=7938f2cf9b&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
-  //   />
-  // </div>,
 ];
 
 function videoCreaterComponents(data: VideoFrameProps[]) {
@@ -704,7 +537,7 @@ function videoCreaterComponents(data: VideoFrameProps[]) {
 const MonsReels: FC<MonsReelsProps> = ({ className }) => {
   return (
     <Tabs className={cn("Mosnreel-tabs", className)}>
-      <TabList className="inline-flex gap-3.5 p-[5px] bg-white rounded-full mb-[80px]">
+      <TabList className="xs:w-auto w-full inline-flex gap-3.5 p-[5px] bg-white rounded-full xl:my-[80px] mt-[20px] my-[40px] overflow-x-scroll ">
         <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
           CG REEL
         </Tab>
