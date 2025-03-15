@@ -19,6 +19,7 @@ import Directions from "components/Directions.tsx";
 import IndicatorsLoading from "common/IndicatorsLoading.tsx";
 import Tariff from "components/Tariff.tsx";
 import BenefitsItem from "common/BenefitsItem.tsx";
+import { useInView } from "react-intersection-observer";
 
 // import FrameAnimationProps from "components/FrameAnimation.tsx";
 
@@ -33,6 +34,10 @@ export const Header: FC<HeaderProps> = (props) => (
 );
 
 const App: FC = () => {
+  const [inViewRef, inView] = useInView({
+    triggerOnce: false,
+  });
+
   return (
     <LazyMotion features={domAnimation}>
       <div>
@@ -278,9 +283,9 @@ const App: FC = () => {
                   "w-full xl:px-[100px] mt-[30px] flex flex-col gap-10"
                 }
               >
-                <IndicatorsLoading title={"Blender"} percent={"95"} />
-                <IndicatorsLoading title={"Blender"} percent={"95"} />
-                <IndicatorsLoading title={"Blender"} percent={"95"} />
+                <IndicatorsLoading title={"Blender"} percent={95} />
+                <IndicatorsLoading title={"Blender"} percent={95} />
+                <IndicatorsLoading title={"Blender"} percent={95} />
               </TabPanel>
             </Tabs>
           </div>

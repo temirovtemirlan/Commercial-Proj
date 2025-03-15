@@ -1,10 +1,11 @@
 import { type FC } from "react";
 import { cn } from "helpers/style";
+import CountUp from "react-countup";
 
 interface IndicatorsLoadingProps {
   className?: string;
   title: string;
-  percent: string;
+  percent: number;
 }
 
 const IndicatorsLoading: FC<IndicatorsLoadingProps> = ({
@@ -25,9 +26,22 @@ const IndicatorsLoading: FC<IndicatorsLoadingProps> = ({
           {title}
         </div>
       </div>
-      <div className="justify-start text-[#f5baff] xl:text-[45px] text-[28px] font-bold leading-[40px]">
-        {percent}
-      </div>
+
+      <CountUp
+        className={
+          "justify-start text-[#f5baff] xl:text-[45px] text-[28px] font-bold leading-[20px] xl:leading-[50px]"
+        }
+        end={percent}
+        duration={3}
+        separator=","
+        suffix="%"
+        delay={2}
+        scrollSpyOnce={true}
+        enableScrollSpy={true}
+      />
+      {/*<div className="justify-start text-[#f5baff] xl:text-[45px] text-[28px] font-bold leading-[20px] xl:leading-normal">*/}
+      {/*  {percent}%*/}
+      {/*</div>*/}
     </div>
   );
 };
