@@ -9,7 +9,7 @@ interface DirectionsItemsProps {
     descOne: string;
     list: string[];
     descTwo: string;
-    img: string;
+    video: string;
     upcText?: string;
   };
 }
@@ -70,7 +70,17 @@ const DirectionsItems: FC<DirectionsItemsProps> = ({ className, item }) => {
         </div>
       </div>
 
-      <div className="h-[680px] bg-[#adadad] w-full max-lg:hidden"></div>
+      <div className="h-[680px] bg-[#adadad] w-full max-lg:hidden">
+        <video
+          className={"h-full object-cover pointer-events-none"}
+          src={item.video}
+          autoPlay
+          loop
+          muted
+          controls={false}
+          playsInline
+        ></video>
+      </div>
     </div>
   );
 };

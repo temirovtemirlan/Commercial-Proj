@@ -220,3 +220,12 @@ body {
 .animate-expand {
   animation: expand 1.9s ease-out forwards;
 }
+
+.swiper-slide-next, .swiper-slide-prev {
+  transition: all .3s ease 0s ;
+  opacity: 15%;
+}
+
+.swiper-slide-active {
+  transition: all .3s ease 0s ;
+}

@@ -61,15 +61,15 @@ const indicatorsLoading: IIndicatorsLoading[] = [
     filter: "VFX",
   },
   {
-    gradientClass: "gradient-four",
-    title: "Marvelous Designer",
-    end: 94,
-    filter: "CG",
-  },
-  {
     gradientClass: "gradient-one",
     title: "Blender",
     end: 98,
+    filter: "CG",
+  },
+  {
+    gradientClass: "gradient-four",
+    title: "Marvelous Designer",
+    end: 94,
     filter: "CG",
   },
   {
@@ -126,6 +126,30 @@ const indicatorsLoading: IIndicatorsLoading[] = [
     end: 98,
     filter: "VFX",
   },
+  {
+    gradientClass: "gradient-two",
+    title: "3ds Max",
+    end: 90,
+    filter: "CG",
+  },
+  {
+    gradientClass: "gradient-one",
+    title: "Maya",
+    end: 91,
+    filter: "CG",
+  },
+  {
+    gradientClass: "gradient-one",
+    title: "ZBrush",
+    end: 91,
+    filter: "CG",
+  },
+  {
+    gradientClass: "gradient-one",
+    title: "Fusion",
+    end: 91,
+    filter: "VFX",
+  },
 ];
 
 const indicatorsAppsLogo: IIndicatorsAppsLogo[] = [
@@ -153,6 +177,7 @@ const indicatorsAppsLogo: IIndicatorsAppsLogo[] = [
     className: "",
     filter: "CG",
   },
+
   {
     title: "Blender",
     app: "/image 28.png",
@@ -211,6 +236,36 @@ const indicatorsAppsLogo: IIndicatorsAppsLogo[] = [
     title: "Davinci Resolve",
     app: "/eleven.png",
     className: "",
+    filter: "VFX",
+  },
+  {
+    title: "Maya",
+    app: "/Maya.png",
+    className: "size-[56px] rounded-xl",
+    filter: "CG",
+  },
+  {
+    title: "3ds Max",
+    app: "/maxon.jpg",
+    className: "size-[56px] rounded-xl",
+    filter: "CG",
+  },
+  {
+    title: "ZBrush",
+    app: "/ZBrush-icon.png",
+    className: "size-[56px] object-cover rounded-xl",
+    filter: "CG",
+  },
+  {
+    title: "Nuke",
+    app: "/nuke.png",
+    className: "size-[56px] object-cover rounded-xl",
+    filter: "VFX",
+  },
+  {
+    title: "Blackmagic fusion icon",
+    app: "/Blackmagic_fusion_icon.png",
+    className: "size-[56px] object-cover rounded-xl",
     filter: "VFX",
   },
 ];
@@ -281,11 +336,23 @@ const App: FC = () => {
                   />
                 </svg>
               </div>
-              <p className="text-black text-2xl grow-1 xl:max-w-[700px] mt-8 md:mt-0">
-                Мы – не просто digital-агентство. «Монстр» – это экосистема
-                креативных и технологичных решений, созданная для того, чтобы
-                выводить бренды на новый уровень. Мы – ваш сокрушительный
-                аргумент в борьбе за лидерство.
+              <p className="text-black text-2xl grow-1 xl:max-w-[800px] mt-8 md:mt-0 text-balance">
+                MONSTER CORP. — ЦИФРОВАЯ ЭКОСИСТЕМА УСЛУГ <br /> <br />
+                Первый цифровой медиакит для бизнеса в Узбекистане, Казахстане,
+                ОАЭ (Дубай, Абу-Даби) и Кыргызстане
+                <br />
+                <br />
+                Мы создаем экосистему решений для бизнеса, объединяя креатив,
+                технологии и маркетинг в единую платформу. <br /> Monster Corp —
+                это не просто услуги, а инструмент роста для компаний любого
+                масштаба. Мы помогаем брендам захватывать рынок, усиливать
+                влияние и увеличивать прибыль.
+                <br />
+                <br />
+                Наш цифровой медиакит — это ваш личный навигатор в мире
+                маркетинга, продакшна, брендинга, VFX и IT. <br /> Забудьте про
+                бесконечные PDF — всё, что вам нужно, доступно онлайн в один
+                клик.
               </p>
             </div>
           </Container>
@@ -402,7 +469,7 @@ const App: FC = () => {
                 </Tab>
               </TabList>
 
-              <div className="flex justify-center gap-x-9 xl:px-[100px] mt-6 overflow-x-scroll">
+              <div className="flex justify-center gap-x-9 xl:px-[100px] mt-6 overflow-x-scroll w-full">
                 {indicatorsAppsLogo?.map((app, index) => (
                   <img
                     className={cn(app.className, "pointer-events-none", {
@@ -462,7 +529,7 @@ const App: FC = () => {
             />
           </div>
           <LazyVideoFrame
-            coreClassName="mt-5 rounded-[28px] h-[700px] md:h-[900px] lg:h-auto overflow-hidden"
+            coreClassName="mt-5 rounded-[28px] h-[full] md:h-[900px] lg:h-auto overflow-hidden"
             className="h-full"
             videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/AI/organic_juice_commercial%20(1080p).mp4"
             posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/ORGANIC_2_H.webp"
@@ -471,22 +538,22 @@ const App: FC = () => {
             <LazyVideoFrame
               coreClassName="h-full w-full rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
               className="h-full"
-              videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/AI/BAKAI_GPT_REMAKE.mov"
-              posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/BAKAI_H.webp"
+              videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/CG/BAKAI_IFC_KG_4.mp4"
+              posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/BAKAI_IFC.webp"
             />
-            <LazyVideoFrame
-              coreClassName="h-full w-full bg-[#f5f5f7] rounded-[28px] overflow-hidden h-[700px] md:h-[900px] lg:h-[518px]"
-              className="h-full"
-              videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/CG/INTERSPORT.mp4"
-              posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/INTERSPORT_H.webp"
-            />
-          </div>
-          <div className="mt-5">
             <LazyVideoFrame
               videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/CG/3D_JOY_COMMERCIAL.mp4"
               posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/JOY_COMMERCIAL_H.webp"
+              coreClassName="h-full w-full bg-[#f5f5f7] rounded-[28px] overflow-hidden h-[400px] md:h-[518px] lg:h-[518px]"
+              className="h-full lg:h-auto object-cover"
+            />
+          </div>
+          <div className="mt-5 h-full">
+            <LazyVideoFrame
+              className="h-full"
               coreClassName="h-[400px] lg:h-auto rounded-[28px] overflow-hidden"
-              className="h-full lg:h-auto"
+              videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/PRODUCTION/ENESAI_IMIDGE_WEB.mp4"
+              posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/ENESAI.webp"
             />
           </div>
         </Container>
