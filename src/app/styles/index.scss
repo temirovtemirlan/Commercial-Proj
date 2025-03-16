@@ -221,6 +221,8 @@ body {
   animation: expand 1.9s ease-out forwards;
 }
 
+.Our-Directions {
+
 .swiper-slide-next, .swiper-slide-prev {
   transition: all .3s ease 0s ;
   opacity: 15%;
@@ -228,4 +230,5 @@ body {
 
 .swiper-slide-active {
   transition: all .3s ease 0s ;
+}
 }

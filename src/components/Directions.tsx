@@ -100,7 +100,7 @@ const directionsData = [
 
 const Directions: FC = () => {
   return (
-    <div>
+    <div className={"Our-Directions"}>
       <legend className="legend-3lvl text-white mb-10 md:mb-20 ml-5 lg:ml-[25%]">
         Наши направления
       </legend>
