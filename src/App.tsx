@@ -544,8 +544,8 @@ const App: FC = () => {
             <LazyVideoFrame
               videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/CG/3D_JOY_COMMERCIAL.mp4"
               posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/JOY_COMMERCIAL_H.webp"
-              coreClassName="h-full w-full bg-[#f5f5f7] rounded-[28px] overflow-hidden h-[400px] md:h-[518px] lg:h-[518px]"
-              className="h-full lg:h-auto object-cover"
+              coreClassName="h-full w-full bg-[#f5f5f7] rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
+              className="h-full object-cover"
             />
           </div>
           <div className="mt-5 h-full">
