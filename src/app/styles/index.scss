@@ -149,6 +149,10 @@ body {
   color: white;
 }
 
+.blue-gradient-1lvl {
+  background: -webkit-linear-gradient(102deg, #00cec9, #004ae6);
+}
+
 // градиент для второй полоски
 //
 
@@ -204,9 +208,46 @@ body {
   }
 }
 
-.blue-gradient-1lvl {
-  background: -webkit-linear-gradient(102deg, #00cec9, #004ae6);
+.gradient-five {
+
+  &:is(div) {
+    @apply rounded-full;
+    @extend .blue-gradient-1lvl;
+  }
+
+  &:is(span) {
+    @extend .blue-gradient-1lvl;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
+
+.gradient-actorcore {
+  &:is(div) {
+    @apply rounded-full;
+    background: -webkit-linear-gradient(57deg, #D1E6AB, #246727);
+  }
+
+  &:is(span) {
+    background: -webkit-linear-gradient(57deg, #D1E6AB, #246727);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.gradient-iClone {
+  &:is(div) {
+    @apply rounded-full;
+    background: -webkit-linear-gradient(57deg, #82BE0F, #729F1D);
+  }
+
+  &:is(span) {
+    background: -webkit-linear-gradient(57deg, #82BE0F, #729F1D);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
 
 @keyframes expand {
   from {
@@ -230,5 +271,15 @@ body {
 
 .swiper-slide-active {
   transition: all .3s ease 0s ;
+}
+}
+
+.Our-Indicators {
+.swiper-slide {
+  @apply flex justify-center items-center;
+
+  @media (min-width: 1280px) {
+    margin: 0 !important;
+  }
 }
 }

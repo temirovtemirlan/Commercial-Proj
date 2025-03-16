@@ -1,5 +1,8 @@
-import type { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { cn } from "helpers/style";
+import { useInView } from "react-intersection-observer";
+
+const loadedVideos = new Set<string>();
 
 interface DirectionsItemsProps {
   className?: string;
@@ -15,6 +18,18 @@ interface DirectionsItemsProps {
 }
 
 const DirectionsItems: FC<DirectionsItemsProps> = ({ className, item }) => {
+  const { ref, inView } = useInView({
+    triggerOnce: true, // Загружает видео только один раз
+    threshold: 0.5, // Срабатывает, когда видео видно на 50%
+  });
+  const [isLoaded, setIsLoaded] = useState(loadedVideos.has(item.video));
+  useEffect(() => {
+    if (inView && !isLoaded) {
+      loadedVideos.add(item.video); // Добавляем видео в кэш
+      setIsLoaded(true);
+    }
+  }, [inView, isLoaded, item.video]);
+
   return (
     <div
       className={cn(
@@ -70,16 +85,30 @@ const DirectionsItems: FC<DirectionsItemsProps> = ({ className, item }) => {
         </div>
       </div>
 
-      <div className="h-[680px] bg-[#adadad] w-full max-lg:hidden">
-        <video
-          className={"h-full object-cover pointer-events-none"}
-          src={item.video}
-          autoPlay
-          loop
-          muted
-          controls={false}
-          playsInline
-        ></video>
+      <div className="h-[680px] bg-[#111111] w-full max-lg:hidden">
+        <div className={cn("h-full")} ref={ref}>
+          {isLoaded ? (
+            <video
+              className={"size-full object-cover pointer-events-none"}
+              src={item.video}
+              loop
+              muted
+              playsInline
+              controls={false}
+              autoPlay={isLoaded}
+            />
+          ) : (
+            // <VideoFrame {...props} />
+            <div className={"size-full bg-[#111111]"} />
+          )}
+        </div>
+        {/*<video*/}
+        {/*  src={item.video}*/}
+        {/*  loop*/}
+        {/*  muted*/}
+        {/*  controls={false}*/}
+        {/*  playsInline*/}
+        {/*></video>*/}
       </div>
     </div>
   );

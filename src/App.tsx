@@ -15,6 +15,8 @@ import Tariff from "components/Tariff";
 import LogoCubeAnimation from "common/LogoCubeAnimation";
 import WhyMonsterCorp from "components/WhyMonsterCorp";
 import CultureSection from "components/CultureSection";
+import { Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 interface HeaderProps {
   title: string;
@@ -147,10 +149,37 @@ const indicatorsLoading: IIndicatorsLoading[] = [
   {
     gradientClass: "gradient-one",
     title: "Fusion",
-    end: 91,
+    end: 94,
     filter: "VFX",
   },
+  {
+    gradientClass: "gradient-one",
+    title: "D5 Render",
+    end: 90,
+    filter: "CG",
+  },
+  {
+    gradientClass: "gradient-actorcore",
+    title: "Actorcore",
+    end: 95,
+    filter: "CG",
+  },
+  {
+    gradientClass: "gradient-three",
+    title: "Cascadeur",
+    end: 91,
+    filter: "CG",
+  },
+  {
+    gradientClass: "gradient-iClone",
+    title: "iClone",
+    end: 87,
+    filter: "CG",
+  },
 ];
+//
+//
+//
 
 const indicatorsAppsLogo: IIndicatorsAppsLogo[] = [
   {
@@ -268,6 +297,30 @@ const indicatorsAppsLogo: IIndicatorsAppsLogo[] = [
     className: "size-[56px] object-cover rounded-xl",
     filter: "VFX",
   },
+  {
+    title: "D5 Render icon",
+    app: "/d5.png",
+    className: "size-[56px] object-cover rounded-xl",
+    filter: "CG",
+  },
+  {
+    title: "Actorcore",
+    app: "/Actorcore.png",
+    className: "size-[56px] object-cover rounded-xl",
+    filter: "CG",
+  },
+  {
+    title: "Cascadeur",
+    app: "/Cascadeur.webp",
+    className: "size-[56px] object-cover rounded-xl",
+    filter: "CG",
+  },
+  {
+    title: "iClone",
+    app: "/iClone.png",
+    className: "size-[56px] object-cover rounded-xl",
+    filter: "CG",
+  },
 ];
 
 const App: FC = () => {
@@ -337,22 +390,13 @@ const App: FC = () => {
                 </svg>
               </div>
               <p className="text-black text-2xl grow-1 xl:max-w-[800px] mt-8 md:mt-0 text-balance">
-                MONSTER CORP. — ЦИФРОВАЯ ЭКОСИСТЕМА УСЛУГ <br /> <br />
-                Первый цифровой медиакит для бизнеса в Узбекистане, Казахстане,
-                ОАЭ (Дубай, Абу-Даби) и Кыргызстане
-                <br />
-                <br />
-                Мы создаем экосистему решений для бизнеса, объединяя креатив,
-                технологии и маркетинг в единую платформу. <br /> Monster Corp —
-                это не просто услуги, а инструмент роста для компаний любого
-                масштаба. Мы помогаем брендам захватывать рынок, усиливать
-                влияние и увеличивать прибыль.
-                <br />
-                <br />
-                Наш цифровой медиакит — это ваш личный навигатор в мире
-                маркетинга, продакшна, брендинга, VFX и IT. <br /> Забудьте про
-                бесконечные PDF — всё, что вам нужно, доступно онлайн в один
-                клик.
+                <span className={"leading-relaxed"}>
+                  MONSTER CORP — ЦИФРОВАЯ ЭКОСИСТЕМА УСЛУГ. <br />
+                </span>
+                Первый цифровой медиакит для бизнеса — это ваш личный навигатор
+                в мире маркетинга, продакшна, брендинга, VFX и IT. <br />
+                Забудьте про бесконечные PDF — всё, что вам нужно, доступно
+                онлайн в один клик.
               </p>
             </div>
           </Container>
@@ -469,19 +513,120 @@ const App: FC = () => {
                 </Tab>
               </TabList>
 
-              <div className="flex justify-center gap-x-9 xl:px-[100px] mt-6 overflow-x-scroll w-full">
-                {indicatorsAppsLogo?.map((app, index) => (
-                  <img
-                    className={cn(app.className, "pointer-events-none", {
-                      "opacity-30": app.filter !== tappad,
-                    })}
-                    key={index}
-                    src={app.app}
-                    alt={app.title}
-                    onClick={() => setTaped(app.filter)}
-                  />
-                ))}
+              <div className={"flex"}>
+                <button className={"prev-igdnucejewj190418"}>
+                  <svg
+                    width="34"
+                    className={"cursor-pointer"}
+                    height="34"
+                    viewBox="0 0 34 34"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M21.25 7.08398L12.75 17.0007L21.25 26.9173"
+                      stroke="white"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+                <Swiper
+                  // onSwiper={(swiper) => {
+                  //   swiperRef.current = swiper;
+                  // }}
+                  className={cn(
+                    "Our-Indicators w-full xl:px-[50px] flex justify-center"
+                  )}
+                  modules={[Navigation]}
+                  speed={1500}
+                  cssMode={true}
+                  spaceBetween={30} // Расстояние между слайдами
+                  slidesPerView={10} // Количество видимых слайдов за раз
+                  navigation={{
+                    nextEl: ".next-fjfh39da9fjqa",
+                    //
+                    prevEl: ".prev-igdnucejewj190418",
+                  }}
+                  breakpoints={{
+                    1700: {
+                      slidesPerView: 10,
+                    },
+                    1500: {
+                      slidesPerView: 8,
+                    },
+                    768: {
+                      slidesPerView: 7,
+                    },
+                    0: {
+                      slidesPerView: 5,
+                    },
+                  }}
+                >
+                  {/*{items?.map((item, index) => (*/}
+                  {/*  <SwiperSlide key={index}>*/}
+                  {/*    <div>{item}</div>*/}
+                  {/*  </SwiperSlide>*/}
+                  {/*))}*/}
+
+                  {indicatorsAppsLogo?.map((app, index) => (
+                    <SwiperSlide key={index}>
+                      <img
+                        className={cn(app.className, "pointer-events-none", {
+                          "opacity-20": app.filter !== tappad,
+                        })}
+                        key={index}
+                        src={app.app}
+                        alt={app.title}
+                        onClick={() => setTaped(app.filter)}
+                      />
+                    </SwiperSlide>
+                  ))}
+
+                  {/* Arrow */}
+
+                  <div>
+                    <div>
+                      <div></div>
+                      <div></div>
+                    </div>
+                  </div>
+                </Swiper>
+
+                <button className={"next-fjfh39da9fjqa"}>
+                  <svg
+                    width="34"
+                    className={"cursor-pointer"}
+                    height="34"
+                    viewBox="0 0 34 34"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12.75 7.08398L21.25 17.0007L12.75 26.9173"
+                      stroke="white"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
               </div>
+
+              {/*<div className="flex justify-center gap-x-9 xl:px-[100px] mt-6 overflow-x-scroll w-full">*/}
+              {/*  {indicatorsAppsLogo?.map((app, index) => (*/}
+              {/*    <img*/}
+              {/*      className={cn(app.className, "pointer-events-none", {*/}
+              {/*        "opacity-30": app.filter !== tappad,*/}
+              {/*      })}*/}
+              {/*      key={index}*/}
+              {/*      src={app.app}*/}
+              {/*      alt={app.title}*/}
+              {/*      onClick={() => setTaped(app.filter)}*/}
+              {/*    />*/}
+              {/*  ))}*/}
+              {/*</div>*/}
               {[1, 2].map((_, index) => (
                 <TabPanel
                   className="w-full xl:px-[100px] mt-10 flex flex-col gap-10"
