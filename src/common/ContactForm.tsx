@@ -13,7 +13,7 @@ const typeProjects = ["Комплексный", "Брендинг", "Веб", "�
 const ContactForm: FC = () => {
   return (
     <div className="grid lg:grid-cols-2 w-full">
-      <div className="flex flex-col justify-between px-7 py-6 md:px-50 2xl:px-120 md:py-10 2xl:py-20 bg-[#151515]">
+      <div className="flex flex-col justify-between px-7 py-6 md:px-50 2xl:px-120 md:py-10 2xl:py-20 bg-[#161617]">
         <div>
           <p className="text-white text-[32px] md:text-[44px] leading-[39px] md:leading-[52px] xl:text-[56px] xl:leading-[64px]">
             Оставьте заявку,
@@ -22,13 +22,13 @@ const ContactForm: FC = () => {
           </p>
 
           <ul className="flex flex-col md:flex-wrap gap-x-5 gap-y-1 md:gap-y-3 lxl:justify-between *:text-lg *:md:text-2xl text-white mt-9">
-            <li>
+            <li className="max-w-fit">
               <NavLink to="mailto:job@monstr.ru">job@monstr.ru</NavLink>
             </li>
-            <li>
+            <li className="max-w-fit">
               <NavLink to="tel:+996 555 510 804">+996 555 510 804</NavLink>
             </li>
-            <li>
+            <li className="max-w-fit">
               <NavLink
                 className="inline-flex items-center gap-3 md:gap-5"
                 to=""
@@ -87,17 +87,17 @@ const ContactForm: FC = () => {
 
             <NavLink
               className="inline-flex flex-col gap-2 md:gap-3 text-white max-w-fit"
-              to="mailto:info@nimax.ru"
+              to="mailto:hello@monstrcorp.com"
             >
-              <span className="text-xl opacity-50">Для сотрудничества</span>
-              <span className="text-2xl">info@nimax.ru</span>
+              <span className="text-xl opacity-50">Для связи</span>
+              <span className="text-2xl">hello@monstrcorp.com</span>
             </NavLink>
           </div>
 
-          <p className="text-white opacity-50 mt-10">
+          {/* <p className="text-white opacity-50 mt-10">
             ООО "Нимакс" ОГРН 1109847023626 190005, Санкт-Петербург г,
             Московский пр., д. 55, лит.А
-          </p>
+          </p> */}
         </div>
       </div>
 
