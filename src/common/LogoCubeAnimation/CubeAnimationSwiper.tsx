@@ -1,71 +1,48 @@
 import { type FC, useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-
-import "swiper/css";
-import "swiper/css/effect-cube";
-import "swiper/css/pagination";
+import { AnimatePresence, motion } from "motion/react";
 
 interface IProps {
-  companyLogo: string[];
+  images: string[];
   delayInterval: number;
 }
+const sizeSmall = ["BOSS", "CALIPSO", "NIKE", "QADYR", "PAPAJOHNS", "PAUL"];
 
-const CompanyLogoCubeAnimation: FC<IProps> = ({
-  companyLogo: images,
-  delayInterval: autoplayDelay,
-}) => {
+const CompanyLogoCubeAnimation: FC<IProps> = ({ images, delayInterval }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, autoplayDelay);
+    }, delayInterval);
 
-    return () => clearInterval(intervalId); // Очищаем интервал при размонтировании компонента
-  }, [images.length, autoplayDelay]);
+    return () => clearInterval(intervalId);
+  }, [images.length, delayInterval]);
 
+  // prettier-ignore
   const variants = {
-    enter: {
-      y: "100%",
-      opacity: 0,
-      rotateY: 90,
-      transition: {
-        duration: 0.8,
-        ease: "easeInOut", // Добавил easing для более плавной анимации
-      },
-    },
-    center: {
-      y: "0%",
-      opacity: 1,
-      rotateY: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeInOut",
-      },
-    },
-    exit: {
-      y: "-100%",
-      opacity: 0,
-      rotateY: -90,
-      transition: {
-        duration: 0.8,
-        ease: "easeInOut",
-      },
-    },
+    enter: (direction: number) => ({ rotateX: direction > 0 ? 90 : -90, opacity: 0, y: "50%", transition: { duration: 0.6, ease: "easeInOut" }}),
+    center: { rotateX: 0, opacity: 1, y: "0%", transition: { duration: 0.6, ease: "easeInOut" }},
+    exit: (direction: number) => ({ rotateX: direction > 0 ? -90 : 90, opacity: 0, y: "-50%", transition: { duration: 0.6, ease: "easeInOut" } }),
   };
 
+  const currentLogo = images[currentIndex];
+  // prettier-ignore
+  const isSmallLogo = currentLogo ? sizeSmall.some((logo) => currentLogo.toUpperCase().includes(logo.toUpperCase())) : false;
+
   return (
-    <div className={`relative h-16 w-full overflow-hidden`}>
-      <AnimatePresence initial={false} custom={currentIndex}>
+    <div className="relative h-16 w-full overflow-hidden">
+      <AnimatePresence initial={false} custom={currentIndex > 0 ? 1 : -1}>
         <motion.img
           key={currentIndex}
           src={images[currentIndex]}
           alt={`Slide ${currentIndex + 1}`}
-          className="absolute top-0 left-0 h-full w-full object-contain"
+          className="absolute h-full object-contain"
+          style={{ width: isSmallLogo ? "70%" : "100%" }}
           variants={variants}
           initial="enter"
           animate="center"
           exit="exit"
+          custom={currentIndex > 0 ? 1 : -1}
         />
       </AnimatePresence>
     </div>

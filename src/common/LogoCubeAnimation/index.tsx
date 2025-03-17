@@ -30,16 +30,13 @@ const companyLogo = [
 ];
 
 const LogoCubeAnimation: FC = () => {
-  const divideFourCompanyLogo = divideArray(companyLogo, 6);
+  const dataOne = divideArray(divideArray(companyLogo, 2)[0], 6);
+  const dataTwo = divideArray(divideArray(companyLogo, 2)[1], 6);
 
   return (
     <div>
-      <div
-        className={
-          "flex justify-between w-full mb-[150px] md:flex-row flex-col"
-        }
-      >
-        <legend className={"legend-3lvl text-white text-left"}>
+      <div className="flex justify-between w-full mb-[150px] md:flex-row flex-col">
+        <legend className="legend-3lvl text-white text-left">
           Наши клиенты
         </legend>
 
@@ -49,37 +46,22 @@ const LogoCubeAnimation: FC = () => {
         </div>
       </div>
 
-      <div className="flex flex-wrap ss:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-24 gap-x-6  w-full h-full">
-        <CompanyLogoCubeAnimation
-          companyLogo={divideFourCompanyLogo[0]}
-          delayInterval={5000}
-          // delayInterval={3000}
-        />
-        <CompanyLogoCubeAnimation
-          companyLogo={divideFourCompanyLogo[1]}
-          delayInterval={4500}
-          // delayInterval={2500}
-        />
-        <CompanyLogoCubeAnimation
-          companyLogo={divideFourCompanyLogo[2]}
-          delayInterval={5500}
-          // delayInterval={3500}
-        />
-        <CompanyLogoCubeAnimation
-          companyLogo={divideFourCompanyLogo[3]}
-          delayInterval={6000}
-          // delayInterval={4000}
-        />
-        <CompanyLogoCubeAnimation
-          companyLogo={divideFourCompanyLogo[4]}
-          delayInterval={7000}
-          // delayInterval={5000}
-        />
-        <CompanyLogoCubeAnimation
-          companyLogo={divideFourCompanyLogo[5]}
-          delayInterval={6500}
-          // delayInterval={4500}
-        />
+      <div className="flex flex-wrap ss:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-24 gap-x-6 w-full h-full">
+        <CompanyLogoCubeAnimation images={dataOne[0]} delayInterval={5000} />
+        <CompanyLogoCubeAnimation images={dataOne[1]} delayInterval={4500} />
+        <CompanyLogoCubeAnimation images={dataOne[2]} delayInterval={7500} />
+        <CompanyLogoCubeAnimation images={dataOne[3]} delayInterval={6000} />
+        <CompanyLogoCubeAnimation images={dataOne[4]} delayInterval={7000} />
+        <CompanyLogoCubeAnimation images={dataOne[5]} delayInterval={6500} />
+      </div>
+
+      <div className="flex flex-wrap ss:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-24 gap-x-6 w-full h-full mt-10">
+        <CompanyLogoCubeAnimation images={dataTwo[0]} delayInterval={7500} />
+        <CompanyLogoCubeAnimation images={dataTwo[1]} delayInterval={8000} />
+        <CompanyLogoCubeAnimation images={dataTwo[2]} delayInterval={5000} />
+        <CompanyLogoCubeAnimation images={dataTwo[3]} delayInterval={9500} />
+        <CompanyLogoCubeAnimation images={dataTwo[4]} delayInterval={8500} />
+        <CompanyLogoCubeAnimation images={dataTwo[5]} delayInterval={9500} />
       </div>
     </div>
   );
