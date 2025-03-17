@@ -264,14 +264,20 @@ body {
 
 .Our-Directions {
 
-.swiper-slide-next, .swiper-slide-prev {
-  transition: all .3s ease 0s ;
-  opacity: 15%;
-}
+  .swiper-slide-next, .swiper-slide-prev {
+    transition: all .3s ease 0s ;
+    opacity: 15%;
+  }
 
-.swiper-slide-active {
-  transition: all .3s ease 0s ;
-}
+  .swiper-slide {
+
+    @media (min-width: 1200px) {
+    }
+  }
+
+  .swiper-slide-active {
+    transition: all .3s ease 0s ;
+  }
 }
 
 .Our-Indicators {
@@ -279,7 +285,7 @@ body {
   @apply flex justify-center items-center;
 
   @media (min-width: 1280px) {
-    margin: 0 !important;p9p
+    margin: 0 !important;
   }
 }
 }

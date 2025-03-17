@@ -17,6 +17,7 @@ import WhyMonsterCorp from "components/WhyMonsterCorp";
 import CultureSection from "components/CultureSection";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import FooterVideo from "components/FooterVideo.tsx";
 
 interface HeaderProps {
   title: string;
@@ -526,9 +527,9 @@ const App: FC = () => {
                     <path
                       d="M21.25 7.08398L12.75 17.0007L21.25 26.9173"
                       stroke="white"
-                      stroke-width="2.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </button>
@@ -606,9 +607,9 @@ const App: FC = () => {
                     <path
                       d="M12.75 7.08398L21.25 17.0007L12.75 26.9173"
                       stroke="white"
-                      stroke-width="2.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </button>
@@ -727,16 +728,8 @@ const App: FC = () => {
             <LogoCubeAnimation />
           </Container>
 
-          <Container className="pb-[100px] bg-[#161617]">
-            <video
-              src="https://storage.googleapis.com/mkit_monster_bucket/Video/MKIT/SAIT.MONSTER_6.mp4"
-              className="max-h-[730px] h-full w-full rounded-md object-cover"
-              loop
-              autoPlay
-              muted
-              playsInline
-            />
-          </Container>
+          <FooterVideo />
+
           <Footer />
         </>
       </div>

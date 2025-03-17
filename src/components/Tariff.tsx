@@ -42,8 +42,8 @@ const tariffData = [
               d="M9.99984 18.9582C14.9474 18.9582 18.9582 14.9474 18.9582 9.99984C18.9582 5.05229 14.9474 1.0415 9.99984 1.0415C5.05229 1.0415 1.0415 5.05229 1.0415 9.99984C1.0415 14.9474 5.05229 18.9582 9.99984 18.9582Z"
               stroke="black"
               strokeWidth="0.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M14.7301 12.1846V14.2454M15.7605 13.2146H13.6997"
@@ -128,8 +128,8 @@ const tariffData = [
               d="M9.99984 18.9582C14.9474 18.9582 18.9582 14.9474 18.9582 9.99984C18.9582 5.05229 14.9474 1.0415 9.99984 1.0415C5.05229 1.0415 1.0415 5.05229 1.0415 9.99984C1.0415 14.9474 5.05229 18.9582 9.99984 18.9582Z"
               stroke="black"
               strokeWidth="0.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M14.7301 12.1846V14.2454M15.7605 13.2146H13.6997"
@@ -214,8 +214,8 @@ const tariffData = [
               d="M9.99984 18.9582C14.9474 18.9582 18.9582 14.9474 18.9582 9.99984C18.9582 5.05229 14.9474 1.0415 9.99984 1.0415C5.05229 1.0415 1.0415 5.05229 1.0415 9.99984C1.0415 14.9474 5.05229 18.9582 9.99984 18.9582Z"
               stroke="black"
               strokeWidth="0.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M14.7301 12.1846V14.2454M15.7605 13.2146H13.6997"
@@ -300,8 +300,8 @@ const tariffData = [
               d="M9.99984 18.9582C14.9474 18.9582 18.9582 14.9474 18.9582 9.99984C18.9582 5.05229 14.9474 1.0415 9.99984 1.0415C5.05229 1.0415 1.0415 5.05229 1.0415 9.99984C1.0415 14.9474 5.05229 18.9582 9.99984 18.9582Z"
               stroke="black"
               strokeWidth="0.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M14.7301 12.1846V14.2454M15.7605 13.2146H13.6997"

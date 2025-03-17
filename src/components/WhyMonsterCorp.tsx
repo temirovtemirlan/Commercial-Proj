@@ -78,15 +78,15 @@ const WhyMonsterCorp: FC = () => {
                 d="M20.6172 7.5H29.1886V16.0714"
                 stroke="#0171E3"
                 strokeWidth="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 d="M29.1892 7.5L17.082 19.6071C16.8817 19.8035 16.6125 19.9134 16.332 19.9134C16.0516 19.9134 15.7823 19.8035 15.582 19.6071L10.6535 14.6786C10.4532 14.4823 10.1839 14.3723 9.90346 14.3723C9.62301 14.3723 9.35374 14.4823 9.15346 14.6786L1.33203 22.5"
                 stroke="#0171E3"
                 strokeWidth="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
             <p>
