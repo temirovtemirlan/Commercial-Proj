@@ -55,11 +55,11 @@ const ContactForm: FC = () => {
         <div className="mt-8 lg:lg:">
           <div className="flex flex-col md:flex-wrap lg:flex-col xl:flex-wrap gap-y-3 md:gap-y-7 gap-x-24">
             <NavLink className="max-w-fit" to="mailto:rabota@monstr.ru">
-              <div className="flex items-end xl:items-center gap-3 text-[#dcfce7] text-xl">
-                <span className="w-7 md:w-10 h-7 md:h-10 rounded-full inline-flex justify-center items-center border md:border-2 border-solid border-[#dcfce7]">
-                  {/* <Arrow className="w-[12px] h-[12px] md:w-auto md:h-auto [&_path]:stroke-[#dcfce7]" /> */}
+              <div className="flex items-end xl:items-center gap-3 text-[#70BF91] text-xl">
+                <span className="w-7 md:w-10 h-7 md:h-10 rounded-full inline-flex justify-center items-center border md:border-2 border-solid border-[#70BF91]">
+                  {/* <Arrow className="w-[12px] h-[12px] md:w-auto md:h-auto [&_path]:stroke-[#70BF91]" /> */}
                   <svg
-                    className="w-[12px] h-[12px] md:w-auto md:h-auto [&_path]:stroke-[#dcfce7]"
+                    className="w-[12px] h-[12px] md:w-auto md:h-auto [&_path]:stroke-[#70BF91]"
                     width="14"
                     height="15"
                     viewBox="0 0 14 15"
