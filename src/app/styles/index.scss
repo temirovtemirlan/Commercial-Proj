@@ -209,7 +209,6 @@ body {
 }
 
 .gradient-five {
-
   &:is(div) {
     @apply rounded-full;
     @extend .blue-gradient-1lvl;
@@ -225,11 +224,11 @@ body {
 .gradient-actorcore {
   &:is(div) {
     @apply rounded-full;
-    background: -webkit-linear-gradient(57deg, #D1E6AB, #246727);
+    background: -webkit-linear-gradient(57deg, #d1e6ab, #246727);
   }
 
   &:is(span) {
-    background: -webkit-linear-gradient(57deg, #D1E6AB, #246727);
+    background: -webkit-linear-gradient(57deg, #d1e6ab, #246727);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -238,16 +237,15 @@ body {
 .gradient-iClone {
   &:is(div) {
     @apply rounded-full;
-    background: -webkit-linear-gradient(57deg, #82BE0F, #729F1D);
+    background: -webkit-linear-gradient(57deg, #82be0f, #729f1d);
   }
 
   &:is(span) {
-    background: -webkit-linear-gradient(57deg, #82BE0F, #729F1D);
+    background: -webkit-linear-gradient(57deg, #82be0f, #729f1d);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 }
-
 
 @keyframes expand {
   from {
@@ -263,23 +261,23 @@ body {
 }
 
 .Our-Directions {
+  .swiper-slide-next,
+  .swiper-slide-prev {
+    transition: all 0.3s ease 0s;
+    opacity: 15%;
+  }
 
-.swiper-slide-next, .swiper-slide-prev {
-  transition: all .3s ease 0s ;
-  opacity: 15%;
-}
-
-.swiper-slide-active {
-  transition: all .3s ease 0s ;
-}
+  .swiper-slide-active {
+    transition: all 0.3s ease 0s;
+  }
 }
 
 .Our-Indicators {
-.swiper-slide {
-  @apply flex justify-center items-center;
+  .swiper-slide {
+    @apply flex justify-center items-center;
 
-  @media (min-width: 1280px) {
-    margin: 0 !important;p9p
+    @media (min-width: 1280px) {
+      margin: 0 !important;
+    }
   }
-}
 }

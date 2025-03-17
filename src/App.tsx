@@ -328,7 +328,6 @@ const App: FC = () => {
     triggerOnce: true,
     threshold: 0,
   });
-  console.log("inView: ", inView);
 
   const [tappad, setTaped] = useState<indicatorsFilter>("CG");
 
@@ -487,223 +486,221 @@ const App: FC = () => {
               />
             </video>
           </div>
-        </>
 
-        <div className="bg-[#161617] py-[100px] mt-[50px] overflow-hidden">
-          <Directions />
+          <div className="bg-[#161617] py-[100px] mt-[50px] overflow-hidden">
+            <Directions />
 
-          <Container className="text-center w-full">
-            <legend className="custom-legend-2lvl mt-[100px]" ref={ref}>
-              Наши показатели
-            </legend>
+            <Container className="text-center w-full">
+              <legend className="custom-legend-2lvl mt-[100px]" ref={ref}>
+                Наши показатели
+              </legend>
 
-            <Tabs className="Our-Indicators">
-              <TabList className="inline-flex p-[5px] my-[20px] rounded-full bg-white">
-                <Tab
-                  onClick={() => setTaped("CG")}
-                  className="tab__delivery_panels whitespace-nowrap px-6 py-2.5"
-                >
-                  CG
-                </Tab>
-                <Tab
-                  onClick={() => setTaped("VFX")}
-                  className="tab__delivery_panels whitespace-nowrap px-6 py-2.5"
-                >
-                  VFX
-                </Tab>
-              </TabList>
-
-              <div className={"flex"}>
-                <button className={"prev-igdnucejewj190418"}>
-                  <svg
-                    width="34"
-                    className={"cursor-pointer"}
-                    height="34"
-                    viewBox="0 0 34 34"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+              <Tabs className="Our-Indicators">
+                <TabList className="inline-flex p-[5px] my-[20px] rounded-full bg-white">
+                  <Tab
+                    onClick={() => setTaped("CG")}
+                    className="tab__delivery_panels whitespace-nowrap px-6 py-2.5"
                   >
-                    <path
-                      d="M21.25 7.08398L12.75 17.0007L21.25 26.9173"
-                      stroke="white"
-                      stroke-width="2.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </button>
-                <Swiper
-                  // onSwiper={(swiper) => {
-                  //   swiperRef.current = swiper;
-                  // }}
-                  className={cn(
-                    "Our-Indicators w-full xl:px-[50px] flex justify-center"
-                  )}
-                  modules={[Navigation]}
-                  speed={1500}
-                  cssMode={true}
-                  spaceBetween={30} // Расстояние между слайдами
-                  slidesPerView={10} // Количество видимых слайдов за раз
-                  navigation={{
-                    nextEl: ".next-fjfh39da9fjqa",
-                    //
-                    prevEl: ".prev-igdnucejewj190418",
-                  }}
-                  breakpoints={{
-                    1700: {
-                      slidesPerView: 10,
-                    },
-                    1500: {
-                      slidesPerView: 8,
-                    },
-                    768: {
-                      slidesPerView: 7,
-                    },
-                    0: {
-                      slidesPerView: 5,
-                    },
-                  }}
-                >
-                  {/*{items?.map((item, index) => (*/}
-                  {/*  <SwiperSlide key={index}>*/}
-                  {/*    <div>{item}</div>*/}
-                  {/*  </SwiperSlide>*/}
-                  {/*))}*/}
+                    CG
+                  </Tab>
+                  <Tab
+                    onClick={() => setTaped("VFX")}
+                    className="tab__delivery_panels whitespace-nowrap px-6 py-2.5"
+                  >
+                    VFX
+                  </Tab>
+                </TabList>
 
-                  {indicatorsAppsLogo?.map((app, index) => (
-                    <SwiperSlide key={index}>
-                      <img
-                        className={cn(app.className, "pointer-events-none", {
-                          "opacity-20": app.filter !== tappad,
-                        })}
-                        key={index}
-                        src={app.app}
-                        alt={app.title}
-                        onClick={() => setTaped(app.filter)}
+                <div className={"flex"}>
+                  <button className={"prev-igdnucejewj190418"}>
+                    <svg
+                      width="34"
+                      className={"cursor-pointer"}
+                      height="34"
+                      viewBox="0 0 34 34"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M21.25 7.08398L12.75 17.0007L21.25 26.9173"
+                        stroke="white"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
                       />
-                    </SwiperSlide>
-                  ))}
+                    </svg>
+                  </button>
+                  <Swiper
+                    // onSwiper={(swiper) => {
+                    //   swiperRef.current = swiper;
+                    // }}
+                    className={cn(
+                      "Our-Indicators w-full xl:px-[50px] flex justify-center"
+                    )}
+                    modules={[Navigation]}
+                    speed={1500}
+                    cssMode={true}
+                    spaceBetween={30} // Расстояние между слайдами
+                    slidesPerView={10} // Количество видимых слайдов за раз
+                    navigation={{
+                      nextEl: ".next-fjfh39da9fjqa",
+                      //
+                      prevEl: ".prev-igdnucejewj190418",
+                    }}
+                    breakpoints={{
+                      1700: {
+                        slidesPerView: 10,
+                      },
+                      1500: {
+                        slidesPerView: 8,
+                      },
+                      768: {
+                        slidesPerView: 7,
+                      },
+                      0: {
+                        slidesPerView: 5,
+                      },
+                    }}
+                  >
+                    {/*{items?.map((item, index) => (*/}
+                    {/*  <SwiperSlide key={index}>*/}
+                    {/*    <div>{item}</div>*/}
+                    {/*  </SwiperSlide>*/}
+                    {/*))}*/}
 
-                  {/* Arrow */}
+                    {indicatorsAppsLogo?.map((app, index) => (
+                      <SwiperSlide key={index}>
+                        <img
+                          className={cn(app.className, "pointer-events-none", {
+                            "opacity-20": app.filter !== tappad,
+                          })}
+                          key={index}
+                          src={app.app}
+                          alt={app.title}
+                          onClick={() => setTaped(app.filter)}
+                        />
+                      </SwiperSlide>
+                    ))}
 
-                  <div>
+                    {/* Arrow */}
+
                     <div>
-                      <div></div>
-                      <div></div>
+                      <div>
+                        <div></div>
+                        <div></div>
+                      </div>
                     </div>
-                  </div>
-                </Swiper>
+                  </Swiper>
 
-                <button className={"next-fjfh39da9fjqa"}>
-                  <svg
-                    width="34"
-                    className={"cursor-pointer"}
-                    height="34"
-                    viewBox="0 0 34 34"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M12.75 7.08398L21.25 17.0007L12.75 26.9173"
-                      stroke="white"
-                      stroke-width="2.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </button>
-              </div>
-
-              {/*<div className="flex justify-center gap-x-9 xl:px-[100px] mt-6 overflow-x-scroll w-full">*/}
-              {/*  {indicatorsAppsLogo?.map((app, index) => (*/}
-              {/*    <img*/}
-              {/*      className={cn(app.className, "pointer-events-none", {*/}
-              {/*        "opacity-30": app.filter !== tappad,*/}
-              {/*      })}*/}
-              {/*      key={index}*/}
-              {/*      src={app.app}*/}
-              {/*      alt={app.title}*/}
-              {/*      onClick={() => setTaped(app.filter)}*/}
-              {/*    />*/}
-              {/*  ))}*/}
-              {/*</div>*/}
-              {[1, 2].map((_, index) => (
-                <TabPanel
-                  className="w-full xl:px-[100px] mt-10 flex flex-col gap-10"
-                  key={index}
-                >
-                  {indicatorsLoading?.map((el, index) =>
-                    el.filter === tappad ? (
-                      <IndicatorsLoading
-                        key={index}
-                        title={el.title}
-                        percent={el.end}
-                        gradientClassName={el.gradientClass}
-                        inView={inView}
+                  <button className={"next-fjfh39da9fjqa"}>
+                    <svg
+                      width="34"
+                      className={"cursor-pointer"}
+                      height="34"
+                      viewBox="0 0 34 34"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12.75 7.08398L21.25 17.0007L12.75 26.9173"
+                        stroke="white"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
                       />
-                    ) : null
-                  )}
-                </TabPanel>
-              ))}
-            </Tabs>
+                    </svg>
+                  </button>
+                </div>
+
+                {/*<div className="flex justify-center gap-x-9 xl:px-[100px] mt-6 overflow-x-scroll w-full">*/}
+                {/*  {indicatorsAppsLogo?.map((app, index) => (*/}
+                {/*    <img*/}
+                {/*      className={cn(app.className, "pointer-events-none", {*/}
+                {/*        "opacity-30": app.filter !== tappad,*/}
+                {/*      })}*/}
+                {/*      key={index}*/}
+                {/*      src={app.app}*/}
+                {/*      alt={app.title}*/}
+                {/*      onClick={() => setTaped(app.filter)}*/}
+                {/*    />*/}
+                {/*  ))}*/}
+                {/*</div>*/}
+                {[1, 2].map((_, index) => (
+                  <TabPanel
+                    className="w-full xl:px-[100px] mt-10 flex flex-col gap-10"
+                    key={index}
+                  >
+                    {indicatorsLoading?.map((el, index) =>
+                      el.filter === tappad ? (
+                        <IndicatorsLoading
+                          key={index}
+                          title={el.title}
+                          percent={el.end}
+                          gradientClassName={el.gradientClass}
+                          inView={inView}
+                        />
+                      ) : null
+                    )}
+                  </TabPanel>
+                ))}
+              </Tabs>
+            </Container>
+          </div>
+
+          {/* Мы не создаем контент. */}
+          <CultureSection />
+
+          <Container>
+            <LazyVideoFrame
+              videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/AI/COCA_COLA_AI_COMMERCIAL.mp4"
+              posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/COLA_H.webp"
+              coreClassName="h-[400px] lg:h-auto"
+              className="rounded-[28px] overflow-hidden h-full lg:h-auto"
+            />
+            <div className="grid lg:grid-cols-2 gap-5 mt-5 h-full">
+              <LazyVideoFrame
+                coreClassName="h-full w-full rounded-[28px] overflow-hidden h-[700px] md:h-[900px] lg:h-[518px]"
+                className="h-full"
+                videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/AI/BAKAI_GPT_REMAKE.mov"
+                posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/BAKAI_H.webp"
+              />
+              <LazyVideoFrame
+                coreClassName="h-full w-full bg-[#f5f5f7] rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
+                className="h-full"
+                videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/CG/INTERSPORT.mp4"
+                posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/INTERSPORT_H.webp"
+              />
+            </div>
+            <LazyVideoFrame
+              coreClassName="mt-5 rounded-[28px] h-[full] md:h-[900px] lg:h-auto overflow-hidden"
+              className="h-full"
+              videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/AI/organic_juice_commercial%20(1080p).mp4"
+              posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/ORGANIC_2_H.webp"
+            />
+            <div className="grid lg:grid-cols-2 gap-5 mt-5 h-full">
+              <LazyVideoFrame
+                coreClassName="h-full w-full rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
+                className="h-full"
+                videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/CG/BAKAI_IFC_KG_4.mp4"
+                posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/BAKAI_IFC.webp"
+              />
+              <LazyVideoFrame
+                videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/CG/3D_JOY_COMMERCIAL.mp4"
+                posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/JOY_COMMERCIAL_H.webp"
+                coreClassName="h-full w-full bg-[#f5f5f7] rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
+                className="h-full object-cover"
+              />
+            </div>
+            <div className="mt-5 h-full">
+              <LazyVideoFrame
+                className="h-full"
+                coreClassName="h-[400px] lg:h-auto rounded-[28px] overflow-hidden"
+                videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/PRODUCTION/ENESAI_IMIDGE_WEB.mp4"
+                posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/ENESAI.webp"
+              />
+            </div>
           </Container>
-        </div>
 
-        {/* Мы не создаем контент. */}
-        <CultureSection />
-
-        <Container>
-          <LazyVideoFrame
-            videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/AI/COCA_COLA_AI_COMMERCIAL.mp4"
-            posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/COLA_H.webp"
-            coreClassName="h-[400px] lg:h-auto"
-            className="rounded-[28px] overflow-hidden h-full lg:h-auto"
-          />
-          <div className="grid lg:grid-cols-2 gap-5 mt-5 h-full">
-            <LazyVideoFrame
-              coreClassName="h-full w-full rounded-[28px] overflow-hidden h-[700px] md:h-[900px] lg:h-[518px]"
-              className="h-full"
-              videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/AI/BAKAI_GPT_REMAKE.mov"
-              posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/BAKAI_H.webp"
-            />
-            <LazyVideoFrame
-              coreClassName="h-full w-full bg-[#f5f5f7] rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
-              className="h-full"
-              videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/CG/INTERSPORT.mp4"
-              posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/INTERSPORT_H.webp"
-            />
-          </div>
-          <LazyVideoFrame
-            coreClassName="mt-5 rounded-[28px] h-[full] md:h-[900px] lg:h-auto overflow-hidden"
-            className="h-full"
-            videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/AI/organic_juice_commercial%20(1080p).mp4"
-            posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/ORGANIC_2_H.webp"
-          />
-          <div className="grid lg:grid-cols-2 gap-5 mt-5 h-full">
-            <LazyVideoFrame
-              coreClassName="h-full w-full rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
-              className="h-full"
-              videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/CG/BAKAI_IFC_KG_4.mp4"
-              posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/BAKAI_IFC.webp"
-            />
-            <LazyVideoFrame
-              videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/CG/3D_JOY_COMMERCIAL.mp4"
-              posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/JOY_COMMERCIAL_H.webp"
-              coreClassName="h-full w-full bg-[#f5f5f7] rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
-              className="h-full object-cover"
-            />
-          </div>
-          <div className="mt-5 h-full">
-            <LazyVideoFrame
-              className="h-full"
-              coreClassName="h-[400px] lg:h-auto rounded-[28px] overflow-hidden"
-              videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/PRODUCTION/ENESAI_IMIDGE_WEB.mp4"
-              posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/ENESAI.webp"
-            />
-          </div>
-        </Container>
-
-        <>
           <Container className={"overflow-hidden xl:py-[100px] py-[50px]"}>
             <legend className="legend-3lvl">Изучите тариф.</legend>
 
@@ -722,11 +719,13 @@ const App: FC = () => {
               </TabPanel>
             </Tabs>
           </Container>
+        </>
 
-          <Container className="pt-[100px] pb-[100px] bg-[#161617]">
-            <LogoCubeAnimation />
-          </Container>
+        <Container className="pt-[100px] pb-[100px] bg-[#161617]">
+          <LogoCubeAnimation />
+        </Container>
 
+        <>
           <Container className="pb-[100px] bg-[#161617]">
             <video
               src="https://storage.googleapis.com/mkit_monster_bucket/Video/MKIT/SAIT.MONSTER_6.mp4"
