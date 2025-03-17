@@ -12,6 +12,7 @@
   "dependencies": {
     "@hoseinh/react-analog-clock": "^1.0.4",
     "@radix-ui/react-accordion": "^1.2.3",
+    "@radix-ui/react-select": "^2.1.6",
     "@reduxjs/toolkit": "^2.2.7",
     "@szhsin/react-accordion": "^1.4.0",
     "@vimeo/player": "^2.25.1",

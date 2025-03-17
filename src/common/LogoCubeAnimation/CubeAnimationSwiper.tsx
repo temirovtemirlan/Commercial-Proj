@@ -32,18 +32,22 @@ const CompanyLogoCubeAnimation: FC<IProps> = ({ images, delayInterval }) => {
   return (
     <div className="relative h-16 w-full overflow-hidden">
       <AnimatePresence initial={false} custom={currentIndex > 0 ? 1 : -1}>
-        <motion.img
+        <motion.div
           key={currentIndex}
-          src={images[currentIndex]}
-          alt={`Slide ${currentIndex + 1}`}
-          className="absolute h-full object-contain"
-          style={{ width: isSmallLogo ? "70%" : "100%" }}
+          className="absolute h-full max-w-[260px] w-full"
           variants={variants}
           initial="enter"
           animate="center"
           exit="exit"
           custom={currentIndex > 0 ? 1 : -1}
-        />
+        >
+          <img
+            src={images[currentIndex]}
+            className="h-full mx-auto object-contain"
+            style={{ width: isSmallLogo ? "70%" : "100%" }}
+            alt={`Slide ${currentIndex + 1}`}
+          />
+        </motion.div>
       </AnimatePresence>
     </div>
   );

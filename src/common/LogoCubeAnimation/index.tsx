@@ -55,7 +55,7 @@ const LogoCubeAnimation: FC = () => {
         <CompanyLogoCubeAnimation images={dataOne[5]} delayInterval={6500} />
       </div>
 
-      <div className="flex flex-wrap ss:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-24 gap-x-6 w-full h-full mt-10">
+      <div className="flex flex-wrap ss:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-24 gap-x-6 w-full h-full mt-20">
         <CompanyLogoCubeAnimation images={dataTwo[0]} delayInterval={7500} />
         <CompanyLogoCubeAnimation images={dataTwo[1]} delayInterval={8000} />
         <CompanyLogoCubeAnimation images={dataTwo[2]} delayInterval={5000} />
