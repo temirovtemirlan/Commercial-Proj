@@ -365,7 +365,11 @@ const Tariff: FC = () => {
             <hr className="absolute max-md:hidden border-[#d2d2d7] w-[8000%]" />
           </div>
 
-          <Accordion className="w-full mt-10 md:mt-0">
+          <Accordion
+            className="w-full mt-10 md:mt-0"
+            transition
+            transitionTimeout={300}
+          >
             <AccordionItem
               header={({ state }) => (
                 <div className="flex flex-col items-center max-w-[240px] w-[240px]">

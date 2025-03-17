@@ -281,3 +281,12 @@ body {
     }
   }
 }
+
+.szh-accordion__item-content {
+  transition: height 0.3s cubic-bezier(0, 0, 0, 1);
+}
+
+.border_solid {
+  border-width: 1px;
+  border-style: solid;
+}
