@@ -209,7 +209,7 @@ const App: FC = () => {
             coreClassName="h-full w-full rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
             className="h-full"
             videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/AI/BMW_M5.mp4"
-            posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/BAKAI_IFC.webp"
+            posterSrc=""
           />
           <LazyVideoFrame
             videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/CG/3D_JOY_COMMERCIAL.mp4"

@@ -15,6 +15,7 @@ interface ITariffHead {
   title: string;
   description: string;
   price: string;
+  content: string;
 }
 
 interface ITariffFooter {

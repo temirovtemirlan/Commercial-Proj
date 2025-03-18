@@ -15,7 +15,7 @@ const Tariff: FC = () => {
   const [priceRefElement, priceInView] = useInView({ threshold: 0 });
   const descriptionRef = useRef<HTMLParagraphElement | null>(null);
   // const tabPanelRef = useRef<HTMLLegendElement | null>(null);
-  const [descHeight, setDescHeight] = useState<number | null>(null);
+  // const [setDescHeight] = useState<number | null>(null);
   // const [tabPanelWidth, setTabPanelWidth] = useState<number | null>(null);
   // const matches = useMediaQuery('(min-width: 768px)')
 
@@ -42,11 +42,11 @@ const Tariff: FC = () => {
     });
   };
 
-  useEffect(() => {
-    if (descriptionRef.current) {
-      setDescHeight(descriptionRef.current.offsetHeight);
-    }
-  }, [descriptionRef.current]);
+  // useEffect(() => {
+  //   if (descriptionRef.current) {
+  //     setDescHeight(descriptionRef.current.offsetHeight);
+  //   }
+  // }, [descriptionRef.current]);
 
   // useEffect(() => {
   //   if (tabPanelRef.current) {
@@ -106,13 +106,16 @@ const Tariff: FC = () => {
                   }}
                 >
                   <div
-                    className="md:grid hidden w-full justify-center mx-auto gap-5 py-8 "
+                    className="md:flex text-center hidden w-full mx-auto py-8 justify-center"
                     style={{
                       gridTemplateColumns: `repeat(${tariffFilter?.length}, minmax(240px, 1fr))`,
                     }}
                   >
                     {tariffFilter.map((item) => (
-                      <div className="w-full" key={item.head.title}>
+                      <div
+                        className="w-full max-w-[354px] px-2.5"
+                        key={item.head.title}
+                      >
                         <legend className="text-black text-xl xl:text-[24px] font-bold">
                           {item.head.title}
                         </legend>
@@ -130,7 +133,6 @@ const Tariff: FC = () => {
                   <div className="text-center w-full box-border px-2.5">
                     <div className="w-full max-w-[284px] rounded-2.5xl overflow-hidden h-[500px] mx-auto bg-gray-400">
                       {/* <video
-                        className={"size-full object-cover"}
                         src={item.head.media}
                         loop
                         autoPlay
@@ -145,25 +147,25 @@ const Tariff: FC = () => {
                     <p
                       className="text-black text-xs md:text-sm my-[16px] w-4/5 mx-auto"
                       ref={descriptionRef}
-                      style={
-                        descHeight !== null
-                          ? { height: `${descHeight}px` }
-                          : undefined
-                      }
+                      style={{
+                        height: "100px",
+                        // descHeight !== null
+                        //   ? { height: `${descHeight}px` }
+                        //   : undefined
+                      }}
                     >
                       {item.head.description}
                     </p>
 
                     <p
-                      className="text-black text-xs md:text-sm font-semibold"
+                      className="text-black text-xs md:text-base font-semibold"
                       ref={
                         tabIndex === activeTab && index === 0
                           ? priceRefElement
                           : null
                       }
-                    >
-                      {item.head.price}
-                    </p>
+                      dangerouslySetInnerHTML={{ __html: item.head.price }}
+                    ></p>
 
                     <button className="w-[162px] h-11 p-1.5 md:p-2.5 bg-[#0071e3] rounded-full text-sm md:text-base justify-center items-center gap-2.5 inline-flex mt-[40px] text-white">
                       Оставить заявку
@@ -172,9 +174,11 @@ const Tariff: FC = () => {
 
                   <hr className="border-[#d2d2d7] w-full max-md:hidden my-10" />
 
-                  {/* <div className="sticky top-0 left-0 w-full max-w-[304px] h-10 z-[4] px-2.5">
-                    <div className="bg-[red] w-full h-full"></div>
-                  </div> */}
+                  <div className="w-full h-10 px-2.5">
+                    <div className=" w-full h-full text-2xl text-center">
+                      {item.head.content}
+                    </div>
+                  </div>
 
                   <Accordion
                     className="w-full mt-10 md:mt-0 text-center px-2.5"

@@ -1,33 +1,15 @@
 import type { directionType, TariffType } from "fusion/type";
-import arcticons_super_sound from "../../../public/tariff/arcticons_super-sound.png";
-import circle_with_lines from "../../../public/tariff/circle_with_lines.png";
-import circles from "../../../public/tariff/circles.png";
-import docs from "../../../public/tariff/docs.png";
-import hugeicons_brain from "../../../public/tariff/hugeicons_brain.png";
-import icon_park_outline_voice from "../../../public/tariff/icon-park-outline_voice.png";
-import iconoir_select_face_3d from "../../../public/tariff/iconoir_select-face-3d.png";
-import lets_icons_color_mode from "../../../public/tariff/lets-icons_color-mode.png";
-import mdi_fire from "../../../public/tariff/mdi_fire.png";
-import meteor_icons_book_open from "../../../public/tariff/meteor-icons_book-open.png";
-import mynaui_infinity from "../../../public/tariff/mynaui_infinity.png";
-import search from "../../../public/tariff/search.png";
-import fluent_layer_24_regular from "../../../public/tariff/fluent_layer-24-regular.png";
-import hugeicons_pathfinder_merge from "../../../public/tariff/hugeicons_pathfinder-merge.png";
-import icon_park_outline_voice_ai from "../../../public/tariff/icon-park-outline_voice_ai.png";
-import docs_ai from "../../../public/tariff/docs_ai.png";
-import arcticons_super_sound_ai from "../../../public/tariff/arcticons_super-sound_ai.png";
-import search_ai from "../../../public/tariff/search_ai.png";
 
 // #region // * Tariff
 export const tariffData: TariffType[] = [
-  // * CG
+  // * Base
   {
     head: {
       media: "/1_tariff.mp4",
-      title: "Base CGI",
-      description:
-        "CGI-ролики с использованием готовых3D-моделей и простой анимации.",
-      price: "От $1500",
+      title: "Base AIGC",
+      description: "1 трендовый ролик для соцсетей.",
+      price: "<s>$1500</s> <br/> <p>От $1000</p>",
+      content: "",
     },
     footer: [
       {
@@ -40,25 +22,27 @@ export const tariffData: TariffType[] = [
         title: "3",
         descriptions: ["Правок"],
       },
-      {
-        title: "—",
-        descriptions: [""],
-      },
+      // {
+      //   title: "—",
+      //   descriptions: [""],
+      // },
     ],
-    tabCategory: "CG",
+    tabCategory: "Base",
   },
   {
     head: {
       media: "/1_tariff.mp4",
-      title: "Advanced CGI",
+      title: "Base CGI",
       description:
-        "Все что в тарифе Base CG + Создание индивидуальных 3D моделей, сложная анимация симуляция физики",
-      price: "От $3300",
+        "CGI-ролики с использованием готовых 3D-моделей и простой анимации.",
+      // price: "От $3300",
+      price: "<s>$2000</s><br/> <p>От $1500</p>",
+      content: "",
     },
     footer: [
       {
         before: "До",
-        title: "30 сек",
+        title: "15 сек",
         descriptions: ["Длительность ролика"],
       },
       {
@@ -66,98 +50,18 @@ export const tariffData: TariffType[] = [
         title: "3",
         descriptions: ["Правок"],
       },
-      {
-        title: hugeicons_brain,
-        descriptions: ["Разработка концепции"],
-      },
-      {
-        title: iconoir_select_face_3d,
-        descriptions: ["Создание 3D-моделей"],
-      },
-      {
-        title: mdi_fire,
-        descriptions: ["Cимуляция физики", "анимация"],
-      },
-      {
-        title: lets_icons_color_mode,
-        descriptions: ["Цветокоррекция"],
-      },
-      {
-        title: arcticons_super_sound,
-        descriptions: ["Sound Design"],
-      },
     ],
-    tabCategory: "CG",
+    tabCategory: "Base",
   },
-  {
-    head: {
-      media: "/1_tariff.mp4",
-      title: "Full CGI Universe",
-      description:
-        "Все что в тарифе Advanced CGI + Ролики кинематографического качества, с использованием передовых технологий и индивидуальных решений.",
-      price: "От $25,000",
-    },
-    footer: [
-      {
-        before: "До",
-        title: "60 сек",
-        descriptions: ["Длительность ролика"],
-      },
-      {
-        title: mynaui_infinity,
-        descriptions: ["Неограниченное количество", "правок"],
-      },
-      {
-        title: search,
-        descriptions: ["Анализ продукта"],
-      },
-      {
-        title: docs,
-        descriptions: ["Написание сценария"],
-      },
-      {
-        title: meteor_icons_book_open,
-        descriptions: ["Раскадровка"],
-      },
-      {
-        title: iconoir_select_face_3d,
-        descriptions: ["Создание 3D-моделей"],
-      },
-      {
-        title: circles,
-        descriptions: ["Персонажная анимация"],
-      },
-      {
-        title: circle_with_lines,
-        descriptions: ["Создание полноценных", "3Д-миров"],
-      },
-      {
-        title: fluent_layer_24_regular,
-        descriptions: ["Композитинг"],
-      },
-      {
-        title: lets_icons_color_mode,
-        descriptions: ["Премиальная", "цветокоррекция"],
-      },
-      {
-        title: arcticons_super_sound,
-        descriptions: ["Sound Design"],
-      },
-      {
-        title: icon_park_outline_voice,
-        descriptions: ["Профессиональная озвучка"],
-      },
-    ],
-    tabCategory: "CG",
-  },
-  // * VFX
   {
     head: {
       media: "/1_tariff.mp4",
       title: "Base VFX",
       description:
         "VFX-ролики с использованием готовых 3D-моделей и простой анимации.",
-      price: "От $2000",
+      // price: "От $25,000",
+      price: "<s>$2500</s><br/> <p>От $2000</p>",
+      content: "",
     },
     footer: [
       {
@@ -170,156 +74,18 @@ export const tariffData: TariffType[] = [
         title: "3",
         descriptions: ["Правок"],
       },
-      {
-        title: "—",
-        descriptions: [""],
-      },
     ],
-    tabCategory: "VFX",
+    tabCategory: "Base",
   },
-  {
-    head: {
-      media: "/1_tariff.mp4",
-      title: "Advanced VFX",
-      description:
-        "Все что в тарифе Base + Создание индивидуальных 3D моделей, сложная анимация, симуляция физики.",
-      price: "От $4,300",
-    },
-    footer: [
-      {
-        before: "До",
-        title: "30 сек",
-        descriptions: ["Длительность ролика"],
-      },
-      {
-        before: "До",
-        title: "3",
-        descriptions: ["Правок"],
-      },
-      {
-        title: hugeicons_brain,
-        descriptions: ["Разработка концепции"],
-      },
-      {
-        title: iconoir_select_face_3d,
-        descriptions: ["Создание 3D-моделей"],
-      },
-      {
-        title: mdi_fire,
-        descriptions: ["Cимуляция физики", "анимация"],
-      },
-      {
-        title: lets_icons_color_mode,
-        descriptions: ["Цветокоррекция"],
-      },
-      {
-        title: arcticons_super_sound,
-        descriptions: ["Sound Design"],
-      },
-    ],
-    tabCategory: "VFX",
-  },
-  {
-    head: {
-      media: "/1_tariff.mp4",
-      title: "Ultimate VFX",
-      description:
-        "VFX-ролики кинематографического качества, с использованием профессионального продакшна, передовых технологий и индивидуальных решений.",
-      price: "От $18,000",
-    },
-    footer: [
-      {
-        before: "До",
-        title: "60 сек",
-        descriptions: ["Длительность ролика"],
-      },
-      {
-        title: mynaui_infinity,
-        descriptions: ["Неограниченное количество", "правок"],
-      },
-      {
-        title: search,
-        descriptions: ["Анализ продукта"],
-      },
-      {
-        title: docs,
-        descriptions: ["Написание сценария"],
-      },
-      {
-        title: meteor_icons_book_open,
-        descriptions: ["Раскадровка"],
-      },
-      {
-        title: hugeicons_brain,
-        descriptions: ["Разработка концепции"],
-      },
-      {
-        title: iconoir_select_face_3d,
-        descriptions: ["Создание 3D-моделей"],
-      },
-      {
-        title: circles,
-        descriptions: ["Персонажная анимация"],
-      },
-      {
-        title: circle_with_lines,
-        descriptions: ["Создание полноценных", "3Д-миров"],
-      },
-      {
-        title: fluent_layer_24_regular,
-        descriptions: ["Композитинг"],
-      },
-      {
-        title: lets_icons_color_mode,
-        descriptions: ["Премиальная", "цветокоррекция"],
-      },
-      {
-        title: circles,
-        descriptions: ["Анимация"],
-      },
-      {
-        title: arcticons_super_sound,
-        descriptions: ["Sound Design"],
-      },
-      {
-        title: icon_park_outline_voice,
-        descriptions: ["Профессиональная озвучка"],
-      },
-    ],
-    tabCategory: "VFX",
-  },
-  // * AIGC
-  {
-    head: {
-      media: "/1_tariff.mp4",
-      title: "Base AIGC",
-      description: "1 трендовый ролик для соцсетей.",
-      price: "От $1,000",
-    },
-    footer: [
-      {
-        before: "До",
-        title: "15 сек",
-        descriptions: ["Длительность ролика"],
-      },
-      {
-        before: "До",
-        title: "3",
-        descriptions: ["Правок"],
-      },
-      {
-        title: "—",
-        descriptions: [""],
-      },
-    ],
-    tabCategory: "AIGC",
-  },
+  // * Advanced
   {
     head: {
       media: "/1_tariff.mp4",
       title: "Advanced AIGC",
       description: "Полноценные рекламные ролики с использованием AICG, AIVFX",
-      price: "От $2,100",
+      // price: "От $2700",
+      price: "<s>$2700</s> <br/> <p>От $2100</p>",
+      content: "",
     },
     footer: [
       {
@@ -338,27 +104,218 @@ export const tariffData: TariffType[] = [
         descriptions: ["Концепций на выбор"],
       },
       {
-        title: meteor_icons_book_open,
-        descriptions: ["Раскадровка"],
+        title: "/video.png",
+        descriptions: ["Cоздание ролика"],
       },
       {
-        title: lets_icons_color_mode,
+        title: "/tariff/colorcorrection.png",
         descriptions: ["Цветокоррекция"],
       },
       {
-        title: arcticons_super_sound,
+        title: "/tariff/sound_design_ai.png",
         descriptions: ["Sound Design"],
       },
     ],
-    tabCategory: "AIGC",
+    tabCategory: "Advanced",
   },
+  // Advanced CGI
+  {
+    head: {
+      media: "/1_tariff.mp4",
+      title: "Advanced CGI",
+      description:
+        "Base CG + Создание индивидуальных 3D моделей, сложная анимация, симуляция физики.",
+      // price: "От $4,300",
+      price: "<s>$3900</s> <br/> <p>От $3300</p>",
+      content: "",
+    },
+    footer: [
+      {
+        before: "До",
+        title: "30 сек",
+        descriptions: ["Длительность ролика"],
+      },
+      {
+        before: "До",
+        title: "3",
+        descriptions: ["Правок"],
+      },
+
+      {
+        title: "/tariff/brainstorm.png",
+        descriptions: ["Разработка концепции"],
+      },
+      {
+        title: "/tariff/cube3d.png",
+        descriptions: ["Создание 3D-моделей"],
+      },
+      {
+        title: "tariff/fire.png",
+        descriptions: ["Cимуляция физики", "анимация"],
+      },
+      {
+        title: "/tariff/colorcorrection.png",
+        descriptions: ["Цветокоррекция"],
+      },
+      {
+        title: "/tariff/sound_design.png",
+        descriptions: ["Sound Design"],
+      },
+    ],
+    tabCategory: "Advanced",
+  },
+  // Advanced VFX
+  {
+    head: {
+      media: "/1_tariff.mp4",
+      title: "Advanced VFX",
+      description:
+        "Base VFX + Создание индивидуальных 3D моделей, сложная анимация, симуляция физики.",
+      // price: "От $18,000",
+      price: "<s>$4900</s> <br/> <p>От $4300</p>",
+      content: "",
+    },
+    footer: [
+      {
+        before: "До",
+        title: "30 сек",
+        descriptions: ["Длительность ролика"],
+      },
+      {
+        before: "До",
+        title: "3",
+        descriptions: ["Правок"],
+      },
+      {
+        title: "/tariff/brainstorm.png",
+        descriptions: ["Разработка концепции"],
+      },
+      // {
+      //   title: search,
+      //   descriptions: ["Анализ продукта"],
+      // },
+      // {
+      //   title: docs,
+      //   descriptions: ["Написание сценария"],
+      // },
+      // {
+      //   title: 'tariff/stoting.png',
+      //   descriptions: ["Раскадровка"],
+      // },
+
+      // {
+      //   title: '/tariff/cube3d.png',
+      //   descriptions: ["Создание 3D-моделей"],
+      // },
+      // {
+      //   title: '/tariff/animation.png',
+      //   descriptions: ["Персонажная анимация"],
+      // },
+      // {
+      //   title: '/tariff/world3d.png',
+      //   descriptions: ["Создание полноценных", "3Д-миров"],
+      // },
+      {
+        title: "/tariff/cube3d.png",
+        descriptions: ["Создание 3D-моделей"],
+      },
+      {
+        title: "tariff/fire.png",
+        descriptions: ["Cимуляция физики анимация"],
+      },
+      {
+        title: "/tariff/colorcorrection.png",
+        descriptions: ["Премиальная", "цветокоррекция"],
+      },
+      // {
+      //   title: '/tariff/animation.png',
+      //   descriptions: ["Анимация"],
+      // },
+      {
+        title: "/tariff/sound_design.png",
+        descriptions: ["Sound Design"],
+      },
+      // {
+      //   title: icon_park_outline_voice,
+      //   descriptions: ["Профессиональная озвучка"],
+      // },
+    ],
+    tabCategory: "Advanced",
+  },
+  // * Ultimate
   {
     head: {
       media: "/1_tariff.mp4",
       title: "Ultimate AIGC",
       description:
         "Уникальные AI-решения, созданные специально для конкретного клиента.",
-      price: "От $12 000",
+      price: "<p>От $12,000</p>",
+      content: "Cкидка по звонку",
+    },
+    footer: [
+      {
+        before: "До",
+        title: "60 сек",
+        descriptions: ["Длительность ролика"],
+      },
+      // {
+      //   before: "До",
+      //   title: "3",
+      //   descriptions: ["Правок"],
+      // },
+      // {
+      //   title: mynaui_infinity,
+      //   descriptions: ["Неограниченное количество", "правок"],
+      // },
+      {
+        before: "До",
+        title: "3",
+        descriptions: ["Правок"],
+      },
+      {
+        title: "/tariff/search_ai.png",
+        descriptions: ["Анализ продукта"],
+      },
+      {
+        title: "/tariff/docs_ai.png",
+        descriptions: ["Написание сценария"],
+      },
+      {
+        title: "tariff/stoting.png",
+        descriptions: ["Раскадровка"],
+      },
+      {
+        title: "/tariff/cube3d.png",
+        descriptions: ["Cоздание 3д модели", "вашего продукта"],
+      },
+      {
+        title: "tariff/integrationai.png",
+        descriptions: ["Интеграция 3Д", "модели в ролик"],
+      },
+      {
+        title: "/tariff/colorcorrection.png",
+        descriptions: ["Премиальная", "цветокоррекция"],
+      },
+      {
+        title: "/tariff/sound_design.png",
+        descriptions: ["Sound Design"],
+      },
+      {
+        title: "tariff/voiceai.png",
+        descriptions: ["Профессиональная озвучка"],
+      },
+    ],
+    tabCategory: "Ultimate",
+  },
+  // Ultimate VFX
+  {
+    head: {
+      media: "/1_tariff.mp4",
+      title: "Ultimate VFX:",
+      description:
+        "VFX-ролики кинематографического качества, с использованием профессионального продакшна, передовых технологий и индивидуальных решений.",
+      price: "от $18 000",
+      content: "Cкидка по звонку",
     },
     footer: [
       {
@@ -367,43 +324,125 @@ export const tariffData: TariffType[] = [
         descriptions: ["Длительность ролика"],
       },
       {
-        title: mynaui_infinity,
-        descriptions: ["Неограниченное количество", "правок"],
+        before: "До",
+        title: "3",
+        descriptions: ["Правок"],
       },
       {
-        title: search_ai,
+        title: "/tariff/search.png",
         descriptions: ["Анализ продукта"],
       },
       {
-        title: docs_ai,
+        title: "/tariff/docs.png",
         descriptions: ["Написание сценария"],
       },
+
       {
-        title: meteor_icons_book_open,
+        title: "tariff/stoting.png",
         descriptions: ["Раскадровка"],
       },
       {
-        title: iconoir_select_face_3d,
-        descriptions: ["Cоздание 3д модели", "вашего продукта,"],
+        title: "/tariff/brainstorm.png",
+        descriptions: ["Разработка концепции"],
       },
       {
-        title: hugeicons_pathfinder_merge,
-        descriptions: ["Интеграция 3Д", "модели в ролик"],
+        title: "/tariff/cube3d.png",
+        descriptions: ["Создание 3D-моделей"],
       },
       {
-        title: lets_icons_color_mode,
-        descriptions: ["Премиальная", "цветокоррекция"],
+        title: "/tariff/animation.png",
+        descriptions: ["Персонажная анимация"],
       },
       {
-        title: arcticons_super_sound_ai,
+        title: "/tariff/world3d.png",
+        descriptions: ["Создание полноценных", "3Д-миров"],
+      },
+      {
+        title: "tariff/composting.png",
+        descriptions: ["Композитинг"],
+      },
+      {
+        title: "/tariff/colorcorrection.png",
+        descriptions: ["Премиальная", "Цветокоррекция"],
+      },
+      {
+        title: "/tariff/sound_design.png",
         descriptions: ["Sound Design"],
       },
       {
-        title: icon_park_outline_voice_ai,
+        title: "tariff/voice.png",
         descriptions: ["Профессиональная озвучка"],
       },
     ],
-    tabCategory: "AIGC",
+    tabCategory: "Ultimate",
+  },
+  {
+    head: {
+      media: "/1_tariff.mp4",
+      title: "Full CGI Universe",
+      description:
+        "CGI-ролики кинематографического качества, с использованием передовых технологий и индивидуальных решений.",
+      price: "От $25 000",
+      content: "Cкидка по звонку",
+    },
+    footer: [
+      {
+        before: "До",
+        title: "60 сек",
+        descriptions: ["Длительность ролика"],
+      },
+      {
+        before: "До",
+        title: "3",
+        descriptions: ["Правок"],
+      },
+      {
+        title: "/tariff/search.png",
+        descriptions: ["Анализ продукта"],
+      },
+      {
+        title: "/tariff/docs.png",
+        descriptions: ["Написание сценария"],
+      },
+
+      {
+        title: "tariff/stoting.png",
+        descriptions: ["Раскадровка"],
+      },
+      {
+        title: "/tariff/brainstorm.png",
+        descriptions: ["Разработка концепции"],
+      },
+      {
+        title: "/tariff/cube3d.png",
+        descriptions: ["Создание 3D-моделей"],
+      },
+      {
+        title: "/tariff/animation.png",
+        descriptions: ["Персонажная анимация"],
+      },
+      {
+        title: "/tariff/world3d.png",
+        descriptions: ["Создание полноценных", "3Д-миров"],
+      },
+      {
+        title: "tariff/composting.png",
+        descriptions: ["Композитинг"],
+      },
+      {
+        title: "/tariff/colorcorrection.png",
+        descriptions: ["Премиальная", "Цветокоррекция"],
+      },
+      {
+        title: "/tariff/sound_design.png",
+        descriptions: ["Sound Design"],
+      },
+      {
+        title: "tariff/voice.png",
+        descriptions: ["Профессиональная озвучка"],
+      },
+    ],
+    tabCategory: "Ultimate",
   },
 ];
 
