@@ -32,19 +32,35 @@ const DirectionsItems: FC<DirectionsItemsProps> = ({ className, item }) => {
 
   return (
     <div
+      ref={ref}
       className={cn(
-        "grid lg:grid-cols-2 w-full bg-black h-[910px] md:h-[850px] lg:max-h-[680px] lg:min-h-[680px] rounded-[28px] overflow-hidden",
+        "flex flex-col md:flex-row md:rounded-3xl rounded-xl overflow-hidden bg-black h-[910px] md:h-[850px] lg:max-h-[680px] lg:min-h-[680px] ",
+        // "grid lg:grid-cols-2 w-full bg-black h-[910px] md:h-[850px] lg:max-h-[680px] lg:min-h-[680px] rounded-[28px] overflow-hidden",
         // "grid lg:grid-cols-2 w-full bg-black max-h-[900px] min-h-[900px] md:max-h-[680px] md:min-h-[680px] rounded-[28px] overflow-hidden",
         className
       )}
     >
-      <div className="w-full h-[280px] bg-[#adadad] lg:hidden"></div>
+      <div className="w-full h-[280px] bg-[#111111] lg:hidden">
+        <div className={cn("w-full h-full")}>
+          {isLoaded ? (
+            <video
+              className={"size-full object-cover pointer-events-none"}
+              src={item.video}
+              loop
+              muted
+              playsInline
+              controls={false}
+              autoPlay={true}
+            />
+          ) : null}
+        </div>
+      </div>
 
       <div className="w-full px-6 py-8 md:p-10">
         <div className="inline-flex flex-col justify-start items-start gap-[22px]">
           <legend
             className={cn(
-              "justify-center text-[55px] font-bold leading-tight",
+              "justify-center md:text-[55px] text-[42px] font-bold leading-tight",
               item.titleGradient
             )}
             style={{

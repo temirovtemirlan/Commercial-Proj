@@ -194,7 +194,7 @@ const ContactForm: FC = () => {
           <p className="ml-6 text-sm text-black">
             Нажав на кнопку, соглашаюсь <br className="max-md:hidden" />
             на обработку{" "}
-            <a className="text-white" href="">
+            <a className="text-black underline" href="">
               персональных данных
             </a>
           </p>

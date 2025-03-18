@@ -3,7 +3,7 @@ import Container from "./Container";
 
 const WhyMonsterCorp: FC = () => {
   return (
-    <Container className="py-[100px]">
+    <Container className="py-[100px] bg-[#f5f5f7]">
       <div className="text-center">
         <legend className="gradient-legend-1lvl">Почему Monster Corp?</legend>
         <p className="legend-2lvl">

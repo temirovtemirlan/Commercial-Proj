@@ -544,7 +544,7 @@ const MonsReels: FC<MonsReelsProps> = ({ className }) => {
           CG REEL
         </Tab>
         <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
-          AI REEL
+          AIGC REEL
         </Tab>
         <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
           DESIGN BRANDING

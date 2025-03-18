@@ -3,14 +3,17 @@ import Container from "./Container";
 
 const CultureSection: FC = () => {
   return (
-    <Container className="xl:py-[200px] py-[100px] overflow-hidden">
-      <legend className="w-full text-center justify-center text-[#222222] text-5xl lg:text-[80px] font-bold xl:leading-[80px] leading-[1.1]">
+    <Container className="xl:py-[200px] py-[100px] overflow-hidden bg-[#f5f5f7]">
+      <legend className="w-full text-center justify-center text-[#222222] text-5xl lg:text-[80px] font-bold xl:leading-[80px] leading-[40px]">
         <span className="gradient-legend-1lvl">Мы не создаем контент.</span>
-        <br /> Мы создаем культуру.
       </legend>
 
+      <span className={"legend-2lvl w-full text-center inline-block"}>
+        Мы создаем культуру.
+      </span>
+
       <div className="grid lg:grid-cols-2 lg:grid-rows-2 lg:h-[660px] gap-5 mt-16">
-        <div className="row-span-2 w-full h-full px-[60px] bg-[#f5f5f7] max-lg:py-10 rounded-[28px] flex flex-row md:flex-col justify-center items-start gap-8">
+        <div className="row-span-2 w-full h-full px-[60px] bg-[#fff] max-lg:py-10 rounded-3xl flex flex-row md:flex-col justify-center items-start gap-8">
           <svg
             width="72"
             height="72"
@@ -41,7 +44,7 @@ const CultureSection: FC = () => {
           </p>
         </div>
 
-        <div className="h-full py-2.5 px-[60px] bg-[#f5f5f7] rounded-[28px] flex justify-start gap-x-8 items-center max-lg:py-10">
+        <div className="h-full py-2.5 px-[60px] bg-[#fff] rounded-3xl flex justify-start gap-x-8 items-center max-lg:py-10">
           <svg
             width="72"
             height="73"
@@ -60,7 +63,7 @@ const CultureSection: FC = () => {
           </p>
         </div>
 
-        <div className="w-full h-full bg-[#f5f5f7] rounded-[28px] px-[50px] flex lg:flex-col gap-[30px] justify-center max-lg:py-10">
+        <div className="h-full py-2.5 px-[60px] bg-[#fff] rounded-3xl flex justify-start gap-x-8 items-center max-lg:py-10">
           <svg
             width="73"
             height="73"
@@ -70,7 +73,7 @@ const CultureSection: FC = () => {
           >
             <path
               d="M7.57906 13.06V20.14C7.57906 20.559 7.4126 20.9609 7.11629 21.2572C6.81998 21.5535 6.4181 21.72 5.99906 21.72H4.11906C3.70002 21.72 3.29814 21.5535 3.00183 21.2572C2.70553 20.9609 2.53906 20.559 2.53906 20.14V13.06C2.53905 12.64 2.7052 12.2371 3.00122 11.9392C3.29725 11.6413 3.6991 11.4726 4.11906 11.47H5.99906C6.41902 11.4726 6.82088 11.6413 7.1169 11.9392C7.41293 12.2371 7.57907 12.64 7.57906 13.06ZM14.5191 8.47V20.17C14.5164 20.59 14.3477 20.9918 14.0498 21.2878C13.7519 21.5839 13.349 21.75 12.9291 21.75H11.0591C10.6391 21.75 10.2362 21.5839 9.93828 21.2878C9.64039 20.9918 9.4717 20.59 9.46906 20.17V8.47C9.46906 8.04831 9.63658 7.64388 9.93476 7.3457C10.2329 7.04752 10.6374 6.88 11.0591 6.88H12.9291C13.3508 6.88 13.7552 7.04752 14.0534 7.3457C14.3515 7.64388 14.5191 8.04831 14.5191 8.47ZM21.4591 3.84V20.17C21.4564 20.59 21.2877 20.9918 20.9898 21.2878C20.6919 21.5839 20.289 21.75 19.8691 21.75H17.9991C17.5791 21.75 17.1762 21.5839 16.8783 21.2878C16.5804 20.9918 16.4117 20.59 16.4091 20.17V3.84C16.4091 3.41831 16.5766 3.01388 16.8748 2.7157C17.1729 2.41752 17.5774 2.25 17.9991 2.25H19.8691C20.2908 2.25 20.6952 2.41752 20.9934 2.7157C21.2915 3.01388 21.4591 3.41831 21.4591 3.84Z"
-              fill="#1a1a1c"
+              fill="#00c5c7"
             />
           </svg>
 
