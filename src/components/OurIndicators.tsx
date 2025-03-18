@@ -1,4 +1,4 @@
-import { useState, type FC } from "react";
+import { useMemo, useRef, useState, type FC } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { useInView } from "react-intersection-observer";
 import Container from "./Container";
@@ -7,20 +7,38 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import IndicatorsLoading from "common/IndicatorsLoading";
 import LazyLoadLayout from "./LazyLoadLayout";
-import type { directionType } from "fusion/type";
 import { indicatorsAppsLogo, indicatorsLoading } from "data/index";
 import { cn } from "helpers/style";
+import type { directionType } from "fusion/type";
 
 const OurIndicators: FC = () => {
   const [tappad, setTaped] = useState<directionType>("CG");
+  const [showAll, setShowAll] = useState(false);
+  const [ref, inView] = useInView({ triggerOnce: true });
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0,
-  });
+  const indicatorsData = useMemo(() => {
+    const filterRes = indicatorsLoading.filter((el) => el.filter === tappad);
+
+    return showAll ? filterRes : filterRes?.slice(0, 4);
+  }, [showAll, tappad]);
+
+  const scrollToTarget = () => {
+    if (containerRef.current) {
+      window.scrollTo({
+        top: containerRef.current.offsetTop, // Позиция элемента относительно начала документа
+        behavior: "smooth", // Плавный скролл (можно заменить на 'auto' для мгновенного)
+      });
+    }
+  };
+
+  const handleShowMore = () => {
+    setShowAll((prev) => !prev);
+    scrollToTarget();
+  };
 
   return (
-    <Container className="text-center w-full">
+    <Container className="text-center w-full" ref={containerRef}>
       <legend className="custom-legend-2lvl mt-[100px]" ref={ref}>
         Наши показатели
       </legend>
@@ -42,8 +60,8 @@ const OurIndicators: FC = () => {
         </TabList>
 
         <LazyLoadLayout>
-          <div className={"flex"}>
-            <button className={"prev-igdnucejewj190418"}>
+          <div className="flex">
+            <button className="prev-igdnucejewj190418">
               <svg
                 width="34"
                 className={"cursor-pointer"}
@@ -96,7 +114,7 @@ const OurIndicators: FC = () => {
               ))}
             </Swiper>
 
-            <button className={"next-fjfh39da9fjqa"}>
+            <button className="next-fjfh39da9fjqa">
               <svg
                 width="34"
                 className={"cursor-pointer"}
@@ -117,25 +135,45 @@ const OurIndicators: FC = () => {
           </div>
         </LazyLoadLayout>
 
-        {[1, 2].map((_, index) => (
+        {["CG", "VFX"].map((item, tabIndex) => (
           <TabPanel
-            className="w-full xl:px-[100px] mt-10 flex flex-col gap-10"
-            key={index}
+            className={`w-full xl:px-[100px] flex flex-col gap-10 ${item === tappad ? "mt-10" : "mt-0"}`}
+            key={tabIndex}
           >
-            {indicatorsLoading?.map((el, index) =>
-              el.filter === tappad ? (
-                <IndicatorsLoading
-                  key={index}
-                  title={el.title}
-                  percent={el.end}
-                  gradientClassName={el.gradientClass}
-                  inView={inView}
-                />
-              ) : null
-            )}
+            {indicatorsData?.map((el, index) => (
+              <IndicatorsLoading
+                key={index}
+                title={el.title}
+                percent={el.end}
+                gradientClassName={el.gradientClass}
+                inView={inView}
+              />
+            ))}
           </TabPanel>
         ))}
       </Tabs>
+
+      <button
+        className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white mt-10"
+        onClick={handleShowMore}
+      >
+        <svg
+          className={`transition-all ${showAll ? "scale-y-[-1]" : "scale-y-100"}`}
+          width="23"
+          height="11"
+          viewBox="0 0 23 11"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M21.418 1.25L11.5012 9.75L1.58465 1.25"
+            stroke="#161617"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
     </Container>
   );
 };

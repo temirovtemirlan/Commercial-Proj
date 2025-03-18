@@ -32,7 +32,7 @@ const FooterVideo: FC<FooterVideoProps> = ({ className }) => {
   }, []);
 
   return (
-    <Container className={cn("pb-[120px] bg-[#161617]", className)}>
+    <Container className={cn("relative pb-[120px] bg-[#161617]", className)}>
       <div ref={containerRef} style={{ height: "250vh", position: "relative" }}>
         {/* Высота контейнера больше, чем viewport, чтобы была прокрутка*/}
         <motion.video

@@ -1,7 +1,8 @@
-import { useEffect, useMemo, useState, type FC } from "react";
+import { useEffect, useMemo, useRef, useState, type FC } from "react";
 import { Accordion, AccordionItem } from "@szhsin/react-accordion";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 import { useInView } from "react-intersection-observer";
+// import { useMediaQuery } from "usehooks-ts";
 
 import { TariffEnd } from "./TariffBlock";
 import Container from "./Container";
@@ -12,6 +13,11 @@ const Tariff: FC = () => {
   const [openAccordionKeys, setOpenAccordionKeys] = useState<string[]>([]);
   const [headViewIsAccordionOpen, setHeadViewIsAccordionOpen] = useState(false);
   const [priceRefElement, priceInView] = useInView({ threshold: 0 });
+  const descriptionRef = useRef<HTMLParagraphElement | null>(null);
+  // const tabPanelRef = useRef<HTMLLegendElement | null>(null);
+  const [descHeight, setDescHeight] = useState<number | null>(null);
+  // const [tabPanelWidth, setTabPanelWidth] = useState<number | null>(null);
+  // const matches = useMediaQuery('(min-width: 768px)')
 
   const [containerRefElement, tariffContainerInView] = useInView({
     threshold: 0,
@@ -37,6 +43,18 @@ const Tariff: FC = () => {
   };
 
   useEffect(() => {
+    if (descriptionRef.current) {
+      setDescHeight(descriptionRef.current.offsetHeight);
+    }
+  }, [descriptionRef.current]);
+
+  // useEffect(() => {
+  //   if (tabPanelRef.current) {
+  //     setTabPanelWidth(tabPanelRef.current.offsetWidth);
+  //   }
+  // }, [tabPanelRef.current]);
+
+  useEffect(() => {
     if (!tariffContainerInView) {
       setHeadViewIsAccordionOpen(false);
       return;
@@ -54,7 +72,12 @@ const Tariff: FC = () => {
       className="relative overflow-hidden xl:pt-[100px] pt-[50px] bg-[#f5f5f7]"
       ref={containerRefElement}
     >
-      <legend className="legend-3lvl">Изучите тарифы.</legend>
+      <legend
+        className="legend-3lvl"
+        //  ref={tabPanelRef}
+      >
+        Изучите тарифы.
+      </legend>
 
       <Tabs className="Our-Indicators" onSelect={(e) => setActiveTab(e)}>
         <TabList className="inline-flex p-[5px] rounded-full bg-white">
@@ -70,19 +93,17 @@ const Tariff: FC = () => {
 
         {uniqueCategories.map((tab, tabIndex) => (
           <TabPanel
-            className="max-ss:flex max-ss:justify-center w-full mt-[30px] overflow-hidden overflow-x-auto"
+            className={`w-full overflow-hidden max-lg:overflow-x-auto ${tabIndex === activeTab ? "mt-[30px]" : "mt-0"}`}
             key={tab}
           >
-            <div
-              className="relative grid gap-y-14 justify-center mx-auto gap-5"
-              style={{
-                gridTemplateColumns: `repeat(${tariffFilter?.length}, minmax(240px, 1fr))`,
-              }}
-            >
+            <div className="relative flex gap-y-14 mx-auto">
               {headViewIsAccordionOpen && (
                 <div
                   className="fixed top-0 left-0 w-full bg-[#f5f5f7] text-center px-5 md:px-[100px] mac:px-[440px] z-[2]"
-                  style={{ borderBottom: "1px solid #d2d2d7" }}
+                  style={{
+                    borderBottom: "1px solid #d2d2d7",
+                    // maxWidth: `${tabPanelWidth}px`,
+                  }}
                 >
                   <div
                     className="grid w-full justify-center mx-auto gap-5 py-8"
@@ -105,10 +126,10 @@ const Tariff: FC = () => {
               )}
 
               {tariffFilter?.map((item, index) => (
-                <div className="relative w-full" key={index}>
-                  <div className="text-center w-full box-border">
-                    <div className="w-full max-w-[284px] rounded-2.5xl overflow-hidden h-[500px] mx-auto">
-                      <video
+                <div className="relative w-full min-w-[304px]" key={index}>
+                  <div className="text-center w-full box-border px-2.5">
+                    <div className="w-full max-w-[284px] rounded-2.5xl overflow-hidden h-[500px] mx-auto bg-gray-400">
+                      {/* <video
                         className={"size-full object-cover"}
                         src={item.head.media}
                         loop
@@ -116,12 +137,20 @@ const Tariff: FC = () => {
                         muted
                         controls={false}
                         playsInline
-                      />
+                      /> */}
                     </div>
                     <legend className="text-black text-xl xl:text-[24px] font-bold mt-[40px]">
                       {item.head.title}
                     </legend>
-                    <p className="text-black text-xs md:text-sm my-[16px] w-4/5 mx-auto">
+                    <p
+                      className="text-black text-xs md:text-sm my-[16px] w-4/5 mx-auto"
+                      ref={descriptionRef}
+                      style={
+                        descHeight !== null
+                          ? { height: `${descHeight}px` }
+                          : undefined
+                      }
+                    >
                       {item.head.description}
                     </p>
 
@@ -141,14 +170,14 @@ const Tariff: FC = () => {
                     </button>
                   </div>
 
-                  {/* <div className="relative max-md:hidden py-10">
-                    <hr
-                      className={`absolute border-[#d2d2d7] w-[500%] ${index === 0 ? "opacity-100" : "opacity-0"}`}
-                    />
+                  <hr className="border-[#d2d2d7] w-full max-md:hidden my-10" />
+
+                  {/* <div className="sticky top-0 left-0 w-full max-w-[304px] h-10 z-[4] px-2.5">
+                    <div className="bg-[red] w-full h-full"></div>
                   </div> */}
 
                   <Accordion
-                    className="w-full mt-10 md:mt-0 text-center"
+                    className="w-full mt-10 md:mt-0 text-center px-2.5"
                     transition
                     transitionTimeout={300}
                   >

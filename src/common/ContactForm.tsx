@@ -84,7 +84,7 @@ const ContactForm: FC = () => {
   };
 
   return (
-    <div className="grid lg:grid-cols-2 w-full">
+    <div className="relative grid lg:grid-cols-2 w-full pt-50 bg-[#161617]">
       <div className="flex flex-col justify-between px-7 py-6 md:px-50 2xl:px-120 md:py-10 2xl:py-20 bg-[#161617]">
         <div>
           <p className="text-white text-[32px] md:text-[44px] leading-[39px] md:leading-[52px] xl:text-[56px] xl:leading-[64px]">
@@ -239,10 +239,8 @@ const ContactForm: FC = () => {
 
         <textarea
           className={cn(
-            "p-5 border_solid text-lg mt-7 w-full h-36 bg-transparent border-black resize-none outline-none",
-            errors.projectDescription?.message
-              ? "placeholder:text-[red] placeholder:opacity-60"
-              : "placeholder:text-black placeholder:opacity-40"
+            "p-5 border_solid text-lg mt-7 w-full h-36 bg-transparent placeholder:text-black placeholder:opacity-40 resize-none outline-none",
+            errors.projectDescription?.message ? "border-[red]" : "border-black"
           )}
           placeholder="Описание проекта"
           {...register("projectDescription")}
@@ -275,7 +273,10 @@ const ContactForm: FC = () => {
 
                 {!value && (
                   <p
-                    className={cn("text-lg text-nowrap", error && "text-[red]")}
+                    className={cn(
+                      "text-lg text-nowrap",
+                      error && "text-[red] opacity-60"
+                    )}
                   >
                     Прикрепить файл
                   </p>
@@ -317,10 +318,10 @@ const ContactForm: FC = () => {
               >
                 <SelectValue placeholder="Откуда узнали про Monster" />
               </SelectTrigger>
-              <SelectContent className="rounded-none bg-green-300">
+              <SelectContent className="rounded-none bg-white">
                 {selectData.map((item) => (
                   <SelectItem
-                    className="hover:bg-[#7ee1a2] [&[data-state='checked']]:bg-[#7ee1a2]"
+                    className="hover:bg-[#eee] [&[data-state='checked']]:bg-[#eee]"
                     key={item}
                     value={item}
                   >
@@ -381,7 +382,9 @@ const SelectBtn: FC<ISelectBtnProps> = ({
           className="relative p-6 bg-green-300 text-lg text-center cursor-pointer min-w-[200px] w-full"
           key={item}
         >
-          <div className="relative flex justify-center z-[1]">{item}</div>
+          <div className="relative flex justify-center z-[1] text-nowrap">
+            {item}
+          </div>
           {item === watch && (
             <div className="absolute top-[8px] left-[8px] w-[94%] h-4/5 rounded-[32px] bg-[#7ee1a2] z-0" />
           )}
