@@ -127,7 +127,7 @@ const Tariff: FC = () => {
                   </div>
                 </div>
               )}
-              .
+
               {tariffFilter?.map((item, index) => (
                 <div className="relative w-full max-w-[354px]" key={index}>
                   <div className="text-center w-full box-border px-2.5">
