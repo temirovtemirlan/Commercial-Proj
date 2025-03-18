@@ -22,6 +22,7 @@
 
     "baseUrl": "src",
     "paths": {
+      "public/*": ["public/*"],
       "app/*": ["app/*"],
       "assets/*": ["app/assets/*"],
       "pages/*": ["pages/*"],

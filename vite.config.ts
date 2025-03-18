@@ -10,6 +10,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
+      public: "/public",
       app: "/src/app/",
       assets: "/src/app/assets",
       pages: "/src/pages",

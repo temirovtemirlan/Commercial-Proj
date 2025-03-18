@@ -1,225 +1,222 @@
-import type { FC } from "react";
+import { useEffect, useMemo, useState, type FC } from "react";
 import { Accordion, AccordionItem } from "@szhsin/react-accordion";
-import { TariffEnd, TariffStart } from "./TariffBlock";
+import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
+import { useInView } from "react-intersection-observer";
 
-const tariffData = [
-  {
-    head: {
-      media: "/1_tariff.mp4",
-      title: "Base CGI",
-      description:
-        "CGI-ролики с использованием готовых 3D-моделей и простой анимации.",
-      price: "От $800 (70 400 сом)",
-    },
-    footer: [
-      {
-        title: "Включено: 3 правки",
-        descriptions: [""],
-      },
-      {
-        title: (
-          <svg
-            width="36"
-            height="57"
-            viewBox="0 0 36 57"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M1.33203 35.1994V21.3095C1.33203 20.3271 1.72227 19.385 2.41691 18.6903C3.11154 17.9957 4.05366 17.6055 5.03602 17.6055H20.778C21.7604 17.6055 22.7025 17.9957 23.3971 18.6903C24.0917 19.385 24.482 20.3271 24.482 21.3095V35.1994C24.482 36.1818 24.0917 37.1239 23.3971 37.8186C22.7025 38.5132 21.7604 38.9034 20.778 38.9034H5.03602C4.05366 38.9034 3.11154 38.5132 2.41691 37.8186C1.72227 37.1239 1.33203 36.1818 1.33203 35.1994ZM33.1271 18.9778L25.7191 25.5765C25.6215 25.6632 25.5433 25.7695 25.4897 25.8886C25.4361 26.0076 25.4082 26.1367 25.408 26.2673V29.5601C25.4082 29.6907 25.4361 29.8197 25.4897 29.9388C25.5433 30.0578 25.6215 30.1642 25.7191 30.2509L33.1271 36.8496C33.2606 36.9681 33.4255 37.0455 33.6019 37.0725C33.7783 37.0995 33.9588 37.0749 34.1216 37.0018C34.2844 36.9286 34.4226 36.8099 34.5195 36.66C34.6165 36.5101 34.668 36.3354 34.668 36.1569V19.6704C34.668 19.4919 34.6165 19.3172 34.5195 19.1674C34.4226 19.0175 34.2844 18.8988 34.1216 18.8256C33.9588 18.7524 33.7783 18.7279 33.6019 18.7549C33.4255 18.7819 33.2606 18.8593 33.1271 18.9778Z"
-              stroke="black"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        ),
-        descriptions: ["Длительность ролика: 15 секунд"],
-      },
-      {
-        title: (
-          <svg
-            width="32"
-            height="57"
-            viewBox="0 0 32 57"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M19.1481 17.8621L20.3839 16.5876C22.4315 14.476 25.7513 14.476 27.7989 16.5876C29.8465 18.6992 29.8465 22.1228 27.7989 24.2344L26.5631 25.5088M19.1481 17.8621C19.1481 17.8621 19.3025 20.5703 21.6197 22.9599C23.9369 25.3495 26.5631 25.5088 26.5631 25.5088M19.1481 17.8621L7.7864 29.5788C7.01685 30.3724 6.63208 30.7692 6.30117 31.2067C5.91082 31.7228 5.57615 32.2812 5.30309 32.8721C5.07161 33.3729 4.89954 33.9053 4.55538 34.97L3.09705 39.4818M26.5631 25.5088L15.2014 37.2255C14.4319 38.0191 14.0471 38.4159 13.6229 38.7572C13.1224 39.1597 12.5809 39.5048 12.0079 39.7864C11.5222 40.0251 11.006 40.2026 9.97354 40.5575L5.59853 42.0614M5.59853 42.0614L4.52909 42.429C4.02101 42.6037 3.46085 42.4673 3.08214 42.0768C2.70344 41.6862 2.57121 41.1086 2.74057 40.5846L3.09705 39.4818M5.59853 42.0614L3.09705 39.4818"
-              stroke="#1D1D1F"
-              stroke-width="2"
-            />
-          </svg>
-        ),
-        descriptions: ["3 правки"],
-      },
-      {
-        title: (
-          <svg
-            width="36"
-            height="57"
-            viewBox="0 0 36 57"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M25.4974 21.946C25.9794 21.819 26.4804 21.7555 27.0004 21.7555C27.8534 21.7564 28.6964 21.9392 29.4732 22.2916C30.25 22.644 30.9427 23.158 31.5051 23.7993C32.0676 24.4406 32.4868 25.1945 32.7349 26.0106C32.983 26.8267 33.0542 27.6864 32.9437 28.5322C32.8333 29.378 32.5438 30.1906 32.0946 30.9157C31.6453 31.6408 31.0466 32.2618 30.3383 32.7372C29.6301 33.2126 28.8287 33.5315 27.9874 33.6727C27.1462 33.814 26.2845 33.7742 25.4599 33.556M25.4974 21.946L25.5004 21.7555C25.5027 20.2736 24.9565 18.8432 23.9671 17.74C22.9776 16.6368 21.6149 15.9388 20.1415 15.7805C18.668 15.6221 17.1881 16.0147 15.9868 16.8825C14.7856 17.7503 13.948 19.0319 13.6354 20.4805M25.4974 21.946C25.4664 22.9341 25.1918 23.8992 24.6979 24.7555M25.4599 33.556C25.4869 33.376 25.5004 33.1925 25.5004 33.0055C25.5006 32.141 25.2021 31.303 24.6554 30.6334C24.1087 29.9637 23.3474 29.5034 22.5004 29.3305M25.4599 33.556C25.3279 34.4455 24.8807 35.2579 24.1998 35.8452C23.5189 36.4325 22.6496 36.7556 21.7504 36.7555H21.0004C19.4091 36.7555 17.883 37.3877 16.7578 38.5129C15.6325 39.6381 15.0004 41.1642 15.0004 42.7555M13.6354 20.4805C12.6039 20.1876 11.5128 20.1765 10.4756 20.4483C9.43831 20.7201 8.49286 21.2649 7.73758 22.026C6.98229 22.7871 6.44477 23.7367 6.18093 24.776C5.9171 25.8153 5.9366 26.9063 6.2374 27.9355M13.6354 20.4805C15.139 20.9063 16.4171 21.9019 17.1979 23.2555M6.2374 27.9355C5.19946 28.2409 4.30772 28.9098 3.72269 29.8199C3.13766 30.73 2.89999 31.8204 3.05317 32.8914C3.20636 33.9624 3.74015 34.9424 4.55685 35.652C5.37354 36.3616 6.41848 36.7534 7.5004 36.7555C8.43137 36.756 9.33959 36.4677 10.0999 35.9304C10.8602 35.3931 11.4351 34.6333 11.7454 33.7555M6.2374 27.9355C6.3734 28.4025 6.5629 28.8425 6.8029 29.2555M17.7544 28.8715C16.9894 29.608 15.6799 29.7355 14.5609 29.107C13.4419 28.477 12.8704 27.292 13.1029 26.2555"
-              stroke="black"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        ),
-        descriptions: ["Разработка концепции"],
-      },
-      {
-        title: (
-          <svg
-            width="32"
-            height="57"
-            viewBox="0 0 32 57"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M30.4016 21.0724V35.4359C30.4016 35.6014 30.3558 35.764 30.2689 35.9067C30.182 36.0493 30.0571 36.1669 29.9072 36.2472L16.4672 43.4583C16.3247 43.5346 16.1645 43.5747 16.0016 43.5747C15.8387 43.5747 15.6784 43.5346 15.536 43.4583L2.09596 36.2472C1.94607 36.1669 1.82117 36.0493 1.73423 35.9067C1.64729 35.764 1.60148 35.6014 1.60156 35.4359V21.0724C1.60176 20.9071 1.64771 20.7449 1.73463 20.6025C1.82156 20.4601 1.94631 20.3428 2.09596 20.2626L15.536 13.05C15.6784 12.9736 15.8387 12.9336 16.0016 12.9336C16.1645 12.9336 16.3247 12.9736 16.4672 13.05L29.9072 20.2626C30.0568 20.3428 30.1816 20.4601 30.2685 20.6025C30.3554 20.7449 30.4014 20.9071 30.4016 21.0724Z"
-              stroke="black"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M2.44531 20.9818L15.5333 28.0043C15.676 28.0809 15.8365 28.1211 15.9997 28.1211C16.1629 28.1211 16.3235 28.0809 16.4661 28.0043L29.6005 20.957M16.0005 42.1638V28.2547"
-              stroke="black"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M15.5072 27.9901L3.02716 21.2921C2.88099 21.2138 2.71617 21.1738 2.54904 21.1759C2.3819 21.178 2.21823 21.2222 2.07421 21.3042C1.9302 21.3861 1.81084 21.503 1.72794 21.6432C1.64505 21.7834 1.60148 21.9421 1.60156 22.1035V35.4361C1.60148 35.6017 1.64729 35.7643 1.73423 35.9069C1.82117 36.0496 1.94607 36.1672 2.09596 36.2475L14.576 42.944C14.7221 43.0223 14.887 43.0623 15.0541 43.0602C15.2212 43.0581 15.3849 43.0139 15.5289 42.9319C15.6729 42.85 15.7923 42.7331 15.8752 42.5929C15.9581 42.4527 16.0016 42.294 16.0016 42.1326V28.8C16.0014 28.6347 15.9554 28.4724 15.8685 28.33C15.7816 28.1877 15.6568 28.0703 15.5072 27.9901Z"
-              fill="black"
-              stroke="black"
-              stroke-width="1.5"
-              stroke-linejoin="round"
-            />
-          </svg>
-        ),
-        descriptions: ["3D-модели, физика"],
-      },
-      {
-        title: (
-          <svg
-            width="36"
-            height="57"
-            viewBox="0 0 36 57"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g clip-path="url(#clip0_2116_2743)">
-              <path
-                d="M10.2147 23.8541V31.6086M13.1143 21.121V34.1566M7.31097 25.6967V30.298M4.41297 26.5149V29.4798M1.54688 25.7006V30.3011M24.7129 23.1005V32.3661M27.6125 21.1233V34.1589M21.8091 25.699V30.2996M18.9111 16.2031V39.7962M16.0451 25.7029V30.3035M33.456 26.252V29.724M30.558 23.7927V32.1841"
-                stroke="black"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </g>
-            <defs>
-              <clipPath id="clip0_2116_2743">
-                <rect
-                  width="36"
-                  height="56"
-                  fill="white"
-                  transform="translate(0 0.253906)"
-                />
-              </clipPath>
-            </defs>
-          </svg>
-        ),
-        descriptions: ["Звуковое оформление"],
-      },
-    ],
-  },
-];
-
-const TariffLength = tariffData?.length;
+import { TariffEnd } from "./TariffBlock";
+import Container from "./Container";
+import { tariffData } from "data/index";
 
 const Tariff: FC = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  const [openAccordionKeys, setOpenAccordionKeys] = useState<string[]>([]);
+  const [headViewIsAccordionOpen, setHeadViewIsAccordionOpen] = useState(false);
+  const [priceRefElement, priceInView] = useInView({ threshold: 0 });
+
+  const [containerRefElement, tariffContainerInView] = useInView({
+    threshold: 0,
+    rootMargin: "-100px 0px -1000px 0px",
+  });
+
+  const uniqueCategories = Array.from(
+    new Set(tariffData.map((item) => item.tabCategory))
+  );
+
+  // prettier-ignore
+  const tariffFilter = useMemo(() => {
+    return tariffData.filter((item) => item.tabCategory === uniqueCategories[activeTab]);
+  }, [activeTab]);
+
+  const handleAccordionStateChange = (itemKey: string, isExpanded: boolean) => {
+    setOpenAccordionKeys((prev) => {
+      const updatedKeys = isExpanded
+        ? [...prev, itemKey]
+        : prev.filter((key) => key !== itemKey);
+      return updatedKeys;
+    });
+  };
+
+  useEffect(() => {
+    if (!tariffContainerInView) {
+      setHeadViewIsAccordionOpen(false);
+      return;
+    }
+
+    if (openAccordionKeys.length > 0) {
+      setHeadViewIsAccordionOpen(!priceInView);
+    } else {
+      setHeadViewIsAccordionOpen(false);
+    }
+  }, [openAccordionKeys, priceInView, tariffContainerInView]);
+
   return (
-    <div
-      className="relative grid gap-y-14 justify-center mx-auto gap-5 overflow-hidden"
-      style={{
-        gridTemplateColumns: `repeat(${TariffLength}, minmax(240px, 1fr))`,
-      }}
+    <Container
+      className="relative overflow-hidden xl:pt-[100px] pt-[50px] bg-[#f5f5f7]"
+      ref={containerRefElement}
     >
-      {tariffData?.map((item, index) => (
-        <div className={"relative w-full "} key={index}>
-          <TariffStart
-            title={item.head.title}
-            description={item.head.description}
-            media={item.head.media}
-            price={item.head.price}
-          />
+      <legend className="legend-3lvl">Изучите тарифы.</legend>
 
-          <div className="relative max-md:hidden py-10">
-            <hr className="absolute max-md:hidden border-[#d2d2d7] w-[8000%]" />
-          </div>
+      <Tabs className="Our-Indicators" onSelect={(e) => setActiveTab(e)}>
+        <TabList className="inline-flex p-[5px] rounded-full bg-white">
+          {uniqueCategories.map((item) => (
+            <Tab
+              className="tab__delivery_panels whitespace-nowrap px-6 py-2.5"
+              key={item}
+            >
+              {item}
+            </Tab>
+          ))}
+        </TabList>
 
-          <Accordion
-            className="w-full mt-10 md:mt-0 text-center"
-            transition
-            transitionTimeout={300}
+        {uniqueCategories.map((tab, tabIndex) => (
+          <TabPanel
+            className="max-ss:flex max-ss:justify-center w-full mt-[30px] overflow-hidden overflow-x-auto"
+            key={tab}
           >
-            <AccordionItem
-              header={({ state }) => (
+            <div
+              className="relative grid gap-y-14 justify-center mx-auto gap-5"
+              style={{
+                gridTemplateColumns: `repeat(${tariffFilter?.length}, minmax(240px, 1fr))`,
+              }}
+            >
+              {headViewIsAccordionOpen && (
                 <div
-                  className="flex flex-col items-center w-full"
-                  // className="flex flex-col items-center max-w-[240px] w-[240px]"
+                  className="fixed top-0 left-0 w-full bg-[#f5f5f7] text-center px-5 md:px-[100px] mac:px-[440px] z-[2]"
+                  style={{ borderBottom: "1px solid #d2d2d7" }}
                 >
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className={`transition-transform duration-300 ${
-                      state.isEnter ? "scale-y-[1]" : "-scale-y-[1]"
-                    }`}
+                  <div
+                    className="grid w-full justify-center mx-auto gap-5 py-8"
+                    style={{
+                      gridTemplateColumns: `repeat(${tariffFilter?.length}, minmax(240px, 1fr))`,
+                    }}
                   >
-                    <path
-                      d="M9.54742 6.72513L2.90992 13.6914C2.79912 13.8076 2.7373 13.962 2.7373 14.1226C2.7373 14.2832 2.79912 14.4376 2.90992 14.5539L2.91742 14.5614C2.97114 14.6179 3.0358 14.6629 3.10746 14.6937C3.17913 14.7245 3.25631 14.7403 3.3343 14.7403C3.41229 14.7403 3.48947 14.7245 3.56113 14.6937C3.6328 14.6629 3.69746 14.6179 3.75117 14.5614L10.0012 8.00138L16.2487 14.5614C16.3024 14.6179 16.367 14.6629 16.4387 14.6937C16.5104 14.7245 16.5876 14.7403 16.6655 14.7403C16.7435 14.7403 16.8207 14.7245 16.8924 14.6937C16.964 14.6629 17.0287 14.6179 17.0824 14.5614L17.0899 14.5539C17.2007 14.4376 17.2625 14.2832 17.2625 14.1226C17.2625 13.962 17.2007 13.8076 17.0899 13.6914L10.4524 6.72513C10.3941 6.66386 10.3238 6.61509 10.2461 6.58176C10.1683 6.54843 10.0845 6.53125 9.99992 6.53125C9.9153 6.53125 9.83156 6.54843 9.75378 6.58176C9.676 6.61509 9.6058 6.66386 9.54742 6.72513Z"
-                      fill="black"
-                    />
-                  </svg>
-
-                  <div className="pt-6">
-                    <TariffEnd
-                      head={item.footer[0].title}
-                      descriptions={item.footer[0].descriptions}
-                    />
+                    {tariffFilter.map((item) => (
+                      <div className="w-full" key={item.head.title}>
+                        <legend className="text-black text-xl xl:text-[24px] font-bold">
+                          {item.head.title}
+                        </legend>
+                        <p className="text-black text-xs md:text-sm w-4/5 mx-auto mt-4">
+                          {item.head.description}
+                        </p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               )}
-            >
-              <div className="flex flex-col justify-evenly gap-10 pt-5">
-                {item.footer
-                  .slice(1)
-                  ?.map((footer) => (
-                    <TariffEnd
-                      head={footer.title}
-                      className={"w-full text-center"}
-                      descriptions={footer.descriptions}
+
+              {tariffFilter?.map((item, index) => (
+                <div className="relative w-full" key={index}>
+                  <div className="text-center w-full box-border">
+                    <div className="w-full max-w-[284px] rounded-2.5xl overflow-hidden h-[500px] mx-auto">
+                      <video
+                        className={"size-full object-cover"}
+                        src={item.head.media}
+                        loop
+                        autoPlay
+                        muted
+                        controls={false}
+                        playsInline
+                      />
+                    </div>
+                    <legend className="text-black text-xl xl:text-[24px] font-bold mt-[40px]">
+                      {item.head.title}
+                    </legend>
+                    <p className="text-black text-xs md:text-sm my-[16px] w-4/5 mx-auto">
+                      {item.head.description}
+                    </p>
+
+                    <p
+                      className="text-black text-xs md:text-sm font-semibold"
+                      ref={
+                        tabIndex === activeTab && index === 0
+                          ? priceRefElement
+                          : null
+                      }
+                    >
+                      {item.head.price}
+                    </p>
+
+                    <button className="w-[162px] h-11 p-1.5 md:p-2.5 bg-[#0071e3] rounded-full text-sm md:text-base justify-center items-center gap-2.5 inline-flex mt-[40px] text-white">
+                      Оставить заявку
+                    </button>
+                  </div>
+
+                  {/* <div className="relative max-md:hidden py-10">
+                    <hr
+                      className={`absolute border-[#d2d2d7] w-[500%] ${index === 0 ? "opacity-100" : "opacity-0"}`}
                     />
-                  ))}
-              </div>
-            </AccordionItem>
-          </Accordion>
-        </div>
-      ))}
-    </div>
+                  </div> */}
+
+                  <Accordion
+                    className="w-full mt-10 md:mt-0 text-center"
+                    transition
+                    transitionTimeout={300}
+                  >
+                    <AccordionItem
+                      header={({ state }) => (
+                        <div
+                          className="relative flex flex-col items-center w-full"
+                          onClick={() =>
+                            handleAccordionStateChange(
+                              `${index}-${item.tabCategory}`,
+                              !state.isEnter
+                            )
+                          }
+                        >
+                          <Arrow isEnter={state.isEnter} />
+
+                          <div className="pt-6">
+                            <TariffEnd
+                              head={item.footer[0].title}
+                              descriptions={item.footer[0].descriptions}
+                              before={item.footer[0].before}
+                            />
+                          </div>
+                        </div>
+                      )}
+                      itemKey={`${index}-${item.tabCategory}`}
+                    >
+                      <div className="flex flex-col justify-evenly gap-10 pt-10">
+                        {item.footer
+                          .slice(1)
+                          ?.map((footer) => (
+                            <TariffEnd
+                              key={footer.descriptions[0]}
+                              head={footer.title}
+                              className={"w-full text-center"}
+                              descriptions={footer.descriptions}
+                              before={footer.before}
+                            />
+                          ))}
+                      </div>
+                    </AccordionItem>
+                  </Accordion>
+                </div>
+              ))}
+            </div>
+          </TabPanel>
+        ))}
+      </Tabs>
+    </Container>
   );
 };
 
 export default Tariff;
+
+const Arrow = ({ isEnter }: { isEnter: boolean }) => (
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={`transition-transform duration-300 ${
+      isEnter ? "scale-y-[1]" : "-scale-y-[1]"
+    }`}
+  >
+    <path
+      d="M9.54742 6.72513L2.90992 13.6914C2.79912 13.8076 2.7373 13.962 2.7373 14.1226C2.7373 14.2832 2.79912 14.4376 2.90992 14.5539L2.91742 14.5614C2.97114 14.6179 3.0358 14.6629 3.10746 14.6937C3.17913 14.7245 3.25631 14.7403 3.3343 14.7403C3.41229 14.7403 3.48947 14.7245 3.56113 14.6937C3.6328 14.6629 3.69746 14.6179 3.75117 14.5614L10.0012 8.00138L16.2487 14.5614C16.3024 14.6179 16.367 14.6629 16.4387 14.6937C16.5104 14.7245 16.5876 14.7403 16.6655 14.7403C16.7435 14.7403 16.8207 14.7245 16.8924 14.6937C16.964 14.6629 17.0287 14.6179 17.0824 14.5614L17.0899 14.5539C17.2007 14.4376 17.2625 14.2832 17.2625 14.1226C17.2625 13.962 17.2007 13.8076 17.0899 13.6914L10.4524 6.72513C10.3941 6.66386 10.3238 6.61509 10.2461 6.58176C10.1683 6.54843 10.0845 6.53125 9.99992 6.53125C9.9153 6.53125 9.83156 6.54843 9.75378 6.58176C9.676 6.61509 9.6058 6.66386 9.54742 6.72513Z"
+      fill="black"
+    />
+  </svg>
+);
