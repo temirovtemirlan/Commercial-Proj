@@ -73,7 +73,7 @@ const TariffEnd: FC<ITariffEnd> = ({
         {validImg ? <img src={typeof head === "string" ? head : ""} /> : head}
       </span>
 
-      <span className="text-sm block mt-2 leading-relaxed text-center">
+      <span className="text-base block mt-2 leading-relaxed text-center">
         {descriptions.map((el, index) => (
           <Fragment key={index}>
             {el}

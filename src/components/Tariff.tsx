@@ -96,7 +96,7 @@ const Tariff: FC = () => {
             className={`w-full overflow-hidden max-lg:overflow-x-auto ${tabIndex === activeTab ? "mt-[30px]" : "mt-0"}`}
             key={tab}
           >
-            <div className="relative flex gap-y-14 mx-auto">
+            <div className="relative flex gap-y-14 mx-auto justify-center md:flex-nowrap flex-wrap">
               {headViewIsAccordionOpen && (
                 <div
                   className="fixed top-0 left-0 w-full bg-[#f5f5f7] text-center px-5 md:px-[100px] mac:px-[440px] z-[2]"
@@ -106,7 +106,7 @@ const Tariff: FC = () => {
                   }}
                 >
                   <div
-                    className="grid w-full justify-center mx-auto gap-5 py-8"
+                    className="md:grid hidden w-full justify-center mx-auto gap-5 py-8 "
                     style={{
                       gridTemplateColumns: `repeat(${tariffFilter?.length}, minmax(240px, 1fr))`,
                     }}
@@ -124,9 +124,9 @@ const Tariff: FC = () => {
                   </div>
                 </div>
               )}
-
+              .
               {tariffFilter?.map((item, index) => (
-                <div className="relative w-full min-w-[304px]" key={index}>
+                <div className="relative w-full max-w-[354px]" key={index}>
                   <div className="text-center w-full box-border px-2.5">
                     <div className="w-full max-w-[284px] rounded-2.5xl overflow-hidden h-[500px] mx-auto bg-gray-400">
                       {/* <video

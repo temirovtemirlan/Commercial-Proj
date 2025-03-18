@@ -27,7 +27,7 @@ export const tariffData: TariffType[] = [
       title: "Base CGI",
       description:
         "CGI-ролики с использованием готовых3D-моделей и простой анимации.",
-      price: "От $900",
+      price: "От $1500",
     },
     footer: [
       {
@@ -53,7 +53,7 @@ export const tariffData: TariffType[] = [
       title: "Advanced CGI",
       description:
         "Все что в тарифе Base CG + Создание индивидуальных 3D моделей, сложная анимация симуляция физики",
-      price: "От $3200",
+      price: "От $3300",
     },
     footer: [
       {
@@ -157,7 +157,7 @@ export const tariffData: TariffType[] = [
       title: "Base VFX",
       description:
         "VFX-ролики с использованием готовых 3D-моделей и простой анимации.",
-      price: "От $1,200",
+      price: "От $2000",
     },
     footer: [
       {
@@ -183,7 +183,7 @@ export const tariffData: TariffType[] = [
       title: "Advanced VFX",
       description:
         "Все что в тарифе Base + Создание индивидуальных 3D моделей, сложная анимация, симуляция физики.",
-      price: "От $4,200",
+      price: "От $4,300",
     },
     footer: [
       {
@@ -294,7 +294,7 @@ export const tariffData: TariffType[] = [
       media: "/1_tariff.mp4",
       title: "Base AIGC",
       description: "1 трендовый ролик для соцсетей.",
-      price: "От $500",
+      price: "От $1,000",
     },
     footer: [
       {
@@ -319,7 +319,7 @@ export const tariffData: TariffType[] = [
       media: "/1_tariff.mp4",
       title: "Advanced AIGC",
       description: "Полноценные рекламные ролики с использованием AICG, AIVFX",
-      price: "От $2,200",
+      price: "От $2,100",
     },
     footer: [
       {
