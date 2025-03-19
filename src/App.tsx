@@ -11,7 +11,7 @@ import Tariff from "components/Tariff";
 import LogoCubeAnimation from "common/LogoCubeAnimation";
 import WhyMonsterCorp from "components/WhyMonsterCorp";
 import CultureSection from "components/CultureSection";
-import FooterVideo from "components/FooterVideo.tsx";
+// import FooterVideo from "components/FooterVideo.tsx";
 import ContactForm from "common/ContactForm.tsx";
 import LazyLoadLayout from "components/LazyLoadLayout.tsx";
 import OurIndicators from "components/OurIndicators";
@@ -168,7 +168,7 @@ const App: FC = () => {
         </video>
       </div>
 
-      <div className="bg-[#161617] py-[100px] mt-[50px] overflow-hidden">
+      <div className="relative bg-[#161617] py-[100px] mt-[50px]">
         <Directions />
 
         <OurIndicators />
@@ -236,7 +236,7 @@ const App: FC = () => {
         </Container>
       </LazyLoadLayout>
 
-      <FooterVideo />
+      <div className={""}>{/*<FooterVideo />*/}</div>
 
       <ContactForm />
 

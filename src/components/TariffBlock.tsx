@@ -16,10 +16,10 @@ const TariffStart: FC<TariffStartProps> = ({
 }) => {
   return (
     <div className="text-center w-full box-border">
-      <div className="w-full max-w-[284px] rounded-2.5xl overflow-hidden h-[500px] mx-auto">
+      <div className="w-full max-w-[284px] rounded-2.5xl overflow-hidden mx-auto">
         <video
           className={"size-full object-cover"}
-          src={media}
+          src={`https://storage.googleapis.com/mkit_monster_bucket/Tariff/${media}`}
           loop
           autoPlay
           muted

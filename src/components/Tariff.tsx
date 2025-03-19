@@ -19,6 +19,19 @@ const Tariff: FC = () => {
   // const [tabPanelWidth, setTabPanelWidth] = useState<number | null>(null);
   // const matches = useMediaQuery('(min-width: 768px)')
 
+  // const { ref, inView } = useInView({
+  //   triggerOnce: false, // будет срабатывать каждый раз, когда элемент входит в видимость
+  //   threshold: 0.5, // элемент считается видимым, когда 50% его площади на экране
+  // });
+  // const [visibleIndex, setVisibleIndex] = useState<number | null>(null);
+
+  // useEffect(() => {
+  //   if (inView) {
+  //     // Записываем индекс элемента, когда он становится видимым
+  //     console.log("Текущий видимый index:", visibleIndex);
+  //   }
+  // }, [inView, visibleIndex]);
+
   const [containerRefElement, tariffContainerInView] = useInView({
     threshold: 0,
     rootMargin: "-100px 0px -1000px 0px",
@@ -131,34 +144,51 @@ const Tariff: FC = () => {
               {tariffFilter?.map((item, index) => (
                 <div className="relative w-full max-w-[354px]" key={index}>
                   <div className="text-center w-full box-border px-2.5">
-                    <div className="w-full max-w-[284px] rounded-2.5xl overflow-hidden h-[500px] mx-auto bg-gray-400">
-                      {/* <video
-                        src={item.head.media}
-                        loop
-                        autoPlay
-                        muted
-                        controls={false}
-                        playsInline
-                      /> */}
+                    <div className="w-full max-w-[284px] rounded-2.5xl overflow-hidden h-[500px] mx-auto bg-gray-200">
+                      {item.head.media ? (
+                        <video
+                          className={"object-cover size-full"}
+                          src={`https://storage.googleapis.com/mkit_monster_bucket/Tariff/${item.head.media}`}
+                          loop
+                          autoPlay
+                          muted
+                          controls={false}
+                          playsInline
+                        />
+                      ) : (
+                        <div
+                          className={
+                            "flex size-full justify-center items-center"
+                          }
+                        >
+                          <span
+                            className={
+                              "text-center inline-block my-auto text-lg"
+                            }
+                          >
+                            Скоро
+                          </span>
+                        </div>
+                      )}
                     </div>
-                    <legend className="text-black text-xl xl:text-[24px] font-bold mt-[40px]">
+                    <legend className="text-black text-xl xl:text-[24px] font-bold mt-4 md:mt-[40px] w-full">
                       {item.head.title}
                     </legend>
                     <p
-                      className="text-black text-xs md:text-sm my-[16px] w-4/5 mx-auto"
+                      className="text-black text-lg md:text-base my-2 md:my-[16px] w-4/5 mx-auto h-auto md:h-[100px] overflow-y-scroll"
                       ref={descriptionRef}
-                      style={{
-                        height: "100px",
-                        // descHeight !== null
-                        //   ? { height: `${descHeight}px` }
-                        //   : undefined
-                      }}
+                      // style={{
+                      //   height:
+                      //   descHeight !== null
+                      //     ? { height: `${descHeight}px` }
+                      //     : undefined
+                      // }}
                     >
                       {item.head.description}
                     </p>
 
                     <p
-                      className="text-black text-xs md:text-base font-semibold"
+                      className="text-black text-lg md:text-base font-semibold"
                       ref={
                         tabIndex === activeTab && index === 0
                           ? priceRefElement
@@ -167,18 +197,20 @@ const Tariff: FC = () => {
                       dangerouslySetInnerHTML={{ __html: item.head.price }}
                     ></p>
 
-                    <button className="w-[162px] h-11 p-1.5 md:p-2.5 bg-[#0071e3] rounded-full text-sm md:text-base justify-center items-center gap-2.5 inline-flex mt-[40px] text-white">
+                    <button className="w-[192px] h-11 p-2 md:p-2.5 bg-[#0071e3] rounded-full text-base justify-center items-center gap-2.5 inline-flex mt-[40px] text-white">
                       Оставить заявку
                     </button>
                   </div>
 
                   <hr className="border-[#d2d2d7] w-full max-md:hidden my-10" />
 
-                  <div className="w-full h-10 px-2.5">
-                    <div className=" w-full h-full text-2xl text-center">
-                      {item.head.content}
+                  {item.head.content ? (
+                    <div className="w-full h-10 px-2.5 mb-5">
+                      <div className="pt-2 w-full h-full text-2xl text-center">
+                        {item.head.content}
+                      </div>
                     </div>
-                  </div>
+                  ) : null}
 
                   <Accordion
                     className="w-full mt-10 md:mt-0 text-center px-2.5"

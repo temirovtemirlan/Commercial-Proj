@@ -105,107 +105,102 @@ const Directions: FC = () => {
         Наши направления
       </legend>
 
-      <Swiper
-        onSwiper={() => {}}
-        className="px-5 w-full relative"
-        modules={[Pagination, Navigation]}
-        speed={500}
-        cssMode
-        spaceBetween={30} // Расстояние между слайдами
-        navigation={{
-          nextEl: ".prevButton393218",
-          prevEl: ".nextButton393919",
-        }}
-        breakpoints={{
-          1700: {
-            slidesPerView: 2,
-            centeredSlides: true,
-          },
-          1500: {
-            slidesPerView: 1.4,
-            centeredSlides: true,
-          },
-          1200: {
-            slidesPerView: 1.2,
-            centeredSlides: true,
-          },
-          0: {
-            slidesPerView: 1,
-            centeredSlides: false,
-          },
-        }}
-      >
-        {directionsData?.map((item, index) => (
-          <SwiperSlide key={index}>
-            <DirectionsItems item={item} />
-          </SwiperSlide>
-        ))}
-
-        <div
-          className={
-            "w-full max-w-[1240px] mx-auto flex gap-5 justify-end mt-5"
-            // "w-full h-full pointer-events-none max-w-[1240px] flex justify-between gap-5 mt-[40px] *:cursor-pointer *:select-none mx-auto absolute top-0 z-50 left-1/2 transform -translate-x-1/2"
-          }
+      <div className="w-full max-w-[3000px] mx-auto relative">
+        {" "}
+        {/* Container with max-width */}
+        <Swiper
+          onSwiper={() => {}}
+          className="px-5 relative"
+          modules={[Pagination, Navigation]}
+          speed={500}
+          spaceBetween={30} // Расстояние между слайдами
+          // slidesPerView={1}
+          centeredSlides
+          breakpoints={{
+            1081: { cssMode: true, slidesPerView: 1.5 },
+            1080: { slidesPerView: 1 },
+            1025: { slidesPerView: 2 },
+            1: { slidesPerView: 1 },
+          }}
+          allowTouchMove={true}
+          // centeredSlides={true}
+          navigation={{
+            nextEl: ".prevButton393218",
+            prevEl: ".nextButton393919",
+          }}
         >
-          <button className={"nextButton393919"}>
-            <svg
-              width="36"
-              height="37"
-              viewBox="0 0 36 37"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                y="0.385864"
-                width="36"
-                height="36"
-                rx="18"
-                fill="#ECECEE"
-              />
-              <path
-                d="M20 11.3859L14 18.3859L20 25.3859"
-                stroke="#B8B8B9"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M20 11.3859L14 18.3859L20 25.3859"
-                stroke="#535354"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-          {/*  */}
+          {directionsData?.map((item, index) => (
+            <SwiperSlide key={index}>
+              <DirectionsItems item={item} />
+            </SwiperSlide>
+          ))}
 
-          <button className={"prevButton393218"}>
-            <svg
-              width="36"
-              height="37"
-              viewBox="0 0 36 37"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                y="0.385864"
+          <div
+            className={
+              "w-full max-w-[1080px] mx-auto flex gap-5 justify-end mt-5"
+              // "w-full h-full pointer-events-none max-w-[1240px] flex justify-between gap-5 mt-[40px] *:cursor-pointer *:select-none mx-auto absolute top-0 z-50 left-1/2 transform -translate-x-1/2"
+            }
+          >
+            <button className={"nextButton393919"}>
+              <svg
                 width="36"
-                height="36"
-                rx="18"
-                fill="#E6E6EA"
-              />
-              <path
-                d="M16 11.3859L22 18.3859L16 25.3859"
-                stroke="#535354"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-        </div>
-      </Swiper>
+                height="37"
+                viewBox="0 0 36 37"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  y="0.385864"
+                  width="36"
+                  height="36"
+                  rx="18"
+                  fill="#ECECEE"
+                />
+                <path
+                  d="M20 11.3859L14 18.3859L20 25.3859"
+                  stroke="#B8B8B9"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M20 11.3859L14 18.3859L20 25.3859"
+                  stroke="#535354"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+            {/*  */}
+
+            <button className={"prevButton393218"}>
+              <svg
+                width="36"
+                height="37"
+                viewBox="0 0 36 37"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  y="0.385864"
+                  width="36"
+                  height="36"
+                  rx="18"
+                  fill="#E6E6EA"
+                />
+                <path
+                  d="M16 11.3859L22 18.3859L16 25.3859"
+                  stroke="#535354"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </Swiper>
+      </div>
     </div>
   );
 };

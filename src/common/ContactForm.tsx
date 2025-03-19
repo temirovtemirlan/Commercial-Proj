@@ -17,7 +17,7 @@ import { cn } from "helpers/style";
 import PhoneNumberInput from "./ui/phoneNumberInput";
 
 const typesProjects = ["Комплексный", "Брендинг", "Веб", "Продвижение"],
-  typesBudget = ["1000$", "5000$", "10 000$"],
+  typesBudget = ["От 1000$", "От 5000$", "От 10 000$"],
   typesTerm = ["Сейчас", "В течении месяца", "В течении 3 месяц"];
 
 const selectData = [
@@ -382,11 +382,16 @@ const SelectBtn: FC<ISelectBtnProps> = ({
           className="relative p-6 bg-green-300 text-lg text-center cursor-pointer min-w-[200px] w-full"
           key={item}
         >
-          <div className="relative flex justify-center z-[1] text-nowrap">
+          <div
+            className={cn(
+              "relative flex justify-center z-[1] text-nowrap",
+              item === watch && "text-white"
+            )}
+          >
             {item}
           </div>
           {item === watch && (
-            <div className="absolute top-[8px] left-[8px] w-[94%] h-4/5 rounded-[32px] bg-[#7ee1a2] z-0" />
+            <div className="absolute top-[8px] left-[8px] w-[94%] h-4/5 rounded-[32px] bg-[#000] z-0" />
           )}
           <input
             className="hidden"

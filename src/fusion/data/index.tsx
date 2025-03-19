@@ -1,11 +1,69 @@
 import type { directionType, TariffType } from "fusion/type";
 
+const footerData = [
+  {
+    before: "До",
+    title: "60 сек",
+    descriptions: ["Длительность ролика"],
+  },
+  {
+    before: "До",
+    title: "3",
+    descriptions: ["Правок"],
+  },
+  {
+    title: "/tariff/search.png",
+    descriptions: ["Анализ продукта"],
+  },
+  {
+    title: "/tariff/docs.png",
+    descriptions: ["Написание сценария"],
+  },
+
+  {
+    title: "tariff/stoting.png",
+    descriptions: ["Раскадровка"],
+  },
+  {
+    title: "/tariff/brainstorm.png",
+    descriptions: ["Разработка концепции"],
+  },
+  {
+    title: "/tariff/cube3d.png",
+    descriptions: ["Создание 3D-моделей"],
+  },
+  {
+    title: "/tariff/animation.png",
+    descriptions: ["Персонажная анимация"],
+  },
+  {
+    title: "/tariff/world3d.png",
+    descriptions: ["Создание полноценных", "3Д-миров"],
+  },
+  {
+    title: "tariff/composting.png",
+    descriptions: ["Композитинг"],
+  },
+  {
+    title: "/tariff/colorcorrection.png",
+    descriptions: ["Премиальная", "Цветокоррекция"],
+  },
+  {
+    title: "/tariff/sound_design.png",
+    descriptions: ["Sound Design"],
+  },
+  {
+    title: "tariff/voice.png",
+    descriptions: ["Профессиональная озвучка"],
+  },
+];
+
 // #region // * Tariff
 export const tariffData: TariffType[] = [
   // * Base
   {
     head: {
-      media: "/1_tariff.mp4",
+      media: "BASE_AIGC.mp4",
       title: "Base AIGC",
       description: "1 трендовый ролик для соцсетей.",
       price: "<s>$1500</s> <br/> <p>От $1000</p>",
@@ -31,7 +89,7 @@ export const tariffData: TariffType[] = [
   },
   {
     head: {
-      media: "/1_tariff.mp4",
+      media: "BASE_CGI.mp4",
       title: "Base CGI",
       description:
         "CGI-ролики с использованием готовых 3D-моделей и простой анимации.",
@@ -55,7 +113,7 @@ export const tariffData: TariffType[] = [
   },
   {
     head: {
-      media: "/1_tariff.mp4",
+      media: "BASE_VFX.mp4",
       title: "Base VFX",
       description:
         "VFX-ролики с использованием готовых 3D-моделей и простой анимации.",
@@ -80,7 +138,7 @@ export const tariffData: TariffType[] = [
   // * Advanced
   {
     head: {
-      media: "/1_tariff.mp4",
+      media: "ADVANCED_AIGC.mp4",
       title: "Advanced AIGC",
       description: "Полноценные рекламные ролики с использованием AICG, AIVFX",
       // price: "От $2700",
@@ -121,7 +179,7 @@ export const tariffData: TariffType[] = [
   // Advanced CGI
   {
     head: {
-      media: "/1_tariff.mp4",
+      media: "ADVANCED_CGI.mp4",
       title: "Advanced CGI",
       description:
         "Base CG + Создание индивидуальных 3D моделей, сложная анимация, симуляция физики.",
@@ -167,7 +225,7 @@ export const tariffData: TariffType[] = [
   // Advanced VFX
   {
     head: {
-      media: "/1_tariff.mp4",
+      media: "ADVANCED_VFX.mp4",
       title: "Advanced VFX",
       description:
         "Base VFX + Создание индивидуальных 3D моделей, сложная анимация, симуляция физики.",
@@ -245,7 +303,7 @@ export const tariffData: TariffType[] = [
   // * Ultimate
   {
     head: {
-      media: "/1_tariff.mp4",
+      media: "ULTIMATE_AIGC.mp4",
       title: "Ultimate AIGC",
       description:
         "Уникальные AI-решения, созданные специально для конкретного клиента.",
@@ -310,138 +368,26 @@ export const tariffData: TariffType[] = [
   // Ultimate VFX
   {
     head: {
-      media: "/1_tariff.mp4",
+      media: "",
       title: "Ultimate VFX:",
       description:
         "VFX-ролики кинематографического качества, с использованием профессионального продакшна, передовых технологий и индивидуальных решений.",
       price: "от $18 000",
       content: "Cкидка по звонку",
     },
-    footer: [
-      {
-        before: "До",
-        title: "60 сек",
-        descriptions: ["Длительность ролика"],
-      },
-      {
-        before: "До",
-        title: "3",
-        descriptions: ["Правок"],
-      },
-      {
-        title: "/tariff/search.png",
-        descriptions: ["Анализ продукта"],
-      },
-      {
-        title: "/tariff/docs.png",
-        descriptions: ["Написание сценария"],
-      },
-
-      {
-        title: "tariff/stoting.png",
-        descriptions: ["Раскадровка"],
-      },
-      {
-        title: "/tariff/brainstorm.png",
-        descriptions: ["Разработка концепции"],
-      },
-      {
-        title: "/tariff/cube3d.png",
-        descriptions: ["Создание 3D-моделей"],
-      },
-      {
-        title: "/tariff/animation.png",
-        descriptions: ["Персонажная анимация"],
-      },
-      {
-        title: "/tariff/world3d.png",
-        descriptions: ["Создание полноценных", "3Д-миров"],
-      },
-      {
-        title: "tariff/composting.png",
-        descriptions: ["Композитинг"],
-      },
-      {
-        title: "/tariff/colorcorrection.png",
-        descriptions: ["Премиальная", "Цветокоррекция"],
-      },
-      {
-        title: "/tariff/sound_design.png",
-        descriptions: ["Sound Design"],
-      },
-      {
-        title: "tariff/voice.png",
-        descriptions: ["Профессиональная озвучка"],
-      },
-    ],
+    footer: footerData,
     tabCategory: "Ultimate",
   },
   {
     head: {
-      media: "/1_tariff.mp4",
+      media: "FULL_CGI.mp4",
       title: "Full CGI Universe",
       description:
         "CGI-ролики кинематографического качества, с использованием передовых технологий и индивидуальных решений.",
       price: "От $25 000",
       content: "Cкидка по звонку",
     },
-    footer: [
-      {
-        before: "До",
-        title: "60 сек",
-        descriptions: ["Длительность ролика"],
-      },
-      {
-        before: "До",
-        title: "3",
-        descriptions: ["Правок"],
-      },
-      {
-        title: "/tariff/search.png",
-        descriptions: ["Анализ продукта"],
-      },
-      {
-        title: "/tariff/docs.png",
-        descriptions: ["Написание сценария"],
-      },
-
-      {
-        title: "tariff/stoting.png",
-        descriptions: ["Раскадровка"],
-      },
-      {
-        title: "/tariff/brainstorm.png",
-        descriptions: ["Разработка концепции"],
-      },
-      {
-        title: "/tariff/cube3d.png",
-        descriptions: ["Создание 3D-моделей"],
-      },
-      {
-        title: "/tariff/animation.png",
-        descriptions: ["Персонажная анимация"],
-      },
-      {
-        title: "/tariff/world3d.png",
-        descriptions: ["Создание полноценных", "3Д-миров"],
-      },
-      {
-        title: "tariff/composting.png",
-        descriptions: ["Композитинг"],
-      },
-      {
-        title: "/tariff/colorcorrection.png",
-        descriptions: ["Премиальная", "Цветокоррекция"],
-      },
-      {
-        title: "/tariff/sound_design.png",
-        descriptions: ["Sound Design"],
-      },
-      {
-        title: "tariff/voice.png",
-        descriptions: ["Профессиональная озвучка"],
-      },
-    ],
+    footer: footerData,
     tabCategory: "Ultimate",
   },
 ];

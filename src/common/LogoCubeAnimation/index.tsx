@@ -40,7 +40,7 @@ const LogoCubeAnimation: FC = () => {
           Наши клиенты
         </legend>
 
-        <div className="justify-start text-white text-[32px] font-semibold translate-y-3.5 text-balance">
+        <div className="justify-start text-white text-left text-[32px] font-semibold translate-y-3.5 text-balance">
           Мы гордимся работой с компаниями, <br /> которые задают правила игры
           на своих рынках.
         </div>
