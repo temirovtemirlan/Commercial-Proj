@@ -30,7 +30,7 @@ const CompanyLogoCubeAnimation: FC<IProps> = ({ images, delayInterval }) => {
   const isSmallLogo = currentLogo ? sizeSmall.some((logo) => currentLogo.toUpperCase().includes(logo.toUpperCase())) : false;
 
   return (
-    <div className="relative h-16 w-full overflow-hidden">
+    <div className="relative h-16 w-full overflow-hidden flex justify-center ">
       <AnimatePresence initial={false} custom={currentIndex > 0 ? 1 : -1}>
         <motion.div
           key={currentIndex}
