@@ -11,7 +11,7 @@ import Tariff from "components/Tariff";
 import LogoCubeAnimation from "common/LogoCubeAnimation";
 import WhyMonsterCorp from "components/WhyMonsterCorp";
 import CultureSection from "components/CultureSection";
-// import FooterVideo from "components/FooterVideo.tsx";
+import FooterVideo from "components/FooterVideo.tsx";
 import ContactForm from "common/ContactForm.tsx";
 import LazyLoadLayout from "components/LazyLoadLayout.tsx";
 import OurIndicators from "components/OurIndicators";
@@ -242,7 +242,9 @@ const App: FC = () => {
           </Container>
         </LazyLoadLayout>
 
-        <div className={""}>{/*<FooterVideo />*/}</div>
+        <div className={""}>
+          <FooterVideo />
+        </div>
 
         <ContactForm />
 
