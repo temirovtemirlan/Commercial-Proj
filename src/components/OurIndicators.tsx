@@ -25,10 +25,7 @@ const OurIndicators: FC = () => {
 
   const scrollToTarget = () => {
     if (containerRef.current) {
-      window.scrollTo({
-        top: containerRef.current.offsetTop, // Позиция элемента относительно начала документа
-        behavior: "smooth", // Плавный скролл (можно заменить на 'auto' для мгновенного)
-      });
+      containerRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -99,11 +96,18 @@ const OurIndicators: FC = () => {
               }}
             >
               {indicatorsAppsLogo?.map((app, index) => (
-                <SwiperSlide key={index}>
+                <SwiperSlide
+                  className="max-ss:min-w-[40px] max-ss:max-h-[40px]"
+                  key={index}
+                >
                   <img
-                    className={cn(app.className, "pointer-events-none", {
-                      "opacity-20": app.filter !== tappad,
-                    })}
+                    className={cn(
+                      app.className,
+                      "max-ss:size-[40px] pointer-events-none",
+                      {
+                        "opacity-20": app.filter !== tappad,
+                      }
+                    )}
                     key={index}
                     src={`https://storage.googleapis.com/mkit_monster_bucket/LogoProgram${app.app}`}
                     alt={app.title}

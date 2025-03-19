@@ -1,5 +1,6 @@
 import { useEffect, useState, type FC } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { NavLink } from "react-router-dom";
 import { cn } from "helpers/style";
 
 const btnStl =
@@ -87,7 +88,7 @@ const FloatingActionButtons: FC = () => {
   // #endregion
 
   return (
-    <div className="fixed right-10 bottom-[100px]">
+    <div className="fixed right-8 ss:right-10 bottom-[50px] ss:bottom-[100px] z-[10]">
       <div className="flex flex-col gap-4">
         <AnimatePresence>
           {isOpen && (
@@ -105,9 +106,9 @@ const FloatingActionButtons: FC = () => {
                   variants={itemVariants}
                   onClick={onOpenHandler}
                 >
-                  <a href={item?.link} target="_blank">
+                  <NavLink to={item?.link} target="_blank">
                     {item.icon}
-                  </a>
+                  </NavLink>
                 </motion.button>
               ))}
             </motion.div>

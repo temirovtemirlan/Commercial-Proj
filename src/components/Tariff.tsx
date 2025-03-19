@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useRef, useState, type FC } from "react";
+import { useMemo, useRef, useState, type FC } from "react";
 import { Accordion, AccordionItem } from "@szhsin/react-accordion";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
-import { useInView } from "react-intersection-observer";
+// import { useInView } from "react-intersection-observer";
 // import { useMediaQuery } from "usehooks-ts";
 
 import { TariffEnd } from "./TariffBlock";
@@ -10,9 +10,9 @@ import { tariffData } from "data/index";
 
 const Tariff: FC = () => {
   const [activeTab, setActiveTab] = useState(0);
-  const [openAccordionKeys, setOpenAccordionKeys] = useState<string[]>([]);
-  const [headViewIsAccordionOpen, setHeadViewIsAccordionOpen] = useState(false);
-  const [priceRefElement, priceInView] = useInView({ threshold: 0 });
+  // const [openAccordionKeys, setOpenAccordionKeys] = useState<string[]>([]);
+  // const [headViewIsAccordionOpen, setHeadViewIsAccordionOpen] = useState(false);
+  // const [priceRefElement, priceInView] = useInView({ threshold: 0 });
   const descriptionRef = useRef<HTMLParagraphElement | null>(null);
   // const tabPanelRef = useRef<HTMLLegendElement | null>(null);
   // const [setDescHeight] = useState<number | null>(null);
@@ -32,10 +32,10 @@ const Tariff: FC = () => {
   //   }
   // }, [inView, visibleIndex]);
 
-  const [containerRefElement, tariffContainerInView] = useInView({
-    threshold: 0,
-    rootMargin: "-100px 0px -1000px 0px",
-  });
+  // const [containerRefElement, tariffContainerInView] = useInView({
+  //   threshold: 0,
+  //   rootMargin: "-100px 0px -1000px 0px",
+  // });
 
   const uniqueCategories = Array.from(
     new Set(tariffData.map((item) => item.tabCategory))
@@ -46,14 +46,14 @@ const Tariff: FC = () => {
     return tariffData.filter((item) => item.tabCategory === uniqueCategories[activeTab]);
   }, [activeTab]);
 
-  const handleAccordionStateChange = (itemKey: string, isExpanded: boolean) => {
-    setOpenAccordionKeys((prev) => {
-      const updatedKeys = isExpanded
-        ? [...prev, itemKey]
-        : prev.filter((key) => key !== itemKey);
-      return updatedKeys;
-    });
-  };
+  // const handleAccordionStateChange = (itemKey: string, isExpanded: boolean) => {
+  //   setOpenAccordionKeys((prev) => {
+  //     const updatedKeys = isExpanded
+  //       ? [...prev, itemKey]
+  //       : prev.filter((key) => key !== itemKey);
+  //     return updatedKeys;
+  //   });
+  // };
 
   // useEffect(() => {
   //   if (descriptionRef.current) {
@@ -67,23 +67,23 @@ const Tariff: FC = () => {
   //   }
   // }, [tabPanelRef.current]);
 
-  useEffect(() => {
-    if (!tariffContainerInView) {
-      setHeadViewIsAccordionOpen(false);
-      return;
-    }
+  // useEffect(() => {
+  //   if (!tariffContainerInView) {
+  //     setHeadViewIsAccordionOpen(false);
+  //     return;
+  //   }
 
-    if (openAccordionKeys.length > 0) {
-      setHeadViewIsAccordionOpen(!priceInView);
-    } else {
-      setHeadViewIsAccordionOpen(false);
-    }
-  }, [openAccordionKeys, priceInView, tariffContainerInView]);
+  //   if (openAccordionKeys.length > 0) {
+  //     setHeadViewIsAccordionOpen(!priceInView);
+  //   } else {
+  //     setHeadViewIsAccordionOpen(false);
+  //   }
+  // }, [openAccordionKeys, priceInView, tariffContainerInView]);
 
   return (
     <Container
       className="relative overflow-hidden xl:pt-[100px] pt-[50px] bg-[#f5f5f7]"
-      ref={containerRefElement}
+      // ref={containerRefElement}
     >
       <legend
         className="legend-3lvl"
@@ -106,11 +106,11 @@ const Tariff: FC = () => {
 
         {uniqueCategories.map((tab, tabIndex) => (
           <TabPanel
-            className={`w-full overflow-hidden max-lg:overflow-x-auto ${tabIndex === activeTab ? "mt-[30px]" : "mt-0"}`}
+            className={`w-full overflow-hidden ${tabIndex === activeTab ? "mt-[30px]" : "mt-0"}`}
             key={tab}
           >
-            <div className="relative flex gap-y-14 mx-auto justify-center md:flex-nowrap flex-wrap">
-              {headViewIsAccordionOpen && (
+            <div className="relative flex gap-y-14 mx-auto justify-center flex-wrap md:flex-nowrap px-5 overflow-x-auto">
+              {/* {headViewIsAccordionOpen && (
                 <div
                   className="fixed top-0 left-0 w-full bg-[#f5f5f7] text-center px-5 md:px-[100px] mac:px-[440px] z-[2]"
                   style={{
@@ -139,7 +139,7 @@ const Tariff: FC = () => {
                     ))}
                   </div>
                 </div>
-              )}
+              )} */}
 
               {tariffFilter?.map((item, index) => (
                 <div className="relative w-full max-w-[354px]" key={index}>
@@ -156,16 +156,8 @@ const Tariff: FC = () => {
                           playsInline
                         />
                       ) : (
-                        <div
-                          className={
-                            "flex size-full justify-center items-center"
-                          }
-                        >
-                          <span
-                            className={
-                              "text-center inline-block my-auto text-lg"
-                            }
-                          >
+                        <div className="flex size-full justify-center items-center">
+                          <span className="text-center inline-block my-auto text-lg">
                             Скоро
                           </span>
                         </div>
@@ -175,7 +167,7 @@ const Tariff: FC = () => {
                       {item.head.title}
                     </legend>
                     <p
-                      className="text-black text-lg md:text-base my-2 md:my-[16px] w-4/5 mx-auto h-auto md:h-[100px] overflow-y-scroll"
+                      className="text-black text-lg md:text-base my-2 md:my-[16px] w-4/5 mx-auto h-auto md:h-[100px] overflow-y-auto"
                       ref={descriptionRef}
                       // style={{
                       //   height:
@@ -189,11 +181,11 @@ const Tariff: FC = () => {
 
                     <p
                       className="text-black text-lg md:text-base font-semibold"
-                      ref={
-                        tabIndex === activeTab && index === 0
-                          ? priceRefElement
-                          : null
-                      }
+                      // ref={
+                      //   tabIndex === activeTab && index === 0
+                      //     ? priceRefElement
+                      //     : null
+                      // }
                       dangerouslySetInnerHTML={{ __html: item.head.price }}
                     ></p>
 
@@ -221,12 +213,12 @@ const Tariff: FC = () => {
                       header={({ state }) => (
                         <div
                           className="relative flex flex-col items-center w-full"
-                          onClick={() =>
-                            handleAccordionStateChange(
-                              `${index}-${item.tabCategory}`,
-                              !state.isEnter
-                            )
-                          }
+                          // onClick={() =>
+                          //   handleAccordionStateChange(
+                          //     `${index}-${item.tabCategory}`,
+                          //     !state.isEnter
+                          //   )
+                          // }
                         >
                           <Arrow isEnter={state.isEnter} />
 

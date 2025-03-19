@@ -35,7 +35,7 @@ const LogoCubeAnimation: FC = () => {
 
   return (
     <div>
-      <div className="flex justify-between w-full mb-[150px] md:flex-row flex-col">
+      <div className="flex justify-between w-full mb-[150px] md:flex-row flex-col gap-6">
         <legend className="legend-3lvl text-white text-left">
           Наши клиенты
         </legend>

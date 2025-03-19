@@ -13,7 +13,7 @@ const CultureSection: FC = () => {
       </span>
 
       <div className="grid lg:grid-cols-2 lg:grid-rows-2 lg:h-[660px] gap-5 mt-16">
-        <div className="row-span-2 w-full h-full px-[60px] bg-[#fff] max-lg:py-10 rounded-3xl flex flex-row md:flex-col justify-center items-start gap-8">
+        <div className="row-span-2 w-full h-full px-10 ss:px-[60px] bg-[#fff] max-lg:py-10 rounded-3xl flex flex-row md:flex-col justify-center items-start gap-8">
           <span>
             <svg
               width="72"
@@ -46,7 +46,7 @@ const CultureSection: FC = () => {
           </p>
         </div>
 
-        <div className="h-full py-2.5 px-[60px] bg-[#fff] rounded-3xl flex justify-start gap-x-8 items-center max-lg:py-10">
+        <div className="h-full py-2.5 px-10 ss:px-[60px] bg-[#fff] rounded-3xl flex justify-start gap-x-8 items-center max-lg:py-10">
           <svg
             width="72"
             height="73"
@@ -65,7 +65,7 @@ const CultureSection: FC = () => {
           </p>
         </div>
 
-        <div className="h-full py-2.5 px-[60px] bg-[#fff] rounded-3xl flex justify-start gap-x-8 items-center max-lg:py-10">
+        <div className="h-full py-2.5 px-10 ss:px-[60px] bg-[#fff] rounded-3xl flex justify-start gap-x-8 items-center max-lg:py-10">
           <svg
             width="73"
             height="73"

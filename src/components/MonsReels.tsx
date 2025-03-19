@@ -1,9 +1,9 @@
-import { CSSProperties, type FC } from "react";
+import type { CSSProperties, FC } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import MonstriliCarousel from "components/MonstriliCarousel.tsx";
-import { cn } from "helpers/style.ts";
-import { type VideoFrameProps } from "components/VideoFrame.tsx";
-import LazyVideoFrame from "components/LazyVideoFrame.tsx";
+import MonstriliCarousel from "components/MonstriliCarousel";
+import { cn } from "helpers/style";
+import type { VideoFrameProps } from "components/VideoFrame";
+import LazyVideoFrame from "components/LazyVideoFrame";
 
 interface MonsReelsProps {
   className?: string;
@@ -539,7 +539,7 @@ function videoCreaterComponents(data: VideoFrameProps[]) {
 const MonsReels: FC<MonsReelsProps> = ({ className }) => {
   return (
     <Tabs className={cn("Mosnreel-tabs", className)}>
-      <TabList className="xs:w-auto w-full inline-flex gap-3.5 p-[5px] bg-white rounded-full xl:my-[80px] mt-[20px] my-[40px]">
+      <TabList className="xs:w-auto w-full inline-flex gap-3.5 p-[5px] bg-white rounded-full xl:my-[80px] mt-[20px] my-[40px] overflow-x-auto">
         <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
           CG REEL
         </Tab>
