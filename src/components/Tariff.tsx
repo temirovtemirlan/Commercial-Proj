@@ -13,7 +13,7 @@ const anVariantsOpacity = { hidden: { opacity: 0 }, visible: { opacity: 1 } };
 
 const Tariff: FC = () => {
   const [animRef, animInView] = useInView({
-    threshold: 0.4,
+    threshold: 0.8,
     triggerOnce: true,
   });
 
@@ -62,23 +62,23 @@ const Tariff: FC = () => {
       className="relative overflow-hidden xl:pt-[100px] pt-[50px] bg-[#f5f5f7]"
       // ref={containerRefElement}
     >
-      <div ref={animRef} />
       <AnimatedComponent
         tag="legend"
         initial={{ opacity: 0, y: 20 }}
         animate={animInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5, delay: 0.1 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
         className="legend-3lvl"
         ref={tabPanelRef}
       >
         Изучите тарифы.
       </AnimatedComponent>
+      <div ref={animRef} />
 
       <Tabs className="Our-Indicators" onSelect={(e) => setActiveTab(e)}>
         <AnimatedComponent
           initial={{ opacity: 0, y: 20 }}
           animate={animInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
         >
           <TabList className="inline-flex p-[5px] rounded-full bg-white">
             {uniqueCategories.map((item) => (
@@ -92,26 +92,31 @@ const Tariff: FC = () => {
           </TabList>
         </AnimatedComponent>
 
-        {uniqueCategories.map((tab, tabIndex) => (
-          <TabPanel
-            className={`w-full overflow-hidden ${tabIndex === activeTab ? "mt-[30px]" : "mt-0"}`}
-            key={tab}
-          >
-            <div className="relative grid md:grid-cols-[repeat(2,minmax(0,354px))] lg:grid-cols-[repeat(3,minmax(0,354px))] justify-center gap-y-14 mx-auto px-5 md:px-0 overflow-x-auto">
-              {tariffFilter?.map((item, index) => (
-                <AnimatedComponent
-                  initial="hidden"
-                  animate={animInView ? "visible" : "hidden"}
-                  variants={anVariantsOpacity}
-                  transition={{ duration: 0.5, delay: index * 0.3 }}
-                  className={cn("relative w-full max-w-[354px]", {
-                    "md:col-span-2 lg:col-span-1 md:mx-auto lg:mx-0":
-                      index === 2,
-                  })}
-                  key={index}
-                >
-                  <>
-                    {/* {headViewIsAccordionOpen && index === 1 && (
+        <AnimatedComponent
+          initial={{ opacity: 0, y: 40 }}
+          animate={animInView ? { opacity: 1, y: 0 } : undefined}
+          transition={{ duration: 0.5, delay: 0.8 }}
+        >
+          {uniqueCategories.map((tab, tabIndex) => (
+            <TabPanel
+              className={`w-full overflow-hidden ${tabIndex === activeTab ? "mt-[30px]" : "mt-0"}`}
+              key={tab}
+            >
+              <div className="relative grid md:grid-cols-[repeat(2,minmax(0,354px))] lg:grid-cols-[repeat(3,minmax(0,354px))] justify-center gap-y-14 mx-auto px-5 md:px-0 overflow-x-auto">
+                {tariffFilter?.map((item, index) => (
+                  <AnimatedComponent
+                    initial="hidden"
+                    animate={animInView ? "visible" : "hidden"}
+                    variants={anVariantsOpacity}
+                    transition={{ duration: 0.5, delay: index * 0.4 }}
+                    className={cn("relative w-full max-w-[354px]", {
+                      "md:col-span-2 lg:col-span-1 md:mx-auto lg:mx-0":
+                        index === 2,
+                    })}
+                    key={index}
+                  >
+                    <>
+                      {/* {headViewIsAccordionOpen && index === 1 && (
                     <div
                       className={cn(
                         "fixed top-0 left-0 w-full bg-[#f5f5f7] text-center px-5 md:px-[100px] mac:px-[440px] z-[2]"
@@ -140,113 +145,114 @@ const Tariff: FC = () => {
                       </div>
                     </div>
                   )} */}
-                  </>
+                    </>
 
-                  <div className="text-center w-full box-border px-2.5">
-                    <div className="w-full max-w-[284px] rounded-2.5xl overflow-hidden h-[500px] mx-auto bg-gray-200">
-                      {item.head.media ? (
-                        <video
-                          className={"object-cover size-full"}
-                          src={`https://storage.googleapis.com/mkit_monster_bucket/Tariff/${item.head.media}`}
-                          loop
-                          autoPlay
-                          muted
-                          controls={false}
-                          playsInline
-                        />
-                      ) : (
-                        <div className="flex size-full justify-center items-center">
-                          <span className="text-center inline-block my-auto text-lg">
-                            Скоро
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                    <legend className="text-black text-xl xl:text-[24px] font-bold mt-4 md:mt-[40px] w-full">
-                      {item.head.title}
-                    </legend>
-                    <p className="text-black text-lg md:text-base my-2 md:my-[16px] w-4/5 mx-auto h-auto md:h-[100px] overflow-y-auto">
-                      {item.head.description}
-                    </p>
-
-                    <p
-                      className="text-black text-lg md:text-base font-semibold"
-                      // ref={
-                      //   tabIndex === activeTab && index === 0
-                      //     ? priceRefElement
-                      //     : null
-                      // }
-                      dangerouslySetInnerHTML={{ __html: item.head.price }}
-                    ></p>
-
-                    <AnimatedComponent
-                      tag="button"
-                      whileHover={{ scale: 1.04, y: -2 }}
-                      className="w-[192px] h-11 p-2 md:p-2.5 bg-[#0071e3] rounded-full text-base justify-center items-center gap-2.5 inline-flex mt-[40px] text-white"
-                    >
-                      Оставить заявку
-                    </AnimatedComponent>
-                  </div>
-
-                  <hr className="border-[#d2d2d7] w-full max-md:hidden my-10" />
-
-                  {item.head.content ? (
-                    <div className="w-full h-10 px-2.5 mb-5">
-                      <div className="pt-2 w-full h-full text-2xl text-center">
-                        {item.head.content}
-                      </div>
-                    </div>
-                  ) : null}
-
-                  <Accordion
-                    className="w-full mt-10 md:mt-0 text-center px-2.5"
-                    transition
-                    transitionTimeout={300}
-                  >
-                    <AccordionItem
-                      header={({ state }) => (
-                        <div
-                          className="relative flex flex-col items-center w-full"
-                          // onClick={() =>
-                          //   handleAccordionStateChange(
-                          //     String(index),
-                          //     !state.isEnter
-                          //   )
-                          // }
-                        >
-                          <Arrow isEnter={state.isEnter} />
-
-                          <div className="pt-6">
-                            <TariffEnd
-                              head={item.footer[0].title}
-                              descriptions={item.footer[0].descriptions}
-                              before={item.footer[0].before}
-                            />
+                    <div className="text-center w-full box-border px-2.5">
+                      <div className="w-full max-w-[284px] rounded-2.5xl overflow-hidden h-[500px] mx-auto bg-gray-200">
+                        {item.head.media ? (
+                          <video
+                            className={"object-cover size-full"}
+                            src={`https://storage.googleapis.com/mkit_monster_bucket/Tariff/${item.head.media}`}
+                            loop
+                            autoPlay
+                            muted
+                            controls={false}
+                            playsInline
+                          />
+                        ) : (
+                          <div className="flex size-full justify-center items-center">
+                            <span className="text-center inline-block my-auto text-lg">
+                              Скоро
+                            </span>
                           </div>
-                        </div>
-                      )}
-                      itemKey={`${index}-${item.tabCategory}`}
-                    >
-                      <div className="flex flex-col justify-evenly gap-10 pt-10">
-                        {item.footer
-                          .slice(1)
-                          ?.map((footer) => (
-                            <TariffEnd
-                              key={footer.descriptions[0]}
-                              head={footer.title}
-                              className={"w-full text-center"}
-                              descriptions={footer.descriptions}
-                              before={footer.before}
-                            />
-                          ))}
+                        )}
                       </div>
-                    </AccordionItem>
-                  </Accordion>
-                </AnimatedComponent>
-              ))}
-            </div>
-          </TabPanel>
-        ))}
+                      <legend className="text-black text-xl xl:text-[24px] font-bold mt-4 md:mt-[40px] w-full">
+                        {item.head.title}
+                      </legend>
+                      <p className="text-black text-lg md:text-base my-2 md:my-[16px] w-4/5 mx-auto h-auto md:h-[100px] overflow-y-auto">
+                        {item.head.description}
+                      </p>
+
+                      <p
+                        className="text-black text-lg md:text-base font-semibold"
+                        // ref={
+                        //   tabIndex === activeTab && index === 0
+                        //     ? priceRefElement
+                        //     : null
+                        // }
+                        dangerouslySetInnerHTML={{ __html: item.head.price }}
+                      ></p>
+
+                      <AnimatedComponent
+                        tag="button"
+                        whileHover={{ scale: 1.04, y: -2 }}
+                        className="w-[192px] h-11 p-2 md:p-2.5 bg-[#0071e3] rounded-full text-base justify-center items-center gap-2.5 inline-flex mt-[40px] text-white"
+                      >
+                        Оставить заявку
+                      </AnimatedComponent>
+                    </div>
+
+                    <hr className="border-[#d2d2d7] w-full max-md:hidden my-10" />
+
+                    {item.head.content ? (
+                      <div className="w-full h-10 px-2.5 mb-5">
+                        <div className="pt-2 w-full h-full text-2xl text-center">
+                          {item.head.content}
+                        </div>
+                      </div>
+                    ) : null}
+
+                    <Accordion
+                      className="w-full mt-10 md:mt-0 text-center px-2.5"
+                      transition
+                      transitionTimeout={300}
+                    >
+                      <AccordionItem
+                        header={({ state }) => (
+                          <div
+                            className="relative flex flex-col items-center w-full"
+                            // onClick={() =>
+                            //   handleAccordionStateChange(
+                            //     String(index),
+                            //     !state.isEnter
+                            //   )
+                            // }
+                          >
+                            <Arrow isEnter={state.isEnter} />
+
+                            <div className="pt-6">
+                              <TariffEnd
+                                head={item.footer[0].title}
+                                descriptions={item.footer[0].descriptions}
+                                before={item.footer[0].before}
+                              />
+                            </div>
+                          </div>
+                        )}
+                        itemKey={`${index}-${item.tabCategory}`}
+                      >
+                        <div className="flex flex-col justify-evenly gap-10 pt-10">
+                          {item.footer
+                            .slice(1)
+                            ?.map((footer) => (
+                              <TariffEnd
+                                key={footer.descriptions[0]}
+                                head={footer.title}
+                                className={"w-full text-center"}
+                                descriptions={footer.descriptions}
+                                before={footer.before}
+                              />
+                            ))}
+                        </div>
+                      </AccordionItem>
+                    </Accordion>
+                  </AnimatedComponent>
+                ))}
+              </div>
+            </TabPanel>
+          ))}
+        </AnimatedComponent>
       </Tabs>
     </Container>
   );

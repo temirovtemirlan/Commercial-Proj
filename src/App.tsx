@@ -53,7 +53,7 @@ const App: FC = () => {
             <AnimatedComponent
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
             >
               <svg
                 width="354"
@@ -110,7 +110,7 @@ const App: FC = () => {
               className="text-black text-2xl grow-1 xl:max-w-[800px] mt-8 md:mt-0 text-balance"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
             >
               <span className="leading-relaxed">
                 MONSTER CORP — ЦИФРОВАЯ ЭКОСИСТЕМА УСЛУГ. <br />

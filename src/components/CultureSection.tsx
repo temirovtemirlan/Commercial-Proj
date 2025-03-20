@@ -9,7 +9,10 @@ const animationVariants = {
 };
 
 const CultureSection: FC = () => {
-  const [ref, inView] = useInView({ threshold: 0.4, triggerOnce: true });
+  const [ref, inView] = useInView({
+    threshold: 0.6,
+    triggerOnce: true,
+  });
 
   return (
     <Container className="xl:py-[200px] py-[100px] overflow-hidden bg-[#f5f5f7]">

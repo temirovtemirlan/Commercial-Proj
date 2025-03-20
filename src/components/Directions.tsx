@@ -99,11 +99,6 @@ const directionsData = [
   },
 ];
 
-const animationVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0 },
-};
-
 const Directions: FC = () => {
   const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
 
@@ -142,20 +137,7 @@ const Directions: FC = () => {
         >
           {directionsData?.map((item, index) => (
             <SwiperSlide key={index}>
-              {!inView || index >= 2 ? (
-                <div>
-                  <DirectionsItems item={item} />
-                </div>
-              ) : (
-                <AnimatedComponent
-                  initial="hidden"
-                  animate={inView && index < 2 ? "visible" : "hidden"} // Анимация только для первых 4 элементов и если inView true
-                  variants={animationVariants}
-                  transition={{ duration: 0.5, delay: index * 0.2 }} // Задержка для анимации
-                >
-                  <DirectionsItems item={item} />
-                </AnimatedComponent>
-              )}
+              <DirectionsItems item={item} />
             </SwiperSlide>
           ))}
 
