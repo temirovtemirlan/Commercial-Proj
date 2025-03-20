@@ -1,12 +1,12 @@
 import { useMemo, useRef, useState, type FC } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { useInView } from "react-intersection-observer";
-import Container from "./Container";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import IndicatorsLoading from "common/IndicatorsLoading";
 import LazyLoadLayout from "./LazyLoadLayout";
+import Container from "./Container";
 import { indicatorsAppsLogo, indicatorsLoading } from "data/index";
 import { cn } from "helpers/style";
 import type { directionType } from "fusion/type";
@@ -14,7 +14,7 @@ import type { directionType } from "fusion/type";
 const OurIndicators: FC = () => {
   const [tappad, setTaped] = useState<directionType>("CG");
   const [showAll, setShowAll] = useState(false);
-  const [ref, inView] = useInView({ triggerOnce: true });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.4 });
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const indicatorsData = useMemo(() => {
@@ -144,15 +144,16 @@ const OurIndicators: FC = () => {
             className={`w-full xl:px-[100px] flex flex-col gap-10 ${item === tappad ? "mt-10" : "mt-0"}`}
             key={tabIndex}
           >
-            {indicatorsData?.map((el, index) => (
-              <IndicatorsLoading
-                key={index}
-                title={el.title}
-                percent={el.end}
-                gradientClassName={el.gradientClass}
-                inView={inView}
-              />
-            ))}
+            {inView &&
+              indicatorsData?.map((el, index) => (
+                <IndicatorsLoading
+                  key={index}
+                  title={el.title}
+                  percent={el.end}
+                  gradientClassName={el.gradientClass}
+                  inView={inView}
+                />
+              ))}
           </TabPanel>
         ))}
       </Tabs>

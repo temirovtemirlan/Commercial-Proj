@@ -12,13 +12,13 @@ interface IClockProps {
 const analogClockProps = {
   whiteNumbers: true,
   customBg: emptyPicture,
-  backgroundColor: "#1c1c1c",
-  borderColor: "#999999",
+  backgroundColor: "#161617",
+  borderColor: "#333333",
   handBaseColor: "white",
   handColor: {
     hour: "white",
     minute: "white",
-    second: "tomato",
+    second: "red",
   },
   handLength: { hour: "20px", minute: "40px", second: "40px" },
   size: "116px",

@@ -12,13 +12,14 @@ export default {
     },
     extend: {
       screens: {
-        mac: "1920.98px",
-        ss: "526px",
-        xs: "426px", // extra size
         ms: "320px",
+        xs: "426px",
+        ss: "526px",
+        "2md": "840px",
         lg: "1025px",
-        "2xl": "1537px",
         lxl: "1440px",
+        "2xl": "1537px",
+        mac: "1920.98px",
       },
       colors: {
         "blue-1000": "#0171E3",

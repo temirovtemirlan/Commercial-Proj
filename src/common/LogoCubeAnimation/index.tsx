@@ -1,6 +1,8 @@
 import type { FC } from "react";
 import { divideArray } from "helpers/array";
 import CompanyLogoCubeAnimation from "./CubeAnimationSwiper";
+import { AnimatedComponent } from "common/ui/animatedComponent";
+import { useInView } from "react-intersection-observer";
 
 const companyLogo = [
   "https://storage.googleapis.com/mkit_monster_bucket/Logo/DODO.png",
@@ -30,39 +32,61 @@ const companyLogo = [
 ];
 
 const LogoCubeAnimation: FC = () => {
+  const [ref, inView] = useInView({ threshold: 0.6, triggerOnce: true });
   const dataOne = divideArray(divideArray(companyLogo, 2)[0], 6);
   const dataTwo = divideArray(divideArray(companyLogo, 2)[1], 6);
 
   return (
-    <div>
+    <div ref={ref}>
       <div className="flex justify-between w-full mb-[150px] md:flex-row flex-col gap-6">
-        <legend className="legend-3lvl text-white text-left">
+        <AnimatedComponent
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 20 } : undefined}
+          transition={{ duration: 0.4, delay: 0.1 }}
+          tag="legend"
+          className="legend-3lvl text-white text-left"
+        >
           Наши клиенты
-        </legend>
+        </AnimatedComponent>
 
-        <div className="justify-start text-white text-left text-[32px] font-semibold translate-y-3.5 text-balance">
+        <AnimatedComponent
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : undefined}
+          transition={{ duration: 0.6 }}
+          className="justify-start text-white text-left text-[32px] font-semibold translate-y-3.5 text-balance"
+        >
           Мы гордимся работой с компаниями, <br /> которые задают правила игры
           на своих рынках.
-        </div>
+        </AnimatedComponent>
       </div>
 
-      <div className="flex flex-wrap ss:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-24 gap-x-6 w-full h-full">
+      <AnimatedComponent
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : undefined}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="flex flex-wrap ss:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-24 gap-x-6 w-full h-full"
+      >
         <CompanyLogoCubeAnimation images={dataOne[0]} delayInterval={5000} />
         <CompanyLogoCubeAnimation images={dataOne[1]} delayInterval={4500} />
         <CompanyLogoCubeAnimation images={dataOne[2]} delayInterval={7500} />
         <CompanyLogoCubeAnimation images={dataOne[3]} delayInterval={6000} />
         <CompanyLogoCubeAnimation images={dataOne[4]} delayInterval={7000} />
         <CompanyLogoCubeAnimation images={dataOne[5]} delayInterval={6500} />
-      </div>
+      </AnimatedComponent>
 
-      <div className="flex flex-wrap ss:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-24 gap-x-6 w-full h-full mt-20">
+      <AnimatedComponent
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : undefined}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="flex flex-wrap ss:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-24 gap-x-6 w-full h-full mt-20"
+      >
         <CompanyLogoCubeAnimation images={dataTwo[0]} delayInterval={7500} />
         <CompanyLogoCubeAnimation images={dataTwo[1]} delayInterval={8000} />
         <CompanyLogoCubeAnimation images={dataTwo[2]} delayInterval={5000} />
         <CompanyLogoCubeAnimation images={dataTwo[3]} delayInterval={9500} />
         <CompanyLogoCubeAnimation images={dataTwo[4]} delayInterval={8500} />
         <CompanyLogoCubeAnimation images={dataTwo[5]} delayInterval={9500} />
-      </div>
+      </AnimatedComponent>
     </div>
   );
 };

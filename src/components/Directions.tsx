@@ -1,10 +1,11 @@
-import { FC } from "react";
+import type { FC } from "react";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import DirectionsItems from "components/DirectionsItems";
+import { useInView } from "react-intersection-observer";
 import "swiper/css";
 import "swiper/css/navigation";
-// import { divideArray } from "helpers/array.ts";
+import DirectionsItems from "components/DirectionsItems";
+import { AnimatedComponent } from "common/ui/animatedComponent";
 
 const directionsData = [
   {
@@ -98,23 +99,33 @@ const directionsData = [
   },
 ];
 
+const animationVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0 },
+};
+
 const Directions: FC = () => {
+  const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
+
   return (
-    <div className={"Our-Directions"}>
-      <legend className="legend-3lvl text-white mb-10 md:mb-20 ml-5 lg:ml-[25%]">
+    <div className={"Our-Directions"} ref={ref}>
+      <AnimatedComponent
+        tag="legend"
+        className="legend-3lvl text-white mb-10 md:mb-20 ml-5 lg:ml-[25%]"
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : undefined}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
         Наши направления
-      </legend>
+      </AnimatedComponent>
 
       <div className="w-full max-w-[3000px] mx-auto relative">
-        {" "}
-        {/* Container with max-width */}
         <Swiper
           onSwiper={() => {}}
           className="px-5 relative"
           modules={[Pagination, Navigation]}
           speed={500}
           spaceBetween={30} // Расстояние между слайдами
-          // slidesPerView={1}
           centeredSlides
           breakpoints={{
             1081: { cssMode: true, slidesPerView: 1.5 },
@@ -131,16 +142,24 @@ const Directions: FC = () => {
         >
           {directionsData?.map((item, index) => (
             <SwiperSlide key={index}>
-              <DirectionsItems item={item} />
+              {!inView || index >= 2 ? (
+                <div>
+                  <DirectionsItems item={item} />
+                </div>
+              ) : (
+                <AnimatedComponent
+                  initial="hidden"
+                  animate={inView && index < 2 ? "visible" : "hidden"} // Анимация только для первых 4 элементов и если inView true
+                  variants={animationVariants}
+                  transition={{ duration: 0.5, delay: index * 0.2 }} // Задержка для анимации
+                >
+                  <DirectionsItems item={item} />
+                </AnimatedComponent>
+              )}
             </SwiperSlide>
           ))}
 
-          <div
-            className={
-              "w-full max-w-[1080px] mx-auto flex gap-5 justify-end mt-5"
-              // "w-full h-full pointer-events-none max-w-[1240px] flex justify-between gap-5 mt-[40px] *:cursor-pointer *:select-none mx-auto absolute top-0 z-50 left-1/2 transform -translate-x-1/2"
-            }
-          >
+          <div className="w-full max-w-[1080px] mx-auto flex gap-5 justify-end mt-5">
             <button className={"nextButton393919"}>
               <svg
                 width="36"

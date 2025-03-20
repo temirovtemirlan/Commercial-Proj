@@ -1,36 +1,27 @@
 import { useMemo, useRef, useState, type FC } from "react";
 import { Accordion, AccordionItem } from "@szhsin/react-accordion";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
-// import { useInView } from "react-intersection-observer";
-// import { useMediaQuery } from "usehooks-ts";
+import { useInView } from "react-intersection-observer";
 
 import { TariffEnd } from "./TariffBlock";
 import Container from "./Container";
+import { AnimatedComponent } from "common/ui/animatedComponent";
 import { tariffData } from "data/index";
+import { cn } from "helpers/style";
+
+const anVariantsOpacity = { hidden: { opacity: 0 }, visible: { opacity: 1 } };
 
 const Tariff: FC = () => {
+  const [animRef, animInView] = useInView({
+    threshold: 0.4,
+    triggerOnce: true,
+  });
+
   const [activeTab, setActiveTab] = useState(0);
   // const [openAccordionKeys, setOpenAccordionKeys] = useState<string[]>([]);
   // const [headViewIsAccordionOpen, setHeadViewIsAccordionOpen] = useState(false);
   // const [priceRefElement, priceInView] = useInView({ threshold: 0 });
-  const descriptionRef = useRef<HTMLParagraphElement | null>(null);
-  // const tabPanelRef = useRef<HTMLLegendElement | null>(null);
-  // const [setDescHeight] = useState<number | null>(null);
-  // const [tabPanelWidth, setTabPanelWidth] = useState<number | null>(null);
-  // const matches = useMediaQuery('(min-width: 768px)')
-
-  // const { ref, inView } = useInView({
-  //   triggerOnce: false, // будет срабатывать каждый раз, когда элемент входит в видимость
-  //   threshold: 0.5, // элемент считается видимым, когда 50% его площади на экране
-  // });
-  // const [visibleIndex, setVisibleIndex] = useState<number | null>(null);
-
-  // useEffect(() => {
-  //   if (inView) {
-  //     // Записываем индекс элемента, когда он становится видимым
-  //     console.log("Текущий видимый index:", visibleIndex);
-  //   }
-  // }, [inView, visibleIndex]);
+  const tabPanelRef = useRef<HTMLLegendElement | null>(null);
 
   // const [containerRefElement, tariffContainerInView] = useInView({
   //   threshold: 0,
@@ -42,9 +33,7 @@ const Tariff: FC = () => {
   );
 
   // prettier-ignore
-  const tariffFilter = useMemo(() => {
-    return tariffData.filter((item) => item.tabCategory === uniqueCategories[activeTab]);
-  }, [activeTab]);
+  const tariffFilter = useMemo(() => { return tariffData.filter((item) => item.tabCategory === uniqueCategories[activeTab])}, [activeTab]);
 
   // const handleAccordionStateChange = (itemKey: string, isExpanded: boolean) => {
   //   setOpenAccordionKeys((prev) => {
@@ -54,18 +43,6 @@ const Tariff: FC = () => {
   //     return updatedKeys;
   //   });
   // };
-
-  // useEffect(() => {
-  //   if (descriptionRef.current) {
-  //     setDescHeight(descriptionRef.current.offsetHeight);
-  //   }
-  // }, [descriptionRef.current]);
-
-  // useEffect(() => {
-  //   if (tabPanelRef.current) {
-  //     setTabPanelWidth(tabPanelRef.current.offsetWidth);
-  //   }
-  // }, [tabPanelRef.current]);
 
   // useEffect(() => {
   //   if (!tariffContainerInView) {
@@ -85,64 +62,86 @@ const Tariff: FC = () => {
       className="relative overflow-hidden xl:pt-[100px] pt-[50px] bg-[#f5f5f7]"
       // ref={containerRefElement}
     >
-      <legend
+      <div ref={animRef} />
+      <AnimatedComponent
+        tag="legend"
+        initial={{ opacity: 0, y: 20 }}
+        animate={animInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.5, delay: 0.1 }}
         className="legend-3lvl"
-        //  ref={tabPanelRef}
+        ref={tabPanelRef}
       >
         Изучите тарифы.
-      </legend>
+      </AnimatedComponent>
 
       <Tabs className="Our-Indicators" onSelect={(e) => setActiveTab(e)}>
-        <TabList className="inline-flex p-[5px] rounded-full bg-white">
-          {uniqueCategories.map((item) => (
-            <Tab
-              className="tab__delivery_panels whitespace-nowrap px-6 py-2.5"
-              key={item}
-            >
-              {item}
-            </Tab>
-          ))}
-        </TabList>
+        <AnimatedComponent
+          initial={{ opacity: 0, y: 20 }}
+          animate={animInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <TabList className="inline-flex p-[5px] rounded-full bg-white">
+            {uniqueCategories.map((item) => (
+              <Tab
+                className="tab__delivery_panels whitespace-nowrap px-6 py-2.5"
+                key={item}
+              >
+                {item}
+              </Tab>
+            ))}
+          </TabList>
+        </AnimatedComponent>
 
         {uniqueCategories.map((tab, tabIndex) => (
           <TabPanel
             className={`w-full overflow-hidden ${tabIndex === activeTab ? "mt-[30px]" : "mt-0"}`}
             key={tab}
           >
-            <div className="relative flex gap-y-14 mx-auto justify-center flex-wrap md:flex-nowrap px-5 overflow-x-auto">
-              {/* {headViewIsAccordionOpen && (
-                <div
-                  className="fixed top-0 left-0 w-full bg-[#f5f5f7] text-center px-5 md:px-[100px] mac:px-[440px] z-[2]"
-                  style={{
-                    borderBottom: "1px solid #d2d2d7",
-                    // maxWidth: `${tabPanelWidth}px`,
-                  }}
-                >
-                  <div
-                    className="md:flex text-center hidden w-full mx-auto py-8 justify-center"
-                    style={{
-                      gridTemplateColumns: `repeat(${tariffFilter?.length}, minmax(240px, 1fr))`,
-                    }}
-                  >
-                    {tariffFilter.map((item) => (
-                      <div
-                        className="w-full max-w-[354px] px-2.5"
-                        key={item.head.title}
-                      >
-                        <legend className="text-black text-xl xl:text-[24px] font-bold">
-                          {item.head.title}
-                        </legend>
-                        <p className="text-black text-xs md:text-sm w-4/5 mx-auto mt-4">
-                          {item.head.description}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )} */}
-
+            <div className="relative grid md:grid-cols-[repeat(2,minmax(0,354px))] lg:grid-cols-[repeat(3,minmax(0,354px))] justify-center gap-y-14 mx-auto px-5 md:px-0 overflow-x-auto">
               {tariffFilter?.map((item, index) => (
-                <div className="relative w-full max-w-[354px]" key={index}>
+                <AnimatedComponent
+                  initial="hidden"
+                  animate={animInView ? "visible" : "hidden"}
+                  variants={anVariantsOpacity}
+                  transition={{ duration: 0.5, delay: index * 0.3 }}
+                  className={cn("relative w-full max-w-[354px]", {
+                    "md:col-span-2 lg:col-span-1 md:mx-auto lg:mx-0":
+                      index === 2,
+                  })}
+                  key={index}
+                >
+                  <>
+                    {/* {headViewIsAccordionOpen && index === 1 && (
+                    <div
+                      className={cn(
+                        "fixed top-0 left-0 w-full bg-[#f5f5f7] text-center px-5 md:px-[100px] mac:px-[440px] z-[2]"
+                      )}
+                      style={{
+                        borderBottom: "1px solid #d2d2d7",
+                      }}
+                    >
+                      <div className="grid md:grid-cols-[repeat(2,minmax(0,354px))] lg:grid-cols-[repeat(3,minmax(0,354px))] text-center w-full justify-center mx-auto py-8">
+                        {tariffFilter.map((item, headIndex) => (
+                          <div
+                            className={cn("w-full max-w-[354px] px-2.5", {
+                              "md:col-span-2 lg:col-span-1 md:mx-auto lg:mx-0":
+                                headIndex === 2,
+                            })}
+                            key={item.head.title}
+                          >
+                            <legend className="text-black text-xl xl:text-[24px] font-bold">
+                              {item.head.title}
+                            </legend>
+                            <p className="text-black text-xs md:text-sm w-4/5 mx-auto mt-4">
+                              {item.head.description}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )} */}
+                  </>
+
                   <div className="text-center w-full box-border px-2.5">
                     <div className="w-full max-w-[284px] rounded-2.5xl overflow-hidden h-[500px] mx-auto bg-gray-200">
                       {item.head.media ? (
@@ -166,16 +165,7 @@ const Tariff: FC = () => {
                     <legend className="text-black text-xl xl:text-[24px] font-bold mt-4 md:mt-[40px] w-full">
                       {item.head.title}
                     </legend>
-                    <p
-                      className="text-black text-lg md:text-base my-2 md:my-[16px] w-4/5 mx-auto h-auto md:h-[100px] overflow-y-auto"
-                      ref={descriptionRef}
-                      // style={{
-                      //   height:
-                      //   descHeight !== null
-                      //     ? { height: `${descHeight}px` }
-                      //     : undefined
-                      // }}
-                    >
+                    <p className="text-black text-lg md:text-base my-2 md:my-[16px] w-4/5 mx-auto h-auto md:h-[100px] overflow-y-auto">
                       {item.head.description}
                     </p>
 
@@ -189,9 +179,13 @@ const Tariff: FC = () => {
                       dangerouslySetInnerHTML={{ __html: item.head.price }}
                     ></p>
 
-                    <button className="w-[192px] h-11 p-2 md:p-2.5 bg-[#0071e3] rounded-full text-base justify-center items-center gap-2.5 inline-flex mt-[40px] text-white">
+                    <AnimatedComponent
+                      tag="button"
+                      whileHover={{ scale: 1.04, y: -2 }}
+                      className="w-[192px] h-11 p-2 md:p-2.5 bg-[#0071e3] rounded-full text-base justify-center items-center gap-2.5 inline-flex mt-[40px] text-white"
+                    >
                       Оставить заявку
-                    </button>
+                    </AnimatedComponent>
                   </div>
 
                   <hr className="border-[#d2d2d7] w-full max-md:hidden my-10" />
@@ -215,7 +209,7 @@ const Tariff: FC = () => {
                           className="relative flex flex-col items-center w-full"
                           // onClick={() =>
                           //   handleAccordionStateChange(
-                          //     `${index}-${item.tabCategory}`,
+                          //     String(index),
                           //     !state.isEnter
                           //   )
                           // }
@@ -248,7 +242,7 @@ const Tariff: FC = () => {
                       </div>
                     </AccordionItem>
                   </Accordion>
-                </div>
+                </AnimatedComponent>
               ))}
             </div>
           </TabPanel>
