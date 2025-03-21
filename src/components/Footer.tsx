@@ -86,7 +86,7 @@ const Footer: FC<FooterProps> = ({ className }) => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 xl:grid-cols-6 gap-x-[65px] gap-y-4 mt-6 xl:mt-0">
+        <div className="grid md:grid-cols-3 xl:grid-cols-6 gap-x-[65px] gap-y-4 mt-6 xl:mt-0 select-none">
           {clockData?.map((item, index) => (
             <div key={index} className="text-center">
               <Clock key={index} timeZone={item.timeZone} />

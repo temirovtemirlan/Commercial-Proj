@@ -22,7 +22,7 @@ const directionsData = [
     descTwo:
       "Мы не делаем рекламу. Мы создаем реальность, в которой бренды становятся незаменимыми.",
     video:
-      "https://storage.googleapis.com/mkit_monster_bucket/Video/DIRECTION/MONSTER_MARKETING_2.mp4",
+      "https://storage.googleapis.com/mkit_monster_bucket/Video/DIRECTION/MONSTER_MARKETING_2.webm",
   },
   {
     title: "Monster Design & Branding",
@@ -37,7 +37,7 @@ const directionsData = [
     ],
     descTwo: "Когда ваш бренд имеет голос, он звучит громче конкурентов.",
     video:
-      "https://storage.googleapis.com/mkit_monster_bucket/Video/DIRECTION/MONSTER_BRANDING.mp4",
+      "https://storage.googleapis.com/mkit_monster_bucket/Video/DIRECTION/MONSTER_BRANDING.webm",
   },
   {
     title: "Soul Media",
@@ -52,7 +52,7 @@ const directionsData = [
     descTwo:
       "Контент, который не просто рассказывает, а заставляет чувствовать.",
     video:
-      "https://storage.googleapis.com/mkit_monster_bucket/Video/DIRECTION/SOUL_MEDIA.mp4",
+      "https://storage.googleapis.com/mkit_monster_bucket/Video/DIRECTION/SOUL_MEDIA.webm",
   },
   {
     title: "Monster CGI/VFX",
@@ -67,7 +67,7 @@ const directionsData = [
     ],
     descTwo: "Когда технология становится искусством, создаются легенды.",
     video:
-      "https://storage.googleapis.com/mkit_monster_bucket/Video/DIRECTION/MONSTER_CG.mp4",
+      "https://storage.googleapis.com/mkit_monster_bucket/Video/DIRECTION/MONSTER_CG.webm",
   },
   {
     title: "Monster AI Marketing",
@@ -81,7 +81,7 @@ const directionsData = [
     descTwo:
       "Будущее маркетинга — это гиперточность. Мы помогаем вам говорить с клиентами на их языке.",
     video:
-      "https://storage.googleapis.com/mkit_monster_bucket/Video/DIRECTION/MONSTER_AI.mp4",
+      "https://storage.googleapis.com/mkit_monster_bucket/Video/DIRECTION/MONSTER_AI.webm",
   },
   {
     title: "Monster DEVZ",
@@ -95,7 +95,7 @@ const directionsData = [
     descTwo:
       "Технологии должны работать на ваш успех. Мы знаем, как это сделать.",
     video:
-      "https://storage.googleapis.com/mkit_monster_bucket/Video/DIRECTION/MONSTER_DEVZ_2.mp4",
+      "https://storage.googleapis.com/mkit_monster_bucket/Video/DIRECTION/MONSTER_DEVZ_2.webm",
   },
 ];
 

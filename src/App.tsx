@@ -19,6 +19,7 @@ import OurIndicators from "components/OurIndicators";
 import FloatingActionButtons from "components/FloatingActionButtons";
 import { AnimatedComponent } from "common/ui/animatedComponent";
 import { cn } from "helpers/style";
+import VideoPlayerHLS from "components/VideoPlayerHLS.tsx";
 
 interface HeaderProps {
   title: string;
@@ -125,17 +126,24 @@ const App: FC = () => {
 
         {/* Showreel */}
         <div className="text-center">
-          <Tabs className="Monstr-Showreel">
+          <Tabs defaultIndex={1} className="Monstr-Showreel">
             <TabPanel className="mac:min-h-[1000px]">
               <LazyVideoFrame
-                videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/CG/CG_REEL_HORIZONTAL_2.mp4"
+                src={[
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/CG_REEL_HORIZONTAL_2.mp4",
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/CG_REEL_HORIZONTAL_2.webm",
+                ]}
+                // videoSrcWebm="https://storage.googleapis.com/mkit_monster_bucket/Video/CG/CG_REEL_HORIZONTAL_2.webm"
                 posterSrc={""}
                 isFullScreen
               />
             </TabPanel>
             <TabPanel>
               <LazyVideoFrame
-                videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/AI/AI_REEL_HORIZONTAL_NEW.mp4"
+                src={[
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/AI_REEL_HORIZONTAL_NEW.mp4",
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/AI_REEL_HORIZONTAL_NEW.webm",
+                ]}
                 posterSrc={""}
                 isFullScreen
               />
@@ -156,6 +164,29 @@ const App: FC = () => {
               </TabList>
             </motion.div>
           </Tabs>
+        </div>
+
+        <div className={"flex"}>
+          <div className={"w-1/2"}>
+            <VideoPlayerHLS
+              autoPlay
+              // muted
+              controls={true}
+              src={
+                "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/coca_cola_ai/COCA_COLA_AI_COMMERCIAL.m3u8"
+              }
+            />
+          </div>
+
+          <div className={"w-1/2"}>
+            <video
+              autoPlay
+              loop
+              // muted
+              controls={true}
+              src="https://storage.googleapis.com/mkit_monster_bucket/Video/AI/COCA_COLA_AI_COMMERCIAL.mp4"
+            ></video>
+          </div>
         </div>
 
         <Container className="bg-[#f5f5f7] xl:pt-[100px] pt-[50px] text-center">
@@ -213,6 +244,10 @@ const App: FC = () => {
               src="https://storage.googleapis.com/mkit_monster_bucket/Video/MKIT/IMAC_V4.mp4"
               type="video/mp4"
             />
+            <source
+              src="https://storage.googleapis.com/mkit_monster_bucket/Video/MKIT/Video_MKIT_IMAC_V4.webm"
+              type="video/webm"
+            />
           </video>
 
           {/* <div
@@ -240,7 +275,10 @@ const App: FC = () => {
             transition={{ duration: 0.5 }}
           >
             <LazyVideoFrame
-              videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/AI/COCA_COLA_AI_COMMERCIAL.mp4"
+              src={[
+                "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/COCA_COLA_AI_COMMERCIAL.mp4",
+                "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/COCA_COLA_AI_COMMERCIAL.webm",
+              ]}
               posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/COLA_H.webp"
               coreClassName="h-[400px] lg:h-auto"
               className="rounded-[28px] overflow-hidden h-full lg:h-auto"
@@ -262,7 +300,11 @@ const App: FC = () => {
               <LazyVideoFrame
                 coreClassName="h-full w-full rounded-[28px] overflow-hidden h-[700px] md:h-[900px] lg:h-[518px]"
                 className="h-full"
-                videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/AI/BAKAI_GPT_REMAKE.mov"
+                src={[
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/BAKAI_GPT_REMAKE.mov",
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/BAKAI_GPT_REMAKE.webm",
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/BAKAI_GPT_REMAKE.mp4",
+                ]}
                 posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/BAKAI_H.webp"
               />
             </AnimatedComponent>
@@ -276,7 +318,10 @@ const App: FC = () => {
               <LazyVideoFrame
                 coreClassName="h-full w-full bg-[#f5f5f7] rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
                 className="h-full"
-                videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/CG/INTERSPORT.mp4"
+                src={[
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/INTERSPORT.mp4",
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/INTERSPORT.webm",
+                ]}
                 posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/INTERSPORT_H.webp"
               />
             </AnimatedComponent>
@@ -289,7 +334,10 @@ const App: FC = () => {
             <LazyVideoFrame
               coreClassName="mt-5 rounded-[28px] h-[full] md:h-[900px] lg:h-auto overflow-hidden"
               className="h-full"
-              videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/AI/organic_juice_commercial%20(1080p).mp4"
+              src={[
+                "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/organic_juice_commercial%20(1080p).mp4",
+                "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/organic_juice_commercial%20(1080p).webm",
+              ]}
               posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/ORGANIC_2_H.webp"
             />
           </AnimatedComponent>
@@ -306,7 +354,10 @@ const App: FC = () => {
               <LazyVideoFrame
                 coreClassName="h-full w-full rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
                 className="h-full"
-                videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/AI/BMW_M5.mp4"
+                src={[
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/BMW_M5.mp4",
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/BMW_M5.webm",
+                ]}
                 posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/BMW_H.webp"
               />
             </AnimatedComponent>
@@ -318,7 +369,10 @@ const App: FC = () => {
               transition={{ duration: 0.5, delay: 0.4 }}
             >
               <LazyVideoFrame
-                videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/CG/3D_JOY_COMMERCIAL.mp4"
+                src={[
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/3D_JOY_COMMERCIAL.mp4",
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/3D_JOY_COMMERCIAL.webm",
+                ]}
                 posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/JOY_COMMERCIAL_H.webp"
                 coreClassName="h-full w-full bg-[#f5f5f7] rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
                 className="h-full object-cover"
@@ -334,7 +388,10 @@ const App: FC = () => {
             <LazyVideoFrame
               className="h-full"
               coreClassName="h-[400px] lg:h-auto rounded-[28px] overflow-hidden"
-              videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/PRODUCTION/ENESAI_IMIDGE_WEB.mp4"
+              src={[
+                "https://storage.googleapis.com/mkit_monster_bucket/Video/PRODUCTION/ENESAI_IMIDGE_WEB.mp4",
+                "https://storage.googleapis.com/mkit_monster_bucket/Video/PRODUCTION/ENESAI_IMIDGE_WEB.webm",
+              ]}
               posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/ENESAI.webp"
             />
           </AnimatedComponent>

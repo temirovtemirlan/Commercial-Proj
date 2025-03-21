@@ -21,6 +21,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
+    "hls.js": "^1.5.20",
     "lucide-react": "^0.440.0",
     "motion": "^12.4.11",
     "react": "^18.3.1",

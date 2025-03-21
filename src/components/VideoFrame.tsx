@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRef, useState, useEffect, type FC } from "react";
 import { cn } from "helpers/style";
+import { getVideoType } from "helpers/getTypeVideo.ts";
 
 // Глобальная ссылка на текущее воспроизводимое видео
 let activeVideoRef: HTMLVideoElement | null = null;
 
 export interface VideoFrameProps {
-  videoSrc: string;
+  src: string[] | string;
   posterSrc?: string;
   width?: string | number;
   height?: string | number;
@@ -16,7 +17,7 @@ export interface VideoFrameProps {
 }
 
 const VideoFrame: FC<VideoFrameProps> = ({
-  videoSrc,
+  src,
   posterSrc,
   width = "100%",
   height = "auto",
@@ -83,7 +84,6 @@ const VideoFrame: FC<VideoFrameProps> = ({
     <div className={cn("relative", className)}>
       <video
         ref={videoRef}
-        src={videoSrc}
         poster={posterSrc}
         controls={false}
         title={title}
@@ -92,7 +92,21 @@ const VideoFrame: FC<VideoFrameProps> = ({
         height={height}
         playsInline
         preload="none"
-      />
+      >
+        {typeof src === "string" ? (
+          <source src={src.trim()} type={getVideoType(src)} />
+        ) : (
+          src.map((el, index) => (
+            <source
+              key={index}
+              src={el.trim()}
+              type={getVideoType(el.trim())}
+            />
+          ))
+        )}
+        {/*<source src={src} type="video/mp4" />*/}
+        {/*{videoSrcWebm && <source src={videoSrcWebm} type="video/webm" />}*/}
+      </video>
       <div className="absolute inset-0 w-full" onClick={togglePlay} />
       <button className="absolute bottom-5 right-5" onClick={togglePlay}>
         {isPlaying ? pauseIcon : playIcon}

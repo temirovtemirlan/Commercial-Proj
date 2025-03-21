@@ -16,14 +16,17 @@ const LazyVideoFrame: FC<IProps> = (props) => {
     threshold: 0.5, // Срабатывает, когда видео видно на 50%
   });
 
-  const [isLoaded, setIsLoaded] = useState(loadedVideos.has(props.videoSrc));
+  const [isLoaded, setIsLoaded] = useState(
+    loadedVideos.has(Array.isArray(props.src) ? props.src[0] : props.src)
+  );
 
   useEffect(() => {
+    const src = Array.isArray(props.src) ? props.src[0] : props.src;
     if (inView && !isLoaded) {
-      loadedVideos.add(props.videoSrc); // Добавляем видео в кэш
+      loadedVideos.add(src); // Добавляем видео в кэш
       setIsLoaded(true);
     }
-  }, [inView, isLoaded, props.videoSrc]);
+  }, [inView, isLoaded, props.src]);
 
   return (
     <div className={cn("h-full", props.coreClassName)} ref={ref}>
