@@ -2,6 +2,7 @@ import { useMemo, useRef, useState, type FC } from "react";
 import { Accordion, AccordionItem } from "@szhsin/react-accordion";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 import { useInView } from "react-intersection-observer";
+import { CustomScroll } from "react-custom-scroll";
 
 import { TariffEnd } from "./TariffBlock";
 import Container from "./Container";
@@ -9,7 +10,10 @@ import { AnimatedComponent } from "common/ui/animatedComponent";
 import { tariffData } from "data/index";
 import { cn } from "helpers/style";
 
-const anVariantsOpacity = { hidden: { opacity: 0 }, visible: { opacity: 1 } };
+const anVariantsOpacity = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
 
 const Tariff: FC = () => {
   const [animRef, animInView] = useInView({
@@ -102,7 +106,7 @@ const Tariff: FC = () => {
               className={`w-full overflow-hidden ${tabIndex === activeTab ? "mt-[30px]" : "mt-0"}`}
               key={tab}
             >
-              <div className="relative grid md:grid-cols-[repeat(2,minmax(0,354px))] lg:grid-cols-[repeat(3,minmax(0,354px))] justify-center gap-y-14 mx-auto px-5 md:px-0 overflow-x-auto">
+              <div className="relative grid md:grid-cols-[repeat(2,minmax(0,354px))] lg:grid-cols-[repeat(3,minmax(0,354px))] justify-center gap-y-14 mx-auto px-5 md:px-0 overflow-hidden overflow-x-auto">
                 {tariffFilter?.map((item, index) => (
                   <AnimatedComponent
                     initial="hidden"
@@ -148,31 +152,36 @@ const Tariff: FC = () => {
                     </>
 
                     <div className="text-center w-full box-border px-2.5">
-                      <div className="w-full max-w-[284px] rounded-2.5xl overflow-hidden h-[500px] mx-auto bg-gray-200">
-                        {item.head.media ? (
-                          <video
-                            className={"object-cover size-full"}
-                            src={`https://storage.googleapis.com/mkit_monster_bucket/Tariff/${item.head.media}`}
-                            loop
-                            autoPlay
-                            muted
-                            controls={false}
-                            playsInline
-                          />
-                        ) : (
-                          <div className="flex size-full justify-center items-center">
-                            <span className="text-center inline-block my-auto text-lg">
-                              Скоро
-                            </span>
-                          </div>
-                        )}
+                      <>
+                        <div className="w-full max-w-[284px] rounded-2.5xl overflow-hidden h-[500px] mx-auto bg-gray-200">
+                          {item.head.media ? (
+                            <video
+                              className={"object-cover size-full"}
+                              src={`https://storage.googleapis.com/mkit_monster_bucket/Tariff/${item.head.media}`}
+                              loop
+                              autoPlay
+                              muted
+                              controls={false}
+                              playsInline
+                            />
+                          ) : (
+                            <div className="flex size-full justify-center items-center">
+                              <span className="text-center inline-block my-auto text-lg">
+                                Скоро
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                        <legend className="text-black text-xl xl:text-[24px] font-bold mt-4 md:mt-[40px] w-full">
+                          {item.head.title}
+                        </legend>
+                      </>
+
+                      <div className="text-black text-lg md:text-base my-2 md:my-[16px] w-4/5 mx-auto h-auto md:h-[100px] overflow-y-auto tariff-custom_scroll_description">
+                        <CustomScroll heightRelativeToParent="100%">
+                          {item.head.description}
+                        </CustomScroll>
                       </div>
-                      <legend className="text-black text-xl xl:text-[24px] font-bold mt-4 md:mt-[40px] w-full">
-                        {item.head.title}
-                      </legend>
-                      <p className="text-black text-lg md:text-base my-2 md:my-[16px] w-4/5 mx-auto h-auto md:h-[100px] overflow-y-auto">
-                        {item.head.description}
-                      </p>
 
                       <p
                         className="text-black text-lg md:text-base font-semibold"

@@ -70,7 +70,11 @@ const TariffEnd: FC<ITariffEnd> = ({
         className="text-center text-xl xl:text-[24px] font-semibold"
         // className="text-center text-xl xl:text-[24px] font-semibold [&_svg]:max-w-14 [&_svg]:max-h-14 [&_svg]:w-14 [&_svg]:h-14"
       >
-        {validImg ? <img src={typeof head === "string" ? head : ""} /> : head}
+        {validImg ? (
+          <img src={typeof head === "string" ? head : ""} alt={"image"} />
+        ) : (
+          head
+        )}
       </span>
 
       <span className="text-base block mt-2 leading-relaxed text-center">
