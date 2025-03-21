@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState, type FC } from "react";
+import { useMemo, useRef, useState, type FC, useEffect } from "react";
 import { Accordion, AccordionItem } from "@szhsin/react-accordion";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 // import { useInView } from "react-intersection-observer";
@@ -8,8 +8,16 @@ import { TariffEnd } from "./TariffBlock";
 import Container from "./Container";
 import { tariffData } from "data/index";
 
+import { useInView } from "react-intersection-observer";
+
 const Tariff: FC = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const [useInViewRef, inView] = useInView();
+
+  useEffect(() => {
+    console.log("inView ", inView);
+  }, [inView]);
+
   // const [openAccordionKeys, setOpenAccordionKeys] = useState<string[]>([]);
   // const [headViewIsAccordionOpen, setHeadViewIsAccordionOpen] = useState(false);
   // const [priceRefElement, priceInView] = useInView({ threshold: 0 });
@@ -81,10 +89,7 @@ const Tariff: FC = () => {
   // }, [openAccordionKeys, priceInView, tariffContainerInView]);
 
   return (
-    <Container
-      className="relative overflow-hidden xl:pt-[100px] pt-[50px] bg-[#f5f5f7]"
-      // ref={containerRefElement}
-    >
+    <Container className="relative overflow-hidden xl:pt-[100px] pt-[50px] bg-[#f5f5f7]">
       <legend
         className="legend-3lvl"
         //  ref={tabPanelRef}
@@ -194,7 +199,10 @@ const Tariff: FC = () => {
                     </button>
                   </div>
 
-                  <hr className="border-[#d2d2d7] w-full max-md:hidden my-10" />
+                  <hr
+                    ref={useInViewRef}
+                    className="border-[#d2d2d7] w-full max-md:hidden my-10 block"
+                  />
 
                   {item.head.content ? (
                     <div className="w-full h-10 px-2.5 mb-5">
