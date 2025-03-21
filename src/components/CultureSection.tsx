@@ -1,19 +1,50 @@
 import type { FC } from "react";
 import Container from "./Container";
+import { useInView } from "react-intersection-observer";
+import { AnimatedComponent } from "common/ui/animatedComponent";
+
+const animationVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0 },
+};
 
 const CultureSection: FC = () => {
+  const [ref, inView] = useInView({
+    threshold: 0.6,
+    triggerOnce: true,
+  });
+
   return (
     <Container className="xl:py-[200px] py-[100px] overflow-hidden bg-[#f5f5f7]">
-      <legend className="w-full text-center justify-center text-[#222222] text-5xl lg:text-[80px] font-bold xl:leading-[80px] leading-[40px]">
-        <span className="gradient-legend-1lvl">Мы не создаем контент.</span>
-      </legend>
+      <AnimatedComponent
+        tag="span"
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : undefined}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="gradient-legend-1lvl text-center inline-block"
+        ref={ref}
+      >
+        Мы не создаем контент.
+      </AnimatedComponent>
 
-      <span className={"legend-2lvl w-full text-center inline-block"}>
+      <AnimatedComponent
+        tag="span"
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : undefined}
+        transition={{ duration: 0.6, delay: 0.4 }}
+        className="legend-2lvl w-full text-center inline-block"
+      >
         Мы создаем культуру.
-      </span>
+      </AnimatedComponent>
 
       <div className="grid lg:grid-cols-2 lg:grid-rows-2 lg:h-[660px] gap-5 mt-16">
-        <div className="row-span-2 w-full h-full px-10 ss:px-[60px] bg-[#fff] max-lg:py-10 rounded-3xl flex flex-row md:flex-col justify-center items-start gap-8">
+        <AnimatedComponent
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={animationVariants}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="row-span-2 w-full h-full px-10 ss:px-[60px] bg-[#fff] max-lg:py-10 rounded-3xl flex flex-row md:flex-col justify-center items-start gap-8"
+        >
           <span>
             <svg
               width="72"
@@ -44,9 +75,15 @@ const CultureSection: FC = () => {
           <p className="text-[#1a1a1c] text-3xl md:text-[44px] xl:text-[56px] md:leading-[50px] xl:leading-[60px] font-bold">
             Бренды должны быть больше, чем логотипы.
           </p>
-        </div>
+        </AnimatedComponent>
 
-        <div className="h-full py-2.5 px-10 ss:px-[60px] bg-[#fff] rounded-3xl flex justify-start gap-x-8 items-center max-lg:py-10">
+        <AnimatedComponent
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={animationVariants}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="h-full py-2.5 px-10 ss:px-[60px] bg-[#fff] rounded-3xl flex justify-start gap-x-8 items-center max-lg:py-10"
+        >
           <svg
             width="72"
             height="73"
@@ -63,9 +100,15 @@ const CultureSection: FC = () => {
           <p className="text-[#1a1a1c] text-2xl ss:text-[32px] xl:text-[44px] ss:leading-[38px] xl:leading-[50px] font-bold">
             Реклама должна <br /> быть больше, <br /> чем креатив.
           </p>
-        </div>
+        </AnimatedComponent>
 
-        <div className="h-full py-2.5 px-10 ss:px-[60px] bg-[#fff] rounded-3xl flex justify-start gap-x-8 items-center max-lg:py-10">
+        <AnimatedComponent
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={animationVariants}
+          transition={{ duration: 0.5, delay: 0.8 }}
+          className="h-full py-2.5 px-10 ss:px-[60px] bg-[#fff] rounded-3xl flex justify-start gap-x-8 items-center max-lg:py-10"
+        >
           <svg
             width="73"
             height="73"
@@ -84,7 +127,7 @@ const CultureSection: FC = () => {
             быть больше <br />
             чем цифры.
           </p>
-        </div>
+        </AnimatedComponent>
       </div>
 
       <div className="grid max-md:justify-center md:grid-cols-[1fr,1px,1fr] items-center gap-8 lg:gap-11 mt-[50px]">
@@ -139,7 +182,12 @@ const CultureSection: FC = () => {
           </svg>
         </div>
 
-        <div className="w-full md:w-px bg-[#424245] h-px md:h-24 lg:h-[60px]" />
+        <AnimatedComponent
+          initial={{ width: "10px", x: -5 }}
+          animate={inView ? { width: "1px", x: 0 } : undefined}
+          transition={{ duration: 0.6, delay: 1.2 }}
+          className="max-md:w-full bg-[#424245] h-px md:h-24 lg:h-[60px]"
+        />
 
         <p className="max-w-[466px] max-md:text-center w-full text-[#6e6e7b] text-2xl font-semibold uppercase">
           МЫ создаем новые смыслы.

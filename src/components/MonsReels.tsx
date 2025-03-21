@@ -1,12 +1,12 @@
 import type { CSSProperties, FC } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import MonstriliCarousel from "components/MonstriliCarousel";
-import { cn } from "helpers/style";
-import type { VideoFrameProps } from "components/VideoFrame";
 import LazyVideoFrame from "components/LazyVideoFrame";
+import type { VideoFrameProps } from "components/VideoFrame";
+import { AnimatedComponent } from "common/ui/animatedComponent";
 
 interface MonsReelsProps {
-  className?: string;
+  inView: boolean;
 }
 
 const carouselStyle: CSSProperties = {
@@ -536,20 +536,26 @@ function videoCreaterComponents(data: VideoFrameProps[]) {
   ));
 }
 
-const MonsReels: FC<MonsReelsProps> = ({ className }) => {
+const MonsReels: FC<MonsReelsProps> = ({ inView }) => {
   return (
-    <Tabs className={cn("Mosnreel-tabs", className)}>
-      <TabList className="xs:w-auto w-full inline-flex gap-3.5 p-[5px] bg-white rounded-full xl:my-[80px] mt-[20px] my-[40px] overflow-x-auto">
-        <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
-          CG REEL
-        </Tab>
-        <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
-          AIGC REEL
-        </Tab>
-        <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
-          DESIGN BRANDING
-        </Tab>
-      </TabList>
+    <Tabs className="Mosnreel-tabs">
+      <AnimatedComponent
+        initial={{ y: 40, opacity: 0 }}
+        animate={inView ? { y: 0, opacity: 1 } : undefined}
+        transition={{ duration: 0.4, delay: 0.3 }}
+      >
+        <TabList className="xs:w-auto w-full inline-flex gap-3.5 p-[5px] bg-white rounded-full xl:my-[80px] mt-[20px] my-[40px] overflow-x-auto">
+          <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
+            CG REEL
+          </Tab>
+          <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
+            AIGC REEL
+          </Tab>
+          <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
+            DESIGN BRANDING
+          </Tab>
+        </TabList>
+      </AnimatedComponent>
 
       <TabPanel>
         <MonstriliCarousel
@@ -558,6 +564,7 @@ const MonsReels: FC<MonsReelsProps> = ({ className }) => {
           items={videoCreaterComponents(CGReelData)}
           nextEl={"cdf26213a150dc23a"}
           prevEl={"d41d8cd98f00b2dee"}
+          inView={inView}
         />
       </TabPanel>
 
@@ -568,6 +575,7 @@ const MonsReels: FC<MonsReelsProps> = ({ className }) => {
           items={videoCreaterComponents(AIReelData)}
           nextEl={"cdf26213a150dc23a"}
           prevEl={"d41d8cd98f00b2dee"}
+          inView={inView}
         />
       </TabPanel>
     </Tabs>
