@@ -482,7 +482,7 @@ const ContactForm: FC = () => {
             </p>
             <p className="mt-1 ss:mt-3 text-sm ss:text-lg">
               {status === "ok"
-                ? "Ждите пока свами не свяжутся"
+                ? "Ждите, пока с вами не свяжутся"
                 : "Повторите снова или попробуйте позже"}
             </p>
             <div className="flex justify-center mt-6">
