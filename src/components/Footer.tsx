@@ -64,30 +64,33 @@ const socialNetwork = [
 const Footer: FC<FooterProps> = ({ className }) => {
   return (
     <footer className={cn("bg-[#161617] pt-20 pb-5", className)}>
-      <div className={"w-full flex justify-between items-center px-5"}>
-        {/* <div className={"w-full flex justify-center items-center"}> */}
-        <div>
-          <p className="text-[#777777] text-sm mb-3">СЛЕДИТЬ ЗА</p>
+      <div className="flex flex-col xl:flex-row xl:justify-between xl:items-center w-full px-5">
+        <div className="flex justify-center">
+          <div className="flex flex-col justify-center">
+            <p className="text-[#777777] text-sm mb-3 text-center xl:text-start">
+              СЛЕДИТЬ ЗА
+            </p>
 
-          <div className="flex flex-col gap-2">
-            {socialNetwork.map((el) => (
-              <Link
-                key={el.href}
-                to={el.href}
-                className="flex items-center uppercase space-x-1 text-white"
-              >
-                {el.icon}
-                <span>{el.title}</span>
-              </Link>
-            ))}
+            <div className="flex flex-row xl:flex-col gap-2">
+              {socialNetwork.map((el) => (
+                <Link
+                  key={el.href}
+                  to={el.href}
+                  className="flex items-center uppercase space-x-1 text-white"
+                >
+                  {el.icon}
+                  <span>{el.title}</span>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className={"flex gap-x-[65px]  xl:flex-row flex-col"}>
+        <div className="grid md:grid-cols-3 xl:grid-cols-6 gap-x-[65px] gap-y-4 mt-6 xl:mt-0">
           {clockData?.map((item, index) => (
-            <div key={index} className={"text-center"}>
+            <div key={index} className="text-center">
               <Clock key={index} timeZone={item.timeZone} />
-              <span className={"text-white block mt-4 text-xl font-normal"}>
+              <span className="text-white block mt-4 text-xl font-normal">
                 {item.title}
               </span>
             </div>
@@ -97,7 +100,7 @@ const Footer: FC<FooterProps> = ({ className }) => {
         <div />
       </div>
 
-      <div className="flex justify-center w-full mt-14">
+      <div className="flex justify-center w-full mt-14 px-5">
         <svg
           width="107"
           height="29"

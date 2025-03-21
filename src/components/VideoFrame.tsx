@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRef, useState, useEffect, type FC } from "react";
 import { cn } from "helpers/style";
 
@@ -11,6 +12,7 @@ export interface VideoFrameProps {
   height?: string | number;
   className?: string;
   title?: string;
+  isFullScreen?: boolean;
 }
 
 const VideoFrame: FC<VideoFrameProps> = ({
@@ -20,6 +22,7 @@ const VideoFrame: FC<VideoFrameProps> = ({
   height = "auto",
   className,
   title,
+  isFullScreen,
 }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -36,6 +39,21 @@ const VideoFrame: FC<VideoFrameProps> = ({
     } else {
       videoRef.current.play();
       activeVideoRef = videoRef.current;
+    }
+  };
+
+  const handleEnterFullScreen = () => {
+    const videoEl = videoRef.current;
+    if (videoEl) {
+      if (videoEl.requestFullscreen) {
+        videoEl.requestFullscreen();
+      } else if ((videoEl as any).webkitRequestFullscreen) {
+        (videoEl as any).webkitRequestFullscreen(); // Safari
+      } else if ((videoEl as any).mozRequestFullScreen) {
+        (videoEl as any).mozRequestFullScreen(); // Firefox
+      } else if ((videoEl as any).msRequestFullscreen) {
+        (videoEl as any).msRequestFullscreen(); // IE/Edge
+      }
     }
   };
 
@@ -79,9 +97,34 @@ const VideoFrame: FC<VideoFrameProps> = ({
       <button className="absolute bottom-5 right-5" onClick={togglePlay}>
         {isPlaying ? pauseIcon : playIcon}
       </button>
+      {isFullScreen && (
+        <button
+          className="absolute bottom-5 right-16"
+          onClick={handleEnterFullScreen}
+        >
+          {fullScreenIcon}
+          {/* {!isFullScreen ? fullScreenIcon : fitScreenIcon} */}
+        </button>
+      )}
     </div>
   );
 };
+
+const fullScreenIcon = (
+  <svg
+    width="35"
+    height="35"
+    viewBox="0 0 35 35"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect width="35" height="35" rx="17.5" fill="#E7E7EB" />
+    <path
+      d="M12.5 19.5H10.5V24.5H15.5V22.5H12.5V19.5ZM10.5 15.5H12.5V12.5H15.5V10.5H10.5V15.5ZM22.5 22.5H19.5V24.5H24.5V19.5H22.5V22.5ZM19.5 10.5V12.5H22.5V15.5H24.5V10.5H19.5Z"
+      fill="#6D6D6F"
+    />
+  </svg>
+);
 
 const playIcon = (
   <svg width="35" height="35" viewBox="0 0 35 35" fill="none">

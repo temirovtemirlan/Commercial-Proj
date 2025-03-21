@@ -49,7 +49,7 @@ const App: FC = () => {
     <>
       <LazyMotion features={domAnimation}>
         <Container className={"py-[70px]"}>
-          <div className={"flex justify-between xl:flex-row flex-col"}>
+          <div className="flex justify-between xl:flex-row flex-col gap-y-6 gap-x-5">
             <AnimatedComponent
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -107,7 +107,7 @@ const App: FC = () => {
 
             <AnimatedComponent
               tag="p"
-              className="text-black text-2xl grow-1 xl:max-w-[800px] mt-8 md:mt-0 text-balance"
+              className="text-black text-2xl grow-1 xl:max-w-[800px] text-balance"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.8 }}
@@ -130,12 +130,14 @@ const App: FC = () => {
               <LazyVideoFrame
                 videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/CG/CG_REEL_HORIZONTAL_2.mp4"
                 posterSrc={""}
+                isFullScreen
               />
             </TabPanel>
             <TabPanel>
               <LazyVideoFrame
                 videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/AI/AI_REEL_HORIZONTAL_NEW.mp4"
                 posterSrc={""}
+                isFullScreen
               />
             </TabPanel>
             <motion.div
@@ -179,7 +181,7 @@ const App: FC = () => {
           </AnimatedComponent>
         </Container>
 
-        <Container className="bg-[#f5f5f7] xl:pt-[150px] pt-[80px] pb-[100px] overflow-hidden">
+        <Container className="bg-[#f5f5f7] xl:pt-[150px] pt-[80px] xl:pb-[100px] overflow-hidden">
           <AnimatedComponent
             tag="legend"
             className="legend-3lvl"
@@ -305,7 +307,7 @@ const App: FC = () => {
                 coreClassName="h-full w-full rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
                 className="h-full"
                 videoSrc="https://storage.googleapis.com/mkit_monster_bucket/Video/AI/BMW_M5.mp4"
-                posterSrc=""
+                posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/BMW_H.webp"
               />
             </AnimatedComponent>
 

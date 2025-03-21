@@ -6,11 +6,11 @@ import { cn } from "helpers/style.ts";
 // Кэш загруженных видео (чтобы не перезапускались при повторном появлении)
 const loadedVideos = new Set<string>();
 
-interface LazyVideoFrame extends VideoFrameProps {
+interface IProps extends VideoFrameProps {
   coreClassName?: string;
 }
 
-const LazyVideoFrame: FC<LazyVideoFrame> = (props) => {
+const LazyVideoFrame: FC<IProps> = (props) => {
   const { ref, inView } = useInView({
     triggerOnce: true, // Загружает видео только один раз
     threshold: 0.5, // Срабатывает, когда видео видно на 50%

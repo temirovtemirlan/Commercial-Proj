@@ -343,3 +343,18 @@ body {
 .split-word {
   will-change: transform, opacity;
 }
+
+.tariff-custom_scroll_description {
+  .rcs-custom-scrollbar {
+    padding: 0 !important;
+    right: 0px !important;
+    width: 5px !important;
+    opacity: 1 !important;
+  }
+  .rcs-inner-handle {
+    background-color: #6b6b6ba0 !important;
+  }
+  .rcs-custom-scroll-handle {
+    height: 60px !important;
+  }
+}
