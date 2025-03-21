@@ -22,7 +22,8 @@ const VideoPlayerHLS: React.FC<VideoPlayerProps> = (props) => {
       const hls = new Hls();
       hls.loadSource(src);
       hls.attachMedia(video);
-      hls.on(Hls.Events.ERROR, (event, data) => {
+      hls.on(Hls.Events.ERROR, (_event, data) => {
+        // ✅ Removed explicit type annotation for 'event' - let TypeScript infer the type
         if (data.fatal) {
           switch (data.type) {
             case Hls.ErrorTypes.NETWORK_ERROR:
@@ -45,7 +46,8 @@ const VideoPlayerHLS: React.FC<VideoPlayerProps> = (props) => {
     } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
       // Fallback для старых Safari
       video.src = src;
-      video.addEventListener("error", (e) => {
+      video.addEventListener("error", (e: Event) => {
+        // ✅ Kept type annotation for 'e' for the standard video 'error' event
         console.error("Video Error", e);
       });
     }
