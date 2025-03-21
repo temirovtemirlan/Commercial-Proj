@@ -133,6 +133,7 @@ const CultureSection: FC = () => {
       <div className="grid max-md:justify-center md:grid-cols-[1fr,1px,1fr] items-center gap-8 lg:gap-11 mt-[50px]">
         <div className="flex justify-center md:block md:ml-auto">
           <svg
+            className="w-[254px] md:w-[354px] md:h-[43px]"
             width="354"
             height="43"
             viewBox="0 0 354 43"

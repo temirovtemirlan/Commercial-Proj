@@ -544,7 +544,7 @@ const MonsReels: FC<MonsReelsProps> = ({ inView }) => {
         animate={inView ? { y: 0, opacity: 1 } : undefined}
         transition={{ duration: 0.4, delay: 0.3 }}
       >
-        <TabList className="xs:w-auto w-full inline-flex gap-3.5 p-[5px] bg-white rounded-full xl:my-[80px] mt-[20px] my-[40px] overflow-x-auto">
+        <TabList className="inline-flex gap-3.5 w-auto p-[5px] bg-white rounded-full xl:my-[80px] mt-[20px] my-[40px] max-w-full overflow-x-auto">
           <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
             CG REEL
           </Tab>

@@ -1,44 +1,58 @@
 import { type ReactNode, type FC, Fragment } from "react";
+import { CustomScroll } from "react-custom-scroll";
+import { AnimatedComponent } from "common/ui/animatedComponent";
 import { cn } from "helpers/style";
+import type { ITariffFooter, ITariffHead } from "fusion/type";
 
 interface TariffStartProps {
-  media: string;
-  title: string;
-  description: string;
-  price: string;
+  item: { head: ITariffHead; footer: ITariffFooter[]; tabCategory: string };
+  index: number;
 }
 
-const TariffStart: FC<TariffStartProps> = ({
-  title,
-  description,
-  price,
-  media,
-}) => {
+const TariffStart: FC<TariffStartProps> = ({ item, index }) => {
   return (
-    <div className="text-center w-full box-border">
-      <div className="w-full max-w-[284px] rounded-2.5xl overflow-hidden mx-auto">
-        <video
-          className={"size-full object-cover"}
-          src={`https://storage.googleapis.com/mkit_monster_bucket/Tariff/${media}`}
-          loop
-          autoPlay
-          muted
-          controls={false}
-          playsInline
-        />
+    <div className="text-center w-full box-border px-2.5">
+      <div className="w-full max-w-[284px] rounded-2.5xl overflow-hidden h-[500px] mx-auto bg-gray-200">
+        {item.head.media ? (
+          <video
+            className={"object-cover size-full"}
+            src={`https://storage.googleapis.com/mkit_monster_bucket/Tariff/${item.head.media}`}
+            loop
+            autoPlay
+            muted
+            controls={false}
+            playsInline
+          />
+        ) : (
+          <div className="flex size-full justify-center items-center">
+            <span className="text-center inline-block my-auto text-lg">
+              Скоро
+            </span>
+          </div>
+        )}
       </div>
-      <legend className="text-black text-xl xl:text-[24px] font-bold mt-[40px]">
-        {title}
+      <legend className="text-black text-xl xl:text-[24px] font-bold mt-4 md:mt-[40px] w-full">
+        {item.head.title} - {index}
       </legend>
-      <p className={"text-black text-xs md:text-sm my-[16px] w-4/5 mx-auto"}>
-        {description}
-      </p>
 
-      <p className="text-black text-xs md:text-sm font-semibold">{price}</p>
+      <div className="text-black text-lg md:text-base my-2 md:my-[16px] w-4/5 mx-auto h-auto md:h-[100px] overflow-y-auto tariff-custom_scroll_description">
+        <CustomScroll heightRelativeToParent="100%">
+          {item.head.description}
+        </CustomScroll>
+      </div>
 
-      <button className="w-[162px] h-11 p-1.5 md:p-2.5 bg-[#0071e3] rounded-full text-sm md:text-base justify-center items-center gap-2.5 inline-flex mt-[40px] text-white">
+      <p
+        className="text-black text-lg md:text-base font-semibold"
+        dangerouslySetInnerHTML={{ __html: item.head.price }}
+      />
+
+      <AnimatedComponent
+        tag="button"
+        whileHover={{ scale: 1.04, y: -2 }}
+        className="w-[192px] h-11 p-2 md:p-2.5 bg-[#0071e3] rounded-full text-base justify-center items-center gap-2.5 inline-flex mt-[40px] text-white"
+      >
         Оставить заявку
-      </button>
+      </AnimatedComponent>
     </div>
   );
 };
@@ -66,10 +80,7 @@ const TariffEnd: FC<ITariffEnd> = ({
       )}
     >
       {before && <span className="text-xs mb-1">{before}</span>}
-      <span
-        className="text-center text-xl xl:text-[24px] font-semibold"
-        // className="text-center text-xl xl:text-[24px] font-semibold [&_svg]:max-w-14 [&_svg]:max-h-14 [&_svg]:w-14 [&_svg]:h-14"
-      >
+      <span className="text-center text-xl xl:text-[24px] font-semibold">
         {validImg ? <img src={typeof head === "string" ? head : ""} /> : head}
       </span>
 

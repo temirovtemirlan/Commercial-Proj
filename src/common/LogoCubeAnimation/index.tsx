@@ -1,8 +1,8 @@
 import type { FC } from "react";
+import { useInView } from "react-intersection-observer";
 import { divideArray } from "helpers/array";
 import CompanyLogoCubeAnimation from "./CubeAnimationSwiper";
 import { AnimatedComponent } from "common/ui/animatedComponent";
-import { useInView } from "react-intersection-observer";
 
 const companyLogo = [
   "https://storage.googleapis.com/mkit_monster_bucket/Logo/DODO.png",
@@ -38,13 +38,13 @@ const LogoCubeAnimation: FC = () => {
 
   return (
     <div ref={ref}>
-      <div className="flex justify-between w-full mb-[150px] md:flex-row flex-col gap-6">
+      <div className="flex justify-between md:flex-row flex-col w-full mb-[150px] gap-y-6 gap-x-10 text-white">
         <AnimatedComponent
           initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 20 } : undefined}
+          animate={inView ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: 0.4, delay: 0.1 }}
           tag="legend"
-          className="legend-3lvl text-white text-left"
+          className="legend-3lvl"
         >
           Наши клиенты
         </AnimatedComponent>
@@ -53,10 +53,10 @@ const LogoCubeAnimation: FC = () => {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : undefined}
           transition={{ duration: 0.6 }}
-          className="justify-start text-white text-left text-[32px] font-semibold translate-y-3.5 text-balance"
+          className="text-[32px] leading-[36px] font-semibold"
         >
-          Мы гордимся работой с компаниями, <br /> которые задают правила игры
-          на своих рынках.
+          Мы гордимся работой с компаниями, <br className="hidden lg:block" />{" "}
+          которые задают правила игры на своих рынках.
         </AnimatedComponent>
       </div>
 
@@ -64,7 +64,7 @@ const LogoCubeAnimation: FC = () => {
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : undefined}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="flex flex-wrap ss:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-24 gap-x-6 w-full h-full"
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-24 gap-x-6 w-full h-full"
       >
         <CompanyLogoCubeAnimation images={dataOne[0]} delayInterval={5000} />
         <CompanyLogoCubeAnimation images={dataOne[1]} delayInterval={4500} />
@@ -78,7 +78,7 @@ const LogoCubeAnimation: FC = () => {
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : undefined}
         transition={{ duration: 0.5, delay: 0.3 }}
-        className="flex flex-wrap ss:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-24 gap-x-6 w-full h-full mt-20"
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-24 gap-x-6 w-full h-full mt-20"
       >
         <CompanyLogoCubeAnimation images={dataTwo[0]} delayInterval={7500} />
         <CompanyLogoCubeAnimation images={dataTwo[1]} delayInterval={8000} />
