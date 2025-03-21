@@ -35,9 +35,6 @@ const Tariff: FC = () => {
 
   const [selectedTab, setSelectedTab] = useState(0);
   const [muchClicked, setMuchClicked] = useState(0);
-  const [directionSwiper, setDirectionSwiper] = useState<
-    "prev" | "next" | null
-  >(null);
 
   const isSwipeRef = useRef(false);
 
