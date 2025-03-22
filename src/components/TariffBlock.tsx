@@ -84,7 +84,7 @@ const TariffEnd: FC<ITariffEnd> = ({
         className
       )}
     >
-      {before && <span className="text-xs mb-1">{before}</span>}
+      {before && <span className="absolute -mt-5 text-xs">{before}</span>}
       <span className="text-center text-xl xl:text-[24px] font-semibold">
         {validImg ? <img src={typeof head === "string" ? head : ""} /> : head}
       </span>
