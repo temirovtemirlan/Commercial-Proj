@@ -19,7 +19,7 @@ import OurIndicators from "components/OurIndicators";
 import FloatingActionButtons from "components/FloatingActionButtons";
 import { AnimatedComponent } from "common/ui/animatedComponent";
 import { cn } from "helpers/style";
-import VideoPlayerHLS from "components/VideoPlayerHLS.tsx";
+import VideoPlayerHLSv2 from "components/VideoPlayerHLSv2.tsx";
 
 interface HeaderProps {
   title: string;
@@ -142,7 +142,6 @@ const App: FC = () => {
               <LazyVideoFrame
                 src={[
                   "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/AI_REEL_HORIZONTAL_NEW.mp4",
-                  "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/AI_REEL_HORIZONTAL_NEW.webm",
                 ]}
                 posterSrc={""}
                 isFullScreen
@@ -168,13 +167,17 @@ const App: FC = () => {
 
         <div className={"flex"}>
           <div className={"w-1/2"}>
-            <VideoPlayerHLS
-              autoPlay
-              // muted
-              controls={true}
-              src={
-                "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/coca_cola_ai/COCA_COLA_AI_COMMERCIAL.m3u8"
-              }
+            {/*<VideoPlayerVJS*/}
+            {/*  src="https://storage.googleapis.com/mkit_monster_bucket/Video/hls/COCA_COLA_AI_COMMERCIAL_NEW/720p_mp4/stream.m3u8"*/}
+            {/*  controls*/}
+            {/*  autoPlay*/}
+            {/*  className="my-video-player"*/}
+            {/*  style={{ width: "100%", height: "auto" }}*/}
+            {/*/>*/}
+            <VideoPlayerHLSv2
+              isFullScreen
+              // prettier-ignore
+              src={'https://storage.googleapis.com/mkit_monster_bucket/Video/hls/COCA_COLA_AI_COMMERCIAL_NEW/720p_mp4/stream.m3u8'}
             />
           </div>
 
