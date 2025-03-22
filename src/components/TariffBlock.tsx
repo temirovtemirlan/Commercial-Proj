@@ -46,6 +46,12 @@ const TariffStart: FC<TariffStartProps> = ({ item, index }) => {
         dangerouslySetInnerHTML={{ __html: item.head.price }}
       />
 
+      {item.head.content ? (
+        <p className="mt-1 w-full h-full font-semibold text-center">
+          {item.head.content}
+        </p>
+      ) : null}
+
       <AnimatedComponent
         tag="button"
         whileHover={{ scale: 1.04, y: -2 }}

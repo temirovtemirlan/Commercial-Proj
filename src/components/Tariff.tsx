@@ -1,16 +1,9 @@
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  type FC,
-} from "react";
+import { useRef, useState, type FC } from "react";
 import { Accordion, AccordionItem } from "@szhsin/react-accordion";
 import { useInView } from "react-intersection-observer";
-import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
+import { useMediaQuery } from "usehooks-ts";
 import type { Swiper as SwiperType } from "swiper/types";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -18,25 +11,23 @@ import "swiper/css/navigation";
 import { TariffEnd, TariffStart } from "./TariffBlock";
 import Container from "./Container";
 import { AnimatedComponent } from "common/ui/animatedComponent";
-// import SwiperNavigationBtn from "common/SwiperNavigationBtn";
+import SwiperNavigationBtn from "common/SwiperNavigationBtn";
 import { tariffData } from "data/index";
 import { cn } from "helpers/style";
 import type { ITariffFooter, ITariffHead } from "fusion/type";
 
-// const anVariantsOpacity = {
-//   hidden: { opacity: 0, y: 20 },
-//   visible: { opacity: 1, y: 0 },
-// };
+const anVariantsOpacity = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
 
 const Tariff: FC = () => {
   const swiperRef = useRef<SwiperType>();
-  const prevRef = useRef<HTMLButtonElement | null>(null);
-  const nextRef = useRef<HTMLButtonElement | null>(null);
+  const [realIndex, setRealIndex] = useState(0);
+  const is1080 = useMediaQuery("(min-width: 1080px)");
+  const is768 = useMediaQuery("(min-width: 768px)");
 
-  const [selectedTab, setSelectedTab] = useState(0);
-  const [muchClicked, setMuchClicked] = useState(0);
-
-  const isSwipeRef = useRef(false);
+  const slidesPerGroup = is1080 ? 3 : is768 ? 2 : 1;
 
   // #region
   const [animRef, animInView] = useInView({
@@ -50,131 +41,39 @@ const Tariff: FC = () => {
   const uniqueCategories = Array.from(
     new Set(tariffData.map((item) => item.tabCategory))
   );
-
-  // prettier-ignore
-  const tariffFilter = useMemo(() => { return tariffData.filter((item) => item.tabCategory === uniqueCategories[selectedTab])}, [selectedTab]);
   // #endregion
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      prevRef.current?.classList.remove("swiper-button-disabled");
-      nextRef.current?.classList.remove("swiper-button-disabled");
+  const tabSwiperHandler = (index: number) => {
+    const targetIndex = index * slidesPerGroup; // Вычисляем индекс начала группы
 
-      prevRef.current?.removeAttribute("disabled");
-      nextRef.current?.removeAttribute("disabled");
-    }, 100); // проверяем и снимаем disabled каждые 100мс
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const time = () => {
-    setTimeout(() => {
-      swiperRef.current?.slideTo(2);
-    }, 100);
-  };
-
-  const onPrevHandler = () => {
-    isSwipeRef.current = false;
-    const swiperInstance = swiperRef.current;
-
-    if (!swiperInstance) return;
-    if (muchClicked === 0) {
-      if (selectedTab === 0) {
-        setSelectedTab(2);
-        setMuchClicked(2); // или установите количество слайдов в последней вкладке минус 1, если нужно более динамично
-        time();
+    if (is1080 == false && is768) {
+      if (targetIndex === 4) {
+        swiperRef.current?.slideToLoop(6);
+      } else if (targetIndex === 2) {
+        swiperRef.current?.slideToLoop(targetIndex);
       } else {
-        setSelectedTab((prev) => prev - 1);
-        setMuchClicked(2); // или установите количество слайдов в предыдущей вкладке минус 1
-        time();
+        swiperRef.current?.slideToLoop(targetIndex);
+      }
+    } else if (!is1080 && !is768) {
+      if (targetIndex === 1) {
+        swiperRef.current?.slideToLoop(3);
+      } else if (targetIndex === 2) {
+        swiperRef.current?.slideToLoop(6);
+      } else {
+        swiperRef.current?.slideToLoop(targetIndex);
       }
     } else {
-      setMuchClicked((prev) => prev - 1);
+      swiperRef.current?.slideToLoop(targetIndex);
     }
-  };
-
-  const onNextHandler = () => {
-    isSwipeRef.current = false;
-    const swiperInstance = swiperRef.current;
-
-    if (!swiperInstance) return;
-    const { activeIndex } = swiperInstance;
-
-    if (muchClicked === activeIndex) {
-      if (selectedTab === 2) {
-        setSelectedTab(0);
-      } else {
-        setSelectedTab((prev) => prev + 1);
-      }
-      setMuchClicked(0);
-    } else {
-      setMuchClicked((prev) => prev + 1);
-    }
-  };
-
-  const handleSlideChange = (swiper: SwiperType) => {
-    if (!isSwipeRef.current) return; // обработка только при свайпе
-
-    // 👉 NEXT свайп
-    if (swiper.progressLoop === 0 && swiper.activeIndex === 2) {
-      if (selectedTab === 2) {
-        setSelectedTab(0);
-      } else {
-        setSelectedTab((prev) => prev + 1);
-      }
-      setMuchClicked(0);
-    }
-
-    // 👉 PREV свайп
-    if (swiper.progressLoop === 1 && swiper.activeIndex === 0) {
-      if (selectedTab === 0) {
-        setSelectedTab(2);
-        time();
-      } else {
-        setSelectedTab((prev) => prev - 1);
-      }
-      setMuchClicked(2);
-      time();
-    } else {
-      setMuchClicked(swiper.realIndex);
-    }
-
-    isSwipeRef.current = false; // сбрасываем после обработки
-
-    // // NEXT
-    // if (swiper.progressLoop === 0 && swiper.activeIndex === 2) {
-    //   if (selectedTab === 2) {
-    //     setSelectedTab(0);
-    //   } else {
-    //     setSelectedTab((prev) => prev + 1);
-    //   }
-    //   setMuchClicked(0);
-    // } else {
-    //   setMuchClicked(swiper.realIndex);
-    // }
-
-    // // PREV
-    // if (swiper.progressLoop === 1 && swiper.activeIndex === 0) {
-    //   if (selectedTab === 0) {
-    //     setSelectedTab(2);
-    //     time();
-    //   } else {
-    //     setSelectedTab((prev) => prev - 1);
-    //   }
-    //   setMuchClicked(2);
-    //   time();
-    // } else {
-    //   setMuchClicked(swiper.realIndex);
-    // }
   };
 
   return (
-    <Container className="relative overflow-hidden xl:pt-[100px] pt-[50px] bg-[#f5f5f7] pb-[100px]">
+    <Container className="relative xl:pt-[100px] pt-[50px] bg-[#f5f5f7] pb-[100px]">
       <AnimatedComponent
         tag="legend"
-        // initial={{ opacity: 0, y: 20 }}
-        // animate={animInView ? { opacity: 1, y: 0 } : {}}
-        // transition={{ duration: 0.5, delay: 0.4 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={animInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.5, delay: 0.4 }}
         className="legend-3lvl"
         ref={tabPanelRef}
       >
@@ -182,253 +81,81 @@ const Tariff: FC = () => {
       </AnimatedComponent>
       <div ref={animRef} />
 
-      <Tabs
-        className="Our-Indicators"
-        selectedIndex={selectedTab}
-        onSelect={(e) => setSelectedTab(e)}
-      >
-        <div className="flex justify-between items-center">
-          <TabList className="inline-flex p-1.5 rounded-full bg-white">
-            {uniqueCategories.map((item) => (
-              <Tab
-                className="tab__delivery_panels whitespace-nowrap px-6 py-2.5"
+      <div className="sticky top-[16rem] z-10 h-0">
+        <SwiperNavigationBtn
+          className="flex justify-between w-full md:hidden"
+          prevClass="-translate-x-2 prev-tariff_panel"
+          nextClass="translate-x-2 next-tariff_panel"
+        />
+      </div>
+
+      <div className="Our-Indicators">
+        <AnimatedComponent
+          initial={{ opacity: 0, y: 20 }}
+          animate={animInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="flex justify-between items-center"
+        >
+          <div className="flex p-1.5 w-full max-w-fit rounded-full bg-white overflow-x-auto">
+            {uniqueCategories.map((item, index) =>
+              // prettier-ignore
+              <button
                 key={item}
-                onClick={() => setMuchClicked(0)}
+                className={cn("whitespace-nowrap px-6 py-2.5", (tariffData[realIndex]?.tabCategory || "Base") === item && "bg-[#0171e3] text-white rounded-full")}
+                onClick={() => tabSwiperHandler(index)}
               >
                 {item}
-              </Tab>
-            ))}
-          </TabList>
-
-          <div className={cn("flex justify-end gap-5 w-full")}>
-            <button
-              ref={prevRef}
-              className="prev-tariff_panel"
-              onClick={onPrevHandler}
-            >
-              <svg
-                width="36"
-                height="37"
-                viewBox="0 0 36 37"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  y="0.385864"
-                  width="36"
-                  height="36"
-                  rx="18"
-                  fill="#ECECEE"
-                />
-                <path
-                  d="M20 11.3859L14 18.3859L20 25.3859"
-                  stroke="#B8B8B9"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M20 11.3859L14 18.3859L20 25.3859"
-                  stroke="#535354"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-
-            <button
-              ref={nextRef}
-              className="next-tariff_panel"
-              onClick={onNextHandler}
-            >
-              <svg
-                width="36"
-                height="37"
-                viewBox="0 0 36 37"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  y="0.385864"
-                  width="36"
-                  height="36"
-                  rx="18"
-                  fill="#E6E6EA"
-                />
-                <path
-                  d="M16 11.3859L22 18.3859L16 25.3859"
-                  stroke="#535354"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
+              </button>
+            )}
           </div>
-        </div>
 
-        <div>
-          {uniqueCategories.map((tab, tabIndex) => (
-            <TabPanel
-              className={`w-full overflow-hidden ${tabIndex === selectedTab ? "mt-[30px]" : "mt-0"}`}
-              key={tab}
-            >
-              <Swiper
-                key={tabIndex}
-                onSwiper={(swiper) => {
-                  swiperRef.current = swiper;
+          <SwiperNavigationBtn
+            className="hidden md:flex justify-end gap-5 w-full"
+            prevClass="prev-tariff_panel"
+            nextClass="next-tariff_panel"
+          />
+        </AnimatedComponent>
 
-                  // Отслеживаем свайп
-                  swiper.on("touchStart", () => {
-                    isSwipeRef.current = true;
-                  });
-
-                  swiper.on("sliderMove", () => {
-                    isSwipeRef.current = true;
-                  });
-                }}
-                // onSwiper={(swiper) => (swiperRef.current = swiper)}
-                onSlideChange={handleSlideChange}
-                loop={true}
-                className="relative"
-                modules={[Navigation]}
-                speed={500}
-                spaceBetween={30}
-                slidesPerView={1}
-                navigation={{
-                  prevEl: prevRef.current,
-                  nextEl: nextRef.current,
-                }}
-              >
-                {tariffFilter?.map((item, index) => (
-                  <SwiperSlide key={index}>
-                    <TariffPanel
-                      item={item}
-                      index={index}
-                      animInView={animInView}
-                    />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </TabPanel>
-          ))}
-        </div>
-      </Tabs>
+        <AnimatedComponent
+          initial={{ opacity: 0, y: 40 }}
+          animate={animInView ? { opacity: 1, y: 0 } : undefined}
+          transition={{ duration: 0.5, delay: 0.8 }}
+          className="w-full flex justify-center"
+        >
+          <Swiper
+            className="relative max-w-[1062px] overflow-hidden pt-8"
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            speed={500}
+            loop
+            onSlideChange={(swiper) => setRealIndex(swiper.realIndex)}
+            breakpoints={{
+              1080: { slidesPerView: 3, slidesPerGroup: 3 },
+              768: { slidesPerView: 2, slidesPerGroup: 2 },
+              0: { slidesPerView: 1, slidesPerGroup: 1 },
+            }}
+            navigation={{
+              prevEl: ".prev-tariff_panel",
+              nextEl: ".next-tariff_panel",
+            }}
+            modules={[Navigation]}
+          >
+            {tariffData?.map((item, index) => (
+              <SwiperSlide key={index} className="w-[354px] !items-start">
+                <TariffPanel
+                  item={item}
+                  index={index}
+                  animInView={animInView}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </AnimatedComponent>
+      </div>
     </Container>
   );
 };
 
 export default Tariff;
-
-// const handleSlideChange = (swiper: SwiperType) => {
-//   if (swiper.touchesDirection) {
-//     if (swiper.touchesDirection === "next") {
-//       if (directionSwiper === "next") {
-//         if (swiper.progressLoop === 0 && swiper.activeIndex === 2) {
-//           if (selectedTab === 2) {
-//             setSelectedTab(0);
-//           } else {
-//             setSelectedTab((prev) => prev + 1);
-//           }
-//           setMuchClicked(0);
-//         } else {
-//           setMuchClicked(swiper.realIndex);
-//         }
-//       }
-//       setDirectionSwiper("next");
-//     } else {
-//       if (swiper.progressLoop === 1 && swiper.activeIndex === 0) {
-//         if (selectedTab === 0) {
-//           setSelectedTab(2);
-//           time();
-//         } else {
-//           setSelectedTab((prev) => prev - 1);
-//         }
-//         setMuchClicked(2);
-//         time();
-//       } else {
-//         setMuchClicked(swiper.realIndex);
-//       }
-//       setDirectionSwiper("prev");
-//     }
-//   }
-// };
-
-/* <Tabs className="Our-Indicators" onSelect={(e) => setActiveTab(e)}>
-  <AnimatedComponent
-    initial={{ opacity: 0, y: 20 }}
-    animate={animInView ? { opacity: 1, y: 0 } : {}}
-    transition={{ duration: 0.5, delay: 0.6 }}
-    className="flex justify-between items-center"
-  >
-    <TabList className="inline-flex p-1.5 rounded-full bg-white">
-      {uniqueCategories.map((item) => (
-        <Tab
-          className="tab__delivery_panels whitespace-nowrap px-6 py-2.5"
-          key={item}
-        >
-          {item}
-        </Tab>
-      ))}
-    </TabList>
-
-    <div>
-      <SwiperNavigationBtn
-        prevClass="prev-tariff_panel"
-        nextClass="next-tariff_panel"
-      />
-    </div>
-  </AnimatedComponent>
-
-  <AnimatedComponent
-    initial={{ opacity: 0, y: 40 }}
-    animate={animInView ? { opacity: 1, y: 0 } : undefined}
-    transition={{ duration: 0.5, delay: 0.8 }}
-  >
-    {uniqueCategories.map((tab, tabIndex) => (
-      <TabPanel
-        className={`w-full overflow-hidden ${tabIndex === activeTab ? "mt-[30px]" : "mt-0"}`}
-        key={tab}
-      >
-        {false && (
-          <div className="relative hidden lg:grid grid-cols-[repeat(3,minmax(0,354px))] justify-center gap-y-14 mx-auto px-5 overflow-hidden overflow-x-auto">
-            {tariffFilter?.map((item, index) => (
-              <TariffPanel
-                key={index}
-                item={item}
-                index={index}
-                animInView={animInView}
-              />
-            ))}
-          </div>
-        )}
-
-        <Swiper
-          className="relative"
-          modules={[Navigation]}
-          speed={500}
-          spaceBetween={30}
-          slidesPerView={1}
-          // breakpoints={{
-          //   768: { slidesPerView: 2 },
-          //   0: { slidesPerView: 1 },
-          // }}
-          navigation={{
-            prevEl: ".prev-tariff_panel",
-            nextEl: ".next-tariff_panel",
-          }}
-        >
-          {tariffFilter?.map((item, index) => (
-            <SwiperSlide key={index}>
-              <TariffPanel item={item} index={index} animInView={animInView} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </TabPanel>
-    ))}
-  </AnimatedComponent>
-</Tabs> */
 
 interface ITariffPanel {
   animInView: boolean;
@@ -436,14 +163,13 @@ interface ITariffPanel {
   item: { head: ITariffHead; footer: ITariffFooter[]; tabCategory: string };
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const TariffPanel: FC<ITariffPanel> = ({ animInView, index, item }) => {
   return (
     <AnimatedComponent
-      // initial="hidden"
-      // animate={animInView ? "visible" : "hidden"}
-      // variants={anVariantsOpacity}
-      // transition={{ duration: 0.5, delay: index * 0.4 }}
+      initial="hidden"
+      animate={animInView ? "visible" : "hidden"}
+      variants={anVariantsOpacity}
+      transition={{ duration: 0.5, delay: index * 0.4 }}
       className={cn("relative w-full max-w-[354px]", {
         "md:col-span-2 lg:col-span-1 md:mx-auto lg:mx-0": index === 2,
       })}
@@ -452,14 +178,6 @@ const TariffPanel: FC<ITariffPanel> = ({ animInView, index, item }) => {
       <TariffStart item={item} index={index} />
 
       <hr className="border-[#d2d2d7] w-full max-md:hidden my-10" />
-
-      {item.head.content ? (
-        <div className="w-full h-10 px-2.5 mb-5">
-          <div className="pt-2 w-full h-full text-2xl text-center">
-            {item.head.content}
-          </div>
-        </div>
-      ) : null}
 
       <Accordion
         className="w-full mt-10 md:mt-0 text-center px-2.5"
