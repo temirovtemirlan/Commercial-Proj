@@ -6,10 +6,9 @@ import type { ITariffFooter, ITariffHead } from "fusion/type";
 
 interface TariffStartProps {
   item: { head: ITariffHead; footer: ITariffFooter[]; tabCategory: string };
-  index: number;
 }
 
-const TariffStart: FC<TariffStartProps> = ({ item, index }) => {
+const TariffStart: FC<TariffStartProps> = ({ item }) => {
   return (
     <div className="text-center w-full box-border px-2.5">
       <div className="w-full max-w-[284px] rounded-2.5xl overflow-hidden h-[500px] mx-auto bg-gray-200">
@@ -32,7 +31,7 @@ const TariffStart: FC<TariffStartProps> = ({ item, index }) => {
         )}
       </div>
       <legend className="text-black text-xl xl:text-[24px] font-bold mt-4 md:mt-[40px] w-full">
-        {item.head.title} - {index}
+        {item.head.title}
       </legend>
 
       <div className="text-black text-lg md:text-base my-2 md:my-[16px] w-4/5 mx-auto h-auto md:h-[100px] overflow-y-auto tariff-custom_scroll_description">

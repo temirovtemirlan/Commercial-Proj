@@ -14,7 +14,6 @@ import { AnimatedComponent } from "common/ui/animatedComponent";
 import SwiperNavigationBtn from "common/SwiperNavigationBtn";
 import { tariffData } from "data/index";
 import { cn } from "helpers/style";
-import type { ITariffFooter, ITariffHead } from "fusion/type";
 
 const anVariantsOpacity = {
   hidden: { opacity: 0, y: 20 },
@@ -68,7 +67,7 @@ const Tariff: FC = () => {
   };
 
   return (
-    <Container className="relative xl:pt-[100px] pt-[50px] bg-[#f5f5f7] pb-[100px]">
+    <Container className="relative xl:pt-[100px] pt-[50px] bg-[#f5f5f7]">
       <AnimatedComponent
         tag="legend"
         initial={{ opacity: 0, y: 20 }}
@@ -81,7 +80,7 @@ const Tariff: FC = () => {
       </AnimatedComponent>
       <div ref={animRef} />
 
-      <div className="sticky top-[16rem] z-10 h-0">
+      <div className="sticky top-[16rem] mt-28 z-10 h-0">
         <SwiperNavigationBtn
           className="flex justify-between w-full md:hidden"
           prevClass="-translate-x-2 prev-tariff_panel"
@@ -89,12 +88,12 @@ const Tariff: FC = () => {
         />
       </div>
 
-      <div className="Our-Indicators">
+      <div className="Our-Indicators !-mt-20">
         <AnimatedComponent
           initial={{ opacity: 0, y: 20 }}
           animate={animInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="flex justify-between items-center"
+          className="grid md:grid-cols-[326px,1fr] items-center"
         >
           <div className="flex p-1.5 w-full max-w-fit rounded-full bg-white overflow-x-auto">
             {uniqueCategories.map((item, index) =>
@@ -141,11 +140,58 @@ const Tariff: FC = () => {
           >
             {tariffData?.map((item, index) => (
               <SwiperSlide key={index} className="w-[354px] !items-start">
-                <TariffPanel
-                  item={item}
-                  index={index}
-                  animInView={animInView}
-                />
+                <AnimatedComponent
+                  initial="hidden"
+                  animate={animInView ? "visible" : "hidden"}
+                  variants={anVariantsOpacity}
+                  transition={{ duration: 0.5, delay: index * 0.4 }}
+                  className={cn("relative w-full max-w-[354px]", {
+                    "md:col-span-2 lg:col-span-1 md:mx-auto lg:mx-0":
+                      index === 2,
+                  })}
+                  key={index}
+                >
+                  <TariffStart item={item} />
+
+                  <hr className="border-[#d2d2d7] w-full max-md:hidden my-10" />
+
+                  <Accordion
+                    className="w-full mt-10 md:mt-0 text-center px-2.5"
+                    transition
+                    transitionTimeout={300}
+                  >
+                    <AccordionItem
+                      header={({ state }) => (
+                        <div className="relative flex flex-col items-center w-full">
+                          <Arrow isEnter={state.isEnter} />
+
+                          <div className="pt-6">
+                            <TariffEnd
+                              head={item.footer[0].title}
+                              descriptions={item.footer[0].descriptions}
+                              before={item.footer[0].before}
+                            />
+                          </div>
+                        </div>
+                      )}
+                      itemKey={`${index}-${item.tabCategory}`}
+                    >
+                      <div className="flex flex-col justify-evenly gap-10 pt-10">
+                        {item.footer
+                          .slice(1)
+                          ?.map((footer) => (
+                            <TariffEnd
+                              key={footer.descriptions[0]}
+                              head={footer.title}
+                              className={"w-full text-center"}
+                              descriptions={footer.descriptions}
+                              before={footer.before}
+                            />
+                          ))}
+                      </div>
+                    </AccordionItem>
+                  </Accordion>
+                </AnimatedComponent>
               </SwiperSlide>
             ))}
           </Swiper>
@@ -156,68 +202,6 @@ const Tariff: FC = () => {
 };
 
 export default Tariff;
-
-interface ITariffPanel {
-  animInView: boolean;
-  index: number;
-  item: { head: ITariffHead; footer: ITariffFooter[]; tabCategory: string };
-}
-
-const TariffPanel: FC<ITariffPanel> = ({ animInView, index, item }) => {
-  return (
-    <AnimatedComponent
-      initial="hidden"
-      animate={animInView ? "visible" : "hidden"}
-      variants={anVariantsOpacity}
-      transition={{ duration: 0.5, delay: index * 0.4 }}
-      className={cn("relative w-full max-w-[354px]", {
-        "md:col-span-2 lg:col-span-1 md:mx-auto lg:mx-0": index === 2,
-      })}
-      key={index}
-    >
-      <TariffStart item={item} index={index} />
-
-      <hr className="border-[#d2d2d7] w-full max-md:hidden my-10" />
-
-      <Accordion
-        className="w-full mt-10 md:mt-0 text-center px-2.5"
-        transition
-        transitionTimeout={300}
-      >
-        <AccordionItem
-          header={({ state }) => (
-            <div className="relative flex flex-col items-center w-full">
-              <Arrow isEnter={state.isEnter} />
-
-              <div className="pt-6">
-                <TariffEnd
-                  head={item.footer[0].title}
-                  descriptions={item.footer[0].descriptions}
-                  before={item.footer[0].before}
-                />
-              </div>
-            </div>
-          )}
-          itemKey={`${index}-${item.tabCategory}`}
-        >
-          <div className="flex flex-col justify-evenly gap-10 pt-10">
-            {item.footer
-              .slice(1)
-              ?.map((footer) => (
-                <TariffEnd
-                  key={footer.descriptions[0]}
-                  head={footer.title}
-                  className={"w-full text-center"}
-                  descriptions={footer.descriptions}
-                  before={footer.before}
-                />
-              ))}
-          </div>
-        </AccordionItem>
-      </Accordion>
-    </AnimatedComponent>
-  );
-};
 
 const Arrow = ({ isEnter }: { isEnter: boolean }) => (
   <svg
