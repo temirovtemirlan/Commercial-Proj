@@ -304,10 +304,12 @@ interface VideoPlayerProps {
   muted?: boolean;
   className?: string;
   style?: React.CSSProperties;
+  loop: boolean;
 }
 
 const VideoPlayerHLS: React.FC<VideoPlayerProps> = (props) => {
-  const { src, poster, controls, autoPlay, muted, className, style } = props;
+  const { src, poster, controls, autoPlay, muted, className, style, loop } =
+    props;
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -353,6 +355,7 @@ const VideoPlayerHLS: React.FC<VideoPlayerProps> = (props) => {
       muted={muted}
       className={className}
       style={style}
+      loop={loop}
     />
   );
 };

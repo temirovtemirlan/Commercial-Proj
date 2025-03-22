@@ -1,13 +1,12 @@
 import { useRef, useState, useEffect, type FC } from "react";
 import Hls from "hls.js";
 import { cn } from "helpers/style";
-import { getVideoType } from "helpers/getTypeVideo.ts";
 
 // Глобальная ссылка на текущее воспроизводимое видео
 let activeVideoRef: HTMLVideoElement | null = null;
 
 export interface VideoPlayerHLSv2Props {
-  src: string[] | string;
+  src: string;
   posterSrc?: string;
   width?: string | number;
   height?: string | number;
@@ -32,7 +31,7 @@ const VideoPlayerHLSv2: FC<VideoPlayerHLSv2Props> = ({
     const video = videoRef.current;
     if (!video) return;
 
-    if (typeof src === "string" && src.endsWith(".m3u8")) {
+    if (src.endsWith(".m3u8")) {
       if (Hls.isSupported()) {
         const hls = new Hls();
         hls.loadSource(src);
@@ -123,20 +122,8 @@ const VideoPlayerHLSv2: FC<VideoPlayerHLSv2Props> = ({
         height={height}
         playsInline
         preload="none"
-      >
-        {typeof src === "string" && !src.endsWith(".m3u8") ? (
-          <source src={src.trim()} type={getVideoType(src)} />
-        ) : (
-          Array.isArray(src) &&
-          src.map((el, index) => (
-            <source
-              key={index}
-              src={el.trim()}
-              type={getVideoType(el.trim())}
-            />
-          ))
-        )}
-      </video>
+        src={src.trim()}
+      ></video>
       <div className="absolute inset-0 w-full" onClick={togglePlay} />
       <button className="absolute bottom-5 right-5" onClick={togglePlay}>
         {isPlaying ? pauseIcon : playIcon}

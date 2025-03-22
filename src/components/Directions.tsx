@@ -22,7 +22,7 @@ const directionsData = [
     descTwo:
       "Мы не делаем рекламу. Мы создаем реальность, в которой бренды становятся незаменимыми.",
     video:
-      "https://storage.googleapis.com/mkit_monster_bucket/Video/DIRECTION/MONSTER_MARKETING_2.webm",
+      "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/MONSTER_MARKETING_2/MONSTER_MARKETING_2/720p_mp4/stream.m3u8",
   },
   {
     title: "Monster Design & Branding",
@@ -37,7 +37,7 @@ const directionsData = [
     ],
     descTwo: "Когда ваш бренд имеет голос, он звучит громче конкурентов.",
     video:
-      "https://storage.googleapis.com/mkit_monster_bucket/Video/DIRECTION/MONSTER_BRANDING.webm",
+      "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/MONSTER_BRANDING/MONSTER_BRANDING/720p_mp4/stream.m3u8",
   },
   {
     title: "Soul Media",
@@ -52,7 +52,7 @@ const directionsData = [
     descTwo:
       "Контент, который не просто рассказывает, а заставляет чувствовать.",
     video:
-      "https://storage.googleapis.com/mkit_monster_bucket/Video/DIRECTION/SOUL_MEDIA.webm",
+      "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/SOUL_MEDIA/SOUL_MEDIA/720p_mp4/stream.m3u8",
   },
   {
     title: "Monster CGI/VFX",
@@ -67,7 +67,7 @@ const directionsData = [
     ],
     descTwo: "Когда технология становится искусством, создаются легенды.",
     video:
-      "https://storage.googleapis.com/mkit_monster_bucket/Video/DIRECTION/MONSTER_CG.webm",
+      "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/MONSTER_CG/MONSTER_CG/720p_mp4/stream.m3u8",
   },
   {
     title: "Monster AI Marketing",
@@ -81,7 +81,7 @@ const directionsData = [
     descTwo:
       "Будущее маркетинга — это гиперточность. Мы помогаем вам говорить с клиентами на их языке.",
     video:
-      "https://storage.googleapis.com/mkit_monster_bucket/Video/DIRECTION/MONSTER_AI.webm",
+      "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/MONSTER_AI/MONSTER_AI/720p_mp4/stream.m3u8",
   },
   {
     title: "Monster DEVZ",
@@ -95,7 +95,7 @@ const directionsData = [
     descTwo:
       "Технологии должны работать на ваш успех. Мы знаем, как это сделать.",
     video:
-      "https://storage.googleapis.com/mkit_monster_bucket/Video/DIRECTION/MONSTER_DEVZ_2.webm",
+      "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/MONSTER_DEVZ_2/MONSTER_DEVZ_2/720p_mp4/stream.m3u8",
   },
 ];
 

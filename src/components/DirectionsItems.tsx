@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { cn } from "helpers/style";
 import { useInView } from "react-intersection-observer";
+import VideoPlayerHLS from "components/VideoPlayerHLS.tsx";
 
 const loadedVideos = new Set<string>();
 
@@ -104,16 +105,24 @@ const DirectionsItems: FC<DirectionsItemsProps> = ({ className, item }) => {
       <div className="h-[680px] bg-[#111111] w-full max-lg:hidden">
         <div className={cn("h-full")} ref={ref}>
           {isLoaded ? (
-            <video
+            <VideoPlayerHLS
               className={"size-full object-cover pointer-events-none"}
               src={item.video}
-              loop
+              autoPlay
               muted
-              playsInline
               controls={false}
-              autoPlay={isLoaded}
+              loop
             />
           ) : (
+            // <video
+            //   className={"size-full object-cover pointer-events-none"}
+            //   src={item.video}
+            //   loop
+            //   muted
+            //   playsInline
+            //   controls={false}
+            //   autoPlay={isLoaded}
+            // />
             // <VideoFrame {...props} />
             <div className={"size-full bg-[#111111]"} />
           )}

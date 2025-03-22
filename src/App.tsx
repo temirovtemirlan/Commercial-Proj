@@ -6,7 +6,7 @@ import { useInView } from "react-intersection-observer";
 import Container from "components/Container";
 import MonsReels from "components/MonsReels";
 import Footer from "components/Footer";
-import LazyVideoFrame from "components/LazyVideoFrame";
+// import LazyVideoFrame from "components/LazyVideoFrame";
 import Directions from "components/Directions";
 import Tariff from "components/Tariff";
 import LogoCubeAnimation from "common/LogoCubeAnimation";
@@ -128,21 +128,20 @@ const App: FC = () => {
         <div className="text-center">
           <Tabs defaultIndex={1} className="Monstr-Showreel">
             <TabPanel className="mac:min-h-[1000px]">
-              <LazyVideoFrame
-                src={[
-                  "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/CG_REEL_HORIZONTAL_2.mp4",
-                  "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/CG_REEL_HORIZONTAL_2.webm",
-                ]}
+              <VideoPlayerHLSv2
+                src={
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/CG_REEL_HORIZONTAL_2/CG_REEL_HORIZONTAL_2/1080p_mp4/stream.m3u8"
+                }
                 // videoSrcWebm="https://storage.googleapis.com/mkit_monster_bucket/Video/CG/CG_REEL_HORIZONTAL_2.webm"
                 posterSrc={""}
                 isFullScreen
               />
             </TabPanel>
             <TabPanel>
-              <LazyVideoFrame
-                src={[
-                  "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/AI_REEL_HORIZONTAL_NEW.mp4",
-                ]}
+              <VideoPlayerHLSv2
+                src={
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/AI_REEL_HORIZONTAL_NEW/AI_REEL_HORIZONTAL_NEW/1080p_mp4/stream.m3u8"
+                }
                 posterSrc={""}
                 isFullScreen
               />
@@ -163,33 +162,6 @@ const App: FC = () => {
               </TabList>
             </motion.div>
           </Tabs>
-        </div>
-
-        <div className={"flex"}>
-          <div className={"w-1/2"}>
-            {/*<VideoPlayerVJS*/}
-            {/*  src="https://storage.googleapis.com/mkit_monster_bucket/Video/hls/COCA_COLA_AI_COMMERCIAL_NEW/720p_mp4/stream.m3u8"*/}
-            {/*  controls*/}
-            {/*  autoPlay*/}
-            {/*  className="my-video-player"*/}
-            {/*  style={{ width: "100%", height: "auto" }}*/}
-            {/*/>*/}
-            <VideoPlayerHLSv2
-              isFullScreen
-              // prettier-ignore
-              src={'https://storage.googleapis.com/mkit_monster_bucket/Video/hls/COCA_COLA_AI_COMMERCIAL_NEW/720p_mp4/stream.m3u8'}
-            />
-          </div>
-
-          <div className={"w-1/2"}>
-            <video
-              autoPlay
-              loop
-              // muted
-              controls={true}
-              src="https://storage.googleapis.com/mkit_monster_bucket/Video/AI/COCA_COLA_AI_COMMERCIAL.mp4"
-            ></video>
-          </div>
         </div>
 
         <Container className="bg-[#f5f5f7] xl:pt-[100px] pt-[50px] text-center">
@@ -277,13 +249,13 @@ const App: FC = () => {
             animate={videoOneRefInView ? { opacity: 1 } : undefined}
             transition={{ duration: 0.5 }}
           >
-            <LazyVideoFrame
-              src={[
-                "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/COCA_COLA_AI_COMMERCIAL.mp4",
-                "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/COCA_COLA_AI_COMMERCIAL.webm",
-              ]}
-              posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/COLA_H.webp"
-              coreClassName="h-[400px] lg:h-auto"
+            <VideoPlayerHLSv2
+              src={
+                "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/COCA_COLA_AI_COMMERCIAL_NEW/1080p_mp4/stream.m3u8"
+              }
+              posterSrc={
+                "https://storage.googleapis.com/mkit_monster_bucket/Poster/COLA_H.webp"
+              }
               className="rounded-[28px] overflow-hidden h-full lg:h-auto"
             />
           </AnimatedComponent>
@@ -300,15 +272,14 @@ const App: FC = () => {
               variants={anVariantsOpacity}
               transition={{ duration: 0.5, delay: 1.2 }}
             >
-              <LazyVideoFrame
-                coreClassName="h-full w-full rounded-[28px] overflow-hidden h-[700px] md:h-[900px] lg:h-[518px]"
-                className="h-full"
-                src={[
-                  "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/BAKAI_GPT_REMAKE.mov",
-                  "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/BAKAI_GPT_REMAKE.webm",
-                  "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/BAKAI_GPT_REMAKE.mp4",
-                ]}
-                posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/BAKAI_H.webp"
+              <VideoPlayerHLSv2
+                src={
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/BAKAI_GPT_REMAKE/BAKAI_GPT_REMAKE/1080p_mp4/stream.m3u8"
+                }
+                posterSrc={
+                  "https://storage.googleapis.com/mkit_monster_bucket/Poster/BAKAI_H.webp"
+                }
+                className="h-full w-full rounded-[28px] overflow-hidden md:h-[900px] lg:h-[518px]"
               />
             </AnimatedComponent>
 
@@ -318,14 +289,13 @@ const App: FC = () => {
               variants={anVariantsOpacity}
               transition={{ duration: 0.5, delay: 1.4 }}
             >
-              <LazyVideoFrame
-                coreClassName="h-full w-full bg-[#f5f5f7] rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
-                className="h-full"
-                src={[
-                  "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/INTERSPORT.mp4",
-                  "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/INTERSPORT.webm",
-                ]}
+              {/*https://storage.googleapis.com/mkit_monster_bucket/Video/hls/INTERSPORT/INTERSPORT/1080p_mp4/stream.m3u8*/}
+              <VideoPlayerHLSv2
+                src={
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/INTERSPORT/INTERSPORT/1080p_mp4/stream.m3u8"
+                }
                 posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/INTERSPORT_H.webp"
+                className="w-full bg-[#f5f5f7] rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
               />
             </AnimatedComponent>
           </AnimatedComponent>
@@ -334,14 +304,12 @@ const App: FC = () => {
             animate={videoOneRefInView ? { opacity: 1 } : undefined}
             transition={{ duration: 0.5, delay: 1.8 }}
           >
-            <LazyVideoFrame
-              coreClassName="mt-5 rounded-[28px] h-[full] md:h-[900px] lg:h-auto overflow-hidden"
-              className="h-full"
-              src={[
-                "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/organic_juice_commercial%20(1080p).mp4",
-                "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/organic_juice_commercial%20(1080p).webm",
-              ]}
+            <VideoPlayerHLSv2
+              src={
+                "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/organic_juice_commercial%20(1080p)/organic_juice_commercial%20(1080p)/1080p_mp4/stream.m3u8"
+              }
               posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/ORGANIC_2_H.webp"
+              className="mt-5 rounded-[28px] h-[full] md:h-[900px] lg:h-auto overflow-hidden"
             />
           </AnimatedComponent>
           <div
@@ -354,14 +322,12 @@ const App: FC = () => {
               variants={anVariantsOpacity}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <LazyVideoFrame
-                coreClassName="h-full w-full rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
-                className="h-full"
-                src={[
-                  "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/BMW_M5.mp4",
-                  "https://storage.googleapis.com/mkit_monster_bucket/Video/AI/BMW_M5.webm",
-                ]}
+              <VideoPlayerHLSv2
+                src={
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/BMW_M5/BMW_M5/1080p_mp4/stream.m3u8"
+                }
                 posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/BMW_H.webp"
+                className="w-full rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
               />
             </AnimatedComponent>
 
@@ -371,14 +337,12 @@ const App: FC = () => {
               variants={anVariantsOpacity}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <LazyVideoFrame
-                src={[
-                  "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/3D_JOY_COMMERCIAL.mp4",
-                  "https://storage.googleapis.com/mkit_monster_bucket/Video/CG/3D_JOY_COMMERCIAL.webm",
-                ]}
+              <VideoPlayerHLSv2
+                src={
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/3D_JOY_COMMERCIAL/3D_JOY_COMMERCIAL/1080p_mp4/stream.m3u8"
+                }
                 posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/JOY_COMMERCIAL_H.webp"
-                coreClassName="h-full w-full bg-[#f5f5f7] rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
-                className="h-full object-cover"
+                className="w-full bg-[#f5f5f7] rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
               />
             </AnimatedComponent>
           </div>
@@ -388,14 +352,13 @@ const App: FC = () => {
             transition={{ duration: 0.3, delay: 0.8 }}
             className="mt-5 h-full"
           >
-            <LazyVideoFrame
-              className="h-full"
-              coreClassName="h-[400px] lg:h-auto rounded-[28px] overflow-hidden"
-              src={[
-                "https://storage.googleapis.com/mkit_monster_bucket/Video/PRODUCTION/ENESAI_IMIDGE_WEB.mp4",
-                "https://storage.googleapis.com/mkit_monster_bucket/Video/PRODUCTION/ENESAI_IMIDGE_WEB.webm",
-              ]}
+            {/**/}
+            <VideoPlayerHLSv2
+              src={
+                "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/ENESAI_IMIDGE_WEB/ENESAI_IMIDGE_WEB/1080p_mp4/stream.m3u8"
+              }
               posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/ENESAI.webp"
+              className="h-[400px] lg:h-auto rounded-[28px] overflow-hidden"
             />
           </AnimatedComponent>
         </Container>
