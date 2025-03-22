@@ -135,7 +135,7 @@ body {
 }
 
 .legend-3lvl {
-  @apply text-[56px] font-bold leading-[60px];
+  @apply text-[44px] leading-[48px] md:text-[56px] md:leading-[60px] font-bold;
 }
 
 /* text */

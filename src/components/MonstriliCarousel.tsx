@@ -6,9 +6,10 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { AnimatedComponent } from "common/ui/animatedComponent";
+import SwiperNavigationBtn from "common/SwiperNavigationBtn";
 import { cn } from "helpers/style.ts";
 import { Swiper as SwiperType } from "swiper/types";
-import { AnimatedComponent } from "common/ui/animatedComponent";
 
 interface MonstriliCarouselProps {
   className?: string;
@@ -83,65 +84,11 @@ const MonstriliCarousel: React.FC<MonstriliCarouselProps> = ({
       {/**/}
 
       <div className={"flex w-full justify-end"}>
-        <div className={"gap-5 flex mt-[40px] *:cursor-pointer *:select-none"}>
-          <button className={prevEl}>
-            <svg
-              width="36"
-              height="37"
-              viewBox="0 0 36 37"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                y="0.385864"
-                width="36"
-                height="36"
-                rx="18"
-                fill="#ECECEE"
-              />
-              <path
-                d="M20 11.3859L14 18.3859L20 25.3859"
-                stroke="#B8B8B9"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M20 11.3859L14 18.3859L20 25.3859"
-                stroke="#535354"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-          {/*  */}
-
-          <button className={nextEl}>
-            <svg
-              width="36"
-              height="37"
-              viewBox="0 0 36 37"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                y="0.385864"
-                width="36"
-                height="36"
-                rx="18"
-                fill="#E6E6EA"
-              />
-              <path
-                d="M16 11.3859L22 18.3859L16 25.3859"
-                stroke="#535354"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-        </div>
+        <SwiperNavigationBtn
+          className="flex gap-5 mt-[40px] *:select-none"
+          nextClass={nextEl}
+          prevClass={prevEl}
+        />
       </div>
     </div>
   );

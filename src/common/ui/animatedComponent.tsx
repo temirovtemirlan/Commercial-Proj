@@ -15,7 +15,7 @@ export const AnimatedComponent = forwardRef<
 >(
   (
     {
-      tag: Component = "section", // Указываем div как элемент по умолчанию
+      tag: Component = "div", // Указываем div как элемент по умолчанию
       children,
       className,
       ...motionProps

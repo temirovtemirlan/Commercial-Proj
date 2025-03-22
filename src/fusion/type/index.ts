@@ -10,7 +10,7 @@ export type directionType = "CG" | "VFX" | "AI" | "WEBSITE";
 
 // * Tariff
 
-interface ITariffHead {
+export interface ITariffHead {
   media: string;
   title: string;
   description: string;
@@ -18,7 +18,7 @@ interface ITariffHead {
   content: string;
 }
 
-interface ITariffFooter {
+export interface ITariffFooter {
   title: string | JSX.Element;
   descriptions: string[];
   before?: string;

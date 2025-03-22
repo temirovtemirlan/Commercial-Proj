@@ -1,11 +1,12 @@
 import type { FC } from "react";
-import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
 import { useInView } from "react-intersection-observer";
 import "swiper/css";
 import "swiper/css/navigation";
 import DirectionsItems from "components/DirectionsItems";
 import { AnimatedComponent } from "common/ui/animatedComponent";
+import SwiperNavigationBtn from "common/SwiperNavigationBtn";
 
 const directionsData = [
   {
@@ -103,7 +104,7 @@ const Directions: FC = () => {
   const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
 
   return (
-    <div className={"Our-Directions"} ref={ref}>
+    <div className="Our-Directions" ref={ref}>
       <AnimatedComponent
         tag="legend"
         className="legend-3lvl text-white mb-10 md:mb-20 ml-5 lg:ml-[25%]"
@@ -118,7 +119,7 @@ const Directions: FC = () => {
         <Swiper
           onSwiper={() => {}}
           className="px-5 relative"
-          modules={[Pagination, Navigation]}
+          modules={[Navigation]}
           speed={500}
           spaceBetween={30} // Расстояние между слайдами
           centeredSlides
@@ -131,8 +132,8 @@ const Directions: FC = () => {
           allowTouchMove={true}
           // centeredSlides={true}
           navigation={{
-            nextEl: ".prevButton393218",
-            prevEl: ".nextButton393919",
+            nextEl: ".nextButton393919",
+            prevEl: ".prevButton393218",
           }}
         >
           {directionsData?.map((item, index) => (
@@ -141,7 +142,12 @@ const Directions: FC = () => {
             </SwiperSlide>
           ))}
 
-          <div className="w-full max-w-[1080px] mx-auto flex gap-5 justify-end mt-5">
+          <SwiperNavigationBtn
+            className="w-full max-w-[1080px] mx-auto flex gap-5 justify-end mt-5"
+            nextClass="nextButton393919"
+            prevClass="prevButton393218"
+          />
+          {/* <div className="w-full max-w-[1080px] mx-auto flex gap-5 justify-end mt-5">
             <button className={"nextButton393919"}>
               <svg
                 width="36"
@@ -173,7 +179,6 @@ const Directions: FC = () => {
                 />
               </svg>
             </button>
-            {/*  */}
 
             <button className={"prevButton393218"}>
               <svg
@@ -199,7 +204,7 @@ const Directions: FC = () => {
                 />
               </svg>
             </button>
-          </div>
+          </div> */}
         </Swiper>
       </div>
     </div>

@@ -1,12 +1,17 @@
-import { useMemo, useRef, useState, type FC } from "react";
+import { useRef, useState, type FC } from "react";
 import { Accordion, AccordionItem } from "@szhsin/react-accordion";
-import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 import { useInView } from "react-intersection-observer";
-import { CustomScroll } from "react-custom-scroll";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import { useMediaQuery } from "usehooks-ts";
+import type { Swiper as SwiperType } from "swiper/types";
+import "swiper/css";
+import "swiper/css/navigation";
 
-import { TariffEnd } from "./TariffBlock";
+import { TariffEnd, TariffStart } from "./TariffBlock";
 import Container from "./Container";
 import { AnimatedComponent } from "common/ui/animatedComponent";
+import SwiperNavigationBtn from "common/SwiperNavigationBtn";
 import { tariffData } from "data/index";
 import { cn } from "helpers/style";
 
@@ -16,56 +21,53 @@ const anVariantsOpacity = {
 };
 
 const Tariff: FC = () => {
+  const swiperRef = useRef<SwiperType>();
+  const [realIndex, setRealIndex] = useState(0);
+  const is1080 = useMediaQuery("(min-width: 1080px)");
+  const is768 = useMediaQuery("(min-width: 768px)");
+
+  const slidesPerGroup = is1080 ? 3 : is768 ? 2 : 1;
+
+  // #region
   const [animRef, animInView] = useInView({
+    initialInView: true,
     threshold: 0.8,
     triggerOnce: true,
   });
 
-  const [activeTab, setActiveTab] = useState(0);
-  // const [openAccordionKeys, setOpenAccordionKeys] = useState<string[]>([]);
-  // const [headViewIsAccordionOpen, setHeadViewIsAccordionOpen] = useState(false);
-  // const [priceRefElement, priceInView] = useInView({ threshold: 0 });
   const tabPanelRef = useRef<HTMLLegendElement | null>(null);
-
-  // const [containerRefElement, tariffContainerInView] = useInView({
-  //   threshold: 0,
-  //   rootMargin: "-100px 0px -1000px 0px",
-  // });
 
   const uniqueCategories = Array.from(
     new Set(tariffData.map((item) => item.tabCategory))
   );
+  // #endregion
 
-  // prettier-ignore
-  const tariffFilter = useMemo(() => { return tariffData.filter((item) => item.tabCategory === uniqueCategories[activeTab])}, [activeTab]);
+  const tabSwiperHandler = (index: number) => {
+    const targetIndex = index * slidesPerGroup; // Вычисляем индекс начала группы
 
-  // const handleAccordionStateChange = (itemKey: string, isExpanded: boolean) => {
-  //   setOpenAccordionKeys((prev) => {
-  //     const updatedKeys = isExpanded
-  //       ? [...prev, itemKey]
-  //       : prev.filter((key) => key !== itemKey);
-  //     return updatedKeys;
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   if (!tariffContainerInView) {
-  //     setHeadViewIsAccordionOpen(false);
-  //     return;
-  //   }
-
-  //   if (openAccordionKeys.length > 0) {
-  //     setHeadViewIsAccordionOpen(!priceInView);
-  //   } else {
-  //     setHeadViewIsAccordionOpen(false);
-  //   }
-  // }, [openAccordionKeys, priceInView, tariffContainerInView]);
+    if (is1080 == false && is768) {
+      if (targetIndex === 4) {
+        swiperRef.current?.slideToLoop(6);
+      } else if (targetIndex === 2) {
+        swiperRef.current?.slideToLoop(targetIndex);
+      } else {
+        swiperRef.current?.slideToLoop(targetIndex);
+      }
+    } else if (!is1080 && !is768) {
+      if (targetIndex === 1) {
+        swiperRef.current?.slideToLoop(3);
+      } else if (targetIndex === 2) {
+        swiperRef.current?.slideToLoop(6);
+      } else {
+        swiperRef.current?.slideToLoop(targetIndex);
+      }
+    } else {
+      swiperRef.current?.slideToLoop(targetIndex);
+    }
+  };
 
   return (
-    <Container
-      className="relative overflow-hidden xl:pt-[100px] pt-[50px] bg-[#f5f5f7]"
-      // ref={containerRefElement}
-    >
+    <Container className="relative xl:pt-[100px] pt-[50px] bg-[#f5f5f7]">
       <AnimatedComponent
         tag="legend"
         initial={{ opacity: 0, y: 20 }}
@@ -78,191 +80,123 @@ const Tariff: FC = () => {
       </AnimatedComponent>
       <div ref={animRef} />
 
-      <Tabs className="Our-Indicators" onSelect={(e) => setActiveTab(e)}>
+      <div className="sticky top-[16rem] mt-28 z-10 h-0">
+        <SwiperNavigationBtn
+          className="flex justify-between w-full md:hidden"
+          prevClass="-translate-x-2 prev-tariff_panel"
+          nextClass="translate-x-2 next-tariff_panel"
+        />
+      </div>
+
+      <div className="Our-Indicators !-mt-20">
         <AnimatedComponent
           initial={{ opacity: 0, y: 20 }}
           animate={animInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.6 }}
+          className="grid md:grid-cols-[326px,1fr] items-center"
         >
-          <TabList className="inline-flex p-[5px] rounded-full bg-white">
-            {uniqueCategories.map((item) => (
-              <Tab
-                className="tab__delivery_panels whitespace-nowrap px-6 py-2.5"
+          <div className="flex p-1.5 w-full max-w-fit rounded-full bg-white overflow-x-auto">
+            {uniqueCategories.map((item, index) =>
+              // prettier-ignore
+              <button
                 key={item}
+                className={cn("whitespace-nowrap px-6 py-2.5", (tariffData[realIndex]?.tabCategory || "Base") === item && "bg-[#0171e3] text-white rounded-full")}
+                onClick={() => tabSwiperHandler(index)}
               >
                 {item}
-              </Tab>
-            ))}
-          </TabList>
+              </button>
+            )}
+          </div>
+
+          <SwiperNavigationBtn
+            className="hidden md:flex justify-end gap-5 w-full"
+            prevClass="prev-tariff_panel"
+            nextClass="next-tariff_panel"
+          />
         </AnimatedComponent>
 
         <AnimatedComponent
           initial={{ opacity: 0, y: 40 }}
           animate={animInView ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: 0.5, delay: 0.8 }}
+          className="w-full flex justify-center"
         >
-          {uniqueCategories.map((tab, tabIndex) => (
-            <TabPanel
-              className={`w-full overflow-hidden ${tabIndex === activeTab ? "mt-[30px]" : "mt-0"}`}
-              key={tab}
-            >
-              <div className="relative grid md:grid-cols-[repeat(2,minmax(0,354px))] lg:grid-cols-[repeat(3,minmax(0,354px))] justify-center gap-y-14 mx-auto px-5 md:px-0 overflow-hidden overflow-x-auto">
-                {tariffFilter?.map((item, index) => (
-                  <AnimatedComponent
-                    initial="hidden"
-                    animate={animInView ? "visible" : "hidden"}
-                    variants={anVariantsOpacity}
-                    transition={{ duration: 0.5, delay: index * 0.4 }}
-                    className={cn("relative w-full max-w-[354px]", {
-                      "md:col-span-2 lg:col-span-1 md:mx-auto lg:mx-0":
-                        index === 2,
-                    })}
-                    key={index}
+          <Swiper
+            className="relative max-w-[1062px] overflow-hidden pt-8"
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            speed={500}
+            loop
+            onSlideChange={(swiper) => setRealIndex(swiper.realIndex)}
+            breakpoints={{
+              1080: { slidesPerView: 3, slidesPerGroup: 3 },
+              768: { slidesPerView: 2, slidesPerGroup: 2 },
+              0: { slidesPerView: 1, slidesPerGroup: 1 },
+            }}
+            navigation={{
+              prevEl: ".prev-tariff_panel",
+              nextEl: ".next-tariff_panel",
+            }}
+            modules={[Navigation]}
+          >
+            {tariffData?.map((item, index) => (
+              <SwiperSlide key={index} className="w-[354px] !items-start">
+                <AnimatedComponent
+                  initial="hidden"
+                  animate={animInView ? "visible" : "hidden"}
+                  variants={anVariantsOpacity}
+                  transition={{ duration: 0.5, delay: index * 0.4 }}
+                  className={cn("relative w-full max-w-[354px]", {
+                    "md:col-span-2 lg:col-span-1 md:mx-auto lg:mx-0":
+                      index === 2,
+                  })}
+                  key={index}
+                >
+                  <TariffStart item={item} />
+
+                  <hr className="border-[#d2d2d7] w-full max-md:hidden my-10" />
+
+                  <Accordion
+                    className="w-full mt-10 md:mt-0 text-center px-2.5"
+                    transition
+                    transitionTimeout={300}
                   >
-                    <>
-                      {/* {headViewIsAccordionOpen && index === 1 && (
-                    <div
-                      className={cn(
-                        "fixed top-0 left-0 w-full bg-[#f5f5f7] text-center px-5 md:px-[100px] mac:px-[440px] z-[2]"
-                      )}
-                      style={{
-                        borderBottom: "1px solid #d2d2d7",
-                      }}
-                    >
-                      <div className="grid md:grid-cols-[repeat(2,minmax(0,354px))] lg:grid-cols-[repeat(3,minmax(0,354px))] text-center w-full justify-center mx-auto py-8">
-                        {tariffFilter.map((item, headIndex) => (
-                          <div
-                            className={cn("w-full max-w-[354px] px-2.5", {
-                              "md:col-span-2 lg:col-span-1 md:mx-auto lg:mx-0":
-                                headIndex === 2,
-                            })}
-                            key={item.head.title}
-                          >
-                            <legend className="text-black text-xl xl:text-[24px] font-bold">
-                              {item.head.title}
-                            </legend>
-                            <p className="text-black text-xs md:text-sm w-4/5 mx-auto mt-4">
-                              {item.head.description}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )} */}
-                    </>
+                    <AccordionItem
+                      header={({ state }) => (
+                        <div className="relative flex flex-col items-center w-full">
+                          <Arrow isEnter={state.isEnter} />
 
-                    <div className="text-center w-full box-border px-2.5">
-                      <>
-                        <div className="w-full max-w-[284px] rounded-2.5xl overflow-hidden h-[500px] mx-auto bg-gray-200">
-                          {item.head.media ? (
-                            <video
-                              className={"object-cover size-full"}
-                              src={`https://storage.googleapis.com/mkit_monster_bucket/Tariff/${item.head.media}`}
-                              loop
-                              autoPlay
-                              muted
-                              controls={false}
-                              playsInline
+                          <div className="pt-6">
+                            <TariffEnd
+                              head={item.footer[0].title}
+                              descriptions={item.footer[0].descriptions}
+                              before={item.footer[0].before}
                             />
-                          ) : (
-                            <div className="flex size-full justify-center items-center">
-                              <span className="text-center inline-block my-auto text-lg">
-                                Скоро
-                              </span>
-                            </div>
-                          )}
-                        </div>
-                        <legend className="text-black text-xl xl:text-[24px] font-bold mt-4 md:mt-[40px] w-full">
-                          {item.head.title}
-                        </legend>
-                      </>
-
-                      <div className="text-black text-lg md:text-base my-2 md:my-[16px] w-4/5 mx-auto h-auto md:h-[100px] overflow-y-auto tariff-custom_scroll_description">
-                        <CustomScroll heightRelativeToParent="100%">
-                          {item.head.description}
-                        </CustomScroll>
-                      </div>
-
-                      <p
-                        className="text-black text-lg md:text-base font-semibold"
-                        // ref={
-                        //   tabIndex === activeTab && index === 0
-                        //     ? priceRefElement
-                        //     : null
-                        // }
-                        dangerouslySetInnerHTML={{ __html: item.head.price }}
-                      ></p>
-
-                      <AnimatedComponent
-                        tag="button"
-                        whileHover={{ scale: 1.04, y: -2 }}
-                        className="w-[192px] h-11 p-2 md:p-2.5 bg-[#0071e3] rounded-full text-base justify-center items-center gap-2.5 inline-flex mt-[40px] text-white"
-                      >
-                        Оставить заявку
-                      </AnimatedComponent>
-                    </div>
-
-                    <hr className="border-[#d2d2d7] w-full max-md:hidden my-10" />
-
-                    {item.head.content ? (
-                      <div className="w-full h-10 px-2.5 mb-5">
-                        <div className="pt-2 w-full h-full text-2xl text-center">
-                          {item.head.content}
-                        </div>
-                      </div>
-                    ) : null}
-
-                    <Accordion
-                      className="w-full mt-10 md:mt-0 text-center px-2.5"
-                      transition
-                      transitionTimeout={300}
-                    >
-                      <AccordionItem
-                        header={({ state }) => (
-                          <div
-                            className="relative flex flex-col items-center w-full"
-                            // onClick={() =>
-                            //   handleAccordionStateChange(
-                            //     String(index),
-                            //     !state.isEnter
-                            //   )
-                            // }
-                          >
-                            <Arrow isEnter={state.isEnter} />
-
-                            <div className="pt-6">
-                              <TariffEnd
-                                head={item.footer[0].title}
-                                descriptions={item.footer[0].descriptions}
-                                before={item.footer[0].before}
-                              />
-                            </div>
                           </div>
-                        )}
-                        itemKey={`${index}-${item.tabCategory}`}
-                      >
-                        <div className="flex flex-col justify-evenly gap-10 pt-10">
-                          {item.footer
-                            .slice(1)
-                            ?.map((footer) => (
-                              <TariffEnd
-                                key={footer.descriptions[0]}
-                                head={footer.title}
-                                className={"w-full text-center"}
-                                descriptions={footer.descriptions}
-                                before={footer.before}
-                              />
-                            ))}
                         </div>
-                      </AccordionItem>
-                    </Accordion>
-                  </AnimatedComponent>
-                ))}
-              </div>
-            </TabPanel>
-          ))}
+                      )}
+                      itemKey={`${index}-${item.tabCategory}`}
+                    >
+                      <div className="flex flex-col justify-evenly gap-10 pt-10">
+                        {item.footer
+                          .slice(1)
+                          ?.map((footer) => (
+                            <TariffEnd
+                              key={footer.descriptions[0]}
+                              head={footer.title}
+                              className={"w-full text-center"}
+                              descriptions={footer.descriptions}
+                              before={footer.before}
+                            />
+                          ))}
+                      </div>
+                    </AccordionItem>
+                  </Accordion>
+                </AnimatedComponent>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </AnimatedComponent>
-      </Tabs>
+      </div>
     </Container>
   );
 };

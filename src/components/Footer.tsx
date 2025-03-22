@@ -59,24 +59,60 @@ const socialNetwork = [
     ),
     href: "",
   },
+  {
+    title: "TELEGRAM",
+    icon: (
+      <svg
+        width="19"
+        height="19"
+        viewBox="0 0 34 27"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M13.3298 17.7948L12.7839 25.3332C13.565 25.3332 13.9032 25.0038 14.3089 24.6082L17.9706 21.1725L25.558 26.6278C26.9495 27.3892 27.9299 26.9883 28.3053 25.371L33.2857 2.45888L33.2871 2.45753C33.7284 0.437945 32.5432 -0.351801 31.1874 0.143647L1.91289 11.1474C-0.0850325 11.9088 -0.0547816 13.0023 1.57326 13.4978L9.05756 15.7833L26.4421 5.10352C27.2603 4.57162 28.0042 4.86592 27.3923 5.39782L13.3298 17.7948Z"
+          fill="white"
+        />
+      </svg>
+    ),
+    href: "",
+  },
+  {
+    title: "+996 509 711 811",
+    icon: (
+      <svg
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M6.62 10.79C8.06 13.62 10.38 15.93 13.21 17.38L15.41 15.18C15.68 14.91 16.08 14.82 16.43 14.94C17.55 15.31 18.76 15.51 20 15.51C20.55 15.51 21 15.96 21 16.51V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z"
+          fill="white"
+        />
+      </svg>
+    ),
+    href: "tel:+996 509 711 811",
+  },
 ];
 
 const Footer: FC<FooterProps> = ({ className }) => {
   return (
     <footer className={cn("bg-[#161617] pt-20 pb-5", className)}>
       <div className="flex flex-col xl:flex-row xl:justify-between xl:items-center w-full px-5">
-        <div className="flex justify-center">
+        <div className="flex md:justify-center">
           <div className="flex flex-col justify-center">
-            <p className="text-[#777777] text-sm mb-3 text-center xl:text-start">
+            <p className="text-[#777777] text-sm mb-3 text-start md:text-center xl:text-start">
               СЛЕДИТЬ ЗА
             </p>
 
-            <div className="flex flex-row xl:flex-col gap-2">
+            <div className="flex flex-col md:flex-row xl:flex-col gap-y-2 gap-x-8">
               {socialNetwork.map((el) => (
                 <Link
                   key={el.href}
                   to={el.href}
-                  className="flex items-center uppercase space-x-1 text-white"
+                  className="grid grid-cols-[24px,auto] items-center uppercase gap-2 text-white"
                 >
                   {el.icon}
                   <span>{el.title}</span>
@@ -86,7 +122,7 @@ const Footer: FC<FooterProps> = ({ className }) => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 xl:grid-cols-6 gap-x-[65px] gap-y-4 mt-6 xl:mt-0 select-none">
+        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-x-12 gap-y-8 mt-10 xl:mt-0">
           {clockData?.map((item, index) => (
             <div key={index} className="text-center">
               <Clock key={index} timeZone={item.timeZone} />

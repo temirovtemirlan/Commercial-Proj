@@ -1,6 +1,11 @@
 import type { FC } from "react";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
-import { domAnimation, LazyMotion, motion } from "motion/react";
+import {
+  AnimatePresence,
+  domAnimation,
+  LazyMotion,
+  motion,
+} from "motion/react";
 import { useInView } from "react-intersection-observer";
 
 import Container from "components/Container";
@@ -18,6 +23,7 @@ import LazyLoadLayout from "components/LazyLoadLayout.tsx";
 import OurIndicators from "components/OurIndicators";
 import FloatingActionButtons from "components/FloatingActionButtons";
 import { AnimatedComponent } from "common/ui/animatedComponent";
+import LanguageComponent from "components/LanguageComponent";
 import { cn } from "helpers/style";
 import VideoPlayerHLSv2 from "components/VideoPlayerHLSv2.tsx";
 
@@ -36,6 +42,7 @@ const anVariantsOpacity = { hidden: { opacity: 0 }, visible: { opacity: 1 } };
 
 const App: FC = () => {
   const [monsterCorpRef, monsterCorpInView] = useInView(view);
+  const [langRef, langInView] = useInView();
   const [monsreelsRef, monsreelsInView] = useInView({
     ...view,
     threshold: 0.9,
@@ -48,15 +55,29 @@ const App: FC = () => {
 
   return (
     <>
+      <AnimatePresence>
+        {langInView && (
+          <motion.div
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <LanguageComponent />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <LazyMotion features={domAnimation}>
         <Container className={"py-[70px]"}>
-          <div className="flex justify-between xl:flex-row flex-col gap-y-6 gap-x-5">
+          <div className="flex justify-between xl:flex-row flex-col gap-y-6 gap-x-[200px]">
+            {/* <div className="flex justify-between xl:flex-row flex-col gap-y-6 gap-x-[200px]"> */}
             <AnimatedComponent
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
               <svg
+                className="w-[254px] md:w-[354px] md:h-[43px]"
                 width="354"
                 height="43"
                 viewBox="0 0 354 43"
@@ -107,26 +128,28 @@ const App: FC = () => {
             </AnimatedComponent>
 
             <AnimatedComponent
-              tag="p"
+              tag="div"
               className="text-black text-2xl grow-1 xl:max-w-[800px] text-balance"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.8 }}
             >
-              <span className="leading-relaxed">
+              <p className="leading-relaxed">
                 MONSTER CORP — ЦИФРОВАЯ ЭКОСИСТЕМА УСЛУГ. <br />
-              </span>
-              Первый цифровой медиакит для бизнеса — это ваш личный навигатор в
-              мире маркетинга, продакшна, брендинга, VFX и IT. <br />
-              Забудьте про бесконечные PDF — всё, что вам нужно, доступно онлайн
-              в один клик.
+              </p>
+              <p>
+                Первый цифровой медиакит для бизнеса — это ваш личный навигатор
+                в мире маркетинга, продакшна, брендинга, VFX и IT. <br />
+                Забудьте про бесконечные PDF — всё, что вам нужно, доступно
+                онлайн в один клик.
+              </p>
             </AnimatedComponent>
           </div>
         </Container>
 
         {/* Showreel */}
-        <div className="text-center">
-          <Tabs defaultIndex={1} className="Monstr-Showreel">
+        <div className="text-center" ref={langRef}>
+          <Tabs className="Monstr-Showreel">
             <TabPanel className="mac:min-h-[1000px]">
               <VideoPlayerHLSv2
                 src={
@@ -164,6 +187,7 @@ const App: FC = () => {
           </Tabs>
         </div>
 
+        {/* Monster Corp. */}
         <Container className="bg-[#f5f5f7] xl:pt-[100px] pt-[50px] text-center">
           <div ref={monsterCorpRef} />
           <AnimatedComponent
@@ -187,6 +211,7 @@ const App: FC = () => {
           </AnimatedComponent>
         </Container>
 
+        {/* Monsreels */}
         <Container className="bg-[#f5f5f7] xl:pt-[150px] pt-[80px] xl:pb-[100px] overflow-hidden">
           <AnimatedComponent
             tag="legend"
@@ -213,7 +238,7 @@ const App: FC = () => {
             playsInline
             preload="none"
             loop
-            className="max-lg:w-full max-md:h-[260px] max-lg:h-[400px] object-cover"
+            className="max-lg:w-full max-md:h-[320px] max-lg:h-[400px] object-cover"
           >
             <source
               src="https://storage.googleapis.com/mkit_monster_bucket/Video/MKIT/IMAC_V4.mp4"

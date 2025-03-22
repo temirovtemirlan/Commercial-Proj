@@ -46,29 +46,25 @@ const icons = [
   },
 ];
 
+// prettier-ignore
+const containerVariants = {
+  open: { transition: { staggerChildren: 0.1, staggerDirection: -1 } },
+  closed: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } }
+};
+// prettier-ignore
+const itemVariants = {
+  open: { opacity: 1, scale: 1, transition: { duration: 0.2, ease: "linear" } },
+  closed: { opacity: 0, scale: 0, transition: { duration: 0.2, ease: "linear" } },
+};
+
 const FloatingActionButtons: FC = () => {
   const [isScrollTo, setIsScrollTo] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  // prettier-ignore
-  const containerVariants = {
-    open: { transition: { staggerChildren: 0.1, staggerDirection: -1 } },
-    closed: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } }
-  };
-  // prettier-ignore
-  const itemVariants = {
-    open: { opacity: 1, scale: 1, transition: { duration: 0.2, ease: "linear" } },
-    closed: { opacity: 0, scale: 0, transition: { duration: 0.2, ease: "linear" } },
-  };
-
-  const onOpenHandler = () => {
-    setIsOpen(false);
-  };
+  const onOpenHandler = () => setIsOpen(false);
 
   // #region Scroll To
-  const onScrollTo = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  const onScrollTo = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -134,16 +130,16 @@ const FloatingActionButtons: FC = () => {
               <path
                 d="M11.3342 7.20358C11.3342 6.97291 11.3342 6.85758 11.3689 6.75491C11.4696 6.45624 11.7356 6.34091 12.0022 6.21958C12.3009 6.08291 12.4502 6.01491 12.5989 6.00291C12.7669 5.98958 12.9356 6.02558 13.0796 6.10624C13.2702 6.21291 13.4036 6.41691 13.5396 6.58224C14.1682 7.34624 14.4829 7.72824 14.5976 8.14891C14.6909 8.48891 14.6909 8.84491 14.5976 9.18424C14.4302 9.79891 13.9002 10.3136 13.5076 10.7909C13.3069 11.0342 13.2062 11.1562 13.0796 11.2276C12.9331 11.3088 12.7658 11.3448 12.5989 11.3309C12.4502 11.3189 12.3009 11.2509 12.0016 11.1142C11.7349 10.9929 11.4696 10.8776 11.3689 10.5789C11.3342 10.4762 11.3342 10.3609 11.3342 10.1302V7.20358ZM4.66758 7.20358C4.66758 6.91291 4.65958 6.65224 4.42492 6.44824C4.33958 6.37424 4.22625 6.32291 4.00025 6.21958C3.70092 6.08358 3.55158 6.01491 3.40292 6.00291C2.95825 5.96691 2.71892 6.27091 2.46292 6.58291C1.83358 7.34624 1.51892 7.72824 1.40358 8.14958C1.31079 8.48845 1.31079 8.84604 1.40358 9.18491C1.57158 9.79891 2.10225 10.3142 2.49425 10.7909C2.74158 11.0909 2.97825 11.3649 3.40292 11.3309C3.55158 11.3189 3.70092 11.2509 4.00025 11.1142C4.22692 11.0116 4.33958 10.9596 4.42492 10.8856C4.65958 10.6816 4.66758 10.4209 4.66758 10.1309V7.20358Z"
                 stroke="black"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 d="M3.33398 6C3.33398 3.79067 5.42332 2 8.00065 2C10.578 2 12.6673 3.79067 12.6673 6M12.6673 11.3333V11.8667C12.6673 13.0447 11.474 14 10.0007 14H8.66732"
                 stroke="black"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           )}
@@ -186,9 +182,9 @@ const Arrow = () => (
     <path
       d="M11 6L6 1L1 6"
       stroke="black"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );

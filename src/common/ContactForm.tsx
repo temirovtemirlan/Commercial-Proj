@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useInView } from "react-intersection-observer";
 
 import {
   Select,
@@ -78,15 +77,9 @@ export type FormData = yup.InferType<typeof schema>;
 const inputStyle =
   "w-full h-16 bg-transparent border_solid p-5 placeholder:text-black placeholder:opacity-40 text-lg outline-none";
 
-const animVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 20 },
-};
-
 const ContactForm: FC = () => {
   const [status, setStatus] = useState<"ok" | "no" | null>(null);
   const [loading, setLoading] = useState(false);
-  const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
 
   const {
     register,
@@ -156,129 +149,22 @@ const ContactForm: FC = () => {
 
   return (
     <>
-      <div className="relative grid lg:grid-cols-2 w-full pt-50 bg-[#161617]">
+      <div className="relative grid xl:grid-cols-2 w-full pt-50 bg-[#161617]">
         <div className="flex flex-col justify-between px-7 py-6 md:px-50 2xl:px-120 md:py-10 2xl:py-28 bg-[#161617]">
-          <div>
-            <p
-              className="text-white text-[32px] md:text-[44px] leading-[39px] md:leading-[52px] xl:text-[56px] xl:leading-[64px]"
-              ref={ref}
-            >
-              Оставьте заявку,
-              <br />
-              чтобы обсудить проект
-            </p>
-
-            <ul className="flex flex-col md:flex-wrap gap-x-5 gap-y-1 md:gap-y-3 lxl:justify-between *:text-lg *:md:text-2xl text-white mt-9">
-              <AnimatedComponent
-                tag="li"
-                initial="hidden"
-                animate={inView ? "visible" : "hidden"}
-                variants={animVariants}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="max-w-fit"
-              >
-                <NavLink to="mailto:job@monstr.ru">job@monstr.ru</NavLink>
-              </AnimatedComponent>
-              <AnimatedComponent
-                tag="li"
-                initial="hidden"
-                animate={inView ? "visible" : "hidden"}
-                variants={animVariants}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="max-w-fit"
-              >
-                <NavLink to="tel:+996 509 711 811">+996 509 711 811</NavLink>
-              </AnimatedComponent>
-              <AnimatedComponent
-                tag="li"
-                initial="hidden"
-                animate={inView ? "visible" : "hidden"}
-                variants={animVariants}
-                transition={{ duration: 0.5, delay: 0.6 }}
-                className="max-w-fit"
-              >
-                <NavLink
-                  className="inline-flex items-center gap-3 md:gap-4"
-                  to=""
-                >
-                  <AnimatedComponent
-                    tag="span"
-                    initial={{ scale: 0.8 }}
-                    animate={inView ? { scale: 1 } : undefined}
-                    transition={{ duration: 0.5, delay: 0.8 }}
-                  >
-                    <svg
-                      className="w-[22px] h-[22px] md:w-auto md:h-auto"
-                      width="34"
-                      height="27"
-                      viewBox="0 0 34 27"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M13.3298 17.7948L12.7839 25.3332C13.565 25.3332 13.9032 25.0038 14.3089 24.6082L17.9706 21.1725L25.558 26.6278C26.9495 27.3892 27.9299 26.9883 28.3053 25.371L33.2857 2.45888L33.2871 2.45753C33.7284 0.437945 32.5432 -0.351801 31.1874 0.143647L1.91289 11.1474C-0.0850325 11.9088 -0.0547816 13.0023 1.57326 13.4978L9.05756 15.7833L26.4421 5.10352C27.2603 4.57162 28.0042 4.86592 27.3923 5.39782L13.3298 17.7948Z"
-                        fill="white"
-                      />
-                    </svg>
-                  </AnimatedComponent>
-                  телеграм
-                </NavLink>
-              </AnimatedComponent>
-            </ul>
-          </div>
+          <p className="text-white text-[32px] md:text-[44px] leading-[39px] md:leading-[52px] xl:text-[56px] xl:leading-[64px]">
+            Оставьте заявку,
+            <br />
+            чтобы обсудить проект
+          </p>
 
           <div className="mt-12 lg:mt-8">
-            <div className="flex flex-col md:flex-wrap lg:flex-col xl:flex-wrap gap-y-3 md:gap-y-7 gap-x-24">
-              <NavLink className="max-w-fit" to="mailto:rabota@monstr.ru">
-                <div className="flex items-end xl:items-center gap-3 text-[#70BF91] text-xl">
-                  <AnimatedComponent
-                    tag="span"
-                    initial={{ scale: 1.2 }}
-                    animate={inView ? { scale: 1 } : undefined}
-                    transition={{ duration: 0.5, delay: 2 }}
-                    className="w-7 md:w-10 h-7 md:h-10 rounded-full inline-flex justify-center items-center border md:border-2 border-solid border-[#70BF91]"
-                  >
-                    {/* <Arrow className="w-[12px] h-[12px] md:w-auto md:h-auto [&_path]:stroke-[#70BF91]" /> */}
-                    <svg
-                      className="w-[12px] h-[12px] md:w-auto md:h-auto [&_path]:stroke-[#70BF91]"
-                      width="14"
-                      height="15"
-                      viewBox="0 0 14 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12.9998 10.7344V1.50377H3.76916"
-                        stroke="white"
-                        strokeWidth="1.5"
-                      />
-                      <path
-                        d="M12.9998 1.50022L0.999975 13.5"
-                        stroke="white"
-                        strokeWidth="1.5"
-                      />
-                    </svg>
-                  </AnimatedComponent>
-                  <span>Работа</span>
-                </div>
-                <span className="text-2xl text-white xl:ml-[53px] mt-0 lg:mt-3 xl:mt-0">
-                  rabota@monstr.ru
-                </span>
-              </NavLink>
+            <div className="flex flex-col gap-2 md:gap-3 text-white">
+              <span className="text-xl opacity-50">Для связи</span>
 
-              <NavLink
-                className="inline-flex flex-col gap-2 md:gap-3 text-white max-w-fit"
-                to="mailto:hello@monstrcorp.com"
-              >
-                <span className="text-xl opacity-50">Для связи</span>
+              <NavLink className="max-w-fit" to="mailto:hello@monstrcorp.com">
                 <span className="text-2xl">hello@monstrcorp.com</span>
               </NavLink>
             </div>
-
-            {/* <p className="text-white opacity-50 mt-10">
-            ООО "Нимакс" ОГРН 1109847023626 190005, Санкт-Петербург г,
-            Московский пр., д. 55, лит.А
-          </p> */}
           </div>
         </div>
 
@@ -435,7 +321,7 @@ const ContactForm: FC = () => {
                 >
                   <SelectValue placeholder="Откуда узнали про Monster" />
                 </SelectTrigger>
-                <SelectContent className="rounded-none bg-white">
+                <SelectContent className="rounded-none bg-white outline-none">
                   {selectData.map((item) => (
                     <SelectItem
                       className="hover:bg-[#eee] [&[data-state='checked']]:bg-[#eee]"
