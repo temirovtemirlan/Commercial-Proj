@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 import {
   AnimatePresence,
@@ -42,12 +42,6 @@ const view = { threshold: 0.2, triggerOnce: true };
 const anVariantsOpacity = { hidden: { opacity: 0 }, visible: { opacity: 1 } };
 
 const App: FC = () => {
-  const matches = useMediaQuery("(min-width: 650px)");
-
-  useEffect(() => {
-    console.log("matches ", matches);
-  }, [matches]);
-
   const [monsterCorpRef, monsterCorpInView] = useInView(view);
   const [langRef, langInView] = useInView();
   const [monsreelsRef, monsreelsInView] = useInView({
@@ -59,6 +53,32 @@ const App: FC = () => {
     ...view,
     threshold: 0.4,
   });
+
+  const matches = useMediaQuery("(min-width: 650px)");
+  const [aiGCVideo, setAIGCVideo] = useState<string>(
+    matches
+      ? "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/AI_REEL_HORIZONTAL_NEW/AI_REEL_HORIZONTAL_NEW/720p_mp4/stream.m3u8"
+      : "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/AICG_VERTICAL/720p_mp4/stream.m3u8"
+  );
+
+  const [cgVideo, setCGVideo] = useState<string>(
+    matches
+      ? "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/CG_REEL_HORIZONTAL_2/CG_REEL_HORIZONTAL_2/720p_mp4/stream.m3u8"
+      : "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/CG_REEL_VERTICAL/720p_mp4/stream.m3u8"
+  );
+
+  useEffect(() => {
+    setCGVideo(
+      matches
+        ? "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/CG_REEL_HORIZONTAL_2/CG_REEL_HORIZONTAL_2/720p_mp4/stream.m3u8"
+        : "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/CG_REEL_VERTICAL/720p_mp4/stream.m3u8"
+    );
+    setAIGCVideo(
+      matches
+        ? "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/AI_REEL_HORIZONTAL_NEW/AI_REEL_HORIZONTAL_NEW/720p_mp4/stream.m3u8"
+        : "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/AICG_VERTICAL/720p_mp4/stream.m3u8"
+    );
+  }, [matches]);
 
   return (
     <>
@@ -158,47 +178,20 @@ const App: FC = () => {
         <div className="text-center" ref={langRef}>
           <Tabs className="Monstr-Showreel">
             <TabPanel className="mac:min-h-[1000px]">
-              {matches ? (
-                <VideoPlayerHLSv2
-                  src={
-                    // "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/CG_REEL_HORIZONTAL_2/CG_REEL_HORIZONTAL_2/1080p_mp4/stream.m3u8"
-                    "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/CG_REEL_HORIZONTAL_2/CG_REEL_HORIZONTAL_2/1080p_mp4/stream.m3u8"
-                  }
-                  // videoSrcWebm="https://storage.googleapis.com/mkit_monster_bucket/Video/CG/CG_REEL_HORIZONTAL_2.webm"
-                  posterSrc={""}
-                  isFullScreen
-                />
-              ) : (
-                <VideoPlayerHLSv2
-                  src={
-                    "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/CG_REEL_VERTICAL/1080p_mp4/stream.m3u8"
-                  }
-                  posterSrc={""}
-                  isFullScreen
-                />
-              )}
+              <VideoPlayerHLSv2
+                key={cgVideo}
+                src={cgVideo}
+                posterSrc={""}
+                isFullScreen
+              />
             </TabPanel>
             <TabPanel>
-              {
-                //
-                matches ? (
-                  <VideoPlayerHLSv2
-                    src={
-                      "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/AI_REEL_HORIZONTAL_NEW/AI_REEL_HORIZONTAL_NEW/1080p_mp4/stream.m3u8"
-                    }
-                    posterSrc={""}
-                    isFullScreen
-                  />
-                ) : (
-                  <VideoPlayerHLSv2
-                    src={
-                      "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/AICG_VERTICAL/1080p_mp4/stream.m3u8"
-                    }
-                    posterSrc={""}
-                    isFullScreen
-                  />
-                )
-              }
+              <VideoPlayerHLSv2
+                key={aiGCVideo}
+                src={aiGCVideo}
+                posterSrc=""
+                isFullScreen
+              />
             </TabPanel>
             <motion.div
               className={"switcher sticky bottom-5 pt-5 inline-block"}
@@ -307,7 +300,7 @@ const App: FC = () => {
           >
             <VideoPlayerHLSv2
               src={
-                "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/COCA_COLA_AI_COMMERCIAL_NEW/1080p_mp4/stream.m3u8"
+                "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/COCA_COLA_AI_COMMERCIAL_NEW/720p_mp4/stream.m3u8"
               }
               posterSrc={
                 "https://storage.googleapis.com/mkit_monster_bucket/Poster/COLA_H.webp"
@@ -330,7 +323,7 @@ const App: FC = () => {
             >
               <VideoPlayerHLSv2
                 src={
-                  "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/BAKAI_GPT_REMAKE/BAKAI_GPT_REMAKE/1080p_mp4/stream.m3u8"
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/BAKAI_GPT_REMAKE/BAKAI_GPT_REMAKE/720p_mp4/stream.m3u8"
                 }
                 posterSrc={
                   "https://storage.googleapis.com/mkit_monster_bucket/Poster/BAKAI_H.webp"
@@ -345,10 +338,9 @@ const App: FC = () => {
               variants={anVariantsOpacity}
               transition={{ duration: 0.5, delay: 1.4 }}
             >
-              {/*https://storage.googleapis.com/mkit_monster_bucket/Video/hls/INTERSPORT/INTERSPORT/1080p_mp4/stream.m3u8*/}
               <VideoPlayerHLSv2
                 src={
-                  "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/INTERSPORT/INTERSPORT/1080p_mp4/stream.m3u8"
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/INTERSPORT/INTERSPORT/720p_mp4/stream.m3u8"
                 }
                 posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/INTERSPORT_H.webp"
                 className="w-full bg-[#f5f5f7] rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
@@ -380,7 +372,7 @@ const App: FC = () => {
             >
               <VideoPlayerHLSv2
                 src={
-                  "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/BMW_M5/BMW_M5/1080p_mp4/stream.m3u8"
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/BMW_M5/BMW_M5/720p_mp4/stream.m3u8"
                 }
                 posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/BMW_H.webp"
                 className="w-full rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
@@ -395,7 +387,7 @@ const App: FC = () => {
             >
               <VideoPlayerHLSv2
                 src={
-                  "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/3D_JOY_COMMERCIAL/3D_JOY_COMMERCIAL/1080p_mp4/stream.m3u8"
+                  "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/3D_JOY_COMMERCIAL/3D_JOY_COMMERCIAL/720p_mp4/stream.m3u8"
                 }
                 posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/JOY_COMMERCIAL_H.webp"
                 className="w-full bg-[#f5f5f7] rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
@@ -411,7 +403,7 @@ const App: FC = () => {
             {/**/}
             <VideoPlayerHLSv2
               src={
-                "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/ENESAI_IMIDGE_WEB/ENESAI_IMIDGE_WEB/1080p_mp4/stream.m3u8"
+                "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/ENESAI_IMIDGE_WEB/ENESAI_IMIDGE_WEB/720p_mp4/stream.m3u8"
               }
               posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/ENESAI.webp"
               className="h-[400px] lg:h-auto rounded-[28px] overflow-hidden"
