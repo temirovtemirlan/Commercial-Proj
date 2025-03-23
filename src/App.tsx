@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { FC, useEffect } from "react";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 import {
   AnimatePresence,
@@ -26,6 +26,7 @@ import { AnimatedComponent } from "common/ui/animatedComponent";
 import LanguageComponent from "components/LanguageComponent";
 import { cn } from "helpers/style";
 import VideoPlayerHLSv2 from "components/VideoPlayerHLSv2.tsx";
+import { useMediaQuery } from "usehooks-ts";
 
 interface HeaderProps {
   title: string;
@@ -41,6 +42,12 @@ const view = { threshold: 0.2, triggerOnce: true };
 const anVariantsOpacity = { hidden: { opacity: 0 }, visible: { opacity: 1 } };
 
 const App: FC = () => {
+  const matches = useMediaQuery("(min-width: 650px)");
+
+  useEffect(() => {
+    console.log("matches ", matches);
+  }, [matches]);
+
   const [monsterCorpRef, monsterCorpInView] = useInView(view);
   const [langRef, langInView] = useInView();
   const [monsreelsRef, monsreelsInView] = useInView({
@@ -151,23 +158,47 @@ const App: FC = () => {
         <div className="text-center" ref={langRef}>
           <Tabs className="Monstr-Showreel">
             <TabPanel className="mac:min-h-[1000px]">
-              <VideoPlayerHLSv2
-                src={
-                  "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/CG_REEL_HORIZONTAL_2/CG_REEL_HORIZONTAL_2/1080p_mp4/stream.m3u8"
-                }
-                // videoSrcWebm="https://storage.googleapis.com/mkit_monster_bucket/Video/CG/CG_REEL_HORIZONTAL_2.webm"
-                posterSrc={""}
-                isFullScreen
-              />
+              {matches ? (
+                <VideoPlayerHLSv2
+                  src={
+                    // "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/CG_REEL_HORIZONTAL_2/CG_REEL_HORIZONTAL_2/1080p_mp4/stream.m3u8"
+                    "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/CG_REEL_HORIZONTAL_2/CG_REEL_HORIZONTAL_2/1080p_mp4/stream.m3u8"
+                  }
+                  // videoSrcWebm="https://storage.googleapis.com/mkit_monster_bucket/Video/CG/CG_REEL_HORIZONTAL_2.webm"
+                  posterSrc={""}
+                  isFullScreen
+                />
+              ) : (
+                <VideoPlayerHLSv2
+                  src={
+                    "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/CG_REEL_VERTICAL/1080p_mp4/stream.m3u8"
+                  }
+                  posterSrc={""}
+                  isFullScreen
+                />
+              )}
             </TabPanel>
             <TabPanel>
-              <VideoPlayerHLSv2
-                src={
-                  "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/AI_REEL_HORIZONTAL_NEW/AI_REEL_HORIZONTAL_NEW/1080p_mp4/stream.m3u8"
-                }
-                posterSrc={""}
-                isFullScreen
-              />
+              {
+                //
+                matches ? (
+                  <VideoPlayerHLSv2
+                    src={
+                      "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/AI_REEL_HORIZONTAL_NEW/AI_REEL_HORIZONTAL_NEW/1080p_mp4/stream.m3u8"
+                    }
+                    posterSrc={""}
+                    isFullScreen
+                  />
+                ) : (
+                  <VideoPlayerHLSv2
+                    src={
+                      "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/AICG_VERTICAL/1080p_mp4/stream.m3u8"
+                    }
+                    posterSrc={""}
+                    isFullScreen
+                  />
+                )
+              }
             </TabPanel>
             <motion.div
               className={"switcher sticky bottom-5 pt-5 inline-block"}

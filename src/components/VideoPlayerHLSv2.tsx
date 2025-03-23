@@ -37,21 +37,21 @@ const VideoPlayerHLSv2: FC<VideoPlayerHLSv2Props> = ({
         hls.loadSource(src);
         hls.attachMedia(video);
         hls.on(Hls.Events.MANIFEST_PARSED, () => {
-          console.log("HLS Manifest загружен");
+          // console.log("HLS Manifest загружен");
         });
         hls.on(Hls.Events.ERROR, (_event, data) => {
           if (data.fatal) {
             switch (data.type) {
               case Hls.ErrorTypes.NETWORK_ERROR:
-                console.log("Ошибка сети, перезапуск загрузки...");
+                // console.log("Ошибка сети, перезапуск загрузки...");
                 hls.startLoad();
                 break;
               case Hls.ErrorTypes.MEDIA_ERROR:
-                console.log("Ошибка медиа, попытка восстановления...");
+                // console.log("Ошибка медиа, попытка восстановления...");
                 hls.recoverMediaError();
                 break;
               default:
-                console.log("Критическая ошибка", data);
+                // console.log("Критическая ошибка", data);
                 hls.destroy();
                 break;
             }

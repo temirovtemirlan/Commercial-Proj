@@ -90,22 +90,22 @@ const VimeoEmbedTest: FC<VimeoEmbedProps> = ({
   };
 
   const handlePlayClick = () => {
-    console.log("handlePlayClick called. isPlaying:", isPlaying); // <--- Добавили лог
+    // console.log("handlePlayClick called. isPlaying:", isPlaying); // <--- Добавили лог
 
     if (thumbnailUrl && !showPlayer) {
       setShowPlayer(true);
       setIsPlaying(true);
-      console.log("Thumbnail click - setShowPlayer(true), setIsPlaying(true)"); // <--- Добавили лог
+      // console.log("Thumbnail click - setShowPlayer(true), setIsPlaying(true)"); // <--- Добавили лог
     } else {
       if (isPlaying) {
         playerRef.current?.pause();
-        console.log("Pause video - playerRef.current?.pause()"); // <--- Добавили лог
+        // console.log("Pause video - playerRef.current?.pause()"); // <--- Добавили лог
       } else {
         playerRef.current?.play();
-        console.log("Play video - playerRef.current?.play()"); // <--- Добавили лог
+        // console.log("Play video - playerRef.current?.play()"); // <--- Добавили лог
       }
       setIsPlaying(!isPlaying);
-      console.log("setIsPlaying(!isPlaying) - new isPlaying:", !isPlaying); // <--- Добавили лог
+      // console.log("setIsPlaying(!isPlaying) - new isPlaying:", !isPlaying); // <--- Добавили лог
     }
   };
 
