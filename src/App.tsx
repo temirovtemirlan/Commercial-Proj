@@ -229,7 +229,7 @@ const App: FC = () => {
             <legend className="gradient-legend-1lvl">Monster Corp.</legend>
             <span className="legend-2lvl">Исскуство создавать будущее.</span>
 
-            <p className="text-1lvl">
+            <p className="text-1lvl text-balance">
               Мы не просто создаем бренды, контент и технологии. <br /> Мы
               строим реальность, которой хочется быть частью. <br /> <br />В
               мире, где каждый борется за внимание, выигрывают те, кто умеет{" "}
