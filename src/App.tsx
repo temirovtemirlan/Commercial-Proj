@@ -180,6 +180,9 @@ const App: FC = () => {
             <TabPanel className="mac:min-h-[1000px]">
               <VideoPlayerHLSv2
                 key={cgVideo}
+                classNameVideo={
+                  "object-cover object-center bg-center bg-cover bg-no-repeat"
+                }
                 src={cgVideo}
                 posterSrc={""}
                 isFullScreen
@@ -188,6 +191,9 @@ const App: FC = () => {
             <TabPanel>
               <VideoPlayerHLSv2
                 key={aiGCVideo}
+                classNameVideo={
+                  "object-cover object-center bg-center bg-cover bg-no-repeat"
+                }
                 src={aiGCVideo}
                 posterSrc=""
                 isFullScreen

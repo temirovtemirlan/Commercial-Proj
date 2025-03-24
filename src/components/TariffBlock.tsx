@@ -86,7 +86,17 @@ const TariffEnd: FC<ITariffEnd> = ({
     >
       {before && <span className="absolute -mt-5 text-xs">{before}</span>}
       <span className="text-center text-xl xl:text-[24px] font-semibold">
-        {validImg ? <img src={typeof head === "string" ? head : ""} /> : head}
+        {validImg ? (
+          <img
+            src={
+              typeof head === "string"
+                ? `https://storage.googleapis.com/mkit_monster_bucket/Icons${head}`
+                : ""
+            }
+          />
+        ) : (
+          head
+        )}
       </span>
 
       <span className="text-base block mt-2 leading-relaxed text-center">

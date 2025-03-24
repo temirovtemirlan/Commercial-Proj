@@ -12,48 +12,48 @@ const footerData = [
     descriptions: ["Правок"],
   },
   {
-    title: "/tariff/search.png",
+    title: "/search.png",
     descriptions: ["Анализ продукта"],
   },
   {
-    title: "/tariff/docs.png",
+    title: "/docs.png",
     descriptions: ["Написание сценария"],
   },
 
   {
-    title: "tariff/stoting.png",
+    title: "/stoting.png",
     descriptions: ["Раскадровка"],
   },
   {
-    title: "/tariff/brainstorm.png",
+    title: "/brainstorm.png",
     descriptions: ["Разработка концепции"],
   },
   {
-    title: "/tariff/cube3d.png",
+    title: "/cube3d.png",
     descriptions: ["Создание 3D-моделей"],
   },
   {
-    title: "/tariff/animation.png",
+    title: "/animation.png",
     descriptions: ["Персонажная анимация"],
   },
   {
-    title: "/tariff/world3d.png",
+    title: "/world3d.png",
     descriptions: ["Создание полноценных", "3Д-миров"],
   },
   {
-    title: "tariff/composting.png",
+    title: "/composting.png",
     descriptions: ["Композитинг"],
   },
   {
-    title: "/tariff/colorcorrection.png",
+    title: "/colorcorrection.png",
     descriptions: ["Премиальная", "Цветокоррекция"],
   },
   {
-    title: "/tariff/sound_design.png",
+    title: "/sound_design.png",
     descriptions: ["Sound Design"],
   },
   {
-    title: "tariff/voice.png",
+    title: "/voice.png",
     descriptions: ["Профессиональная озвучка"],
   },
 ];
@@ -166,11 +166,11 @@ export const tariffData: TariffType[] = [
         descriptions: ["Cоздание ролика"],
       },
       {
-        title: "/tariff/colorcorrection.png",
+        title: "/colorcorrection.png",
         descriptions: ["Цветокоррекция"],
       },
       {
-        title: "/tariff/sound_design_ai.png",
+        title: "/sound_design_ai.png",
         descriptions: ["Sound Design"],
       },
     ],
@@ -200,23 +200,23 @@ export const tariffData: TariffType[] = [
       },
 
       {
-        title: "/tariff/brainstorm.png",
+        title: "/brainstorm.png",
         descriptions: ["Разработка концепции"],
       },
       {
-        title: "/tariff/cube3d.png",
+        title: "/cube3d.png",
         descriptions: ["Создание 3D-моделей"],
       },
       {
-        title: "tariff/fire.png",
+        title: "/fire.png",
         descriptions: ["Cимуляция физики", "анимация"],
       },
       {
-        title: "/tariff/colorcorrection.png",
+        title: "/colorcorrection.png",
         descriptions: ["Цветокоррекция"],
       },
       {
-        title: "/tariff/sound_design.png",
+        title: "/sound_design.png",
         descriptions: ["Sound Design"],
       },
     ],
@@ -245,7 +245,7 @@ export const tariffData: TariffType[] = [
         descriptions: ["Правок"],
       },
       {
-        title: "/tariff/brainstorm.png",
+        title: "/brainstorm.png",
         descriptions: ["Разработка концепции"],
       },
       // {
@@ -262,35 +262,35 @@ export const tariffData: TariffType[] = [
       // },
 
       // {
-      //   title: '/tariff/cube3d.png',
+      //   title: '/cube3d.png',
       //   descriptions: ["Создание 3D-моделей"],
       // },
       // {
-      //   title: '/tariff/animation.png',
+      //   title: '/animation.png',
       //   descriptions: ["Персонажная анимация"],
       // },
       // {
-      //   title: '/tariff/world3d.png',
+      //   title: '/world3d.png',
       //   descriptions: ["Создание полноценных", "3Д-миров"],
       // },
       {
-        title: "/tariff/cube3d.png",
+        title: "/cube3d.png",
         descriptions: ["Создание 3D-моделей"],
       },
       {
-        title: "tariff/fire.png",
+        title: "/fire.png",
         descriptions: ["Cимуляция физики анимация"],
       },
       {
-        title: "/tariff/colorcorrection.png",
+        title: "/colorcorrection.png",
         descriptions: ["Премиальная", "цветокоррекция"],
       },
       // {
-      //   title: '/tariff/animation.png',
+      //   title: '/animation.png',
       //   descriptions: ["Анимация"],
       // },
       {
-        title: "/tariff/sound_design.png",
+        title: "/sound_design.png",
         descriptions: ["Sound Design"],
       },
       // {
@@ -331,35 +331,35 @@ export const tariffData: TariffType[] = [
         descriptions: ["Правок"],
       },
       {
-        title: "/tariff/search_ai.png",
+        title: "/search_ai.png",
         descriptions: ["Анализ продукта"],
       },
       {
-        title: "/tariff/docs_ai.png",
+        title: "/docs_ai.png",
         descriptions: ["Написание сценария"],
       },
       {
-        title: "tariff/stoting.png",
+        title: "/stoting.png",
         descriptions: ["Раскадровка"],
       },
       {
-        title: "/tariff/cube3d.png",
+        title: "/cube3d.png",
         descriptions: ["Cоздание 3д модели", "вашего продукта"],
       },
       {
-        title: "tariff/integrationai.png",
+        title: "/integrationai.png",
         descriptions: ["Интеграция 3Д", "модели в ролик"],
       },
       {
-        title: "/tariff/colorcorrection.png",
+        title: "/colorcorrection.png",
         descriptions: ["Премиальная", "цветокоррекция"],
       },
       {
-        title: "/tariff/sound_design.png",
+        title: "/sound_design.png",
         descriptions: ["Sound Design"],
       },
       {
-        title: "tariff/voiceai.png",
+        title: "/voiceai.png",
         descriptions: ["Профессиональная озвучка"],
       },
     ],

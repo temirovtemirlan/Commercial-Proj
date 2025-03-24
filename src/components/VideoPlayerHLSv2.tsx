@@ -11,6 +11,7 @@ export interface VideoPlayerHLSv2Props {
   width?: string | number;
   height?: string | number;
   className?: string;
+  classNameVideo?: string;
   title?: string;
   isFullScreen?: boolean;
 }
@@ -21,6 +22,7 @@ const VideoPlayerHLSv2: FC<VideoPlayerHLSv2Props> = ({
   width = "100%",
   height = "auto",
   className,
+  classNameVideo,
   title,
   isFullScreen,
 }) => {
@@ -117,7 +119,7 @@ const VideoPlayerHLSv2: FC<VideoPlayerHLSv2Props> = ({
         poster={posterSrc}
         controls={false}
         title={title}
-        className="w-full h-full object-cover"
+        className={cn(" w-full h-full object-cover", classNameVideo)}
         width={width}
         height={height}
         playsInline
