@@ -53,7 +53,7 @@ const LogoCubeAnimation: FC = () => {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : undefined}
           transition={{ duration: 0.6 }}
-          className="text-[32px] leading-[36px] font-semibold"
+          className="text-[32px] leading-9 md:leading-[36px] font-semibold text-balance"
         >
           Мы гордимся работой с компаниями, <br className="hidden lg:block" />{" "}
           которые задают правила игры на своих рынках.

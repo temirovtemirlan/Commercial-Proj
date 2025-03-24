@@ -36,7 +36,7 @@ const WhyMonsterCorp: FC = () => {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : undefined}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="text-1lvl"
+          className="text-1lvl text-balance"
         >
           В основе каждого успешного бизнеса — история.{" "}
           <br className="max-md:hidden" /> Мы рассказываем её так, чтобы в неё
