@@ -176,13 +176,51 @@ const App: FC = () => {
 
         {/* Showreel */}
         <div className="text-center" ref={langRef}>
+          {/*<Tabs className="Monstr-Showreel">*/}
+          {/*  <TabPanel className="mac:min-h-[1000px]">*/}
+          {/*    <VideoPlayerHLSv2*/}
+          {/*      key={cgVideo}*/}
+          {/*      classNameVideo={*/}
+          {/*        "object-cover object-center bg-center bg-cover bg-no-repeat"*/}
+          {/*      }*/}
+          {/*      src={cgVideo}*/}
+          {/*      posterSrc={""}*/}
+          {/*      isFullScreen*/}
+          {/*    />*/}
+          {/*  </TabPanel>*/}
+          {/*  <TabPanel>*/}
+          {/*    <VideoPlayerHLSv2*/}
+          {/*      key={aiGCVideo}*/}
+          {/*      classNameVideo={*/}
+          {/*        "object-cover object-center bg-center bg-cover bg-no-repeat"*/}
+          {/*      }*/}
+          {/*      src={aiGCVideo}*/}
+          {/*      posterSrc=""*/}
+          {/*      isFullScreen*/}
+          {/*    />*/}
+          {/*  </TabPanel>*/}
+          {/*  <motion.div*/}
+          {/*    className={"switcher sticky bottom-5 pt-5 inline-block"}*/}
+          {/*    initial={{ y: 100, scale: 0 }}*/}
+          {/*    animate={{ y: 0, scale: 1 }}*/}
+          {/*    transition={{ duration: 0.9, ease: "backOut", delay: 0.2 }}*/}
+          {/*  >*/}
+          {/*    <TabList className="flex p-[5px] bg-white rounded-full">*/}
+          {/*      <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">*/}
+          {/*        CG REEL*/}
+          {/*      </Tab>*/}
+          {/*      <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">*/}
+          {/*        AIGC REEL*/}
+          {/*      </Tab>*/}
+          {/*    </TabList>*/}
+          {/*  </motion.div>*/}
+          {/*</Tabs>*/}
+
           <Tabs className="Monstr-Showreel">
             <TabPanel className="mac:min-h-[1000px]">
               <VideoPlayerHLSv2
                 key={cgVideo}
-                classNameVideo={
-                  "object-cover object-center bg-center bg-cover bg-no-repeat"
-                }
+                classNameVideo={matches ? "" : "h-[700px]"}
                 src={cgVideo}
                 posterSrc={""}
                 isFullScreen
@@ -191,9 +229,7 @@ const App: FC = () => {
             <TabPanel>
               <VideoPlayerHLSv2
                 key={aiGCVideo}
-                classNameVideo={
-                  "object-cover object-center bg-center bg-cover bg-no-repeat"
-                }
+                classNameVideo={matches ? "" : "h-[700px]"}
                 src={aiGCVideo}
                 posterSrc=""
                 isFullScreen
