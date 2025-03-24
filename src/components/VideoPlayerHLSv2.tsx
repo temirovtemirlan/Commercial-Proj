@@ -127,12 +127,12 @@ const VideoPlayerHLSv2: FC<VideoPlayerHLSv2Props> = ({
         src={src.trim()}
       ></video>
       <div className="absolute inset-0 w-full" onClick={togglePlay} />
-      <button className="absolute bottom-5 right-5" onClick={togglePlay}>
+      <button className="absolute bottom-5 right-5 z-10" onClick={togglePlay}>
         {isPlaying ? pauseIcon : playIcon}
       </button>
       {isFullScreen && (
         <button
-          className="absolute bottom-5 right-16"
+          className="absolute bottom-5 right-16 z-10"
           onClick={handleEnterFullScreen}
         >
           {fullScreenIcon}
