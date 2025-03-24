@@ -25,6 +25,7 @@ const clockData: ClockData[] = [
 const socialNetwork = [
   {
     title: "instagram",
+    className: "",
     icon: (
       <svg
         width="24"
@@ -43,6 +44,7 @@ const socialNetwork = [
   },
   {
     title: "TIKTOK",
+    className: "",
     icon: (
       <svg
         width="24"
@@ -61,6 +63,7 @@ const socialNetwork = [
   },
   {
     title: "TELEGRAM",
+    className: "",
     icon: (
       <svg
         width="19"
@@ -75,10 +78,11 @@ const socialNetwork = [
         />
       </svg>
     ),
-    href: "",
+    href: "https://t.me/MonstrCorpBot",
   },
   {
     title: "+996 509 711 811",
+    className: "",
     icon: (
       <svg
         width="22"
@@ -95,6 +99,37 @@ const socialNetwork = [
     ),
     href: "tel:+996 509 711 811",
   },
+  {
+    title: "hello@monstrcorp.com",
+    className: "lowercase text-lg",
+    icon: (
+      <svg
+        width={22}
+        height={22}
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g
+          id="SVGRepo_tracerCarrier"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+          {" "}
+          <path
+            d="M17.4009 19.2C15.8965 20.3302 14.0265 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12V13.5C21 14.8807 19.8807 16 18.5 16C17.1193 16 16 14.8807 16 13.5V8M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z"
+            stroke="#ffffff"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>{" "}
+        </g>
+      </svg>
+    ),
+    href: "mailto:hello@monstrcorp.com",
+  },
 ];
 
 const Footer: FC<FooterProps> = ({ className }) => {
@@ -109,14 +144,17 @@ const Footer: FC<FooterProps> = ({ className }) => {
 
             <div className="flex flex-col md:flex-row xl:flex-col gap-y-2 gap-x-8">
               {socialNetwork.map((el) => (
-                <Link
+                <a
                   key={el.href}
-                  to={el.href}
-                  className="grid grid-cols-[24px,auto] items-center uppercase gap-2 text-white"
+                  href={el.href}
+                  className={cn(
+                    "grid grid-cols-[24px,auto] items-center uppercase gap-2 text-white",
+                    el.className
+                  )}
                 >
                   {el.icon}
                   <span>{el.title}</span>
-                </Link>
+                </a>
               ))}
             </div>
           </div>

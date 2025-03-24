@@ -157,15 +157,15 @@ const ContactForm: FC = () => {
             чтобы обсудить проект
           </p>
 
-          <div className="mt-12 lg:mt-8">
-            <div className="flex flex-col gap-2 md:gap-3 text-white">
-              <span className="text-xl opacity-50">Для связи</span>
+          {/*<div className="mt-12 lg:mt-8">*/}
+          {/*  <div className="flex flex-col gap-2 md:gap-3 text-white">*/}
+          {/*    <span className="text-xl opacity-50">Для связи</span>*/}
 
-              <NavLink className="max-w-fit" to="mailto:hello@monstrcorp.com">
-                <span className="text-2xl">hello@monstrcorp.com</span>
-              </NavLink>
-            </div>
-          </div>
+          {/*    <NavLink className="max-w-fit" to="mailto:hello@monstrcorp.com">*/}
+          {/*      <span className="text-2xl">hello@monstrcorp.com</span>*/}
+          {/*    </NavLink>*/}
+          {/*  </div>*/}
+          {/*</div>*/}
         </div>
 
         {/* _*_*_*_ */}

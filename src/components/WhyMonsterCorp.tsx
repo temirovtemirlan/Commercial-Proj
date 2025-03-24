@@ -39,8 +39,8 @@ const WhyMonsterCorp: FC = () => {
           className="text-1lvl text-balance"
         >
           В основе каждого успешного бизнеса — история.{" "}
-          <br className="max-md:hidden" /> Мы рассказываем её так, чтобы в неё
-          верили. <br className="max-md:hidden" /> В мире хаоса и
+          <br className="max-md:hidden" /> <br /> Мы рассказываем её так, чтобы
+          в неё верили. <br className="max-md:hidden" /> В мире хаоса и
           информационного шума мы создаём смысл.
           <br />
           <br />
