@@ -1,16 +1,18 @@
-import { forwardRef, type ReactNode } from "react";
+import { CSSProperties, forwardRef, type ReactNode } from "react";
 import { cn } from "helpers/style.ts";
 
 interface ContainerProps {
   className?: string;
+  style?: CSSProperties;
   children?: ReactNode;
 }
 
 const Container = forwardRef<HTMLDivElement, ContainerProps>(
-  ({ className, children }, ref) => {
+  ({ className, style, children }, ref) => {
     return (
       <div
         ref={ref}
+        style={style}
         className={cn("w-full px-5 md:px-[100px] mac:px-[440px]", className)}
       >
         {children}

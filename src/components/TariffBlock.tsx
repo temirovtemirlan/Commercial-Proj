@@ -10,7 +10,7 @@ interface TariffStartProps {
 
 const TariffStart: FC<TariffStartProps> = ({ item }) => {
   return (
-    <div className="text-center w-full box-border px-2.5">
+    <div className="text-center w-full box-border px-2.5 text-black">
       <div className="w-full max-w-[284px] rounded-2.5xl overflow-hidden h-[500px] mx-auto bg-gray-200">
         {item.head.media ? (
           <video
@@ -30,18 +30,18 @@ const TariffStart: FC<TariffStartProps> = ({ item }) => {
           </div>
         )}
       </div>
-      <legend className="text-black text-xl xl:text-[24px] font-bold mt-4 md:mt-[40px] w-full">
+      <legend className="text-xl xl:text-[24px] font-bold mt-4 md:mt-[40px] w-full">
         {item.head.title}
       </legend>
 
-      <div className="text-black text-lg md:text-base my-2 md:my-[16px] w-4/5 mx-auto h-auto md:h-[100px] overflow-y-auto tariff-custom_scroll_description">
+      <div className="text-lg md:text-base my-2 md:my-[16px] w-4/5 mx-auto h-auto md:h-[100px] overflow-y-auto tariff-custom_scroll_description">
         <CustomScroll heightRelativeToParent="100%">
           {item.head.description}
         </CustomScroll>
       </div>
 
       <p
-        className="text-black text-lg md:text-base font-semibold"
+        className="text-lg md:text-base font-semibold"
         dangerouslySetInnerHTML={{ __html: item.head.price }}
       />
 
