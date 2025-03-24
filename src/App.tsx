@@ -220,7 +220,7 @@ const App: FC = () => {
             <TabPanel className="mac:min-h-[1000px]">
               <VideoPlayerHLSv2
                 key={cgVideo}
-                classNameVideo={matches ? "" : "h-[700px]"}
+                classNameVideo={matches ? "" : "h-dvh"}
                 src={cgVideo}
                 posterSrc={""}
                 isFullScreen
@@ -229,7 +229,7 @@ const App: FC = () => {
             <TabPanel>
               <VideoPlayerHLSv2
                 key={aiGCVideo}
-                classNameVideo={matches ? "" : "h-[700px]"}
+                classNameVideo={matches ? "" : "h-dvh"}
                 src={aiGCVideo}
                 posterSrc=""
                 isFullScreen
