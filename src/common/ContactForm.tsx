@@ -145,7 +145,7 @@ const ContactForm: FC = () => {
 
   return (
     <>
-      <div className="relative grid xl:grid-cols-2 w-full md:pt-50 bg-[#161617]">
+      <div className="relative grid xl:grid-cols-2 w-full bg-[#161617]">
         {matches && (
           <div className="flex flex-col justify-between px-7 py-6 md:px-50 2xl:px-120 md:py-10 2xl:py-28 bg-[#161617]">
             <div>

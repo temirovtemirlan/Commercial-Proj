@@ -139,6 +139,7 @@ const SectionHeader: FC = () => {
               key={cgVideo}
               src={cgVideo}
               posterSrc={""}
+              autoPlay
               isFullScreen
             />
           </TabPanel>
@@ -147,6 +148,7 @@ const SectionHeader: FC = () => {
               key={aiGCVideo}
               src={aiGCVideo}
               posterSrc=""
+              autoPlay
               isFullScreen
             />
           </TabPanel>
