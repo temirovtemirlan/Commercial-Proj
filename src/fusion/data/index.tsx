@@ -1,5 +1,7 @@
 import type { directionType, TariffType } from "fusion/type";
 
+export const inViewProps = { threshold: 0.2, triggerOnce: true };
+
 const footerData = [
   {
     before: "До",
@@ -176,7 +178,6 @@ export const tariffData: TariffType[] = [
     ],
     tabCategory: "Advanced",
   },
-  // Advanced CGI
   {
     head: {
       media: "ADVANCED_CGI.mp4",
@@ -222,7 +223,6 @@ export const tariffData: TariffType[] = [
     ],
     tabCategory: "Advanced",
   },
-  // Advanced VFX
   {
     head: {
       media: "ADVANCED_VFX.mp4",
@@ -365,7 +365,6 @@ export const tariffData: TariffType[] = [
     ],
     tabCategory: "Ultimate",
   },
-  // Ultimate VFX
   {
     head: {
       media: "",

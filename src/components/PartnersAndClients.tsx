@@ -1,6 +1,6 @@
-import { type FC } from "react";
+import type { FC } from "react";
 import { cn } from "helpers/style.ts";
-import { Header } from "../App.tsx";
+import { Header } from "common/Header";
 
 // import ADIDAS from "../../public/ADIDAS.png";
 // import BAKAI from "../../public/BAKAI.png";
@@ -78,9 +78,7 @@ const PartnersAndClients: FC<PartnersAndClientsProps> = ({ className }) => {
     <div className={cn("", className)}>
       <div className={"w-full mb-[60px] flex justify-between items-start"}>
         <Header
-          className={
-            "text-[56px] leading-[45px] text-white text-nowrap -translate-y-3"
-          }
+          className="text-[56px] leading-[45px] text-white text-nowrap -translate-y-3"
           title={"Наши клиенты"}
         />
 

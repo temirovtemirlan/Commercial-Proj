@@ -18,24 +18,12 @@ import FloatingActionButtons from "components/FloatingActionButtons";
 import { AnimatedComponent } from "common/ui/animatedComponent";
 import SectionVideos from "components/SectionVideos";
 import SectionHeader from "components/SectionHeader";
-import { cn } from "helpers/style";
-
-interface HeaderProps {
-  title: string;
-  className?: string;
-}
-export const Header: FC<HeaderProps> = (props) => (
-  <h1 className={cn("text-[80px] font-semibold", props.className)}>
-    {props.title}
-  </h1>
-);
-
-const view = { threshold: 0.2, triggerOnce: true };
+import { inViewProps } from "data/index";
 
 const App: FC = () => {
-  const [monsterCorpRef, monsterCorpInView] = useInView(view);
-  const [monsreelsRef, monsreelsInView] = useInView({
-    ...view,
+  const [monsterCorpRef, monsterCorpInView] = useInView(inViewProps);
+  const [monsReelsRef, monsReelsInView] = useInView({
+    ...inViewProps,
     threshold: 0.9,
   });
 
@@ -75,14 +63,14 @@ const App: FC = () => {
             tag="legend"
             className="legend-3lvl"
             initial={{ y: 40, opacity: 0 }}
-            animate={monsreelsInView ? { y: 0, opacity: 1 } : undefined}
+            animate={monsReelsInView ? { y: 0, opacity: 1 } : undefined}
             transition={{ duration: 0.3, delay: 0.3 }}
           >
             Monsreels
           </AnimatedComponent>
-          <div ref={monsreelsRef} />
+          <div ref={monsReelsRef} />
 
-          <MonsReels inView={monsreelsInView} />
+          <MonsReels inView={monsReelsInView} />
         </Container>
 
         {/* Почему Monster Corp? */}

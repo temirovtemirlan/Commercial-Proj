@@ -1,8 +1,7 @@
 import { useMemo, type FC } from "react";
 import { m } from "motion/react";
-
+import { Header } from "common/Header";
 import Container from "components/Container.tsx";
-import { Header } from "../App.tsx";
 import MonstriliCarousel from "components/MonstriliCarousel.tsx";
 import { cn } from "helpers/style.ts";
 

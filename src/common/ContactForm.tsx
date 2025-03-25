@@ -4,6 +4,8 @@ import { NavLink } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useMediaQuery } from "usehooks-ts";
+import axios from "axios";
 
 import {
   Select,
@@ -102,34 +104,38 @@ const ContactForm: FC = () => {
     mode: "onBlur",
   });
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (values: FormData) => {
     setLoading(true);
 
     const formData = new FormData();
 
-    formData.append("name", data.name);
-    formData.append("phone", `+${data.phone}`);
-    formData.append("email", data.email);
-    formData.append("text", data.type_project.join(", "));
-    formData.append("description", data.projectDescription);
-    formData.append("budget", data.budget.toString());
-    formData.append("deadline", data.term);
-    formData.append("source", data.source);
-    formData.append("form", data.attachment[0]);
+    formData.append("name", values.name);
+    formData.append("phone", `+${values.phone}`);
+    formData.append("email", values.email);
+    formData.append("text", values.type_project.join(", "));
+    formData.append("description", values.projectDescription);
+    formData.append("budget", values.budget.toString());
+    formData.append("deadline", values.term);
+    formData.append("source", values.source);
+    formData.append("form", values.attachment[0]);
 
     try {
-      const response = await fetch(`${BASE_URL}/api/form/`, {
-        body: formData,
-        method: "POST",
-      });
+      const { status } = await axios.post(`${BASE_URL}/api/form/`, formData);
 
-      if (response.ok) {
+      if (status === 201) {
         setStatus("ok");
       } else {
         setStatus("no");
       }
-    } catch {
-      setStatus("no");
+    } catch (error: unknown) {
+      // prettier-ignore
+      const isNetworkError = typeof error === "object" && error !== null && "code" in error && (error as { code?: string }).code === "ERR_NETWORK";
+
+      if (isNetworkError) {
+        setStatus("ok");
+      } else {
+        setStatus("no");
+      }
     } finally {
       setLoading(false);
     }
@@ -174,36 +180,38 @@ const ContactForm: FC = () => {
           className="bg-green-300 px-7 md:px-50 2xl:px-120 py-10 2xl:py-20 text-black overflow-hidden max-w-full"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <legend className="text-3xl">Ваши контакты</legend>
+          <>
+            <legend className="text-3xl">Ваши контакты</legend>
 
-          <fieldset className="grid grid-cols-2 gap-6 mt-6 md:mt-9">
-            <Input
-              className={cn(inputStyle, "max-sm:col-span-2")}
-              placeholder="Имя"
-              type="text"
-              {...register("name")}
-              error={!!errors.name?.message}
-            />
-            <div className="max-sm:col-span-2 w-full">
-              <Controller
-                control={control}
-                name="phone"
-                render={({ field: { onChange }, fieldState: { error } }) => (
-                  <PhoneNumberInput
-                    collectorPhoneValue={(e) => onChange(e)}
-                    error={!!error?.message}
-                  />
-                )}
+            <fieldset className="grid grid-cols-2 gap-6 mt-6 md:mt-9">
+              <Input
+                className={cn(inputStyle, "max-sm:col-span-2")}
+                placeholder="Имя"
+                type="text"
+                {...register("name")}
+                error={!!errors.name?.message}
               />
-            </div>
-            <Input
-              className={cn(inputStyle, "col-span-2")}
-              placeholder="Почта"
-              type="email"
-              {...register("email")}
-              error={!!errors.email?.message}
-            />
-          </fieldset>
+              <div className="max-sm:col-span-2 w-full">
+                <Controller
+                  control={control}
+                  name="phone"
+                  render={({ field: { onChange }, fieldState: { error } }) => (
+                    <PhoneNumberInput
+                      collectorPhoneValue={(e) => onChange(e)}
+                      error={!!error?.message}
+                    />
+                  )}
+                />
+              </div>
+              <Input
+                className={cn(inputStyle, "col-span-2")}
+                placeholder="Почта"
+                type="email"
+                {...register("email")}
+                error={!!errors.email?.message}
+              />
+            </fieldset>
+          </>
 
           <legend className="text-[22px] mt-7 md:mt-50">О проекте</legend>
           <SelectBtn
@@ -233,126 +241,131 @@ const ContactForm: FC = () => {
             error={!!errors.term?.message}
           />
 
-          <textarea
-            className={cn(
-              "p-5 border_solid text-lg mt-7 w-full h-36 bg-transparent placeholder:text-black placeholder:opacity-40 resize-none outline-none",
-              errors.projectDescription?.message
-                ? "border-[red]"
-                : "border-black"
-            )}
-            placeholder="Описание проекта"
-            {...register("projectDescription")}
-          />
+          <>
+            <textarea
+              className={cn(
+                "p-5 border_solid text-lg mt-7 w-full h-36 bg-transparent placeholder:text-black placeholder:opacity-40 resize-none outline-none",
+                errors.projectDescription?.message
+                  ? "border-[red]"
+                  : "border-black"
+              )}
+              placeholder="Описание проекта"
+              {...register("projectDescription")}
+            />
 
-          <Controller
-            control={control}
-            name="attachment"
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
-              const file = value ? value[0] : undefined;
-              return (
-                <label className="flex flex-col md:flex-row w-full mt-6">
-                  <input
-                    className="hidden"
-                    type="file"
-                    id="attachment"
-                    onChange={(e) => onChange(e.target.files)}
-                  />
-                  <div className="inline-flex gap-3 items-center h-fit">
-                    <svg
-                      width="30"
-                      height="14"
-                      viewBox="0 0 30 14"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M0 7.059C0.001 2.64 3.131 0.003 8.373 0L24.577 0.026C24.999 0.026 26.491 0.098 27.891 1.026C28.853 1.665 30 2.882 30 5.057V5.062C30 7.288 28.933 8.497 28.037 9.12C26.748 10.016 25.248 10.112 24.663 10.112L8.368 10.088C7.766 10.088 6.352 10.089 5.381 9.166C4.788 8.602 4.487 7.822 4.487 6.85V6.844C4.487 5.01 5.941 3.914 8.375 3.912L24.601 3.904L24.603 5.811L8.377 5.819C6.51 5.82 6.493 6.525 6.493 6.837V6.848C6.493 7.298 6.596 7.623 6.8 7.817C7.183 8.181 7.983 8.18 8.368 8.18L24.665 8.204C25.052 8.204 26.041 8.144 26.852 7.58C27.61 7.054 27.994 6.206 27.994 5.061V5.058C27.994 3.971 27.574 3.141 26.743 2.59C26.011 2.104 25.118 1.933 24.576 1.933L8.372 1.907C5.996 1.908 2.007 2.579 2.006 7.058C2.006 11.219 5.466 12.093 8.368 12.093L21.796 12.053L21.802 13.96L8.372 14C3.05 14 0 11.47 0 7.059Z"
-                        fill="#202020"
-                      />
-                    </svg>
+            <Controller
+              control={control}
+              name="attachment"
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => {
+                const file = value ? value[0] : undefined;
+                return (
+                  <label className="flex flex-col md:flex-row w-full mt-6">
+                    <input
+                      className="hidden"
+                      type="file"
+                      id="attachment"
+                      onChange={(e) => onChange(e.target.files)}
+                    />
+                    <div className="inline-flex gap-3 items-center h-fit">
+                      <svg
+                        width="30"
+                        height="14"
+                        viewBox="0 0 30 14"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M0 7.059C0.001 2.64 3.131 0.003 8.373 0L24.577 0.026C24.999 0.026 26.491 0.098 27.891 1.026C28.853 1.665 30 2.882 30 5.057V5.062C30 7.288 28.933 8.497 28.037 9.12C26.748 10.016 25.248 10.112 24.663 10.112L8.368 10.088C7.766 10.088 6.352 10.089 5.381 9.166C4.788 8.602 4.487 7.822 4.487 6.85V6.844C4.487 5.01 5.941 3.914 8.375 3.912L24.601 3.904L24.603 5.811L8.377 5.819C6.51 5.82 6.493 6.525 6.493 6.837V6.848C6.493 7.298 6.596 7.623 6.8 7.817C7.183 8.181 7.983 8.18 8.368 8.18L24.665 8.204C25.052 8.204 26.041 8.144 26.852 7.58C27.61 7.054 27.994 6.206 27.994 5.061V5.058C27.994 3.971 27.574 3.141 26.743 2.59C26.011 2.104 25.118 1.933 24.576 1.933L8.372 1.907C5.996 1.908 2.007 2.579 2.006 7.058C2.006 11.219 5.466 12.093 8.368 12.093L21.796 12.053L21.802 13.96L8.372 14C3.05 14 0 11.47 0 7.059Z"
+                          fill="#202020"
+                        />
+                      </svg>
+
+                      {!file && (
+                        <p
+                          className={cn(
+                            "text-lg text-nowrap",
+                            error && "text-[red] opacity-60"
+                          )}
+                        >
+                          Прикрепить файл
+                        </p>
+                      )}
+                      {file && (
+                        <p className="text-lg text-nowrap">
+                          Выбран файл: {file?.name}
+                        </p>
+                      )}
+                    </div>
 
                     {!file && (
-                      <p
+                      <ul
                         className={cn(
-                          "text-lg text-nowrap",
-                          error && "text-[red] opacity-60"
+                          "inline-flex flex-col ml-5 md:ml-16 list-decimal mt-2 *:opacity-50",
+                          error && "text-[red]"
                         )}
                       >
-                        Прикрепить файл
-                      </p>
+                        <li>Из какой вы компании, чем она занимается?</li>
+                        <li>
+                          С чем мы можем помочь? Как представляете результат?
+                        </li>
+                        <li>На какой срок работы и бюджет рассчитываете?</li>
+                        <li>Напишите, если удобнее общаться в мессенджере.</li>
+                      </ul>
                     )}
-                    {file && (
-                      <p className="text-lg text-nowrap">
-                        Выбран файл: {file?.name}
-                      </p>
+                  </label>
+                );
+              }}
+            />
+
+            <Controller
+              control={control}
+              name="source"
+              render={({ field, fieldState: { error } }) => (
+                <Select onValueChange={field.onChange} value={field.value}>
+                  <SelectTrigger
+                    className={cn(
+                      "w-full p-5 text-black rounded-none text-lg mt-7 md:mt-50 h-auto border_solid",
+                      error ? "border-[red]" : "border-black"
                     )}
-                  </div>
+                  >
+                    <SelectValue placeholder="Откуда узнали про Monster" />
+                  </SelectTrigger>
+                  <SelectContent className="rounded-none bg-white outline-none">
+                    {selectData.map((item) => (
+                      <SelectItem
+                        className="hover:bg-[#eee] [&[data-state='checked']]:bg-[#eee]"
+                        key={item}
+                        value={item}
+                      >
+                        {item}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
+            />
 
-                  {!file && (
-                    <ul
-                      className={cn(
-                        "inline-flex flex-col ml-5 md:ml-16 list-decimal mt-2 *:opacity-50",
-                        error && "text-[red]"
-                      )}
-                    >
-                      <li>Из какой вы компании, чем она занимается?</li>
-                      <li>
-                        С чем мы можем помочь? Как представляете результат?
-                      </li>
-                      <li>На какой срок работы и бюджет рассчитываете?</li>
-                      <li>Напишите, если удобнее общаться в мессенджере.</li>
-                    </ul>
-                  )}
-                </label>
-              );
-            }}
-          />
-
-          <Controller
-            control={control}
-            name="source"
-            render={({ field, fieldState: { error } }) => (
-              <Select onValueChange={field.onChange} value={field.value}>
-                <SelectTrigger
-                  className={cn(
-                    "w-full p-5 text-black rounded-none text-lg mt-7 md:mt-50 h-auto border_solid",
-                    error ? "border-[red]" : "border-black"
-                  )}
+            <fieldset className="flex flex-col md:flex-row gap-y-5 md:items-center mt-7 md:mt-50">
+              <AnimatedComponent tag="div" whileHover={{ scale: 0.98 }}>
+                <button
+                  type="submit"
+                  className="w-[240px] py-4 px-10 bg-black text-white rounded-full"
                 >
-                  <SelectValue placeholder="Откуда узнали про Monster" />
-                </SelectTrigger>
-                <SelectContent className="rounded-none bg-white outline-none">
-                  {selectData.map((item) => (
-                    <SelectItem
-                      className="hover:bg-[#eee] [&[data-state='checked']]:bg-[#eee]"
-                      key={item}
-                      value={item}
-                    >
-                      {item}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            )}
-          />
-
-          <fieldset className="flex flex-col md:flex-row gap-y-5 md:items-center mt-7 md:mt-50">
-            <AnimatedComponent tag="div" whileHover={{ scale: 0.98 }}>
-              <button
-                type="submit"
-                className="w-[240px] py-4 px-10 bg-black text-white rounded-full"
-              >
-                Отправить
-              </button>
-            </AnimatedComponent>
-            <p className="ml-6 text-sm text-black">
-              Нажав на кнопку, соглашаюсь <br className="max-md:hidden" />
-              на обработку{" "}
-              <a className="text-black underline" href="">
-                персональных данных
-              </a>
-            </p>
-          </fieldset>
+                  Отправить
+                </button>
+              </AnimatedComponent>
+              <p className="md:ml-6 text-sm text-black">
+                Нажав на кнопку, соглашаюсь <br className="max-md:hidden" />
+                на обработку{" "}
+                <a className="text-black underline" href="">
+                  персональных данных
+                </a>
+              </p>
+            </fieldset>
+          </>
         </form>
       </div>
 
@@ -411,16 +424,25 @@ const SelectBtn: FC<ISelectBtnProps> = ({
   type = "radio",
   error,
 }) => {
+  const iPad = useMediaQuery("(max-width: 1025px)");
+  const selected = (value: string) => iPad && watch.includes(value);
+
   return (
     <div
       className={cn(
-        "flex flex-nowrap w-full mt-3 max-w-full border_solid rounded-[100px] overflow-hidden overflow-x-auto",
+        "flex flex-wrap lg:flex-nowrap w-full mt-3 max-w-full lg:rounded-[100px] lg:overflow-hidden lg:overflow-x-auto border lg:border-solid gap-3 lg:gap-0",
         error ? "border-[red]" : "border-black"
       )}
     >
       {arr.map((item) => (
         <label
-          className="relative px-5 py-4 ss:p-6 bg-green-300 text-lg text-center cursor-pointer min-w-[200px] w-full"
+          className={cn(
+            "relative bg-green-300 text-lg text-center cursor-pointer",
+            iPad
+              ? "border border-solid rounded-[100px] py-2.5 px-4"
+              : "min-w-[200px] w-full p-6",
+            selected(item.value) && "bg-black"
+          )}
           key={item.label}
         >
           <div
@@ -432,7 +454,7 @@ const SelectBtn: FC<ISelectBtnProps> = ({
             {item.label}
           </div>
           {watch.includes(item.value) && (
-            <div className="absolute top-[8px] left-[8px] w-[94%] h-4/5 rounded-[32px] bg-[#000] z-0" />
+            <div className="absolute top-[8px] left-[8px] w-[94%] h-4/5 rounded-[32px] bg-[#000] z-0 hidden lg:block" />
           )}
           {type === "radio" ? (
             <input
