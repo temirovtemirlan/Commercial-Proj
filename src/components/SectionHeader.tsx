@@ -134,8 +134,9 @@ const SectionHeader: FC = () => {
       {/* Showreel */}
       <section className="text-center" ref={langRef}>
         <Tabs className="Monstr-Showreel">
-          <TabPanel className="mac:min-h-[1000px]">
+          <TabPanel>
             <VideoPlayerHLSv2
+              className={matches ? "" : "h-[700px]"}
               key={cgVideo}
               src={cgVideo}
               posterSrc={""}
@@ -146,6 +147,7 @@ const SectionHeader: FC = () => {
           </TabPanel>
           <TabPanel>
             <VideoPlayerHLSv2
+              className={matches ? "" : "h-[700px]"}
               key={aiGCVideo}
               src={aiGCVideo}
               posterSrc=""
