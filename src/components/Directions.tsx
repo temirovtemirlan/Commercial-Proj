@@ -21,7 +21,7 @@ const directionsData = [
       "Influence & viral campaigns",
     ],
     descTwo:
-      "Мы не делаем рекламу. Мы создаем реальность, в которой бренды становятся незаменимыми.",
+      "Мы не делаем рекламу. Мы создаем реальность, <br class='hidden md:block'/> в которой бренды становятся незаменимыми.",
     video:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/MONSTER_MARKETING_2/MONSTER_MARKETING_2/720p_mp4/stream.m3u8",
   },
@@ -51,7 +51,7 @@ const directionsData = [
       "YouTube и видеомаркетинг нового поколения",
     ],
     descTwo:
-      "Контент, который не просто рассказывает, а заставляет чувствовать.",
+      "Контент, который не просто рассказывает, <br/> а заставляет чувствовать.",
     video:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/SOUL_MEDIA/SOUL_MEDIA/720p_mp4/stream.m3u8",
   },
@@ -80,7 +80,7 @@ const directionsData = [
       "Data-driven рекламные кампании, прогнозирование трендов, персонализация контента.",
     ],
     descTwo:
-      "Будущее маркетинга — это гиперточность. Мы помогаем вам говорить с клиентами на их языке.",
+      "Будущее маркетинга — это гиперточность. <br/> Мы помогаем вам говорить с клиентами на их языке.",
     video:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/MONSTER_AI/MONSTER_AI/720p_mp4/stream.m3u8",
   },
@@ -94,7 +94,7 @@ const directionsData = [
       "Интеграция AI, UX/UI-дизайн, масштабируемые IT-решения.",
     ],
     descTwo:
-      "Технологии должны работать на ваш успех. Мы знаем, как это сделать.",
+      "Технологии должны работать на ваш успех. <br/> Мы знаем, как это сделать.",
     video:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/MONSTER_DEVZ_2/MONSTER_DEVZ_2/720p_mp4/stream.m3u8",
   },

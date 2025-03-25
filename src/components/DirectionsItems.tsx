@@ -95,9 +95,10 @@ const DirectionsItems: FC<DirectionsItemsProps> = ({ className, item }) => {
               ))}
             </ul>
 
-            <p className="text-white text-base md:text-lg leading-relaxed mt-6">
-              {item.descTwo}
-            </p>
+            <p
+              dangerouslySetInnerHTML={{ __html: item.descTwo }}
+              className="text-white text-base md:text-lg leading-relaxed mt-6"
+            ></p>
           </div>
         </div>
       </div>

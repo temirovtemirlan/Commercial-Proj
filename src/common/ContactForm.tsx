@@ -16,6 +16,7 @@ import { cn } from "helpers/style";
 import PhoneNumberInput from "./ui/phoneNumberInput";
 import { BASE_URL } from "data/hero";
 import { AnimatedComponent } from "./ui/animatedComponent";
+import { useMediaQuery } from "usehooks-ts";
 
 const typesProjects = [
     { value: "Комплексный", label: "Комплексный" },
@@ -35,16 +36,11 @@ const typesProjects = [
   ];
 
 const selectData = [
-  "Реклама",
-  "Поиск",
   "Рейтинги",
-  "СМИ",
-  "Соцсети",
-  "Блог",
-  "Выступление конференция",
-  "Рекомендация",
+  "Рекоммендация",
+  "Соц.сети",
   "Давно знаю",
-  "Другое",
+  "По запросу",
 ];
 
 const schema = yup.object().shape({
@@ -79,6 +75,7 @@ const inputStyle =
 const ContactForm: FC = () => {
   const [status, setStatus] = useState<"ok" | "no" | null>(null);
   const [loading, setLoading] = useState(false);
+  const matches = useMediaQuery("(min-width: 650px)");
 
   const {
     register,
@@ -150,12 +147,24 @@ const ContactForm: FC = () => {
     <>
       <div className="relative grid xl:grid-cols-2 w-full pt-50 bg-[#161617]">
         <div className="flex flex-col justify-between px-7 py-6 md:px-50 2xl:px-120 md:py-10 2xl:py-28 bg-[#161617]">
-          <p className="text-white text-[32px] md:text-[44px] leading-[39px] md:leading-[52px] xl:text-[56px] xl:leading-[64px]">
-            Оставьте заявку,
-            <br />
-            чтобы обсудить проект
-          </p>
-
+          {matches && (
+            <div>
+              <span className="text-white text-[32px] md:text-[44px] leading-[39px] md:leading-[52px] xl:text-[56px] xl:leading-[64px]">
+                Заполните анкету, <br /> чтобы обсудить проект
+              </span>
+              <p
+                className={
+                  "text-balance text-white text-xl mt-5 w-full max-w-[900px] leading-normal"
+                }
+              >
+                Для того чтобы обеспечить максимальную релевантность и
+                эффективность обсуждения, просим вас заполнить небольшую анкету.
+                Ваши ответы помогут нам лучше понять ваши потребности и
+                ожидания, а также сделать проект более соответствующим вашим
+                интересам.
+              </p>
+            </div>
+          )}
           {/*<div className="mt-12 lg:mt-8">*/}
           {/*  <div className="flex flex-col gap-2 md:gap-3 text-white">*/}
           {/*    <span className="text-xl opacity-50">Для связи</span>*/}
@@ -173,7 +182,23 @@ const ContactForm: FC = () => {
           className="bg-green-300 px-7 md:px-50 2xl:px-120 py-10 2xl:py-20 text-black overflow-hidden max-w-full"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <legend className="text-3xl">Ваши контакты</legend>
+          {!matches ? (
+            <div>
+              <span className="text-black mb-10 text-[32px] md:text-[44px] leading-[39px] md:leading-[52px] xl:text-[56px] xl:leading-[55px]">
+                Заполните анкету, <br /> чтобы обсудить проект
+              </span>
+              <p
+                className={
+                  "text-balance text-black text-xl mt-1 mb-5 w-full max-w-[900px] leading-normal"
+                }
+              >
+                Для того чтобы обеспечить максимальную релевантность и
+                эффективность обсуждения, просим вас заполнить небольшую анкету.
+              </p>
+            </div>
+          ) : null}
+
+          <span className="text-3xl">Ваши контакты</span>
 
           <fieldset className="grid grid-cols-2 gap-6 mt-6 md:mt-9">
             <Input
@@ -194,9 +219,12 @@ const ContactForm: FC = () => {
                   />
                 )}
               />
+              <span className=" text-base absolute opacity-70">
+                с рабочим WhatsApp
+              </span>
             </div>
             <Input
-              className={cn(inputStyle, "col-span-2")}
+              className={cn(inputStyle, "col-span-2 mt-2")}
               placeholder="Почта"
               type="email"
               {...register("email")}
@@ -232,6 +260,8 @@ const ContactForm: FC = () => {
             error={!!errors.term?.message}
           />
 
+          <legend className="text-[22px] mt-6">Описание проекта</legend>
+
           <textarea
             className={cn(
               "p-5 border_solid text-lg mt-7 w-full h-36 bg-transparent placeholder:text-black placeholder:opacity-40 resize-none outline-none",
@@ -239,7 +269,7 @@ const ContactForm: FC = () => {
                 ? "border-[red]"
                 : "border-black"
             )}
-            placeholder="Описание проекта"
+            placeholder="Ответьте на вопросы с 1 по 4"
             {...register("projectDescription")}
           />
 
@@ -294,12 +324,16 @@ const ContactForm: FC = () => {
                         error && "text-[red]"
                       )}
                     >
-                      <li>Из какой вы компании, чем она занимается?</li>
                       <li>
-                        С чем мы можем помочь? Как представляете результат?
+                        Как называется ваша компания и чем она занимается?
                       </li>
-                      <li>На какой срок работы и бюджет рассчитываете?</li>
-                      <li>Напишите, если удобнее общаться в мессенджере.</li>
+                      <li>
+                        Какую задачу вы хотите решить с помощью наших услуг?
+                      </li>
+                      <li>
+                        За какой срок и бюджет вы хотите получить результат?
+                      </li>
+                      <li>Когда вам позвонить?</li>
                     </ul>
                   )}
                 </label>
@@ -318,7 +352,7 @@ const ContactForm: FC = () => {
                     error ? "border-[red]" : "border-black"
                   )}
                 >
-                  <SelectValue placeholder="Откуда узнали про Monster" />
+                  <SelectValue placeholder="Откуда вы узнали про Monster?" />
                 </SelectTrigger>
                 <SelectContent className="rounded-none bg-white outline-none">
                   {selectData.map((item) => (
@@ -344,12 +378,13 @@ const ContactForm: FC = () => {
                 Отправить
               </button>
             </AnimatedComponent>
-            <p className="ml-6 text-sm text-black">
-              Нажав на кнопку, соглашаюсь <br className="max-md:hidden" />
-              на обработку{" "}
-              <a className="text-black underline" href="">
-                персональных данных
-              </a>
+            <p className="md:ml-6 text-sm text-black">
+              Нажимая кнопку вы соглашаетесь <br /> на обработку персональных
+              данных. {/*<br className="max-md:hidden" />*/}
+              {/*на обработку{" "}*/}
+              {/*<a className="text-black underline" href="">*/}
+              {/*  персональных данных*/}
+              {/*</a>*/}
             </p>
           </fieldset>
         </form>

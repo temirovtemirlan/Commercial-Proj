@@ -1,5 +1,4 @@
 import type { FC } from "react";
-import { Link } from "react-router-dom";
 import Clock from "components/Clock";
 import { cn } from "helpers/style";
 import type { TimeZone } from "fusion/type";
@@ -61,6 +60,9 @@ const socialNetwork = [
     ),
     href: "",
   },
+];
+
+const contactsData = [
   {
     title: "TELEGRAM",
     className: "",
@@ -138,8 +140,27 @@ const Footer: FC<FooterProps> = ({ className }) => {
       <div className="flex flex-col xl:flex-row xl:justify-between xl:items-center w-full px-5">
         <div className="flex md:justify-center">
           <div className="flex flex-col justify-center">
+            <p className="text-[#777777] text-sm text-start md:text-center xl:text-start">
+              КОНТАКТЫ
+            </p>
+            <div className="flex flex-col md:flex-row xl:flex-col gap-y-2 gap-x-8 mt-2 mb-3">
+              {contactsData?.map((el, index) => (
+                <a
+                  key={index}
+                  href={el.href}
+                  className={cn(
+                    "grid grid-cols-[24px,auto] items-center uppercase gap-2 text-white",
+                    el.className
+                  )}
+                >
+                  {el.icon}
+                  <span>{el.title}</span>
+                </a>
+              ))}
+            </div>
+
             <p className="text-[#777777] text-sm mb-3 text-start md:text-center xl:text-start">
-              СЛЕДИТЬ ЗА
+              СОЦ.СЕТИ
             </p>
 
             <div className="flex flex-col md:flex-row xl:flex-col gap-y-2 gap-x-8">

@@ -26,10 +26,12 @@ const WhyMonsterCorp: FC = () => {
           initial={{ y: 60, opacity: 0 }}
           animate={inView ? { y: 0, opacity: 1 } : undefined}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="legend-2lvl"
+          className="legend-2lvl text-balance"
         >
-          Бренды, которые вдохновляют. Контент, который цепляет. Решения,
-          которые работают.
+          Бренды, которые вдохновляют. <br />
+          Решения, которые работают.
+          <br />
+          Контент, который цепляет.
         </AnimatedComponent>
 
         <AnimatedComponent
@@ -39,14 +41,15 @@ const WhyMonsterCorp: FC = () => {
           className="text-1lvl text-balance"
         >
           В основе каждого успешного бизнеса — история.{" "}
-          <br className="max-md:hidden" /> <br /> Мы рассказываем её так, чтобы
-          в неё верили. <br className="max-md:hidden" /> В мире хаоса и
-          информационного шума мы создаём смысл.
+          <br className="max-md:hidden" /> <br /> Мы рассказываем её так,{" "}
+          <br className={"md:hidden"} /> чтобы в неё верили.{" "}
+          <br className="md:block hidden" /> В мире хаоса и информационного шума
+          мы создаём смысл.
           <br />
           <br />
-          Monster Corp. — это не просто агентство.{" "}
-          <br className="max-md:hidden" /> Это инновационный центр, где креатив
-          <br className="max-md:hidden" />и технологии работают на бизнес.
+          Monster Corp. — это не просто агентство. <br className="md:hidden" />{" "}
+          Это инновационный центр, <br /> где креатив и технологии <br />
+          работают на бизнес.
         </AnimatedComponent>
       </div>
 
@@ -118,7 +121,7 @@ const WhyMonsterCorp: FC = () => {
             </AnimatedComponent>
             <p>
               Мы превращаем <br />{" "}
-              <span className="text-blue-1000"> идеи в влияние.</span>
+              <span className="text-blue-1000"> идеи во влияние.</span>
             </p>
           </AnimatedComponent>
 
