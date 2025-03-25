@@ -141,6 +141,7 @@ const SectionHeader: FC = () => {
               posterSrc={""}
               autoPlay
               isFullScreen
+              loop
             />
           </TabPanel>
           <TabPanel>
@@ -150,6 +151,7 @@ const SectionHeader: FC = () => {
               posterSrc=""
               autoPlay
               isFullScreen
+              loop
             />
           </TabPanel>
           <motion.div
