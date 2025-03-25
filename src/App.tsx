@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { domAnimation, LazyMotion } from "motion/react";
 import { useInView } from "react-intersection-observer";
 
@@ -18,30 +18,48 @@ import FloatingActionButtons from "components/FloatingActionButtons";
 import { AnimatedComponent } from "common/ui/animatedComponent";
 import SectionVideos from "components/SectionVideos";
 import SectionHeader from "components/SectionHeader";
-import { cn } from "helpers/style";
+import { inViewProps } from "data/index";
+import FixedHeader from "components/FixedHeader.tsx";
 
-interface HeaderProps {
-  title: string;
-  className?: string;
-}
-export const Header: FC<HeaderProps> = (props) => (
-  <h1 className={cn("text-[80px] font-semibold", props.className)}>
-    {props.title}
-  </h1>
-);
-
-const view = { threshold: 0.2, triggerOnce: true };
+const scrollThreshold = 1000;
 
 const App: FC = () => {
-  const [monsterCorpRef, monsterCorpInView] = useInView(view);
-  const [monsreelsRef, monsreelsInView] = useInView({
-    ...view,
+  const [monsterCorpRef, monsterCorpInView] = useInView(inViewProps);
+  const [monsReelsRef, monsReelsInView] = useInView({
+    ...inViewProps,
     threshold: 0.9,
   });
+
+  const [isScrollTo, setIsScrollTo] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
+
+  // const onOpenHandler = () => setIsOpen(false);
+
+  // #region Scroll To
+  // const onScrollTo = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > scrollThreshold) {
+        setIsScrollTo(true);
+      } else {
+        setIsScrollTo(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [scrollThreshold]);
+  // #endregion
 
   return (
     <>
       <LazyMotion features={domAnimation}>
+        {isScrollTo && <FixedHeader />}
+
         <SectionHeader />
 
         {/* Monster Corp. */}
@@ -75,14 +93,14 @@ const App: FC = () => {
             tag="legend"
             className="legend-3lvl"
             initial={{ y: 40, opacity: 0 }}
-            animate={monsreelsInView ? { y: 0, opacity: 1 } : undefined}
+            animate={monsReelsInView ? { y: 0, opacity: 1 } : undefined}
             transition={{ duration: 0.3, delay: 0.3 }}
           >
             Monsreels
           </AnimatedComponent>
-          <div ref={monsreelsRef} />
+          <div ref={monsReelsRef} />
 
-          <MonsReels inView={monsreelsInView} />
+          <MonsReels inView={monsReelsInView} />
         </Container>
 
         {/* Почему Monster Corp? */}

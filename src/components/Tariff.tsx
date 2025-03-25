@@ -36,12 +36,12 @@ const Tariff: FC = () => {
   const swiperRef = useRef<SwiperType>();
   const swiperHeadRef = useRef<SwiperType>();
   const [realIndex, setRealIndex] = useState(0);
+  const [swiperIndex, seSwiperIndex] = useState(0);
   const is1080 = useMediaQuery("(min-width: 1080px)");
   const is768 = useMediaQuery("(min-width: 768px)");
 
   const slidesPerGroup = is1080 ? 3 : is768 ? 2 : 1;
 
-  // #region
   const [animRef, animInView] = useInView({
     initialInView: true,
     threshold: 0.8,
@@ -85,21 +85,15 @@ const Tariff: FC = () => {
     }
   };
 
-  useEffect(() => {
-    if (swiperHeadRef.current && swiperRef.current) {
-      swiperHeadRef.current.slideToLoop(realIndex); // перемотка по индексу с учетом loop
-    }
-  }, [realIndex]);
-  // #endregion
-
   const [openAccordionKeys, setOpenAccordionKeys] = useState<string[]>([]);
   const [headViewIsAccordionOpen, setHeadViewIsAccordionOpen] = useState(false);
-  const [containerRefElement, tariffContainerInView] = useInView({
-    threshold: 0,
-  });
-  const [descRef, descInView] = useInView({
-    threshold: 0,
-  });
+  const descRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (swiperHeadRef.current && swiperRef.current) {
+      swiperHeadRef.current.slideToLoop(realIndex, 0);
+    }
+  }, [realIndex]);
 
   const handleAccordionStateChange = (itemKey: string, isExpanded: boolean) =>
     setOpenAccordionKeys((prev) =>
@@ -107,14 +101,37 @@ const Tariff: FC = () => {
     );
 
   useEffect(() => {
-    if (!tariffContainerInView) setHeadViewIsAccordionOpen(false);
+    const handleScroll = () => {
+      if (openAccordionKeys.length === 0) {
+        setHeadViewIsAccordionOpen(false);
+        return;
+      }
 
-    if (openAccordionKeys.length > 0) {
-      setHeadViewIsAccordionOpen(!descInView);
-    } else {
-      setHeadViewIsAccordionOpen(false);
-    }
-  }, [openAccordionKeys, descInView, tariffContainerInView]);
+      if (descRef.current) {
+        const descRect = descRef.current.getBoundingClientRect();
+        if (descRect.top < 0) {
+          setHeadViewIsAccordionOpen(true);
+
+          if (swiperHeadRef.current) {
+            if (swiperIndex === realIndex) {
+              swiperHeadRef.current.slideToLoop(swiperIndex, 0);
+            } else {
+              swiperHeadRef.current.slideToLoop(realIndex, 0);
+            }
+          }
+        } else {
+          setHeadViewIsAccordionOpen(false);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Вызываем handleScroll при монтировании, чтобы установить начальное состояние
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll); // Очистка при unmount
+    };
+  }, [openAccordionKeys, swiperIndex]);
 
   return (
     <section className="relative xl:pt-[100px] pt-[50px] bg-[#f5f5f7]">
@@ -133,17 +150,17 @@ const Tariff: FC = () => {
         </Container>
 
         <div ref={animRef} />
-      </>
 
-      <Container>
-        <div className="sticky top-[16rem] mt-28 z-10 h-0">
-          <SwiperNavigationBtn
-            className="flex justify-between w-full md:hidden"
-            prevClass={`-translate-x-2 ${navBtn.p}`}
-            nextClass={`translate-x-2 ${navBtn.n}`}
-          />
-        </div>
-      </Container>
+        <Container>
+          <div className="sticky top-[16rem] mt-28 z-10 h-0">
+            <SwiperNavigationBtn
+              className="flex justify-between w-full md:hidden"
+              prevClass={`-translate-x-2 ${navBtn.p}`}
+              nextClass={`translate-x-2 ${navBtn.n}`}
+            />
+          </div>
+        </Container>
+      </>
 
       {/* Head Swiper */}
       {headViewIsAccordionOpen ? (
@@ -191,12 +208,12 @@ const Tariff: FC = () => {
               {uniqueCategories.map((item, index) =>
                 // prettier-ignore
                 <button
-                key={item}
-                className={cn("whitespace-nowrap px-6 py-2.5", (tariffData[realIndex]?.tabCategory || "Base") === item && "bg-[#0171e3] text-white rounded-full")}
-                onClick={() => tabSwiperHandler(index)}
-              >
-                {item}
-              </button>
+                  key={item}
+                  className={cn("whitespace-nowrap px-6 py-2.5", (tariffData[realIndex]?.tabCategory || "Base") === item && "bg-[#0171e3] text-white rounded-full")}
+                  onClick={() => tabSwiperHandler(index)}
+                >
+                  {item}
+                </button>
               )}
             </div>
 
@@ -213,12 +230,14 @@ const Tariff: FC = () => {
             animate={animInView ? { opacity: 1, y: 0 } : undefined}
             transition={{ duration: 0.5, delay: 0.8 }}
             className="relative flex justify-center w-full"
-            ref={containerRefElement}
           >
             <Swiper
               className="relative max-w-[1062px] overflow-hidden pt-8"
               onSwiper={(swiper) => (swiperRef.current = swiper)}
-              onSlideChange={(swiper) => setRealIndex(swiper.realIndex)}
+              onSlideChange={(swiper) => {
+                setRealIndex(swiper.realIndex);
+                seSwiperIndex(swiper.realIndex);
+              }}
               {...swiperProps}
             >
               {tariffData?.map((item, index) =>
@@ -252,36 +271,18 @@ const Tariff: FC = () => {
                           </div>
                         )}
                       </div>
-                      <legend className="text-xl xl:text-[24px] font-bold mt-4 md:mt-[40px] w-full">
-                        {item.head.title}
-                      </legend>
+                      <p className="text-xl xl:text-[24px] font-bold mt-4 md:mt-[40px] w-full">{item.head.title}</p>
 
                     {/* Description */}
-                      <div
-                        className="text-lg md:text-base my-2 md:my-[16px] w-4/5 mx-auto h-auto md:h-[100px] overflow-y-auto tariff-custom_scroll_description"
-                        ref={index === realIndex ? descRef : undefined}
-                      >
-                        <CustomScroll heightRelativeToParent="100%">
-                          {item.head.description}
-                        </CustomScroll>
+                      <div className="text-lg md:text-base my-2 md:my-[16px] w-4/5 mx-auto h-auto md:h-[100px] overflow-y-auto tariff-custom_scroll_description" ref={index === realIndex ? descRef : undefined}>
+                        <CustomScroll heightRelativeToParent="100%">{item.head.description}</CustomScroll>
                       </div>
 
-                      <p
-                        className="text-lg md:text-base font-semibold"
-                        dangerouslySetInnerHTML={{ __html: item.head.price }}
-                      />
+                      <p className="text-lg md:text-base font-semibold" dangerouslySetInnerHTML={{ __html: item.head.price }} />
 
-                      {item.head.content ? (
-                        <p className="mt-1 w-full h-full font-semibold text-center">
-                          {item.head.content}
-                        </p>
-                      ) : null}
+                      {item.head.content ? <p className="mt-1 w-full h-full font-semibold text-center">{item.head.content}</p> : null}
 
-                      <AnimatedComponent
-                        tag="button"
-                        whileHover={{ scale: 1.04 }}
-                        className="w-[192px] h-11 p-2 md:p-2.5 bg-[#0071e3] rounded-full text-base justify-center items-center gap-2.5 inline-flex mt-[40px] text-white"
-                      >
+                      <AnimatedComponent tag="button" whileHover={{ scale: 1.04 }} className="w-[192px] h-11 p-2 md:p-2.5 bg-[#0071e3] rounded-full text-base justify-center items-center gap-2.5 inline-flex mt-[40px] text-white">
                         Оставить заявку
                       </AnimatedComponent>
                     </div>

@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, type FC } from "react";
+import { useRef, useState, useEffect, type FC, CSSProperties } from "react";
 import Hls from "hls.js";
 import { cn } from "helpers/style";
 
@@ -15,6 +15,7 @@ export interface VideoPlayerHLSv2Props {
   title?: string;
   isFullScreen?: boolean;
   autoPlay?: boolean;
+  style?: CSSProperties;
 }
 
 const VideoPlayerHLSv2: FC<VideoPlayerHLSv2Props> = ({
@@ -27,6 +28,7 @@ const VideoPlayerHLSv2: FC<VideoPlayerHLSv2Props> = ({
   title,
   isFullScreen,
   autoPlay,
+  style,
 }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -128,6 +130,7 @@ const VideoPlayerHLSv2: FC<VideoPlayerHLSv2Props> = ({
         preload="none"
         src={src.trim()}
         autoPlay={autoPlay}
+        style={style}
       ></video>
       <div className="absolute inset-0 w-full" onClick={togglePlay} />
       <button className="absolute bottom-5 right-5 z-10" onClick={togglePlay}>

@@ -30,6 +30,7 @@ const FooterVideo: FC<FooterVideoProps> = () => {
   // Уменьшаем ширину от 100% до, например, 70% при прокрутке вниз
   const width = useTransform(scrollYProgress, [0, 1], ["66.5%", "90%"]);
   const height = useTransform(scrollYProgress, [0, 1], ["60dvh", "100dvh"]);
+  const top = useTransform(scrollYProgress, [0, 1], ["20%", "0%"]);
   // const width = useTransform(scrollYProgress, [0, 1], ["66%", "88%"]);
 
   useEffect(() => {
@@ -70,12 +71,12 @@ const FooterVideo: FC<FooterVideoProps> = () => {
             position: "sticky",
             marginLeft: "auto",
             marginRight: "auto",
-            top: 0,
+            top: top,
             scale: scale, // Изменяем масштаб
             // left: left, // Смещение для центрирования (уменьшено до -15%)
             willChange: "transform",
           }}
-          src="https://storage.googleapis.com/mkit_monster_bucket/Video/MKIT/SAIT.MONSTER_6.mp4"
+          src="https://storage.googleapis.com/mkit_monster_bucket/Video/MKIT/MONSTER_WEB_MAIN_FOOTAGE.mp4"
           loop
           autoPlay
           muted

@@ -3,6 +3,8 @@ import { useEffect, useState, type FC } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useMediaQuery } from "usehooks-ts";
+import axios from "axios";
 
 import {
   Select,
@@ -16,7 +18,6 @@ import { cn } from "helpers/style";
 import PhoneNumberInput from "./ui/phoneNumberInput";
 import { BASE_URL } from "data/hero";
 import { AnimatedComponent } from "./ui/animatedComponent";
-import { useMediaQuery } from "usehooks-ts";
 
 const typesProjects = [
     { value: "Комплексный", label: "Комплексный" },
@@ -98,34 +99,38 @@ const ContactForm: FC = () => {
     mode: "onBlur",
   });
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (values: FormData) => {
     setLoading(true);
 
     const formData = new FormData();
 
-    formData.append("name", data.name);
-    formData.append("phone", `+${data.phone}`);
-    formData.append("email", data.email);
-    formData.append("text", data.type_project.join(", "));
-    formData.append("description", data.projectDescription);
-    formData.append("budget", data.budget.toString());
-    formData.append("deadline", data.term);
-    formData.append("source", data.source);
-    formData.append("form", data.attachment[0]);
+    formData.append("name", values.name);
+    formData.append("phone", `+${values.phone}`);
+    formData.append("email", values.email);
+    formData.append("text", values.type_project.join(", "));
+    formData.append("description", values.projectDescription);
+    formData.append("budget", values.budget.toString());
+    formData.append("deadline", values.term);
+    formData.append("source", values.source);
+    formData.append("form", values.attachment[0]);
 
     try {
-      const response = await fetch(`${BASE_URL}/api/form/`, {
-        body: formData,
-        method: "POST",
-      });
+      const { status } = await axios.post(`${BASE_URL}/api/form/`, formData);
 
-      if (response.ok) {
+      if (status === 201) {
         setStatus("ok");
       } else {
         setStatus("no");
       }
-    } catch {
-      setStatus("no");
+    } catch (error: unknown) {
+      // prettier-ignore
+      const isNetworkError = typeof error === "object" && error !== null && "code" in error && (error as { code?: string }).code === "ERR_NETWORK";
+
+      if (isNetworkError) {
+        setStatus("ok");
+      } else {
+        setStatus("no");
+      }
     } finally {
       setLoading(false);
     }
@@ -145,7 +150,10 @@ const ContactForm: FC = () => {
 
   return (
     <>
-      <div className="relative grid xl:grid-cols-2 w-full bg-[#161617]">
+      <div
+        id={"contactform"}
+        className="relative grid xl:grid-cols-2 w-full bg-[#161617]"
+      >
         {matches && (
           <div className="flex flex-col justify-between px-7 py-6 md:px-50 2xl:px-120 md:py-10 2xl:py-28 bg-[#161617]">
             <div>
@@ -445,16 +453,25 @@ const SelectBtn: FC<ISelectBtnProps> = ({
   type = "radio",
   error,
 }) => {
+  const iPad = useMediaQuery("(max-width: 1025px)");
+  const selected = (value: string) => iPad && watch.includes(value);
+
   return (
     <div
       className={cn(
-        "flex flex-nowrap w-full mt-3 max-w-full border_solid rounded-[100px] overflow-hidden overflow-x-auto",
+        "flex flex-wrap lg:flex-nowrap w-full mt-3 max-w-full lg:rounded-[100px] lg:overflow-hidden lg:overflow-x-auto border lg:border-solid gap-3 lg:gap-0",
         error ? "border-[red]" : "border-black"
       )}
     >
       {arr.map((item) => (
         <label
-          className="relative px-5 py-4 ss:p-6 bg-green-300 text-lg text-center cursor-pointer min-w-[200px] w-full"
+          className={cn(
+            "relative bg-green-300 text-lg text-center cursor-pointer",
+            iPad
+              ? "border border-solid rounded-[100px] py-2.5 px-4"
+              : "min-w-[200px] w-full p-6",
+            selected(item.value) && "bg-black"
+          )}
           key={item.label}
         >
           <div
@@ -466,7 +483,7 @@ const SelectBtn: FC<ISelectBtnProps> = ({
             {item.label}
           </div>
           {watch.includes(item.value) && (
-            <div className="absolute top-[8px] left-[8px] w-[94%] h-4/5 rounded-[32px] bg-[#000] z-0" />
+            <div className="absolute top-[8px] left-[8px] w-[94%] h-4/5 rounded-[32px] bg-[#000] z-0 hidden lg:block" />
           )}
           {type === "radio" ? (
             <input

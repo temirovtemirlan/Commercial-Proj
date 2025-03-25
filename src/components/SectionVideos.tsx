@@ -1,16 +1,16 @@
 import { type FC } from "react";
+import { useInView } from "react-intersection-observer";
 import Container from "./Container";
 import { AnimatedComponent } from "common/ui/animatedComponent";
 import VideoPlayerHLSv2 from "./VideoPlayerHLSv2";
-import { useInView } from "react-intersection-observer";
+import { inViewProps } from "data/index";
 
 const anVariantsOpacity = { hidden: { opacity: 0 }, visible: { opacity: 1 } };
-const view = { threshold: 0.2, triggerOnce: true };
 
 const SectionVideos: FC = () => {
-  const [videoOneRef, videoOneRefInView] = useInView(view);
+  const [videoOneRef, videoOneRefInView] = useInView(inViewProps);
   const [videoTwoRef, videoTwoRefInView] = useInView({
-    ...view,
+    ...inViewProps,
     threshold: 0.4,
   });
 
