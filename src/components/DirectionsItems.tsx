@@ -89,7 +89,7 @@ const DirectionsItems: FC<DirectionsItemsProps> = ({ className, item }) => {
               {item.descOne}
             </p>
 
-            <ul className="text-white text-base md:text-lg leading-relaxed list-disc list-inside mt-6">
+            <ul className="text-white text-base md:text-lg leading-relaxed list-disc list-outside mt-6 pl-5">
               {item.list.map((el) => (
                 <li key={el}>{el}</li>
               ))}

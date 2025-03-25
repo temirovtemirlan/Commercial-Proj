@@ -145,9 +145,9 @@ const ContactForm: FC = () => {
 
   return (
     <>
-      <div className="relative grid xl:grid-cols-2 w-full pt-50 bg-[#161617]">
-        <div className="flex flex-col justify-between px-7 py-6 md:px-50 2xl:px-120 md:py-10 2xl:py-28 bg-[#161617]">
-          {matches && (
+      <div className="relative grid xl:grid-cols-2 w-full md:pt-50 bg-[#161617]">
+        {matches && (
+          <div className="flex flex-col justify-between px-7 py-6 md:px-50 2xl:px-120 md:py-10 2xl:py-28 bg-[#161617]">
             <div>
               <span className="text-white text-[32px] md:text-[44px] leading-[39px] md:leading-[52px] xl:text-[56px] xl:leading-[64px]">
                 Заполните анкету, <br /> чтобы обсудить проект
@@ -164,17 +164,17 @@ const ContactForm: FC = () => {
                 интересам.
               </p>
             </div>
-          )}
-          {/*<div className="mt-12 lg:mt-8">*/}
-          {/*  <div className="flex flex-col gap-2 md:gap-3 text-white">*/}
-          {/*    <span className="text-xl opacity-50">Для связи</span>*/}
+          </div>
+        )}
+        {/*<div className="mt-12 lg:mt-8">*/}
+        {/*  <div className="flex flex-col gap-2 md:gap-3 text-white">*/}
+        {/*    <span className="text-xl opacity-50">Для связи</span>*/}
 
-          {/*    <NavLink className="max-w-fit" to="mailto:hello@monstrcorp.com">*/}
-          {/*      <span className="text-2xl">hello@monstrcorp.com</span>*/}
-          {/*    </NavLink>*/}
-          {/*  </div>*/}
-          {/*</div>*/}
-        </div>
+        {/*    <NavLink className="max-w-fit" to="mailto:hello@monstrcorp.com">*/}
+        {/*      <span className="text-2xl">hello@monstrcorp.com</span>*/}
+        {/*    </NavLink>*/}
+        {/*  </div>*/}
+        {/*</div>*/}
 
         {/* _*_*_*_ */}
 

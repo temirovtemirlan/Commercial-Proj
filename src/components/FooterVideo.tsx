@@ -6,6 +6,8 @@ interface FooterVideoProps {
   className?: string;
 }
 
+// http://192.168.0.149:5173/
+
 const FooterVideo: FC<FooterVideoProps> = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -21,11 +23,14 @@ const FooterVideo: FC<FooterVideoProps> = () => {
   });
 
   // Инвертируем масштаб: из большего в нормальный
-  const scale = useTransform(scrollYProgress, [0, 1], [1.5, 1]);
+  const scale = useTransform(scrollYProgress, [1, 0], [1.5, 1]);
+  // const scale = useTransform(scrollYProgress, [0, 1], [1.5, 1]);
 
   // **Новое преобразование для ширины:**
   // Уменьшаем ширину от 100% до, например, 70% при прокрутке вниз
-  const width = useTransform(scrollYProgress, [0, 1], ["66%", "88%"]);
+  const width = useTransform(scrollYProgress, [0, 1], ["66.5%", "90%"]);
+  const height = useTransform(scrollYProgress, [0, 1], ["50dvh", "100dvh"]);
+  // const width = useTransform(scrollYProgress, [0, 1], ["66%", "88%"]);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -60,7 +65,7 @@ const FooterVideo: FC<FooterVideoProps> = () => {
             width: width, // **Применяем новое преобразование ширины**
             maxWidth: "100%",
             maxHeight: "100dvh",
-            height: "100dvh",
+            height: height,
             objectFit: "cover",
             position: "sticky",
             marginLeft: "auto",

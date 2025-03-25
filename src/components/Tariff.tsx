@@ -1,14 +1,15 @@
-import { useRef, useState, type FC } from "react";
+import { useEffect, useRef, useState, type FC } from "react";
 import { Accordion, AccordionItem } from "@szhsin/react-accordion";
 import { useInView } from "react-intersection-observer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { useMediaQuery } from "usehooks-ts";
+import { CustomScroll } from "react-custom-scroll";
 import type { Swiper as SwiperType } from "swiper/types";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import { TariffEnd, TariffStart } from "./TariffBlock";
+import { TariffEnd } from "./TariffBlock";
 import Container from "./Container";
 import { AnimatedComponent } from "common/ui/animatedComponent";
 import SwiperNavigationBtn from "common/SwiperNavigationBtn";
@@ -20,8 +21,20 @@ const anVariantsOpacity = {
   visible: { opacity: 1, y: 0 },
 };
 
+const navBtn = { p: "prev-tariff_panel", n: "next-tariff_panel" };
+
+// prettier-ignore
+const swiperProps = {
+  loop: true,
+  speed: 500,
+  breakpoints: { 1080: { slidesPerView: 3, slidesPerGroup: 3 }, 768: { slidesPerView: 2, slidesPerGroup: 2 }, 0: { slidesPerView: 1, slidesPerGroup: 1 }},
+  navigation: { prevEl: `.${navBtn.p}`, nextEl: `.${navBtn.n}` },
+  modules: [Navigation],
+};
+
 const Tariff: FC = () => {
   const swiperRef = useRef<SwiperType>();
+  const swiperHeadRef = useRef<SwiperType>();
   const [realIndex, setRealIndex] = useState(0);
   const is1080 = useMediaQuery("(min-width: 1080px)");
   const is768 = useMediaQuery("(min-width: 768px)");
@@ -40,7 +53,6 @@ const Tariff: FC = () => {
   const uniqueCategories = Array.from(
     new Set(tariffData.map((item) => item.tabCategory))
   );
-  // #endregion
 
   const tabSwiperHandler = (index: number) => {
     const targetIndex = index * slidesPerGroup; // Вычисляем индекс начала группы
@@ -48,156 +60,260 @@ const Tariff: FC = () => {
     if (is1080 == false && is768) {
       if (targetIndex === 4) {
         swiperRef.current?.slideToLoop(6);
+        swiperHeadRef.current?.slideToLoop(6);
       } else if (targetIndex === 2) {
         swiperRef.current?.slideToLoop(targetIndex);
+        swiperHeadRef.current?.slideToLoop(targetIndex);
       } else {
         swiperRef.current?.slideToLoop(targetIndex);
+        swiperHeadRef.current?.slideToLoop(targetIndex);
       }
     } else if (!is1080 && !is768) {
       if (targetIndex === 1) {
         swiperRef.current?.slideToLoop(3);
+        swiperHeadRef.current?.slideToLoop(3);
       } else if (targetIndex === 2) {
         swiperRef.current?.slideToLoop(6);
+        swiperHeadRef.current?.slideToLoop(6);
       } else {
         swiperRef.current?.slideToLoop(targetIndex);
+        swiperHeadRef.current?.slideToLoop(targetIndex);
       }
     } else {
       swiperRef.current?.slideToLoop(targetIndex);
+      swiperHeadRef.current?.slideToLoop(targetIndex);
     }
   };
 
+  useEffect(() => {
+    if (swiperHeadRef.current && swiperRef.current) {
+      swiperHeadRef.current.slideToLoop(realIndex); // перемотка по индексу с учетом loop
+    }
+  }, [realIndex]);
+  // #endregion
+
+  const [openAccordionKeys, setOpenAccordionKeys] = useState<string[]>([]);
+  const [headViewIsAccordionOpen, setHeadViewIsAccordionOpen] = useState(false);
+  const [containerRefElement, tariffContainerInView] = useInView({
+    threshold: 0,
+  });
+  const [descRef, descInView] = useInView({
+    threshold: 0,
+  });
+
+  const handleAccordionStateChange = (itemKey: string, isExpanded: boolean) =>
+    setOpenAccordionKeys((prev) =>
+      isExpanded ? [...prev, itemKey] : prev.filter((key) => key !== itemKey)
+    );
+
+  useEffect(() => {
+    if (!tariffContainerInView) setHeadViewIsAccordionOpen(false);
+
+    if (openAccordionKeys.length > 0) {
+      setHeadViewIsAccordionOpen(!descInView);
+    } else {
+      setHeadViewIsAccordionOpen(false);
+    }
+  }, [openAccordionKeys, descInView, tariffContainerInView]);
+
   return (
-    <Container className="relative xl:pt-[100px] pt-[50px] bg-[#f5f5f7]">
-      <AnimatedComponent
-        tag="legend"
-        initial={{ opacity: 0, y: 20 }}
-        animate={animInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5, delay: 0.4 }}
-        className="legend-3lvl"
-        ref={tabPanelRef}
-      >
-        Изучите тарифы.
-      </AnimatedComponent>
-      <div ref={animRef} />
+    <section className="relative xl:pt-[100px] pt-[50px] bg-[#f5f5f7]">
+      <>
+        <Container>
+          <AnimatedComponent
+            tag="legend"
+            initial={{ opacity: 0, y: 20 }}
+            animate={animInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="legend-3lvl"
+            ref={tabPanelRef}
+          >
+            Изучите тарифы.
+          </AnimatedComponent>
+        </Container>
 
-      <div className="sticky top-[16rem] mt-28 z-10 h-0">
-        <SwiperNavigationBtn
-          className="flex justify-between w-full md:hidden"
-          prevClass="-translate-x-2 prev-tariff_panel"
-          nextClass="translate-x-2 next-tariff_panel"
-        />
-      </div>
+        <div ref={animRef} />
+      </>
 
-      <div className="Our-Indicators !-mt-20">
-        <AnimatedComponent
-          initial={{ opacity: 0, y: 20 }}
-          animate={animInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="grid md:grid-cols-[326px,1fr] items-center"
-        >
-          <div className="flex p-1.5 w-full max-w-fit rounded-full bg-white overflow-x-auto">
-            {uniqueCategories.map((item, index) =>
-              // prettier-ignore
-              <button
+      <Container>
+        <div className="sticky top-[16rem] mt-28 z-10 h-0">
+          <SwiperNavigationBtn
+            className="flex justify-between w-full md:hidden"
+            prevClass={`-translate-x-2 ${navBtn.p}`}
+            nextClass={`translate-x-2 ${navBtn.n}`}
+          />
+        </div>
+      </Container>
+
+      {/* Head Swiper */}
+      {headViewIsAccordionOpen ? (
+        <div className="sticky top-0 w-full z-10 h-0">
+          <Container
+            className="bg-[#f5f5f7]"
+            style={{ borderBottom: "1px solid #d2d2d7" }}
+          >
+            <Swiper
+              className="w-full max-w-[1062px]"
+              onSwiper={(swiper) => (swiperHeadRef.current = swiper)}
+              onSlideChange={(swiper) => setRealIndex(swiper.realIndex)}
+              autoHeight
+              allowTouchMove={false}
+              {...swiperProps}
+            >
+              {tariffData.map((item, index) => (
+                <SwiperSlide className="text-center w-[354px]" key={index}>
+                  <div className="w-full max-w-[354px] mx-auto px-2.5">
+                    <p className="text-xl xl:text-[24px] font-bold mt-4">
+                      {item.head.title}
+                    </p>
+                    <div className="text-lg md:text-base mt-2 md:mt-[16px] w-4/5 mx-auto h-auto md:h-[100px] overflow-y-auto tariff-custom_scroll_description">
+                      <CustomScroll heightRelativeToParent="100%">
+                        {item.head.description}
+                      </CustomScroll>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </Container>
+        </div>
+      ) : null}
+
+      <Container>
+        <div className="Our-Indicators !-mt-20">
+          <AnimatedComponent
+            initial={{ opacity: 0, y: 20 }}
+            animate={animInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="grid md:grid-cols-[326px,1fr] items-center"
+          >
+            <div className="flex p-1.5 w-full max-w-fit rounded-full bg-white overflow-x-auto">
+              {uniqueCategories.map((item, index) =>
+                // prettier-ignore
+                <button
                 key={item}
                 className={cn("whitespace-nowrap px-6 py-2.5", (tariffData[realIndex]?.tabCategory || "Base") === item && "bg-[#0171e3] text-white rounded-full")}
                 onClick={() => tabSwiperHandler(index)}
               >
                 {item}
               </button>
-            )}
-          </div>
+              )}
+            </div>
 
-          <SwiperNavigationBtn
-            className="hidden md:flex justify-end gap-5 w-full"
-            prevClass="prev-tariff_panel"
-            nextClass="next-tariff_panel"
-          />
-        </AnimatedComponent>
+            <SwiperNavigationBtn
+              className="hidden md:flex justify-end gap-5 w-full"
+              prevClass={navBtn.p}
+              nextClass={navBtn.n}
+            />
+          </AnimatedComponent>
 
-        <AnimatedComponent
-          initial={{ opacity: 0, y: 40 }}
-          animate={animInView ? { opacity: 1, y: 0 } : undefined}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          className="w-full flex justify-center"
-        >
-          <Swiper
-            className="relative max-w-[1062px] overflow-hidden pt-8"
-            onSwiper={(swiper) => (swiperRef.current = swiper)}
-            speed={500}
-            loop
-            onSlideChange={(swiper) => setRealIndex(swiper.realIndex)}
-            breakpoints={{
-              1080: { slidesPerView: 3, slidesPerGroup: 3 },
-              768: { slidesPerView: 2, slidesPerGroup: 2 },
-              0: { slidesPerView: 1, slidesPerGroup: 1 },
-            }}
-            navigation={{
-              prevEl: ".prev-tariff_panel",
-              nextEl: ".next-tariff_panel",
-            }}
-            modules={[Navigation]}
+          {/* Main Swiper */}
+          <AnimatedComponent
+            initial={{ opacity: 0, y: 40 }}
+            animate={animInView ? { opacity: 1, y: 0 } : undefined}
+            transition={{ duration: 0.5, delay: 0.8 }}
+            className="relative flex justify-center w-full"
+            ref={containerRefElement}
           >
-            {tariffData?.map((item, index) => (
-              <SwiperSlide key={index} className="w-[354px] !items-start">
-                <AnimatedComponent
-                  initial="hidden"
-                  animate={animInView ? "visible" : "hidden"}
-                  variants={anVariantsOpacity}
-                  transition={{ duration: 0.5, delay: index * 0.4 }}
-                  className={cn("relative w-full max-w-[354px]", {
-                    "md:col-span-2 lg:col-span-1 md:mx-auto lg:mx-0":
-                      index === 2,
-                  })}
-                  key={index}
-                >
-                  <TariffStart item={item} />
-
-                  <hr className="border-[#d2d2d7] w-full max-md:hidden my-10" />
-
-                  <Accordion
-                    className="w-full mt-10 md:mt-0 text-center px-2.5"
-                    transition
-                    transitionTimeout={300}
+            <Swiper
+              className="relative max-w-[1062px] overflow-hidden pt-8"
+              onSwiper={(swiper) => (swiperRef.current = swiper)}
+              onSlideChange={(swiper) => setRealIndex(swiper.realIndex)}
+              {...swiperProps}
+            >
+              {tariffData?.map((item, index) =>
+                // prettier-ignore
+                <SwiperSlide key={index} className="w-[354px] !items-start">
+                  <AnimatedComponent
+                    initial="hidden"
+                    animate={animInView ? "visible" : "hidden"}
+                    variants={anVariantsOpacity}
+                    transition={{ duration: 0.5, delay: index * 0.4 }}
+                    className={cn("relative w-full max-w-[354px]", { "md:col-span-2 lg:col-span-1 md:mx-auto lg:mx-0" : index === 2 })}
+                    key={index}
                   >
-                    <AccordionItem
-                      header={({ state }) => (
-                        <div className="relative flex flex-col items-center w-full">
-                          <Arrow isEnter={state.isEnter} />
-
-                          <div className="pt-6">
-                            <TariffEnd
-                              head={item.footer[0].title}
-                              descriptions={item.footer[0].descriptions}
-                              before={item.footer[0].before}
-                            />
+                    <div className="text-center w-full box-border px-2.5 text-black">
+                      <div className="w-full max-w-[284px] rounded-2.5xl overflow-hidden h-[500px] mx-auto bg-gray-200">
+                        {item.head.media ? (
+                          <video
+                            className={"object-cover size-full"}
+                            src={`https://storage.googleapis.com/mkit_monster_bucket/Tariff/${item.head.media}`}
+                            loop
+                            autoPlay
+                            muted
+                            controls={false}
+                            playsInline
+                          />
+                        ) : (
+                          <div className="flex size-full justify-center items-center">
+                            <span className="text-center inline-block my-auto text-lg">
+                              Скоро
+                            </span>
                           </div>
-                        </div>
-                      )}
-                      itemKey={`${index}-${item.tabCategory}`}
-                    >
-                      <div className="flex flex-col justify-evenly gap-10 pt-10">
-                        {item.footer
-                          .slice(1)
-                          ?.map((footer) => (
-                            <TariffEnd
-                              key={footer.descriptions[0]}
-                              head={footer.title}
-                              className={"w-full text-center"}
-                              descriptions={footer.descriptions}
-                              before={footer.before}
-                            />
-                          ))}
+                        )}
                       </div>
-                    </AccordionItem>
-                  </Accordion>
-                </AnimatedComponent>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </AnimatedComponent>
-      </div>
-    </Container>
+                      <legend className="text-xl xl:text-[24px] font-bold mt-4 md:mt-[40px] w-full">
+                        {item.head.title}
+                      </legend>
+
+                    {/* Description */}
+                      <div
+                        className="text-lg md:text-base my-2 md:my-[16px] w-4/5 mx-auto h-auto md:h-[100px] overflow-y-auto tariff-custom_scroll_description"
+                        ref={index === realIndex ? descRef : undefined}
+                      >
+                        <CustomScroll heightRelativeToParent="100%">
+                          {item.head.description}
+                        </CustomScroll>
+                      </div>
+
+                      <p
+                        className="text-lg md:text-base font-semibold"
+                        dangerouslySetInnerHTML={{ __html: item.head.price }}
+                      />
+
+                      {item.head.content ? (
+                        <p className="mt-1 w-full h-full font-semibold text-center">
+                          {item.head.content}
+                        </p>
+                      ) : null}
+
+                      <AnimatedComponent
+                        tag="button"
+                        whileHover={{ scale: 1.04 }}
+                        className="w-[192px] h-11 p-2 md:p-2.5 bg-[#0071e3] rounded-full text-base justify-center items-center gap-2.5 inline-flex mt-[40px] text-white"
+                      >
+                        Оставить заявку
+                      </AnimatedComponent>
+                    </div>
+
+                    <hr className="border-[#d2d2d7] w-full max-md:hidden my-10" />
+
+                    <Accordion className="w-full mt-10 md:mt-0 text-center px-2.5" transition transitionTimeout={300}>
+                      <AccordionItem
+                        header={({ state }) => (
+                          <div className="relative flex flex-col items-center w-full" onClick={() => handleAccordionStateChange(`${index}-${item.tabCategory}`, !state.isEnter)}>
+                            <Arrow isEnter={state.isEnter} />
+
+                            <div className="pt-6">
+                              <TariffEnd head={item.footer[0].title} descriptions={item.footer[0].descriptions} before={item.footer[0].before} />
+                            </div>
+                          </div>
+                        )}
+                        itemKey={`${index}-${item.tabCategory}`}
+                      >
+                        <div className="flex flex-col justify-evenly gap-10 pt-10">
+                          {item.footer.slice(1)?.map((footer) => <TariffEnd key={footer.descriptions[0]} head={footer.title} className="w-full text-center" descriptions={footer.descriptions} before={footer.before} />)}
+                        </div>
+                      </AccordionItem>
+                    </Accordion>
+                  </AnimatedComponent>
+                </SwiperSlide>
+              )}
+            </Swiper>
+          </AnimatedComponent>
+        </div>
+      </Container>
+    </section>
   );
 };
 
