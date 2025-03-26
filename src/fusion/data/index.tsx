@@ -389,8 +389,20 @@ export const tariffData: TariffType[] = [
     footer: footerData,
     tabCategory: "Ultimate",
   },
+  // * PACKAGES
+  {
+    head: {
+      media: "FULL_CGI.mp4",
+      title: "Packages",
+      description:
+        "CGI-ролики кинематографического качества, с использованием передовых технологий и индивидуальных решений.",
+      price: "От $25 000",
+      content: "Cкидка по звонку",
+    },
+    footer: footerData,
+    tabCategory: "Packages",
+  },
 ];
-
 // #endregion
 
 interface IIndicatorsLoading {
