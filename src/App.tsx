@@ -1,4 +1,4 @@
-import { type FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { domAnimation, LazyMotion } from "motion/react";
 import { useInView } from "react-intersection-observer";
 
@@ -18,8 +18,8 @@ import FloatingActionButtons from "components/FloatingActionButtons";
 import { AnimatedComponent } from "common/ui/animatedComponent";
 import SectionVideos from "components/SectionVideos";
 import SectionHeader from "components/SectionHeader";
-import { inViewProps } from "data/index";
 import FixedHeader from "components/FixedHeader.tsx";
+import { inViewProps } from "data/index";
 
 const scrollThreshold = 1000;
 
@@ -47,7 +47,6 @@ const App: FC = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [scrollThreshold]);
-  // #endregion
 
   return (
     <>
@@ -135,14 +134,30 @@ const App: FC = () => {
         <Tariff />
 
         <LazyLoadLayout className="pt-[100px]">
-          <Container className="pt-[100px] pb-[100px] bg-[#161617]">
+          <Container className="pt-[100px] pb-[200px] bg-[#161617]">
             <LogoCubeAnimation />
           </Container>
         </LazyLoadLayout>
 
-        <FooterVideo />
+        <div className="relative">
+          <div className="sticky top-0">
+            <div className="relative">
+              <FooterVideo />
+            </div>
+          </div>
 
-        <ContactForm />
+          <div
+            className="sticky top-0 left-0 h-[50vh] w-full"
+            style={{
+              background:
+                "linear-gradient(0deg, var(--bg-0), var(--bg-0) 25%, transparent)",
+            }}
+          />
+
+          <div className="sticky top-0" draggable="false">
+            <ContactForm />
+          </div>
+        </div>
 
         <Footer />
       </LazyMotion>

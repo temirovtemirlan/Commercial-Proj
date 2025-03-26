@@ -2,15 +2,14 @@ import { type FC, useEffect, useState } from "react";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 import { useMediaQuery } from "usehooks-ts";
 import { motion } from "motion/react";
-import { useInView } from "react-intersection-observer";
 
-import VideoPlayerHLSv2 from "components/VideoPlayerHLSv2.tsx";
+import VideoPlayerHLSv2 from "components/VideoPlayerHLSv2";
 import Container from "./Container";
 import { AnimatedComponent } from "common/ui/animatedComponent";
 
 const SectionHeader: FC = () => {
   const matches = useMediaQuery("(min-width: 650px)");
-  const [langRef, langInView] = useInView();
+  const [showHint, setShowHint] = useState(true);
 
   const [aiGCVideo, setAIGCVideo] = useState<string>(
     matches
@@ -36,6 +35,8 @@ const SectionHeader: FC = () => {
         : "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/AICG_VERTICAL/720p_mp4/stream.m3u8"
     );
   }, [matches]);
+
+  // Вы можете переключать между роликами, нажмите на AIGC REEL
 
   return (
     <>
@@ -131,7 +132,7 @@ const SectionHeader: FC = () => {
       </Container>
 
       {/* Showreel */}
-      <section className="text-center" ref={langRef}>
+      <section className="text-center">
         <Tabs className="Monstr-Showreel">
           <TabPanel className="mac:min-h-[1000px]">
             <VideoPlayerHLSv2
@@ -157,12 +158,46 @@ const SectionHeader: FC = () => {
             animate={{ y: 0, scale: 1 }}
             transition={{ duration: 0.9, ease: "backOut", delay: 0.2 }}
           >
-            <TabList className="flex p-[5px] bg-white rounded-full">
-              <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
+            <TabList className="flex p-[5px] bg-white rounded-full my-first-tab-step">
+              <Tab className="relative tab__delivery_panels whitespace-nowrap px-6 py-2.5">
                 CG REEL
+                {/* _*_ */}
+                {showHint && (
+                  <AnimatedComponent
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 1, delay: 1 }}
+                    className="relative z-[-1] cursor-auto"
+                  >
+                    <div
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                      }}
+                      className="absolute -translate-y-[6.6rem] md:-translate-y-28 left-[-30px] md:left-[-21px] bg-white px-4 py-2 rounded-xl text-black text-sm md:text-base"
+                    >
+                      <div>
+                        Вы можете переключать между <br className="md:hidden" />{" "}
+                        роликами <br className="max-md:hidden" /> нажмите на
+                        AIGC REEL
+                      </div>
+                      <div className="tooltip-arrow"></div>
+                    </div>
+                  </AnimatedComponent>
+                )}
               </Tab>
-              <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
+              <Tab
+                className="relative tab__delivery_panels whitespace-nowrap px-6 py-2.5"
+                onClick={() => setShowHint(false)}
+              >
                 AIGC REEL
+                {showHint && (
+                  <div className="absolute top-0 left-[34%]">
+                    <div className="relative w-[44px] h-[44px] flex justify-center items-center">
+                      <div className="w-[26px] h-[26px] rounded-full bg-[#0171e3cc] shadow-[0_0_10px_4px_rgba(1,113,227,0.6)] pulse-ring"></div>
+                    </div>
+                  </div>
+                )}
               </Tab>
             </TabList>
           </motion.div>

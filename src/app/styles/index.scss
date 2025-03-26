@@ -358,3 +358,34 @@ body {
     height: 60px !important;
   }
 }
+
+// *_*_*_*_*
+
+.pulse-ring {
+  position: relative;
+  animation: pulse-border 2s infinite ease-in-out;
+}
+
+@keyframes pulse-border {
+  0% {
+    box-shadow: 0 0 0 6px rgba(1, 113, 227, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(1, 113, 227, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 6px rgba(1, 113, 227, 0.4);
+  }
+}
+
+.tooltip-arrow {
+  position: absolute;
+  left: 50%;
+  bottom: -10px; /* Расстояние от основного блока */
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent; /* Создает прозрачные боковые части */
+  border-right: 10px solid transparent;
+  border-top: 10px solid white; /* Белый цвет для верхней части (треугольник) */
+}
