@@ -1,17 +1,55 @@
-import type { directionType, TariffType } from "fusion/type";
+import { directionType, ITariffFooter, TariffType } from "fusion/type";
 
 export const inViewProps = { threshold: 0.2, triggerOnce: true };
 
-const footerData = [
+// ----------------------------------------------------------------------------
+// ICON PATHS TYPE
+// ----------------------------------------------------------------------------
+
+type IconPath =
+  | "/analyse.png"
+  | "/search.png"
+  | "/docs.png"
+  | "/stoting.png"
+  | "/brainstorm.png"
+  | "/cube3d.png"
+  | "/animation.png"
+  | "/world3d.png"
+  | "/composting.png"
+  | "/colorcorrection.png"
+  | "/sound_design.png"
+  | "/voice.png"
+  | "/search_ai.png"
+  | "/timeline.png"
+  | "/framefilm.png"
+  | "/integrationai.png"
+  | "/unreale+blender.png"
+  | "/post-prod.png"
+  | "/unreale+blender+c4.png"
+  | "/virus.png"
+  | "/ai.png"
+  | "/fire.png"
+  | "/voiceai.png"
+  | "/unboarding.png";
+
+// ----------------------------------------------------------------------------
+// ITariffFooter WITH ICON
+// ----------------------------------------------------------------------------
+
+interface ITariffFooterWithIcon extends ITariffFooter {
+  title: string | IconPath; // Enforce that `title` is one of the defined icon paths
+}
+
+const analyseObj: ITariffFooterWithIcon = {
+  title: "/analyse.png",
+  descriptions: ["Консультация, анализ бренда"],
+};
+
+const footerData: ITariffFooterWithIcon[] = [
   {
     before: "До",
     title: "60 сек",
     descriptions: ["Длительность ролика"],
-  },
-  {
-    before: "До",
-    title: "3",
-    descriptions: ["Правок"],
   },
   {
     title: "/search.png",
@@ -21,7 +59,6 @@ const footerData = [
     title: "/docs.png",
     descriptions: ["Написание сценария"],
   },
-
   {
     title: "/stoting.png",
     descriptions: ["Раскадровка"],
@@ -60,14 +97,24 @@ const footerData = [
   },
 ];
 
-// #region // * Tariff
+// ----------------------------------------------------------------------------
+//  TARIFF DATA
+// ----------------------------------------------------------------------------
+
+// Helper function to create tariff footer items
+const createTariffFooterItem = (
+  title: IconPath,
+  descriptions: string[]
+): ITariffFooterWithIcon => ({ title, descriptions });
+
 export const tariffData: TariffType[] = [
   // * Base
   {
     head: {
       media: "BASE_AIGC.mp4",
       title: "Base AIGC",
-      description: "1 трендовый ролик для соцсетей.",
+      description:
+        "Доступный тариф, на создание трендового ролика для социальных сетей, с использованием передовых технологий AIGC.",
       price: "<s>$1500</s> <br/> <p>От $1000</p>",
       content: "",
     },
@@ -82,10 +129,17 @@ export const tariffData: TariffType[] = [
         title: "3",
         descriptions: ["Правок"],
       },
-      // {
-      //   title: "—",
-      //   descriptions: [""],
-      // },
+      createTariffFooterItem("/search_ai.png", [
+        "Поиск креативного",
+        "референса",
+      ]),
+      createTariffFooterItem("/colorcorrection.png", ["Цветокоррекция"]),
+      createTariffFooterItem("/timeline.png", ["Таймлайн в After Effects"]),
+      createTariffFooterItem("/framefilm.png", ["Создание видео с AIGC"]),
+      createTariffFooterItem("/integrationai.png", [
+        "Интеграция 3Д\n" + "модели в ролик",
+      ]),
+      createTariffFooterItem("/sound_design.png", ["Sound Design"]),
     ],
     tabCategory: "Base",
   },
@@ -95,8 +149,7 @@ export const tariffData: TariffType[] = [
       title: "Base CGI",
       description:
         "CGI-ролики с использованием готовых 3D-моделей и простой анимации.",
-      // price: "От $3300",
-      price: "<s>$2000</s><br/> <p>От $1500</p>",
+      price: "<s>$2000</s><br/> <p>От $900</p>",
       content: "",
     },
     footer: [
@@ -107,9 +160,21 @@ export const tariffData: TariffType[] = [
       },
       {
         before: "До",
-        title: "3",
+        title: "2",
         descriptions: ["Правок"],
       },
+      createTariffFooterItem("/search.png", [
+        "Поиск креативного\n",
+        "референса",
+      ]),
+      createTariffFooterItem("/unreale+blender.png", [
+        "3D анимация создается",
+        "с применением передовых ",
+        "инструментов:",
+        "Cinema 4D и Blender.",
+      ]),
+      createTariffFooterItem("/post-prod.png", ["Пост-обработка"]),
+      createTariffFooterItem("/sound_design.png", ["Sound Design"]),
     ],
     tabCategory: "Base",
   },
@@ -119,8 +184,7 @@ export const tariffData: TariffType[] = [
       title: "Base VFX",
       description:
         "VFX-ролики с использованием готовых 3D-моделей и простой анимации.",
-      // price: "От $25,000",
-      price: "<s>$2500</s><br/> <p>От $2000</p>",
+      price: "<s>$2500</s><br/> <p>От $1,200</p>",
       content: "",
     },
     footer: [
@@ -131,9 +195,23 @@ export const tariffData: TariffType[] = [
       },
       {
         before: "До",
-        title: "3",
+        title: "2",
         descriptions: ["Правок"],
       },
+      createTariffFooterItem("/search.png", [
+        "Поиск креативного\n",
+        "референса",
+      ]),
+      createTariffFooterItem("/unreale+blender+c4.png", [
+        "Современная 3D анимация",
+        "создается с использованием",
+        "передовых инструментов,",
+        "таких как Cinema 4D,",
+        "Blender и Unreal Engine.",
+      ]),
+      createTariffFooterItem("/composting.png", ["Композитинг"]),
+      createTariffFooterItem("/post-prod.png", ["Пост-обработка"]),
+      createTariffFooterItem("/sound_design.png", ["Sound Design"]),
     ],
     tabCategory: "Base",
   },
@@ -142,9 +220,9 @@ export const tariffData: TariffType[] = [
     head: {
       media: "ADVANCED_AIGC.mp4",
       title: "Advanced AIGC",
-      description: "Полноценные рекламные ролики с использованием AICG, AIVFX",
-      // price: "От $2700",
-      price: "<s>$2700</s> <br/> <p>От $2100</p>",
+      description:
+        "Создание рекламных роликов с использованием технологий AIGC, AICG, AIVFX и AISFX для реализации сложных идей в рамках масштабных кампаний. Быстро и с доступным бюджетом.",
+      price: "<s>$2700</s> <br/> <p>От $2,700</p>",
       content: "",
     },
     footer: [
@@ -158,23 +236,24 @@ export const tariffData: TariffType[] = [
         title: "3",
         descriptions: ["Правок"],
       },
-      {
-        before: "Разработка",
-        title: "3",
-        descriptions: ["Концепций на выбор"],
-      },
-      {
-        title: "/video.png",
-        descriptions: ["Cоздание ролика"],
-      },
-      {
-        title: "/colorcorrection.png",
-        descriptions: ["Цветокоррекция"],
-      },
-      {
-        title: "/sound_design_ai.png",
-        descriptions: ["Sound Design"],
-      },
+      analyseObj,
+      createTariffFooterItem("/virus.png", ["3 Вирусные концепции"]),
+      createTariffFooterItem("/unboarding.png", ["Детализированный сториборд"]),
+      createTariffFooterItem("/docs.png", ["Детализированный сценарий"]),
+      createTariffFooterItem("/ai.png", ["Создание AIGC-футажей"]),
+      createTariffFooterItem("/framefilm.png", ["Создание видео с AIGC"]),
+      createTariffFooterItem("/integrationai.png", [
+        "Интеграция 3Д\n",
+        "модели в ролик",
+      ]),
+      createTariffFooterItem("/animation.png", ["Motion Design"]),
+      createTariffFooterItem("/framefilm.png", ["Профессиональный монтаж"]),
+      createTariffFooterItem("/colorcorrection.png", [
+        "Премиальная\n",
+        "цветокоррекция",
+      ]),
+      createTariffFooterItem("/sound_design.png", ["Sound Design"]),
+      createTariffFooterItem("/post-prod.png", ["Пост-обработка"]),
     ],
     tabCategory: "Advanced",
   },
@@ -183,9 +262,8 @@ export const tariffData: TariffType[] = [
       media: "ADVANCED_CGI.mp4",
       title: "Advanced CGI",
       description:
-        "Base CG + Создание индивидуальных 3D моделей, сложная анимация, симуляция физики.",
-      // price: "От $4,300",
-      price: "<s>$3900</s> <br/> <p>От $3300</p>",
+        "Расширенный тариф, который включает в себя всё из Base CGI, а также разработку индивидуальных 3D-моделей, сложную анимацию и симуляцию физических эффектов для создания по-настоящему уникального визуального опыта.",
+      price: "<s>$3900</s> <br/> <p>От $3,900</p>",
       content: "",
     },
     footer: [
@@ -199,27 +277,25 @@ export const tariffData: TariffType[] = [
         title: "3",
         descriptions: ["Правок"],
       },
-
-      {
-        title: "/brainstorm.png",
-        descriptions: ["Разработка концепции"],
-      },
-      {
-        title: "/cube3d.png",
-        descriptions: ["Создание 3D-моделей"],
-      },
-      {
-        title: "/fire.png",
-        descriptions: ["Cимуляция физики", "анимация"],
-      },
-      {
-        title: "/colorcorrection.png",
-        descriptions: ["Цветокоррекция"],
-      },
-      {
-        title: "/sound_design.png",
-        descriptions: ["Sound Design"],
-      },
+      analyseObj,
+      createTariffFooterItem("/brainstorm.png", ["Разработка концепции"]),
+      createTariffFooterItem("/unboarding.png", ["Детализированный сториборд"]),
+      createTariffFooterItem("/docs.png", ["Детализированный сценарий"]),
+      createTariffFooterItem("/cube3d.png", ["Создание 3D-моделей"]),
+      createTariffFooterItem("/unreale+blender+c4.png", [
+        "Современная 3D анимация",
+        "создается с использованием",
+        "передовых инструментов,",
+        "таких как Cinema 4D,",
+        "Blender и Unreal Engine.",
+      ]),
+      createTariffFooterItem("/fire.png", ["Cимуляция физики", "анимация"]),
+      createTariffFooterItem("/colorcorrection.png", [
+        "Премиальная",
+        "цветокоррекция",
+      ]),
+      createTariffFooterItem("/sound_design.png", ["Sound Design"]),
+      createTariffFooterItem("/post-prod.png", ["Пост-обработка"]),
     ],
     tabCategory: "Advanced",
   },
@@ -229,8 +305,7 @@ export const tariffData: TariffType[] = [
       title: "Advanced VFX",
       description:
         "Base VFX + Создание индивидуальных 3D моделей, сложная анимация, симуляция физики.",
-      // price: "От $18,000",
-      price: "<s>$4900</s> <br/> <p>От $4300</p>",
+      price: "<s>$4900</s> <br/> <p>От $4,200</p>",
       content: "",
     },
     footer: [
@@ -244,59 +319,25 @@ export const tariffData: TariffType[] = [
         title: "3",
         descriptions: ["Правок"],
       },
-      {
-        title: "/brainstorm.png",
-        descriptions: ["Разработка концепции"],
-      },
-      // {
-      //   title: search,
-      //   descriptions: ["Анализ продукта"],
-      // },
-      // {
-      //   title: docs,
-      //   descriptions: ["Написание сценария"],
-      // },
-      // {
-      //   title: 'tariff/stoting.png',
-      //   descriptions: ["Раскадровка"],
-      // },
-
-      // {
-      //   title: '/cube3d.png',
-      //   descriptions: ["Создание 3D-моделей"],
-      // },
-      // {
-      //   title: '/animation.png',
-      //   descriptions: ["Персонажная анимация"],
-      // },
-      // {
-      //   title: '/world3d.png',
-      //   descriptions: ["Создание полноценных", "3Д-миров"],
-      // },
-      {
-        title: "/cube3d.png",
-        descriptions: ["Создание 3D-моделей"],
-      },
-      {
-        title: "/fire.png",
-        descriptions: ["Cимуляция физики анимация"],
-      },
-      {
-        title: "/colorcorrection.png",
-        descriptions: ["Премиальная", "цветокоррекция"],
-      },
-      // {
-      //   title: '/animation.png',
-      //   descriptions: ["Анимация"],
-      // },
-      {
-        title: "/sound_design.png",
-        descriptions: ["Sound Design"],
-      },
-      // {
-      //   title: icon_park_outline_voice,
-      //   descriptions: ["Профессиональная озвучка"],
-      // },
+      analyseObj,
+      createTariffFooterItem("/brainstorm.png", ["Разработка концепции"]),
+      createTariffFooterItem("/unboarding.png", ["Детализированный сториборд"]),
+      createTariffFooterItem("/docs.png", ["Детализированный сценарий"]),
+      createTariffFooterItem("/cube3d.png", ["Создание 3D-моделей"]),
+      createTariffFooterItem("/unreale+blender+c4.png", [
+        "Современная 3D анимация",
+        "создается с использованием",
+        "передовых инструментов,",
+        "таких как Cinema 4D,",
+        "Blender и Unreal Engine.",
+      ]),
+      createTariffFooterItem("/fire.png", ["Cимуляция физики", "анимация"]),
+      createTariffFooterItem("/colorcorrection.png", [
+        "Цветокоррекция кадров",
+        "Davinci Resolve",
+      ]),
+      createTariffFooterItem("/sound_design.png", ["Sound Design"]),
+      createTariffFooterItem("/post-prod.png", ["Пост-обработка"]),
     ],
     tabCategory: "Advanced",
   },
@@ -316,52 +357,28 @@ export const tariffData: TariffType[] = [
         title: "60 сек",
         descriptions: ["Длительность ролика"],
       },
-      // {
-      //   before: "До",
-      //   title: "3",
-      //   descriptions: ["Правок"],
-      // },
-      // {
-      //   title: mynaui_infinity,
-      //   descriptions: ["Неограниченное количество", "правок"],
-      // },
       {
         before: "До",
         title: "3",
         descriptions: ["Правок"],
       },
-      {
-        title: "/search_ai.png",
-        descriptions: ["Анализ продукта"],
-      },
-      {
-        title: "/docs_ai.png",
-        descriptions: ["Написание сценария"],
-      },
-      {
-        title: "/stoting.png",
-        descriptions: ["Раскадровка"],
-      },
-      {
-        title: "/cube3d.png",
-        descriptions: ["Cоздание 3д модели", "вашего продукта"],
-      },
-      {
-        title: "/integrationai.png",
-        descriptions: ["Интеграция 3Д", "модели в ролик"],
-      },
-      {
-        title: "/colorcorrection.png",
-        descriptions: ["Премиальная", "цветокоррекция"],
-      },
-      {
-        title: "/sound_design.png",
-        descriptions: ["Sound Design"],
-      },
-      {
-        title: "/voiceai.png",
-        descriptions: ["Профессиональная озвучка"],
-      },
+      createTariffFooterItem("/search_ai.png", ["Анализ продукта"]),
+      createTariffFooterItem("/docs.png", ["Написание сценария"]),
+      createTariffFooterItem("/stoting.png", ["Раскадровка"]),
+      createTariffFooterItem("/integrationai.png", [
+        "Интеграция 3Д",
+        "модели в ролик",
+      ]),
+      createTariffFooterItem("/cube3d.png", [
+        "Cоздание 3д модели",
+        "вашего продукта",
+      ]),
+      createTariffFooterItem("/colorcorrection.png", [
+        "Премиальная",
+        "цветокоррекция",
+      ]),
+      createTariffFooterItem("/sound_design.png", ["Sound Design"]),
+      createTariffFooterItem("/voiceai.png", ["Профессиональная озвучка"]),
     ],
     tabCategory: "Ultimate",
   },
@@ -403,7 +420,10 @@ export const tariffData: TariffType[] = [
     tabCategory: "Packages",
   },
 ];
-// #endregion
+
+// ----------------------------------------------------------------------------
+// INDICATORS
+// ----------------------------------------------------------------------------
 
 interface IIndicatorsLoading {
   gradientClass: string;
@@ -411,6 +431,7 @@ interface IIndicatorsLoading {
   end: number;
   filter: directionType;
 }
+
 interface IIndicatorsAppsLogo {
   title: string;
   app: string;

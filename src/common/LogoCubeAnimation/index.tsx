@@ -4,37 +4,41 @@ import { divideArray } from "helpers/array";
 import CompanyLogoCubeAnimation from "./CubeAnimationSwiper";
 import { AnimatedComponent } from "common/ui/animatedComponent";
 
+const URL = "https://storage.googleapis.com/mkit_monster_bucket/Logo";
+
 const companyLogo = [
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/DODO.png",
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/NIKE.png",
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/ADIDAS.png",
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/PUMA.png",
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/ECO_MILK.png",
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/PEPSI.png",
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/BR.png",
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/BMW.png",
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/BOSS.png",
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/GLOVO.png",
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/COCA_COLA.png",
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/DAIRY_SPRING.png",
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/PAPAJOHNS.png",
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/KONTI.png",
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/PAUL.png",
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/SONUN.png",
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/JOY.png",
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/CALIPSO.png",
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/QADYR.png",
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/SILKWAY.png",
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/ENESAI.png",
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/BOOBLIK.png",
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/BAKAI.png",
-  "https://storage.googleapis.com/mkit_monster_bucket/Logo/ELBATA.png",
+  `${URL}/DODO.png`,
+  `${URL}/NIKE.png`,
+  `${URL}/ADIDAS.png`,
+  `${URL}/PUMA.png`,
+  `${URL}/ECO_MILK.png`,
+  `${URL}/PEPSI.png`,
+  `${URL}/BR.png`,
+  `${URL}/BMW.png`,
+  `${URL}/BOSS.png`,
+  `${URL}/GLOVO.png`,
+  `${URL}/COCA_COLA.png`,
+  `${URL}/DAIRY_SPRING.png`,
+  `${URL}/PAPAJOHNS.png`,
+  `${URL}/KONTI.png`,
+  `${URL}/PAUL.png`,
+  `${URL}/SONUN.png`,
+  `${URL}/JOY.png`,
+  `${URL}/CALIPSO.png`,
+  `${URL}/QADYR.png`,
+  `${URL}/SILKWAY.png`,
+  `${URL}/ENESAI.png`,
+  `${URL}/BOOBLIK.png`,
+  `${URL}/BAKAI.png`,
+  `${URL}/ELBATA.png`,
+  `${URL}/KFC.png`,
+  `${URL}/PEPSI.png`,
 ];
 
 const LogoCubeAnimation: FC = () => {
   const [ref, inView] = useInView({ threshold: 0.6, triggerOnce: true });
-  const dataOne = divideArray(divideArray(companyLogo, 2)[0], 6);
-  const dataTwo = divideArray(divideArray(companyLogo, 2)[1], 6);
+  const dataOne = divideArray(divideArray(companyLogo, 2)[0], 7);
+  const dataTwo = divideArray(divideArray(companyLogo, 2)[1], 7);
 
   return (
     <div ref={ref}>
