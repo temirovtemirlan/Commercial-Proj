@@ -58,8 +58,7 @@ const App: FC = () => {
   return (
     <>
       <LazyMotion features={domAnimation}>
-        {isScrollTo && <FixedHeader />}
-
+        {/*{isScrollTo && <FixedHeader />}*/}
         <SectionHeader />
 
         {/* Monster Corp. */}
