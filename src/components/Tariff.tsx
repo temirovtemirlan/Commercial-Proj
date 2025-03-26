@@ -164,7 +164,7 @@ const Tariff: FC = () => {
 
       {/* Head Swiper */}
       {headViewIsAccordionOpen ? (
-        <div className="sticky top-0 w-full z-10 h-0">
+        <div className="sticky top-14 w-full z-10 h-0">
           <Container
             className="bg-[#f5f5f7]"
             style={{ borderBottom: "1px solid #d2d2d7" }}
@@ -202,7 +202,7 @@ const Tariff: FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={animInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.6 }}
-            className="grid md:grid-cols-[326px,1fr] items-center"
+            className="grid md:grid-cols-[441px,1fr] items-center"
           >
             <div className="flex p-1.5 w-full max-w-fit rounded-full bg-white overflow-x-auto">
               {uniqueCategories.map((item, index) =>

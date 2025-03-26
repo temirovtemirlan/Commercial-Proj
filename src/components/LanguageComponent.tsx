@@ -21,16 +21,16 @@ interface ILangData {
 }
 
 const langData: ILangData[] = [
-  { language: "kyrgyzstan", lang: "kg" },
-  { language: "uzbekistan", lang: "uz" },
+  // { language: "kyrgyzstan", lang: "kg" },
+  // { language: "uzbekistan", lang: "uz" },
   { language: "english", lang: "en" },
   { language: "russian", lang: "ru" },
-  { language: "kazakhstan", lang: "kz" },
+  // { language: "kazakhstan", lang: "kz" },
 ];
 
 const LanguageComponent: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [langSelect, setLangSelect] = useState<langType>("kg");
+  const [langSelect, setLangSelect] = useState<langType>("ru");
 
   const onOpenHandler = (lang: langType) => {
     setLangSelect(lang);
