@@ -134,22 +134,26 @@ const SectionHeader: FC = () => {
       {/* Showreel */}
       <section className="text-center">
         <Tabs className="Monstr-Showreel">
-          <TabPanel className="mac:min-h-[1000px]">
+          <TabPanel>
             <VideoPlayerHLSv2
+              className={matches ? "" : "h-[700px]"}
               key={cgVideo}
               src={cgVideo}
               posterSrc={""}
               autoPlay
               isFullScreen
+              loop
             />
           </TabPanel>
           <TabPanel>
             <VideoPlayerHLSv2
+              className={matches ? "" : "h-[700px]"}
               key={aiGCVideo}
               src={aiGCVideo}
               posterSrc=""
               autoPlay
               isFullScreen
+              loop
             />
           </TabPanel>
           <motion.div

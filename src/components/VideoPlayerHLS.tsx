@@ -320,9 +320,7 @@ const VideoPlayerHLS: React.FC<VideoPlayerProps> = (props) => {
       const hls = new Hls();
       hls.loadSource(src);
       hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        console.log("Manifest loaded, video is ready to play");
-      });
+      hls.on(Hls.Events.MANIFEST_PARSED, () => {});
       hls.on(Hls.Events.ERROR, (_event, data) => {
         if (data.fatal) {
           switch (data.type) {

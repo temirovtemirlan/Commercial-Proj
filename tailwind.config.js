@@ -11,6 +11,8 @@ export default {
       },
     },
     extend: {
+      zIndex: { 60: 60 },
+      paddingLeft: {},
       screens: {
         ms: "320px",
         xs: "426px",

@@ -16,6 +16,7 @@ export interface VideoPlayerHLSv2Props {
   isFullScreen?: boolean;
   autoPlay?: boolean;
   style?: CSSProperties;
+  loop?: boolean;
 }
 
 const VideoPlayerHLSv2: FC<VideoPlayerHLSv2Props> = ({
@@ -29,6 +30,7 @@ const VideoPlayerHLSv2: FC<VideoPlayerHLSv2Props> = ({
   isFullScreen,
   autoPlay,
   style,
+  loop,
 }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -130,6 +132,7 @@ const VideoPlayerHLSv2: FC<VideoPlayerHLSv2Props> = ({
         preload="none"
         src={src.trim()}
         autoPlay={autoPlay}
+        loop={loop}
         style={style}
       ></video>
       <div className="absolute inset-0 w-full" onClick={togglePlay} />

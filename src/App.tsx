@@ -31,6 +31,12 @@ const App: FC = () => {
   });
 
   const [isScrollTo, setIsScrollTo] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
+
+  // const onOpenHandler = () => setIsOpen(false);
+
+  // #region Scroll To
+  // const onScrollTo = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   useEffect(() => {
     const handleScroll = () => {

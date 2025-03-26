@@ -62,11 +62,9 @@ const partners = [
   { src: "/ENESAI.png", alt: "ENESAI", className: "h-20" },
   { src: "/BOOBLIK.png", alt: "BOOBLIK", className: "h-16" },
   { src: "/BAKAI.png", alt: "BAKAI", className: "h-16" },
-  {
-    src: "/ELBATA.png",
-    alt: "ELBATA",
-    className: "h-20",
-  },
+  { src: "/ELBATA.png", alt: "ELBATA", className: "h-20" },
+  { src: "/KFC.png", alt: "KFC", className: "h-20" },
+  { src: "/PEPSI.png", alt: "PEPSI", className: "h-20" },
 ];
 
 interface PartnersAndClientsProps {
