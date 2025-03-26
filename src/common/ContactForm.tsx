@@ -20,20 +20,21 @@ import { BASE_URL } from "data/hero";
 import { AnimatedComponent } from "./ui/animatedComponent";
 
 const typesProjects = [
-    { value: "Комплексный", label: "Комплексный" },
-    { value: "Брендинг", label: "Брендинг" },
-    { value: "Веб", label: "Веб" },
-    { value: "Продвижение", label: "Продвижение" },
+    { value: "CG", label: "CG" },
+    { value: "VFX", label: "VFX" },
+    { value: "AIGC", label: "AIGC" },
+    // { value: "Веб", label: "Веб" },
+    // { value: "Продвижение", label: "Продвижение" },
   ],
   typesBudget = [
     { value: "1000", label: "От 1000$" },
-    { value: "5000", label: "От 5000$" },
-    { value: "10000", label: "От 10 000$" },
+    { value: "3500", label: "От 3500$" },
+    { value: "7500", label: "От 7500$" },
   ],
   typesTerm = [
+    { value: "Вчера", label: "Вчера" },
     { value: "Сейчас", label: "Сейчас" },
-    { value: "В течении месяца", label: "В течении месяца" },
-    { value: "В течении 3 месяц", label: "В течении 3 месяц" },
+    { value: "Завтра", label: "Завтра" },
   ];
 
 const selectData = [
@@ -259,7 +260,7 @@ const ContactForm: FC = () => {
             error={!!errors.budget?.message}
           />
 
-          <legend className="text-[22px] mt-6">Срок</legend>
+          <legend className="text-[22px] mt-6">Мне нужно</legend>
           <SelectBtn
             arr={typesTerm}
             name="term"

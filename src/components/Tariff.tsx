@@ -164,7 +164,7 @@ const Tariff: FC = () => {
 
       {/* Head Swiper */}
       {headViewIsAccordionOpen ? (
-        <div className="sticky top-0 w-full z-10 h-0">
+        <div className="sticky top-0 w-full z-60 h-0">
           <Container
             className="bg-[#f5f5f7]"
             style={{ borderBottom: "1px solid #d2d2d7" }}
