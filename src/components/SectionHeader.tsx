@@ -119,7 +119,8 @@ const SectionHeader: FC = () => {
             transition={{ duration: 0.5, delay: 0.8 }}
           >
             <p className="leading-relaxed">
-              MONSTER CORP — ЦИФРОВАЯ ЭКОСИСТЕМА УСЛУГ. <br />
+              dfsafd
+              <br />
             </p>
             <p>
               Первый цифровой медиакит для бизнеса — это ваш личный навигатор в
