@@ -46,10 +46,10 @@ const SectionVideos: FC = () => {
         >
           <VideoPlayerHLSv2
             src={
-              "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/BAKAI_GPT_REMAKE/BAKAI_GPT_REMAKE/720p_mp4/stream.m3u8"
+              "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/BAKAI_FINANCE_COLOR/720p_mp4/stream.m3u8"
             }
             posterSrc={
-              "https://storage.googleapis.com/mkit_monster_bucket/Poster/BAKAI_H.webp"
+              "https://storage.googleapis.com/mkit_monster_bucket/Poster/BAKAI_BUSINESS.webp"
             }
             className="h-full w-full rounded-[28px] overflow-hidden md:h-[900px] lg:h-[518px]"
           />

@@ -37,7 +37,7 @@ type IconPath =
 // ----------------------------------------------------------------------------
 
 interface ITariffFooterWithIcon extends ITariffFooter {
-  title: IconPath; // Enforce that `title` is one of the defined icon paths
+  title: string | IconPath; // Enforce that `title` is one of the defined icon paths
 }
 
 const analyseObj: ITariffFooterWithIcon = {
@@ -46,6 +46,11 @@ const analyseObj: ITariffFooterWithIcon = {
 };
 
 const footerData: ITariffFooterWithIcon[] = [
+  {
+    before: "До",
+    title: "60 сек",
+    descriptions: ["Длительность ролика"],
+  },
   {
     title: "/search.png",
     descriptions: ["Анализ продукта"],

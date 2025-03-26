@@ -178,13 +178,9 @@ const SectionHeader: FC = () => {
                         e.stopPropagation();
                         e.preventDefault();
                       }}
-                      className="absolute -translate-y-[6.6rem] md:-translate-y-28 left-[-30px] md:left-[-21px] bg-white px-4 py-2 rounded-xl text-black text-sm md:text-base"
+                      className="absolute -translate-y-[6.6rem] md:-translate-y-28 left-[-30px] md:left-[18px] bg-white px-4 py-2 rounded-xl text-black text-sm md:text-base"
                     >
-                      <div>
-                        Вы можете переключать между <br className="md:hidden" />{" "}
-                        роликами <br className="max-md:hidden" /> нажмите на
-                        AIGC REEL
-                      </div>
+                      <div>Жмите и переключайте ролики</div>
                       <div className="tooltip-arrow"></div>
                     </div>
                   </AnimatedComponent>
