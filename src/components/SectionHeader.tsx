@@ -1,10 +1,9 @@
 import { type FC, useEffect, useState } from "react";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 import { useMediaQuery } from "usehooks-ts";
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import { useInView } from "react-intersection-observer";
 
-import LanguageComponent from "components/LanguageComponent";
 import VideoPlayerHLSv2 from "components/VideoPlayerHLSv2.tsx";
 import Container from "./Container";
 import { AnimatedComponent } from "common/ui/animatedComponent";
@@ -40,7 +39,7 @@ const SectionHeader: FC = () => {
 
   return (
     <>
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {langInView && (
           <motion.div
             animate={{ opacity: 1 }}
@@ -50,7 +49,7 @@ const SectionHeader: FC = () => {
             <LanguageComponent />
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
 
       <Container className="py-[70px]">
         <div className="flex justify-between xl:flex-row flex-col gap-y-6 gap-x-[200px]">
