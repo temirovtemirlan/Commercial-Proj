@@ -6,8 +6,6 @@ interface FooterVideoProps {
   className?: string;
 }
 
-// http://192.168.0.149:5173/
-
 const FooterVideo: FC<FooterVideoProps> = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -23,15 +21,15 @@ const FooterVideo: FC<FooterVideoProps> = () => {
   });
 
   // Инвертируем масштаб: из большего в нормальный
-  const scale = useTransform(scrollYProgress, [1, 0], [1.5, 1]);
-  // const scale = useTransform(scrollYProgress, [0, 1], [1.5, 1]);
+  // const scale = useTransform(scrollYProgress, [1, 0], [1.5, 1]);
 
   // **Новое преобразование для ширины:**
   // Уменьшаем ширину от 100% до, например, 70% при прокрутке вниз
-  const width = useTransform(scrollYProgress, [0, 1], ["66.5%", "90%"]);
+  const width = useTransform(scrollYProgress, [0, 1], ["66.5%", "120%"]);
+  // const width = useTransform(scrollYProgress, [0, 1], ["66.5%", "90%"]);
   const height = useTransform(scrollYProgress, [0, 1], ["60dvh", "100dvh"]);
-  const top = useTransform(scrollYProgress, [0, 1], ["20%", "0%"]);
-  // const width = useTransform(scrollYProgress, [0, 1], ["66%", "88%"]);
+  const top = useTransform(scrollYProgress, [0, 1], ["0%", "0%"]);
+  // const top = useTransform(scrollYProgress, [0, 1], ["20%", "0%"]);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -52,7 +50,7 @@ const FooterVideo: FC<FooterVideoProps> = () => {
 
   return (
     <div
-      className="relative pt-[300px] pb-[120px] bg-[#161617] w-full"
+      className="relative pb-[120px] bg-[#161617] w-full"
       ref={containerRef}
       style={{ height: containerStyle }}
     >
@@ -72,7 +70,7 @@ const FooterVideo: FC<FooterVideoProps> = () => {
             marginLeft: "auto",
             marginRight: "auto",
             top: top,
-            scale: scale, // Изменяем масштаб
+            // scale: scale, // Изменяем масштаб
             // left: left, // Смещение для центрирования (уменьшено до -15%)
             willChange: "transform",
           }}
