@@ -1,6 +1,7 @@
 import { useState, type FC } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { cn } from "helpers/style";
+import type { langsType } from "fusion/type";
 
 // prettier-ignore
 const containerVariants = {
@@ -13,11 +14,9 @@ const itemVariants = {
   closed: { opacity: 0, scale: 0, transition: { duration: 0.2, ease: "linear" } },
 };
 
-type langType = "kg" | "uz" | "en" | "ru" | "kz";
-
 interface ILangData {
   language: string;
-  lang: langType;
+  lang: langsType;
 }
 
 const langData: ILangData[] = [
@@ -30,9 +29,9 @@ const langData: ILangData[] = [
 
 const LanguageComponent: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [langSelect, setLangSelect] = useState<langType>("ru");
+  const [langSelect, setLangSelect] = useState<langsType>("ru");
 
-  const onOpenHandler = (lang: langType) => {
+  const onOpenHandler = (lang: langsType) => {
     setLangSelect(lang);
     setIsOpen(false);
   };

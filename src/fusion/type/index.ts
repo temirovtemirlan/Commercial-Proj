@@ -8,6 +8,8 @@ export type TimeZone =
 
 export type directionType = "CG" | "VFX" | "AI" | "WEBSITE";
 
+export type langsType = "uz" | "en" | "ru" | "kz";
+
 // * Tariff
 
 type IconList =
