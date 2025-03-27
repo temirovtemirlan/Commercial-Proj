@@ -2,7 +2,6 @@ import { type FC } from "react";
 import { cn } from "helpers/style.ts";
 import Container from "./Container";
 import { useMediaQuery } from "usehooks-ts";
-import { useTranslation } from "react-i18next";
 
 interface FixedHeaderProps {
   className?: string;
@@ -10,7 +9,6 @@ interface FixedHeaderProps {
 
 const FixedHeader: FC<FixedHeaderProps> = ({ className }) => {
   const matches = useMediaQuery("(min-width: 650px)");
-  const { t } = useTranslation();
 
   return (
     <div
@@ -49,7 +47,7 @@ const FixedHeader: FC<FixedHeaderProps> = ({ className }) => {
           href={"/#contactform"}
           className="bg-[#0171e3] text-white rounded-full px-5 py-2 ml-auto no-underline truncate"
         >
-          {t("settings.form.btn.orderProject")}
+          Жобаға тапсырыс беріңіз
         </a>
       </Container>
     </div>

@@ -1,7 +1,6 @@
 import { type FC, useEffect, useState } from "react";
 import { domAnimation, LazyMotion } from "motion/react";
 import { useInView } from "react-intersection-observer";
-import { useTranslation } from "react-i18next";
 
 import Container from "components/Container";
 import MonsReels from "components/MonsReels";
@@ -30,8 +29,6 @@ const App: FC = () => {
     ...inViewProps,
     threshold: 0.9,
   });
-  const { t } = useTranslation();
-
   const [isScrollTo, setIsScrollTo] = useState(false);
 
   useEffect(() => {
@@ -67,14 +64,18 @@ const App: FC = () => {
             transition={{ duration: 0.8 }}
           >
             <legend className="gradient-legend-1lvl">Monster Corp.</legend>
-            <span className="legend-2lvl">{t("monsterCorp.boldTitle")}</span>
+            <span className="legend-2lvl">Болашақты құру өнері. </span>
 
             <p className="text-1lvl text-balance">
-              {t("monsterCorp.text1lvlOne")}
+              Біз тек брендтер, мазмұн және технологиялар жасап қана қоймаймыз.
               <br />
-              {t("monsterCorp.text1lvlTwo")}
+              Біз бір бөлігі болғымыз келетін шындықты жасаймыз.
               <br /> <br />
-              {t("monsterCorp.text1lvlThree")}
+              Әркімнің назарына талас жүріп жатқан әлемде қиялды баурай
+              алатындар ұтады.
+              <br />
+              Monster Corp. — бұл деректер стратегияға, технологиялар —
+              сезімдерге, ал идеялар мәдениетке айналатын экожүйе.
             </p>
           </AnimatedComponent>
         </Container>

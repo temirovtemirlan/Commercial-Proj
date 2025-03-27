@@ -1,95 +1,101 @@
-import { useMemo, type FC } from "react";
+import type { FC } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { useInView } from "react-intersection-observer";
-import { useTranslation } from "react-i18next";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import DirectionsItems from "components/DirectionsItems";
 import { AnimatedComponent } from "common/ui/animatedComponent";
 import SwiperNavigationBtn from "common/SwiperNavigationBtn";
-import type { TTranslation } from "fusion/type";
 
-const directionsData = (t: TTranslation) => [
+const directionsData = [
   {
     title: "Monster Digital Marketing",
     titleGradient: "linear-gradient(240.91deg, #FEB800 10.36%, #FF8700 93.08%)",
-    descOne: t("ourDirections.directionsData.one.descOne"),
+    descOne:
+      "Өсуге әкелетін стратегиялар. Маркетинг клиенттердің өмірінің бір бөлігіне айналған кезде брендтер өседі. Біз тек жарнамаларды ғана емес, эмоцияны, сүйіспеншілікті және сенімді тудыратын өзара әрекеттесу сәттерін де жасаймыз.",
     list: [
-      t("ourDirections.directionsData.one.list.one"),
-      t("ourDirections.directionsData.one.list.two"),
-      t("ourDirections.directionsData.one.list.three"),
-      t("ourDirections.directionsData.one.list.four"),
+      "Data-driven маркетинг",
+      "Performance & SMM",
+      "E-commerce & retail solutions",
+      "Influence & viral campaigns",
     ],
-    descTwo: t("ourDirections.directionsData.one.descTwo"),
+    descTwo:
+      "Біз жарнамамен айналыспаймыз. Біз брендтер таптырмас нәрсеге айналатын шындықты жасаймыз.",
     video:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/MONSTER_MARKETING_2/MONSTER_MARKETING_2/720p_mp4/stream.m3u8",
   },
   {
     title: "Monster Design & Branding",
     titleGradient: "blue-gradient-1lvl",
-    descOne: t("ourDirections.directionsData.two.descOne"),
+    descOne:
+      "Мағынаны білдіретін форма. Көрнекі тұтыну әлемі ерекшеленетін сәйкестікті талап етеді. Біз брендтің тіліне айналатын және ол үшін сөзсіз сөйлейтін дизайн жасаймыз.",
     list: [
-      t("ourDirections.directionsData.two.list.one"),
-      t("ourDirections.directionsData.two.list.two"),
-      t("ourDirections.directionsData.two.list.three"),
-      t("ourDirections.directionsData.two.list.four"),
+      "Жаһандық тұжырымдамалар",
+      "Сәйкестендіру, логотип, қаптама",
+      "Графикалық және сандық дизайн",
+      "Сәнді және премиум брендинг",
     ],
-    descTwo: t("ourDirections.directionsData.two.descTwo"),
+    descTwo:
+      "Сіздің брендіңіздің дауысы болған кезде, ол бәсекелестікке қарағанда қаттырақ естіледі.",
     video:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/MONSTER_BRANDING/MONSTER_BRANDING/720p_mp4/stream.m3u8",
   },
   {
     title: "Soul Media",
     titleGradient: "linear-gradient(248.03deg, #E19500 0.74%, #FFCF15 89.3%)",
-    descOne: t("ourDirections.directionsData.three.descOne"),
+    descOne:
+      "Қазіргі әлемде мазмұн сенім валютасы болып табылады. Адамдар жай ғана сатып алып қана қоймайды, олар бренд тәжірибесін қайта бастан кешіреді. Біз адамдар қайта оралғысы келетін көрнекі әңгімелер жасаймыз.",
     list: [
-      t("ourDirections.directionsData.three.list.one"),
-      t("ourDirections.directionsData.three.list.two"),
-      t("ourDirections.directionsData.three.list.three"),
+      "Жарнамалық роликтер, деректі фильмдер, брендтік фильмдер",
+      "Сөзсіз сатылатын фотосурет мазмұны",
+      "YouTube және келесі ұрпақтың бейне маркетингі",
     ],
-    descTwo: t("ourDirections.directionsData.three.descTwo"),
+    descTwo: "Тек айтып қана қоймай, сезім тудыратын мазмұн.",
     video:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/SOUL_MEDIA/SOUL_MEDIA/720p_mp4/stream.m3u8",
   },
   {
     title: "Monster CGI/VFX",
     titleGradient: "linear-gradient(240.51deg, #D36BF8 2.7%, #862DCD 97.64%)",
-    upcText: t("ourDirections.directionsData.four.descTwo"),
-    descOne: t("ourDirections.directionsData.four.upperText"),
+    upcText: "МҮМКІН ЕМЕС НӘРСЕГЕ ҚОЛ ЖЕТКІЗУ ӨНЕРІ",
+    descOne:
+      "Біз шындықтың шекарасын итермелеп жатырмыз. Бұрын шектеулер болған жерде біз визуалды ғаламдарды жасаймыз.",
     list: [
-      t("ourDirections.directionsData.four.list.one"),
-      t("ourDirections.directionsData.four.list.two"),
-      t("ourDirections.directionsData.four.list.three"),
+      "КИНЕМАТОГРАФИЯЛЫҚ VFX ЖӘНЕ CGI",
+      "Ойындарға, фильмдерге, жарнамаға арналған графика",
+      "Сәулет пен бұйымдардың 3D визуализациясы",
     ],
-    descTwo: t("ourDirections.directionsData.four.descTwo"),
+    descTwo: "Технология өнерге айналғанда аңыздар пайда болады.",
     video:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/MONSTER_CG/MONSTER_CG/720p_mp4/stream.m3u8",
   },
   {
     title: "Monster AI Marketing",
     titleGradient: "linear-gradient(234.73deg, #2CFF50 25.35%, #009218 97.98%)",
-    descOne: t("ourDirections.directionsData.five.descOne"),
+    descOne: "БОЛАШАҚ ҚАЗІРДІҢ ӨЗІНДЕ КЕЛДІ",
     list: [
-      t("ourDirections.directionsData.five.list.one"),
-      t("ourDirections.directionsData.five.list.two"),
-      t("ourDirections.directionsData.five.list.three"),
+      "Клиенттерді өздері түсінгеннен гөрі жақсы түсінетін жасанды интеллект.",
+      "Автоматтандырылған маркетингтік стратегиялар және аудиторияның мінез-құлқын AI-талдау.",
+      "Деректерге негізделген жарнамалық науқандар, трендтерді болжау, мазмұнды жекелендіру.",
     ],
-    descTwo: t("ourDirections.directionsData.five.descTwo"),
+    descTwo:
+      "Маркетингтің болашағы-гипер дәлдік. Біз сіздің клиенттеріңізбен олардың тілінде сөйлесуге көмектесеміз.",
     video:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/MONSTER_AI/MONSTER_AI/720p_mp4/stream.m3u8",
   },
   {
     title: "Monster DEVZ",
     titleGradient: "linear-gradient(241.54deg, #DF1733 -1.8%, #F5B715 102.39%)",
-    descOne: t("ourDirections.directionsData.six.descOne"),
+    descOne: "КӨШБАСШЫЛАРҒА АРНАЛҒАН АТ ШЕШІМДЕРІ",
     list: [
-      t("ourDirections.directionsData.six.list.one"),
-      t("ourDirections.directionsData.six.list.two"),
-      t("ourDirections.directionsData.six.list.three"),
+      "Прототиптен мінсіз цифрлық өнімге дейін.",
+      "Веб-сайттарды, мобильді қосымшаларды, CRM, ERP, AI-жүйелерді әзірлеу.",
+      "AI интеграциясы, UX / UI дизайны, масштабталатын АТ шешімдері.",
     ],
-    descTwo: t("ourDirections.directionsData.six.descTwo"),
+    descTwo:
+      "Технология сіздің жетістігіңіз үшін жұмыс істеуі керек. Біз оны қалай жұмыс істеуге болатынын білеміз.",
     video:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/MONSTER_DEVZ_2/MONSTER_DEVZ_2/720p_mp4/stream.m3u8",
   },
@@ -97,9 +103,6 @@ const directionsData = (t: TTranslation) => [
 
 const Directions: FC = () => {
   const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
-  const { t } = useTranslation();
-
-  const directionsDataFunRet = useMemo(() => directionsData(t), [t]);
 
   return (
     <div className="Our-Directions" ref={ref}>
@@ -110,7 +113,7 @@ const Directions: FC = () => {
         animate={inView ? { opacity: 1 } : undefined}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        {t("ourDirections.title")}
+        Біздің бағыттар
       </AnimatedComponent>
 
       <div className="w-full max-w-[3000px] mx-auto relative">
@@ -133,7 +136,7 @@ const Directions: FC = () => {
             prevEl: ".prevButton393218",
           }}
         >
-          {directionsDataFunRet?.map((item, index) => (
+          {directionsData?.map((item, index) => (
             <SwiperSlide key={index}>
               <DirectionsItems item={item} />
             </SwiperSlide>

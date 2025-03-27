@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { useMediaQuery } from "usehooks-ts";
 import { CustomScroll } from "react-custom-scroll";
-import { useTranslation } from "react-i18next";
+
 import type { Swiper as SwiperType } from "swiper/types";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -34,8 +34,6 @@ const swiperProps = {
 };
 
 const Tariff: FC = () => {
-  const { t } = useTranslation();
-
   // #region
   const swiperRef = useRef<SwiperType>();
   const swiperHeadRef = useRef<SwiperType>();
@@ -150,7 +148,7 @@ const Tariff: FC = () => {
             className="legend-3lvl"
             ref={tabPanelRef}
           >
-            {t("tariff.title")}
+            Тарифтерді зерттеңіз.
           </AnimatedComponent>
         </Container>
 
@@ -271,7 +269,7 @@ const Tariff: FC = () => {
                         ) : (
                           <div className="flex size-full justify-center items-center">
                             <span className="text-center inline-block my-auto text-lg">
-                              Скоро
+                            Жақында
                             </span>
                           </div>
                         )}
@@ -288,7 +286,7 @@ const Tariff: FC = () => {
                       {item.head.content ? <p className="mt-1 w-full h-full font-semibold text-center">{item.head.content}</p> : null}
 
                       <AnimatedComponent tag="button" whileHover={{ scale: 1.04 }} className="w-[192px] h-11 p-2 md:p-2.5 bg-[#0071e3] rounded-full text-base justify-center items-center gap-2.5 inline-flex mt-[40px] text-white">
-                        {t('settings.form.btn.leaveRequest')}
+                      Өтініш қалдыру
                       </AnimatedComponent>
                     </div>
 

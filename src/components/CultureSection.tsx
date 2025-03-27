@@ -1,6 +1,5 @@
 import type { FC } from "react";
 import { useInView } from "react-intersection-observer";
-import { useTranslation } from "react-i18next";
 import { AnimatedComponent } from "common/ui/animatedComponent";
 import Container from "./Container";
 
@@ -10,7 +9,6 @@ const animationVariants = {
 };
 
 const CultureSection: FC = () => {
-  const { t } = useTranslation();
   const [ref, inView] = useInView({
     threshold: 0.6,
     triggerOnce: true,
@@ -26,7 +24,7 @@ const CultureSection: FC = () => {
         className="gradient-legend-1lvl text-center inline-block"
         ref={ref}
       >
-        {t("weDonTCreateContent.title")}
+        Біз мазмұн жасамаймыз.
       </AnimatedComponent>
 
       <AnimatedComponent
@@ -36,7 +34,7 @@ const CultureSection: FC = () => {
         transition={{ duration: 0.6, delay: 0.4 }}
         className="legend-2lvl w-full text-center inline-block"
       >
-        {t("weDonTCreateContent.titleTwo")}
+        Біз мәдениетті жасаймыз.
       </AnimatedComponent>
 
       <div className="grid lg:grid-cols-2 lg:grid-rows-2 lg:h-[660px] gap-5 mt-16">
@@ -74,12 +72,9 @@ const CultureSection: FC = () => {
             </svg>
           </span>
 
-          <p
-            className="text-[#1a1a1c] text-3xl md:text-[44px] xl:text-[56px] md:leading-[50px] xl:leading-[60px] font-bold"
-            dangerouslySetInnerHTML={{
-              __html: t("weDonTCreateContent.boxOne"),
-            }}
-          />
+          <p className="text-[#1a1a1c] text-3xl md:text-[44px] xl:text-[56px] md:leading-[50px] xl:leading-[60px] font-bold">
+            Брендтер логотиптерден үлкен болуы керек.
+          </p>
         </AnimatedComponent>
 
         <AnimatedComponent
@@ -87,7 +82,7 @@ const CultureSection: FC = () => {
           animate={inView ? "visible" : "hidden"}
           variants={animationVariants}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="h-full py-2.5 px-10 ss:px-[60px] bg-[#fff] rounded-3xl flex justify-start gap-x-8 items-center max-lg:py-10"
+          className="h-full py-2.5 px-10 bg-[#fff] rounded-3xl flex justify-start gap-x-8 items-center max-lg:py-10"
         >
           <span>
             <svg
@@ -104,12 +99,9 @@ const CultureSection: FC = () => {
             </svg>
           </span>
 
-          <p
-            className="text-[#1a1a1c] text-2xl ss:text-[32px] xl:text-[44px] ss:leading-[38px] xl:leading-[50px] font-bold"
-            dangerouslySetInnerHTML={{
-              __html: t("weDonTCreateContent.boxTwo"),
-            }}
-          />
+          <p className="text-[#1a1a1c] text-2xl ss:text-[32px] xl:text-[44px] ss:leading-[38px] xl:leading-[50px] font-bold">
+            Жарнама шығармашылықтан да көп болуы керек.
+          </p>
         </AnimatedComponent>
 
         <AnimatedComponent
@@ -117,7 +109,7 @@ const CultureSection: FC = () => {
           animate={inView ? "visible" : "hidden"}
           variants={animationVariants}
           transition={{ duration: 0.5, delay: 0.8 }}
-          className="h-full py-2.5 px-10 ss:px-[60px] bg-[#fff] rounded-3xl flex justify-start gap-x-8 items-center max-lg:py-10"
+          className="h-full py-2.5 px-10 bg-[#fff] rounded-3xl flex justify-start gap-x-8 items-center max-lg:py-10"
         >
           <span>
             <svg
@@ -134,12 +126,9 @@ const CultureSection: FC = () => {
             </svg>
           </span>
 
-          <p
-            className="text-[#00c5c7] text-2xl ss:text-[32px] xl:text-[44px] ss:leading-[38px] xl:leading-[50px] font-bold"
-            dangerouslySetInnerHTML={{
-              __html: t("weDonTCreateContent.boxThree"),
-            }}
-          />
+          <p className="text-[#00c5c7] text-2xl ss:text-[32px] xl:text-[44px] ss:leading-[38px] xl:leading-[50px] font-bold">
+            Маркетинг көбірек болуы керек сандарға қарағанда.
+          </p>
         </AnimatedComponent>
       </div>
 
@@ -204,11 +193,11 @@ const CultureSection: FC = () => {
         />
 
         <p className="max-w-[466px] max-md:text-center w-full text-[#6e6e7b] text-2xl font-semibold uppercase">
-          {t("weDonTCreateContent.logoOne")}
+          Біз жаңа мағыналар жасаймыз.
           <br />
-          {t("weDonTCreateContent.logoTwo")}
+          Біз бизнестің болашағын қалыптастырамыз.
           <br />
-          {t("weDonTCreateContent.logoThree")}
+          Біз Monster Corp.
         </p>
       </div>
     </Container>

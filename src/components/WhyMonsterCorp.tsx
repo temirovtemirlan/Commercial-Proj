@@ -1,6 +1,5 @@
 import type { FC } from "react";
 import { useInView } from "react-intersection-observer";
-import { useTranslation } from "react-i18next";
 import Container from "./Container";
 import { AnimatedComponent } from "common/ui/animatedComponent";
 
@@ -9,7 +8,6 @@ const WhyMonsterCorp: FC = () => {
     threshold: 0.6,
     triggerOnce: true,
   });
-  const { t } = useTranslation();
 
   return (
     <Container className="py-[100px] bg-[#f5f5f7]">
@@ -21,7 +19,7 @@ const WhyMonsterCorp: FC = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="gradient-legend-1lvl"
         >
-          {t("whyMonsterCorp.title")}
+          Неліктен Monster Corp?
         </AnimatedComponent>
         <AnimatedComponent
           tag="p"
@@ -30,11 +28,11 @@ const WhyMonsterCorp: FC = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="legend-2lvl text-balance"
         >
-          {t("whyMonsterCorp.boldTitleOne")}
+          Шабыттандыратын брендтер.
           <br />
-          {t("whyMonsterCorp.boldTitleTwo")}
+          Жұмыс істейтін шешімдер.
           <br />
-          {t("whyMonsterCorp.boldTitleThree")}
+          Жабысатын мазмұн.
         </AnimatedComponent>
 
         <AnimatedComponent
@@ -43,9 +41,17 @@ const WhyMonsterCorp: FC = () => {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="text-1lvl text-balance"
         >
-          <p
-            dangerouslySetInnerHTML={{ __html: t("whyMonsterCorp.textDesc") }}
-          />
+          <p>
+            Әрбір табысты бизнестің негізі — тарих.
+            <br />
+            <br />
+            Біз оған сену үшін айтамыз. <br /> Хаос пен ақпараттық шу әлемінде
+            біз мағынаны қалыптастырамыз.
+            <br />
+            <br />
+            Monster Corp. — бұл жай ғана агенттік емес. Бұл шығармашылық пен
+            технология бизнес үшін жұмыс істейтін инновациялық орталық.
+          </p>
         </AnimatedComponent>
       </div>
 
@@ -82,11 +88,10 @@ const WhyMonsterCorp: FC = () => {
                 />
               </svg>
             </AnimatedComponent>
-            <p
-              dangerouslySetInnerHTML={{
-                __html: t("whyMonsterCorp.iconTextOne"),
-              }}
-            />
+            <p>
+              Біз брендтерге белгішеге <br />
+              <span className="text-blue-1000">айналуға көмектесеміз.</span>
+            </p>
           </AnimatedComponent>
 
           <AnimatedComponent
@@ -116,11 +121,10 @@ const WhyMonsterCorp: FC = () => {
                 />
               </svg>
             </AnimatedComponent>
-            <p
-              dangerouslySetInnerHTML={{
-                __html: t("whyMonsterCorp.iconTextTwo"),
-              }}
-            />
+            <p>
+              Біз идеяларды <br />
+              <span className="text-blue-1000">ықпалға айналдырамыз.</span>
+            </p>
           </AnimatedComponent>
 
           <AnimatedComponent
@@ -160,11 +164,13 @@ const WhyMonsterCorp: FC = () => {
                 />
               </svg>
             </AnimatedComponent>
-            <p
-              dangerouslySetInnerHTML={{
-                __html: t("whyMonsterCorp.iconTextThree"),
-              }}
-            />
+            <p>
+              <span className="text-blue-1000">
+                Біз саланы алға жылжытатын{" "}
+              </span>
+              <br />
+              маркетинг жасаймыз.
+            </p>
           </AnimatedComponent>
         </div>
       </div>

@@ -1,8 +1,7 @@
-import { useMemo, type FC } from "react";
-import { useTranslation } from "react-i18next";
+import type { FC } from "react";
 import Clock from "components/Clock";
 import { cn } from "helpers/style";
-import type { TimeZone, TTranslation } from "fusion/type";
+import type { TimeZone } from "fusion/type";
 
 interface FooterProps {
   className?: string;
@@ -13,13 +12,13 @@ interface ClockData {
   title: string;
 }
 
-const clockData = (t: TTranslation): ClockData[] => [
-  { timeZone: "Asia/Bishkek", title: t("footer.clocks.bishkek") },
-  { timeZone: "Asia/Tashkent", title: t("footer.clocks.tashkent") },
-  { timeZone: "Asia/Dubai", title: t("footer.clocks.dubai") },
-  { timeZone: "Asia/Almaty", title: t("footer.clocks.almaty") },
-  { timeZone: "America/New_York", title: t("footer.clocks.newYork") },
-  { timeZone: "Asia/Shanghai", title: t("footer.clocks.shanghai") },
+const clockData: ClockData[] = [
+  { timeZone: "Asia/Bishkek", title: "Бішкек" },
+  { timeZone: "Asia/Tashkent", title: "Ташкент" },
+  { timeZone: "Asia/Dubai", title: "Дубай" },
+  { timeZone: "Asia/Almaty", title: "Алматы" },
+  { timeZone: "America/New_York", title: "Нью-Йорк" },
+  { timeZone: "Asia/Shanghai", title: "Шанхай" },
 ];
 
 const socialNetwork = [
@@ -136,17 +135,13 @@ const contactsData = [
 ];
 
 const Footer: FC<FooterProps> = ({ className }) => {
-  const { t } = useTranslation();
-
-  const clockDataFunRet = useMemo(() => clockData(t), [t]);
-
   return (
     <footer className={cn("bg-[#161617] pt-20 pb-5", className)}>
       <div className="flex flex-col xl:flex-row xl:justify-between xl:items-center w-full px-5">
         <div className="flex md:justify-center">
           <div className="flex flex-col justify-center">
             <p className="text-[#777777] text-sm text-start md:text-center xl:text-start">
-              {t("footer.contacts")}
+              БАҚЫЛАУ
             </p>
             <div className="flex flex-col md:flex-row xl:flex-col gap-y-2 gap-x-8 mt-2 mb-3">
               {contactsData?.map((el, index) => (
@@ -165,7 +160,7 @@ const Footer: FC<FooterProps> = ({ className }) => {
             </div>
 
             <p className="text-[#777777] text-sm mb-3 text-start md:text-center xl:text-start">
-              {t("footer.socialNetworks")}
+              ӘЛЕУМЕТТІК ЖЕЛІЛЕР
             </p>
 
             <div className="flex flex-col md:flex-row xl:flex-col gap-y-2 gap-x-8">
@@ -187,7 +182,7 @@ const Footer: FC<FooterProps> = ({ className }) => {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-x-12 gap-y-8 mt-10 xl:mt-0">
-          {clockDataFunRet?.map((item, index) => (
+          {clockData?.map((item, index) => (
             <div key={index} className="text-center">
               <Clock key={index} timeZone={item.timeZone} />
               <span className="text-white block mt-4 text-xl font-normal">

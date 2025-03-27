@@ -2,7 +2,6 @@ import { type FC, useEffect, useState } from "react";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 import { useMediaQuery } from "usehooks-ts";
 import { motion } from "motion/react";
-import { useTranslation } from "react-i18next";
 // import { useInView } from "react-intersection-observer";
 
 import VideoPlayerHLSv2 from "components/VideoPlayerHLSv2";
@@ -14,7 +13,6 @@ const SectionHeader: FC = () => {
   const matches = useMediaQuery("(min-width: 650px)");
   const [showHint, setShowHint] = useState(true);
   // const [langRef, langInView] = useInView();
-  const { t } = useTranslation();
 
   const [aiGCVideo, setAIGCVideo] = useState<string>(
     matches
@@ -122,13 +120,15 @@ const SectionHeader: FC = () => {
             transition={{ duration: 0.5, delay: 0.8 }}
           >
             <p className="leading-relaxed">
-              MONSTER CORP — {t("header.upperRightText")}
+              MONSTER CORP — ҚЫЗМЕТТЕРДІҢ САНДЫҚ ЭКОЖҮЙЕСІ.
               <br />
             </p>
             <p>
-              {t("header.upperRightDescTextOne")}
+              Бизнеске арналған алғашқы цифрлық медиакит — маркетинг, продакшн,
+              брендинг, VFX және IT әлеміндегі сіздің жеке жолсерігіңіз.
               <br />
-              {t("header.upperRightDescTextTwo")}
+              Шексіз PDF-терді ұмытыңыз — сізге керектінің бәрі бір кликпен
+              онлайн режимде қолжетімді.
             </p>
           </AnimatedComponent>
         </div>
@@ -186,8 +186,7 @@ const SectionHeader: FC = () => {
                       }}
                       className="absolute -translate-y-[6rem] left-[-30px] md:left-[18px] bg-white px-4 py-2 rounded-xl text-black text-sm md:text-base"
                     >
-                      <div>{t("settings.form.btn.tabTutorial")}</div>
-                      {/* <div>Жмите и переключайте ролики</div> */}
+                      <p>Клиптерді нұқыңыз және ауыстырыңыз</p>
                       <div className="tooltip-arrow"></div>
                     </div>
                   </AnimatedComponent>
