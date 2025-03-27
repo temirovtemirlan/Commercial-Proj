@@ -27,8 +27,8 @@ const FooterVideo: FC<FooterVideoProps> = () => {
   // Уменьшаем ширину от 100% до, например, 70% при прокрутке вниз
   const width = useTransform(scrollYProgress, [0, 1], ["66.5%", "120%"]);
   // const width = useTransform(scrollYProgress, [0, 1], ["66.5%", "90%"]);
-  const height = useTransform(scrollYProgress, [0, 1], ["60dvh", "100dvh"]);
-  const top = useTransform(scrollYProgress, [0, 1], ["0%", "0%"]);
+  const height = useTransform(scrollYProgress, [0, 1], ["70dvh", "100dvh"]);
+  const top = useTransform(scrollYProgress, [0, 1], ["10%", "0%"]);
   // const top = useTransform(scrollYProgress, [0, 1], ["20%", "0%"]);
 
   useEffect(() => {
