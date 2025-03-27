@@ -63,6 +63,7 @@ const LogoCubeAnimation: FC = () => {
           className="text-[32px] leading-9 md:leading-[36px] font-semibold text-balance"
         >
           <p
+            className="max-w-[900px]"
             dangerouslySetInnerHTML={{
               __html: t("logoCubeAnimation.description"),
             }}

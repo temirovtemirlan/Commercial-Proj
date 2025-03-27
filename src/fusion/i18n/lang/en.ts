@@ -165,11 +165,11 @@ export const enLang = {
       modal: {
         ok: {
           one: "Application successfully sent",
-          two: "Что то пошло не так",
+          two: "Something went wrong",
         },
         no: {
           one: "Wait to be contacted",
-          two: "Повторите снова или попробуйте позже",
+          two: "Repeat again or try again later",
         },
       },
     },

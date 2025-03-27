@@ -6,7 +6,7 @@ import { uzLang } from "./lang/uz";
 import { kzLang } from "./lang/kz";
 import type { langsType } from "fusion/type";
 
-const lng = "en";
+const lng = "kz";
 // const lng = window.location.pathname.split("/")[1];
 
 i18n
@@ -62,12 +62,21 @@ function settings(lang: langsType) {
             tabTutorial: "Click and toggle clips",
             leaveRequest: "Leave a request",
           },
-        } as const,
+        },
       };
     case "uz":
       return {};
     case "kz":
-      return {};
+      return {
+        form: {
+          btn: {
+            send: "Жіберу",
+            orderProject: "Жобаға тапсырыс беріңіз",
+            tabTutorial: "Клиптерді нұқыңыз және ауыстырыңыз",
+            leaveRequest: "Өтініш қалдыру",
+          },
+        },
+      };
     default:
       return {};
   }
