@@ -184,7 +184,7 @@ const SectionHeader: FC = () => {
                         e.stopPropagation();
                         e.preventDefault();
                       }}
-                      className="absolute -translate-y-[6rem] left-[-30px] md:left-[18px] bg-white px-4 py-2 rounded-xl text-black text-sm md:text-base"
+                      className="absolute -translate-y-[6rem] left-[-30px] bg-white px-4 py-2 rounded-xl text-black text-sm md:text-base"
                     >
                       <p>Жмите и переключайте ролики</p>
                       <div className="tooltip-arrow"></div>
