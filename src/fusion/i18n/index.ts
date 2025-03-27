@@ -1,9 +1,13 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import { ruLang } from "./lang/ru";
+import { enLang } from "./lang/en";
+import { uzLang } from "./lang/uz";
+import { kzLang } from "./lang/kz";
 import type { langsType } from "fusion/type";
 
-const lng = window.location.pathname.split("/")[1];
-console.log("lng: ", lng);
+const lng = "ru";
+// const lng = window.location.pathname.split("/")[1];
 
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
@@ -14,21 +18,25 @@ i18n
     resources: {
       ru: {
         translation: {
+          ...ruLang,
           settings: settings("ru"),
         },
       },
       en: {
         translation: {
+          ...enLang,
           settings: settings("en"),
         },
       },
       uz: {
         translation: {
+          ...uzLang,
           settings: settings("uz"),
         },
       },
       kz: {
         translation: {
+          ...kzLang,
           settings: settings("kz"),
         },
       },

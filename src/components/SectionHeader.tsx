@@ -2,14 +2,17 @@ import { type FC, useEffect, useState } from "react";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 import { useMediaQuery } from "usehooks-ts";
 import { motion } from "motion/react";
+// import { useInView } from "react-intersection-observer";
 
 import VideoPlayerHLSv2 from "components/VideoPlayerHLSv2";
 import Container from "./Container";
 import { AnimatedComponent } from "common/ui/animatedComponent";
+// import LanguageComponent from "./LanguageComponent";
 
 const SectionHeader: FC = () => {
   const matches = useMediaQuery("(min-width: 650px)");
   const [showHint, setShowHint] = useState(true);
+  // const [langRef, langInView] = useInView();
 
   const [aiGCVideo, setAIGCVideo] = useState<string>(
     matches
@@ -132,7 +135,10 @@ const SectionHeader: FC = () => {
       </Container>
 
       {/* Showreel */}
-      <section className="text-center">
+      <section
+        className="text-center"
+        //  ref={langRef}
+      >
         <Tabs className="Monstr-Showreel">
           <TabPanel>
             <VideoPlayerHLSv2

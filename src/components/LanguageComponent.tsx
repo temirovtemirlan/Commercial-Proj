@@ -20,7 +20,6 @@ interface ILangData {
 }
 
 const langData: ILangData[] = [
-  // { language: "kyrgyzstan", lang: "kg" },
   // { language: "uzbekistan", lang: "uz" },
   { language: "english", lang: "en" },
   { language: "russian", lang: "ru" },
