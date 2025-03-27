@@ -39,6 +39,8 @@ const SectionHeader: FC = () => {
     );
   }, [matches]);
 
+  // Вы можете переключать между роликами, нажмите на AIGC REEL
+
   return (
     <>
       {/* <AnimatePresence>
@@ -148,6 +150,7 @@ const SectionHeader: FC = () => {
               posterSrc={""}
               autoPlay
               isFullScreen
+              playsInline={true}
               loop
             />
           </TabPanel>
@@ -159,6 +162,7 @@ const SectionHeader: FC = () => {
               posterSrc=""
               autoPlay
               isFullScreen
+              playsInline={true}
               loop
             />
           </TabPanel>
