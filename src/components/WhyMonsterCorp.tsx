@@ -19,7 +19,8 @@ const WhyMonsterCorp: FC = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="gradient-legend-1lvl"
         >
-          Почему Monster Corp?
+          {/*Почему Monster Corp?*/}
+          Nima Uchun Monster Corp?
         </AnimatedComponent>
         <AnimatedComponent
           tag="p"
@@ -28,10 +29,10 @@ const WhyMonsterCorp: FC = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="legend-2lvl text-balance"
         >
-          Бренды, которые вдохновляют. <br />
-          Решения, которые работают.
+          Ilhomlantiruvchi brendlar. <br />
+          Ishlaydigan echimlar.
           <br />
-          Контент, который цепляет.
+          Jozibali tarkib.
         </AnimatedComponent>
 
         <AnimatedComponent
@@ -40,16 +41,12 @@ const WhyMonsterCorp: FC = () => {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="text-1lvl text-balance"
         >
-          В основе каждого успешного бизнеса — история.{" "}
-          <br className="max-md:hidden" /> <br /> Мы рассказываем её так,{" "}
-          <br className={"md:hidden"} /> чтобы в неё верили.{" "}
-          <br className="md:block hidden" /> В мире хаоса и информационного шума
-          мы создаём смысл.
+          Har bir muvaffaqiyatli biznesning zamirida — hikoya yotadi.
           <br />
-          <br />
-          Monster Corp. — это не просто агентство. <br className="md:hidden" />{" "}
-          Это инновационный центр, <br /> где креатив и технологии <br />
-          работают на бизнес.
+          Biz unga ishonishimiz uchun aytamiz. <br /> Xaos va axborot shovqini
+          dunyosida biz ma'no yaratamiz. <br /> <br /> Monster Corp. — bu
+          shunchaki agentlik emas. Bu innovatsion markaz, <br /> ijodkorlik va
+          texnologiya qayerda ular biznes uchun ishlaydi.
         </AnimatedComponent>
       </div>
 
@@ -87,8 +84,8 @@ const WhyMonsterCorp: FC = () => {
               </svg>
             </AnimatedComponent>
             <p>
-              Мы помогаем брендам <br />{" "}
-              <span className="text-blue-1000">становиться иконами.</span>
+              Biz brendlarga yordam beramiz <br />{" "}
+              <span className="text-blue-1000">piktogrammalarga aylanadi.</span>
             </p>
           </AnimatedComponent>
 
@@ -120,8 +117,8 @@ const WhyMonsterCorp: FC = () => {
               </svg>
             </AnimatedComponent>
             <p>
-              Мы превращаем <br />{" "}
-              <span className="text-blue-1000"> идеи во влияние.</span>
+              МBiz g'oyalarni <br />{" "}
+              <span className="text-blue-1000"> ta'sirga aylantiramiz.</span>
             </p>
           </AnimatedComponent>
 
@@ -164,9 +161,9 @@ const WhyMonsterCorp: FC = () => {
             </AnimatedComponent>
             <p>
               <span className="text-blue-1000">
-                Мы создаем маркетинг, <br /> двигающий
+                Biz sanoatni oldinga siljitadigan <br /> marketing
               </span>{" "}
-              индустрию вперёд.
+              yaratmoqdamiz.
             </p>
           </AnimatedComponent>
         </div>

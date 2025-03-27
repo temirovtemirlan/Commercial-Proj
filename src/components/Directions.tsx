@@ -13,15 +13,15 @@ const directionsData = [
     title: "Monster Digital Marketing",
     titleGradient: "linear-gradient(240.91deg, #FEB800 10.36%, #FF8700 93.08%)",
     descOne:
-      "Стратегии, которые приводят к росту. Бренды растут, когда маркетинг становится частью жизни клиентов. Мы создаем не просто рекламу, а моменты взаимодействия, которые вызывают эмоции, привязанность и доверие.",
+      "O‘sishga olib boruvchi strategiyalar. Brendlar o‘sadi, agar marketing mijozlar hayotining bir qismiga aylansa. Biz shunchaki reklama emas, balki his-tuyg‘ular, sadoqat va ishonch uyg‘otadigan o‘zaro aloqalar yaratamiz.",
     list: [
-      "Data-driven маркетинг",
+      "Data-driven marketing",
       "Performance & SMM",
       "E-commerce & retail solutions",
       "Influence & viral campaigns",
     ],
     descTwo:
-      "Мы не делаем рекламу. Мы создаем реальность, <br class='hidden md:block'/> в которой бренды становятся незаменимыми.",
+      "Biz reklama qilmaymiz. Biz brendlar ajralmas bo'lib qoladigan haqiqatni yaratamiz.",
     video:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/MONSTER_MARKETING_2/MONSTER_MARKETING_2/720p_mp4/stream.m3u8",
   },
@@ -29,14 +29,15 @@ const directionsData = [
     title: "Monster Design & Branding",
     titleGradient: "blue-gradient-1lvl",
     descOne:
-      "Форма, которая передает смысл. Мир визуального потребления требует айдентики, которая выделяется. Мы создаем дизайн, который становится языком бренда и говорит за него, даже без слов.",
+      "Ma'noni anglatuvchi shakl. Vizual iste'mol dunyosi ajralib turadigan o'ziga xoslikni talab qiladi. Biz brendning tiliga aylanadigan va u uchun gapiradigan dizaynni yaratamiz, hatto so'zsiz ham.",
     list: [
-      "Глобальные концепции",
-      "Айдентика, логотип, упаковка",
-      "Графический и digital-дизайн",
-      "Luxury & premium брендинг",
+      "Global tushunchalar",
+      "Identifikatsiya, logotip, qadoqlash",
+      "Grafik va raqamli dizayn",
+      "Hashamatli va premium Brendlash",
     ],
-    descTwo: "Когда ваш бренд имеет голос, он звучит громче конкурентов.",
+    descTwo:
+      "Sizning brendingiz ovozga ega bo'lsa, u raqobatdan ko'ra balandroq eshitiladi.",
     video:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/MONSTER_BRANDING/MONSTER_BRANDING/720p_mp4/stream.m3u8",
   },
@@ -44,57 +45,56 @@ const directionsData = [
     title: "Soul Media",
     titleGradient: "linear-gradient(248.03deg, #E19500 0.74%, #FFCF15 89.3%)",
     descOne:
-      "В современном мире контент — это валюта доверия. Люди не просто покупают, они переживают опыт бренда. Мы создаем визуальные истории, которые хочется пересматривать.",
+      "Bugungi dunyoda kontent ishonch valyutasidir. Odamlar shunchaki sotib olishmaydi, ular brend tajribasini qayta boshdan kechirishadi. Biz odamlar qayta ko'rib chiqmoqchi bo'lgan vizual hikoyalarni yaratamiz.",
     list: [
-      "Рекламные ролики, документальные истории, бренд-фильмы",
-      "Фотоконтент, который продаёт без слов",
-      "YouTube и видеомаркетинг нового поколения",
+      "Reklama, hujjatli hikoyalar, brend filmlari",
+      "So'zsiz sotiladigan fotosurat tarkibi",
+      "YouTube va keyingi avlod video marketingi",
     ],
-    descTwo:
-      "Контент, который не просто рассказывает, <br/> а заставляет чувствовать.",
+    descTwo: "Faqat aytmaydigan, <br/> balki sizni his qiladigan tarkib.",
     video:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/SOUL_MEDIA/SOUL_MEDIA/720p_mp4/stream.m3u8",
   },
   {
     title: "Monster CGI/VFX",
     titleGradient: "linear-gradient(240.51deg, #D36BF8 2.7%, #862DCD 97.64%)",
-    upcText: "ИСКУССТВО ДОСТУПА К НЕВОЗМОЖНОМУ",
+    upcText: "IMKONSIZ NARSALARGA KIRISH SAN'ATI",
     descOne:
-      "Мы раздвигаем границы реальности. Там, где раньше были ограничения, мы создаем визуальные вселенные.",
+      "Biz haqiqat chegaralarini oshirmoqdamiz. Ilgari cheklovlar bo'lgan joyda biz vizual olamlarni yaratmoqdamiz.",
     list: [
-      "Кинематографический VFX & CGI",
-      "Графика для игр, фильмов, рекламы",
-      "3D-визуализация архитектуры и продуктов",
+      "Kinematik VFX & CGI",
+      "O'yinlar, filmlar, reklama uchun grafikalar",
+      "Arxitektura va mahsulotlarning 3D vizualizatsiyasi",
     ],
-    descTwo: "Когда технология становится искусством, создаются легенды.",
+    descTwo: "Texnologiya san'atga aylanganda, afsonalar yaratiladi.",
     video:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/MONSTER_CG/MONSTER_CG/720p_mp4/stream.m3u8",
   },
   {
     title: "Monster AI Marketing",
     titleGradient: "linear-gradient(234.73deg, #2CFF50 25.35%, #009218 97.98%)",
-    descOne: "БУДУЩЕЕ УЖЕ НАСТУПИЛО",
+    descOne: "KELAJAK ALLAQACHON KELDI",
     list: [
-      "Искусственный интеллект, который понимает клиентов лучше, чем они сами.",
-      "Автоматизированные маркетинговые стратегии и AI-анализ поведения аудитории.",
-      "Data-driven рекламные кампании, прогнозирование трендов, персонализация контента.",
+      "Mijozlarni o'zlarini tushunishdan ko'ra yaxshiroq tushunadigan sun'iy intellekt.",
+      "Avtomatlashtirilgan marketing strategiyalari va Ai-auditoriya xatti-harakatlarini tahlil qilish.",
+      "Ma'lumotlarga asoslangan reklama kampaniyalari, tendentsiyalarni prognozlash, tarkibni shaxsiylashtirish.",
     ],
     descTwo:
-      "Будущее маркетинга — это гиперточность. <br/> Мы помогаем вам говорить с клиентами на их языке.",
+      "Marketingning kelajagi giper aniqlikdir. Biz sizning mijozlaringiz bilan ularning tilida gaplashishingizga yordam beramiz.",
     video:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/MONSTER_AI/MONSTER_AI/720p_mp4/stream.m3u8",
   },
   {
     title: "Monster DEVZ",
     titleGradient: "linear-gradient(241.54deg, #DF1733 -1.8%, #F5B715 102.39%)",
-    descOne: "IT-РЕШЕНИЯ ДЛЯ ЛИДЕРОВ",
+    descOne: "RAHBARLAR UCHUN IT ECHIMLARI",
     list: [
-      "От прототипа до идеального цифрового продукта.",
-      "Разработка сайтов, мобильных приложений, CRM, ERP, AI-систем.",
-      "Интеграция AI, UX/UI-дизайн, масштабируемые IT-решения.",
+      "Prototipdan mukammal raqamli mahsulotgacha.",
+      "Veb-saytlar, mobil ilovalar, CRM,AI tizimlarini ishlab chiqish.",
+      "AI integratsiyasi, UX/UI dizayni, kengaytiriladigan it echimlari.",
     ],
     descTwo:
-      "Технологии должны работать на ваш успех. <br/> Мы знаем, как это сделать.",
+      "Texnologiya sizning muvaffaqiyatingiz uchun ishlashi kerak. <br/> Biz buni qanday qilishni bilamiz.",
     video:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/MONSTER_DEVZ_2/MONSTER_DEVZ_2/720p_mp4/stream.m3u8",
   },
@@ -112,7 +112,7 @@ const Directions: FC = () => {
         animate={inView ? { opacity: 1 } : undefined}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        Наши направления
+        Yo‘nalishlarimiz
       </AnimatedComponent>
 
       <div className="w-full max-w-[3000px] mx-auto relative">

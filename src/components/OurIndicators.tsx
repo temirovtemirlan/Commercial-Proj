@@ -37,7 +37,7 @@ const OurIndicators: FC = () => {
   return (
     <Container className="text-center w-full" ref={containerRef}>
       <legend className="custom-legend-2lvl mt-[100px]" ref={ref}>
-        Наши показатели
+        Bizning ko'rsatkichlarimiz
       </legend>
 
       <Tabs className="Our-Indicators">

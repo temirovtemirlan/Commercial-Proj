@@ -145,7 +145,7 @@ const Tariff: FC = () => {
             className="legend-3lvl"
             ref={tabPanelRef}
           >
-            Изучите тарифы.
+            Tariflarni o'rganing.
           </AnimatedComponent>
         </Container>
 

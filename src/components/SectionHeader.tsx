@@ -119,14 +119,14 @@ const SectionHeader: FC = () => {
             transition={{ duration: 0.5, delay: 0.8 }}
           >
             <p className="leading-relaxed">
-              dfsafd
+              MONSTER CORP — XIZMATLARNING RAQAMLI EKOTIZIMI.
               <br />
             </p>
             <p>
-              Первый цифровой медиакит для бизнеса — это ваш личный навигатор в
-              мире маркетинга, продакшна, брендинга, VFX и IT. <br />
-              Забудьте про бесконечные PDF — всё, что вам нужно, доступно онлайн
-              в один клик.
+              Biznes uchun birinchi raqamli mediakit — marketing, prodakshn,
+              brending, VFX va IT olamidagi shaxsiy yoʻl
+              koʻrsatuvchingiz. Tuganmas PDF fayllaridan voz keching — sizga
+              kerak boʻlgan hamma narsa birgina klik bilan onlayn dostup.
             </p>
           </AnimatedComponent>
         </div>

@@ -24,7 +24,7 @@ const CultureSection: FC = () => {
         className="gradient-legend-1lvl text-center inline-block"
         ref={ref}
       >
-        Мы не создаем контент.
+        Biz kontent yaratmaymiz.
       </AnimatedComponent>
 
       <AnimatedComponent
@@ -34,7 +34,7 @@ const CultureSection: FC = () => {
         transition={{ duration: 0.6, delay: 0.4 }}
         className="legend-2lvl w-full text-center inline-block"
       >
-        Мы создаем культуру.
+        Biz madaniyatni yaratamiz.
       </AnimatedComponent>
 
       <div className="grid lg:grid-cols-2 lg:grid-rows-2 lg:h-[660px] gap-5 mt-16">
@@ -73,7 +73,7 @@ const CultureSection: FC = () => {
           </span>
 
           <p className="text-[#1a1a1c] text-3xl md:text-[44px] xl:text-[56px] md:leading-[50px] xl:leading-[60px] font-bold">
-            Бренды должны быть больше, чем логотипы.
+            Brendlar logotiplardan kattaroq bo'lishi kerak.
           </p>
         </AnimatedComponent>
 
@@ -98,7 +98,7 @@ const CultureSection: FC = () => {
           </svg>
 
           <p className="text-[#1a1a1c] text-2xl ss:text-[32px] xl:text-[44px] ss:leading-[38px] xl:leading-[50px] font-bold">
-            Реклама должна <br /> быть больше, <br /> чем креатив.
+            Reklama ijodkorlikdan <br /> kattaroq bo'lishi kerak.
           </p>
         </AnimatedComponent>
 
@@ -123,9 +123,8 @@ const CultureSection: FC = () => {
           </svg>
 
           <p className="text-[#00c5c7] text-2xl ss:text-[32px] xl:text-[44px] ss:leading-[38px] xl:leading-[50px] font-bold">
-            Маркетинг должен <br />
-            быть больше <br />
-            чем цифры.
+            Marketing ko'proq
+            <br /> bo'lishi kerak <br /> raqamlardan ko'ra.
           </p>
         </AnimatedComponent>
       </div>
@@ -190,12 +189,12 @@ const CultureSection: FC = () => {
           className="max-md:w-full bg-[#424245] h-px md:h-24 lg:h-[60px]"
         />
 
-        <p className="max-w-[466px] max-md:text-center w-full text-[#6e6e7b] text-2xl font-semibold uppercase">
-          МЫ создаем новые смыслы.
+        <p className="max-md:text-center w-full text-[#6e6e7b] text-2xl font-semibold uppercase">
+          Biz yangi ma'nolarni yaratamiz.
           <br />
-          Мы формируем будущее бизнеса.
+          Biz biznesning kelajagini shakllantirmoqdamiz.
           <br />
-          Мы Monster Corp.
+          Biz Monster Corp.
         </p>
       </div>
     </Container>

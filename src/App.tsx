@@ -71,16 +71,18 @@ const App: FC = () => {
             transition={{ duration: 0.8 }}
           >
             <legend className="gradient-legend-1lvl">Monster Corp.</legend>
-            <span className="legend-2lvl">Исскуство создавать будущее.</span>
+            <span className="legend-2lvl">Kelajakni yaratish san'ati.</span>
 
             <p className="text-1lvl text-balance">
-              Мы не просто создаем бренды, контент и технологии. <br /> Мы
-              строим реальность, которой хочется быть частью. <br /> <br />В
-              мире, где каждый борется за внимание, выигрывают те, кто умеет{" "}
+              Biz shunchaki brendlar, kontent va texnologiyalarni yaratmaymiz.
               <br />
-              захватывать воображение. Monster Corp. — это экосистема,
-              <br /> где данные превращаются в стратегию, технологии — в эмоции,
-              <br /> а идеи — в культуру.
+              Biz bir qism bo'lishni xohlaydigan haqiqatni qurmoqdamiz. <br />
+              <br />
+              Har bir inson diqqat uchun kurashadigan dunyoda tasavvurni qanday
+              egallashni <br /> biladiganlar g'alaba qozonadi. Monster Corp. —
+              ma'lumotlar strategiyaga,
+              <br /> texnologiyalar — hissiyotlarga, gʻoyalar esa — madaniyatga
+              aylanadigan ekotizim.
             </p>
           </AnimatedComponent>
         </Container>
