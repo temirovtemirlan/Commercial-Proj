@@ -32,40 +32,42 @@ const typesProjects = [
     { value: "7500", label: "От 7500$" },
   ],
   typesTerm = [
-    { value: "Вчера", label: "Вчера" },
-    { value: "Сейчас", label: "Сейчас" },
-    { value: "Завтра", label: "Завтра" },
+    { value: "Kecha", label: "Kecha" },
+    { value: "Hozir", label: "Hozir" },
+    { value: "Ertaga", label: "Ertaga" },
   ];
 
 const selectData = [
-  "Рейтинги",
-  "Рекоммендация",
-  "Соц.сети",
-  "Давно знаю",
-  "По запросу",
+  "Reytinglar",
+  "Tavsiya",
+  "Ijtimoiy tarmoqlar",
+  "Ancha vaqtdan beri bilaman",
+  "So'rov bo'yicha",
 ];
 
 const schema = yup.object().shape({
-  name: yup.string().required("Пожалуйста, введите ваше имя"),
+  name: yup.string().required("Iltimos, ismingizni kiriting"),
   phone: yup.string().required().min(3),
   email: yup
     .string()
-    .required("Пожалуйста, введите адрес электронной почты")
-    .email("Неверный формат электронной почты"),
-  projectDescription: yup.string().required("Пожалуйста, опишите ваш проект"),
+    .required("Iltimos, elektron pochta manzilingizni kiriting")
+    .email("Noto'g'ri elektron pochta formati"),
+  projectDescription: yup
+    .string()
+    .required("Iltimos, loyihangizni tasvirlab bering"),
   source: yup.string().required(),
   type_project: yup
     .array()
     .of(yup.string().required())
-    .required("Выберите хотя бы один тип проекта")
-    .min(1, "Выберите хотя бы один тип проекта"), // Ensure at least one project type is selected
+    .required("Hech bo'lmaganda bitta loyiha turini tanlang")
+    .min(1, "Hech bo'lmaganda bitta loyiha turini tanlang"), // Kamida bitta loyiha turi tanlanganligini ta'minlang
   budget: yup.string().required(),
   term: yup.string().required(),
   attachment: yup
     .mixed<FileList>()
     .nullable()
     .required()
-    .test("required", "Файл обязателен для загрузки", (value) => {
+    .test("required", "Faylni yuklash majburiy", (value) => {
       return value instanceof FileList && value.length > 0;
     }),
 });
@@ -159,18 +161,19 @@ const ContactForm: FC = () => {
           <div className="flex flex-col justify-between px-7 py-6 md:px-50 2xl:px-120 md:py-10 2xl:py-28 bg-[#161617]">
             <div>
               <span className="text-white text-[32px] md:text-[44px] leading-[39px] md:leading-[52px] xl:text-[56px] xl:leading-[64px]">
-                Заполните анкету, <br /> чтобы обсудить проект
+                Anketani to'ldiring,
+                <br /> loyihani muhokama qiling
               </span>
               <p
                 className={
                   "text-balance text-white text-xl mt-5 w-full max-w-[900px] leading-normal"
                 }
               >
-                Для того чтобы обеспечить максимальную релевантность и
-                эффективность обсуждения, просим вас заполнить небольшую анкету.
-                Ваши ответы помогут нам лучше понять ваши потребности и
-                ожидания, а также сделать проект более соответствующим вашим
-                интересам.
+                Muhokamaning dolzarbligi va samaradorligini oshirish uchun
+                sizdan kichik anketani to'ldirishingizni so'raymiz. Sizning
+                javoblaringiz sizning ehtiyojlaringiz va umidlaringizni
+                yaxshiroq tushunishga yordam beradi va loyihani sizning
+                qiziqishlaringizga moslashtiradi.
               </p>
             </div>
           </div>
@@ -194,25 +197,27 @@ const ContactForm: FC = () => {
           {!matches ? (
             <div>
               <span className="text-black mb-10 text-[32px] md:text-[44px] leading-[39px] md:leading-[52px] xl:text-[56px] xl:leading-[55px]">
-                Заполните анкету, <br /> чтобы обсудить проект
+                Anketani to'ldiring,
+                <br /> loyihani muhokama qiling
               </span>
               <p
                 className={
                   "text-balance text-black text-xl mt-1 mb-5 w-full max-w-[900px] leading-normal"
                 }
               >
-                Для того чтобы обеспечить максимальную релевантность и
-                эффективность обсуждения, просим вас заполнить небольшую анкету.
+                Maksimal moslik va muhokama samaradorligini ta'minlash
+                maqsadida, sizdan kichik so'rovnomani to'ldirishingizni
+                so'raymiz.
               </p>
             </div>
           ) : null}
 
-          <span className="text-3xl">Ваши контакты</span>
+          <span className="text-3xl">Kontaktlaringiz</span>
 
           <fieldset className="grid grid-cols-2 gap-6 mt-6 md:mt-9">
             <Input
               className={cn(inputStyle, "max-sm:col-span-2")}
-              placeholder="Имя"
+              placeholder="Ism"
               type="text"
               {...register("name")}
               error={!!errors.name?.message}
@@ -229,19 +234,19 @@ const ContactForm: FC = () => {
                 )}
               />
               <span className=" text-base absolute opacity-70">
-                с рабочим WhatsApp
+                ishlaydigan WhatsApp bilan
               </span>
             </div>
             <Input
               className={cn(inputStyle, "col-span-2 mt-2")}
-              placeholder="Почта"
+              placeholder="Pochta"
               type="email"
               {...register("email")}
               error={!!errors.email?.message}
             />
           </fieldset>
 
-          <legend className="text-[22px] mt-7 md:mt-50">О проекте</legend>
+          <legend className="text-[22px] mt-7 md:mt-50">Loyiha haqida</legend>
           <SelectBtn
             arr={typesProjects}
             name="type_project"
@@ -251,7 +256,7 @@ const ContactForm: FC = () => {
             type="checkbox"
           />
 
-          <legend className="text-[22px] mt-6">Бюджет</legend>
+          <legend className="text-[22px] mt-6">Byudjet</legend>
           <SelectBtn
             arr={typesBudget}
             name="budget"
@@ -260,7 +265,7 @@ const ContactForm: FC = () => {
             error={!!errors.budget?.message}
           />
 
-          <legend className="text-[22px] mt-6">Мне нужно</legend>
+          <legend className="text-[22px] mt-6">Menga kerak</legend>
           <SelectBtn
             arr={typesTerm}
             name="term"
@@ -269,7 +274,7 @@ const ContactForm: FC = () => {
             error={!!errors.term?.message}
           />
 
-          <legend className="text-[22px] mt-6">Описание проекта</legend>
+          <legend className="text-[22px] mt-6">Loyiha tavsifi</legend>
 
           <textarea
             className={cn(
@@ -278,7 +283,7 @@ const ContactForm: FC = () => {
                 ? "border-[red]"
                 : "border-black"
             )}
-            placeholder="Ответьте на вопросы с 1 по 4"
+            placeholder="1-dan 4-gacha bo'lgan savollarga javob bering"
             {...register("projectDescription")}
           />
 
@@ -316,7 +321,7 @@ const ContactForm: FC = () => {
                           error && "text-[red] opacity-60"
                         )}
                       >
-                        Прикрепить файл
+                        Faylni biriktirish
                       </p>
                     )}
                     {file && (
@@ -333,16 +338,16 @@ const ContactForm: FC = () => {
                         error && "text-[red]"
                       )}
                     >
+                      <li>Siz qaysi kompaniyadasiz, u nima qiladi?</li>
                       <li>
-                        Как называется ваша компания и чем она занимается?
+                        Biz nima bilan yordam bera olamiz? Natijani qanday
+                        tasavvur qilasiz?
                       </li>
+                      <li>Siz qancha vaqt va byudjetni hisoblaysiz?</li>
                       <li>
-                        Какую задачу вы хотите решить с помощью наших услуг?
+                        Agar messenjerda muloqot qilish qulayroq bo'lsa,
+                        yozing.?
                       </li>
-                      <li>
-                        За какой срок и бюджет вы хотите получить результат?
-                      </li>
-                      <li>Когда вам позвонить?</li>
                     </ul>
                   )}
                 </label>
@@ -361,7 +366,7 @@ const ContactForm: FC = () => {
                     error ? "border-[red]" : "border-black"
                   )}
                 >
-                  <SelectValue placeholder="Откуда вы узнали про Monster?" />
+                  <SelectValue placeholder="Monster haqida qaerdan bilib oldingiz?" />
                 </SelectTrigger>
                 <SelectContent className="rounded-none bg-white outline-none">
                   {selectData.map((item) => (
@@ -384,12 +389,11 @@ const ContactForm: FC = () => {
                 type="submit"
                 className="w-[240px] py-4 px-10 bg-black text-white rounded-full"
               >
-                Отправить
+                Yuborish
               </button>
             </AnimatedComponent>
             <p className="md:ml-6 text-sm text-black">
-              Нажимая кнопку вы соглашаетесь <br /> на обработку персональных
-              данных. {/*<br className="max-md:hidden" />*/}
+              Tugmani bosish orqali men rozi bo'laman <br /> qayta ishlash uchun
               {/*на обработку{" "}*/}
               {/*<a className="text-black underline" href="">*/}
               {/*  персональных данных*/}

@@ -502,9 +502,6 @@ const MonsReels: FC<MonsReelsProps> = ({ inView }) => {
           <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
             AIGC REEL
           </Tab>
-          {/*<Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">*/}
-          {/*  DESIGN BRANDING*/}
-          {/*</Tab>*/}
         </TabList>
       </AnimatedComponent>
 

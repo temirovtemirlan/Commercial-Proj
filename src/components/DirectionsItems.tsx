@@ -36,8 +36,6 @@ const DirectionsItems: FC<DirectionsItemsProps> = ({ className, item }) => {
       ref={ref}
       className={cn(
         "directions-items flex flex-col md:flex-row md:rounded-3xl rounded-xl overflow-hidden bg-black h-[910px] md:h-[850px] lg:max-h-[680px] lg:min-h-[680px] w-full",
-        // "flex flex-col md:flex-row md:rounded-3xl rounded-xl overflow-hidden bg-black h-[910px] md:h-[850px] lg:max-h-[680px] lg:min-h-[680px] ",
-        // "grid lg:grid-cols-2 w-full bg-black max-h-[900px] min-h-[900px] md:max-h-[680px] md:min-h-[680px] rounded-[28px] overflow-hidden",
         className
       )}
     >

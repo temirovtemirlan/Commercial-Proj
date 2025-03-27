@@ -49,7 +49,7 @@ const FixedHeader: FC<FixedHeaderProps> = ({ className }) => {
             "bg-[#0171e3] text-white rounded-full px-5 py-2 ml-auto no-underline truncate"
           }
         >
-          Заказать проект
+          Loyiha buyurtma berish
         </a>
       </Container>
     </div>

@@ -50,7 +50,7 @@ const LogoCubeAnimation: FC = () => {
           tag="legend"
           className="legend-3lvl"
         >
-          Наши клиенты
+          Mijozlar
         </AnimatedComponent>
 
         <AnimatedComponent
@@ -59,8 +59,9 @@ const LogoCubeAnimation: FC = () => {
           transition={{ duration: 0.6 }}
           className="text-[32px] leading-9 md:leading-[36px] font-semibold text-balance"
         >
-          Мы гордимся работой с компаниями, <br className="hidden lg:block" />{" "}
-          которые задают правила игры на своих рынках.
+          Biz o'z bozorlarida o'yin qoidalarini <br /> o'rnatadigan kompaniyalar
+          bilan ishlashdan <br />
+          faxrlanamiz.
         </AnimatedComponent>
       </div>
 

@@ -56,7 +56,7 @@ const TariffStart: FC<TariffStartProps> = ({ item }) => {
         whileHover={{ scale: 1.04, y: -2 }}
         className="w-[192px] h-11 p-2 md:p-2.5 bg-[#0071e3] rounded-full text-base justify-center items-center gap-2.5 inline-flex mt-[40px] text-white"
       >
-        Оставить заявку
+        Ariza qoldirish
       </AnimatedComponent>
     </div>
   );

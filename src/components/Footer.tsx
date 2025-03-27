@@ -141,7 +141,7 @@ const Footer: FC<FooterProps> = ({ className }) => {
         <div className="flex md:justify-center">
           <div className="flex flex-col justify-center">
             <p className="text-[#777777] text-sm text-start md:text-center xl:text-start">
-              КОНТАКТЫ
+              KONTATLARI
             </p>
             <div className="flex flex-col md:flex-row xl:flex-col gap-y-2 gap-x-8 mt-2 mb-3">
               {contactsData?.map((el, index) => (
@@ -160,7 +160,7 @@ const Footer: FC<FooterProps> = ({ className }) => {
             </div>
 
             <p className="text-[#777777] text-sm mb-3 text-start md:text-center xl:text-start">
-              СОЦ.СЕТИ
+              IJTIMOIY TARMOQLAR
             </p>
 
             <div className="flex flex-col md:flex-row xl:flex-col gap-y-2 gap-x-8">
