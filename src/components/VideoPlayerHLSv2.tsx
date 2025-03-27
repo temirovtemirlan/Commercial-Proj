@@ -17,6 +17,7 @@ export interface VideoPlayerHLSv2Props {
   autoPlay?: boolean;
   style?: CSSProperties;
   loop?: boolean;
+  playsInline?: boolean;
 }
 
 const VideoPlayerHLSv2: FC<VideoPlayerHLSv2Props> = ({
@@ -31,6 +32,7 @@ const VideoPlayerHLSv2: FC<VideoPlayerHLSv2Props> = ({
   autoPlay,
   style,
   loop,
+  playsInline = false,
 }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -128,7 +130,7 @@ const VideoPlayerHLSv2: FC<VideoPlayerHLSv2Props> = ({
         className={cn(" w-full h-full object-cover", classNameVideo)}
         width={width}
         height={height}
-        playsInline
+        playsInline={playsInline}
         preload="none"
         src={src.trim()}
         autoPlay={autoPlay}

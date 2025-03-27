@@ -148,6 +148,7 @@ const SectionHeader: FC = () => {
               posterSrc={""}
               autoPlay
               isFullScreen
+              playsInline={true}
               loop
             />
           </TabPanel>
@@ -159,6 +160,7 @@ const SectionHeader: FC = () => {
               posterSrc=""
               autoPlay
               isFullScreen
+              playsInline={true}
               loop
             />
           </TabPanel>
