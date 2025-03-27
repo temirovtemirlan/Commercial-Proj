@@ -127,7 +127,7 @@ export const kzLang = {
       yourContacts: "Сіздің контактілеріңіз",
       name: "Аты",
       email: "Пошта",
-      whatsAppText: "жұмыс Істейтін WhatsApp арқылы",
+      whatsAppText: "жұмыс iстейтін WhatsApp арқылы",
       aboutProject: "Жоба туралы",
       budget: {
         title: "Бюджет",

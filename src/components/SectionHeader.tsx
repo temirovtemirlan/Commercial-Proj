@@ -122,10 +122,12 @@ const SectionHeader: FC = () => {
             transition={{ duration: 0.5, delay: 0.8 }}
           >
             <p className="leading-relaxed">
-              MONSTER CORP — {t("header.upperRightText")} <br />
+              MONSTER CORP — {t("header.upperRightText")}
+              <br />
             </p>
             <p>
-              {t("header.upperRightDescTextOne")} <br />
+              {t("header.upperRightDescTextOne")}
+              <br />
               {t("header.upperRightDescTextTwo")}
             </p>
           </AnimatedComponent>
@@ -182,7 +184,7 @@ const SectionHeader: FC = () => {
                         e.stopPropagation();
                         e.preventDefault();
                       }}
-                      className="absolute -translate-y-[6.6rem] md:-translate-y-28 left-[-30px] md:left-[18px] bg-white px-4 py-2 rounded-xl text-black text-sm md:text-base"
+                      className="absolute -translate-y-[6rem] left-[-30px] md:left-[18px] bg-white px-4 py-2 rounded-xl text-black text-sm md:text-base"
                     >
                       <div>{t("settings.form.btn.tabTutorial")}</div>
                       {/* <div>Жмите и переключайте ролики</div> */}
