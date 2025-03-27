@@ -1,6 +1,7 @@
-import { FC, useEffect, useState } from "react";
+import { type FC, useEffect, useState } from "react";
 import { domAnimation, LazyMotion } from "motion/react";
 import { useInView } from "react-intersection-observer";
+import { useTranslation } from "react-i18next";
 
 import Container from "components/Container";
 import MonsReels from "components/MonsReels";
@@ -29,14 +30,9 @@ const App: FC = () => {
     ...inViewProps,
     threshold: 0.9,
   });
+  const { t } = useTranslation();
 
   const [isScrollTo, setIsScrollTo] = useState(false);
-  // const [isOpen, setIsOpen] = useState(false);
-
-  // const onOpenHandler = () => setIsOpen(false);
-
-  // #region Scroll To
-  // const onScrollTo = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,16 +67,14 @@ const App: FC = () => {
             transition={{ duration: 0.8 }}
           >
             <legend className="gradient-legend-1lvl">Monster Corp.</legend>
-            <span className="legend-2lvl">Исскуство создавать будущее.</span>
+            <span className="legend-2lvl">{t("monsterCorp.boldTitle")}</span>
 
             <p className="text-1lvl text-balance">
-              Мы не просто создаем бренды, контент и технологии. <br /> Мы
-              строим реальность, которой хочется быть частью. <br /> <br />В
-              мире, где каждый борется за внимание, выигрывают те, кто умеет{" "}
+              {t("monsterCorp.text1lvlOne")}
               <br />
-              захватывать воображение. Monster Corp. — это экосистема,
-              <br /> где данные превращаются в стратегию, технологии — в эмоции,
-              <br /> а идеи — в культуру.
+              {t("monsterCorp.text1lvlTwo")}
+              <br /> <br />
+              {t("monsterCorp.text1lvlThree")}
             </p>
           </AnimatedComponent>
         </Container>

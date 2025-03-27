@@ -10,12 +10,14 @@ import Container from "./Container";
 import { indicatorsAppsLogo, indicatorsLoading } from "data/index";
 import { cn } from "helpers/style";
 import type { directionType } from "fusion/type";
+import { useTranslation } from "react-i18next";
 
 const OurIndicators: FC = () => {
   const [tappad, setTaped] = useState<directionType>("CG");
   const [showAll, setShowAll] = useState(false);
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.4 });
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const { t } = useTranslation();
 
   const indicatorsData = useMemo(() => {
     const filterRes = indicatorsLoading.filter((el) => el.filter === tappad);
@@ -37,7 +39,7 @@ const OurIndicators: FC = () => {
   return (
     <Container className="text-center w-full" ref={containerRef}>
       <legend className="custom-legend-2lvl mt-[100px]" ref={ref}>
-        Наши показатели
+        {t("ourIndicators.title")}
       </legend>
 
       <Tabs className="Our-Indicators">

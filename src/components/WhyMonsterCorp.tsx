@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import { useInView } from "react-intersection-observer";
+import { useTranslation } from "react-i18next";
 import Container from "./Container";
 import { AnimatedComponent } from "common/ui/animatedComponent";
 
@@ -8,6 +9,7 @@ const WhyMonsterCorp: FC = () => {
     threshold: 0.6,
     triggerOnce: true,
   });
+  const { t } = useTranslation();
 
   return (
     <Container className="py-[100px] bg-[#f5f5f7]">
@@ -19,7 +21,7 @@ const WhyMonsterCorp: FC = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="gradient-legend-1lvl"
         >
-          Почему Monster Corp?
+          {t("whyMonsterCorp.title")}
         </AnimatedComponent>
         <AnimatedComponent
           tag="p"
@@ -28,10 +30,11 @@ const WhyMonsterCorp: FC = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="legend-2lvl text-balance"
         >
-          Бренды, которые вдохновляют. <br />
-          Решения, которые работают.
+          {t("whyMonsterCorp.boldTitleOne")}
           <br />
-          Контент, который цепляет.
+          {t("whyMonsterCorp.boldTitleTwo")}
+          <br />
+          {t("whyMonsterCorp.boldTitleThree")}
         </AnimatedComponent>
 
         <AnimatedComponent
@@ -40,16 +43,9 @@ const WhyMonsterCorp: FC = () => {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="text-1lvl text-balance"
         >
-          В основе каждого успешного бизнеса — история.{" "}
-          <br className="max-md:hidden" /> <br /> Мы рассказываем её так,{" "}
-          <br className={"md:hidden"} /> чтобы в неё верили.{" "}
-          <br className="md:block hidden" /> В мире хаоса и информационного шума
-          мы создаём смысл.
-          <br />
-          <br />
-          Monster Corp. — это не просто агентство. <br className="md:hidden" />{" "}
-          Это инновационный центр, <br /> где креатив и технологии <br />
-          работают на бизнес.
+          <p
+            dangerouslySetInnerHTML={{ __html: t("whyMonsterCorp.textDesc") }}
+          />
         </AnimatedComponent>
       </div>
 
@@ -61,7 +57,7 @@ const WhyMonsterCorp: FC = () => {
             transition={{ duration: 1, delay: 1 }}
           >
             <AnimatedComponent
-              tag="span"
+              tag="div"
               animate={inView ? { opacity: [1, 0, 1] } : undefined}
               transition={{
                 duration: 0.6,
@@ -86,10 +82,11 @@ const WhyMonsterCorp: FC = () => {
                 />
               </svg>
             </AnimatedComponent>
-            <p>
-              Мы помогаем брендам <br />{" "}
-              <span className="text-blue-1000">становиться иконами.</span>
-            </p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: t("whyMonsterCorp.iconTextOne"),
+              }}
+            />
           </AnimatedComponent>
 
           <AnimatedComponent
@@ -98,7 +95,7 @@ const WhyMonsterCorp: FC = () => {
             transition={{ duration: 1, delay: 1 }}
           >
             <AnimatedComponent
-              tag="span"
+              tag="div"
               animate={inView ? { opacity: [1, 0, 1] } : undefined}
               transition={{
                 duration: 0.6,
@@ -119,10 +116,11 @@ const WhyMonsterCorp: FC = () => {
                 />
               </svg>
             </AnimatedComponent>
-            <p>
-              Мы превращаем <br />{" "}
-              <span className="text-blue-1000"> идеи во влияние.</span>
-            </p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: t("whyMonsterCorp.iconTextTwo"),
+              }}
+            />
           </AnimatedComponent>
 
           <AnimatedComponent
@@ -131,7 +129,7 @@ const WhyMonsterCorp: FC = () => {
             transition={{ duration: 1, delay: 1 }}
           >
             <AnimatedComponent
-              tag="span"
+              tag="div"
               animate={inView ? { opacity: [1, 0, 1] } : undefined}
               transition={{
                 duration: 0.6,
@@ -162,12 +160,11 @@ const WhyMonsterCorp: FC = () => {
                 />
               </svg>
             </AnimatedComponent>
-            <p>
-              <span className="text-blue-1000">
-                Мы создаем маркетинг, <br /> двигающий
-              </span>{" "}
-              индустрию вперёд.
-            </p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: t("whyMonsterCorp.iconTextThree"),
+              }}
+            />
           </AnimatedComponent>
         </div>
       </div>

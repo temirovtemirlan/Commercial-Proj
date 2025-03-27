@@ -1,100 +1,95 @@
-import type { FC } from "react";
+import { useMemo, type FC } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { useInView } from "react-intersection-observer";
+import { useTranslation } from "react-i18next";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import DirectionsItems from "components/DirectionsItems";
 import { AnimatedComponent } from "common/ui/animatedComponent";
 import SwiperNavigationBtn from "common/SwiperNavigationBtn";
+import type { TTranslation } from "fusion/type";
 
-const directionsData = [
+const directionsData = (t: TTranslation) => [
   {
     title: "Monster Digital Marketing",
     titleGradient: "linear-gradient(240.91deg, #FEB800 10.36%, #FF8700 93.08%)",
-    descOne:
-      "Стратегии, которые приводят к росту. Бренды растут, когда маркетинг становится частью жизни клиентов. Мы создаем не просто рекламу, а моменты взаимодействия, которые вызывают эмоции, привязанность и доверие.",
+    descOne: t("ourDirections.directionsData.one.descOne"),
     list: [
-      "Data-driven маркетинг",
-      "Performance & SMM",
-      "E-commerce & retail solutions",
-      "Influence & viral campaigns",
+      t("ourDirections.directionsData.one.list.one"),
+      t("ourDirections.directionsData.one.list.two"),
+      t("ourDirections.directionsData.one.list.three"),
+      t("ourDirections.directionsData.one.list.four"),
     ],
-    descTwo:
-      "Мы не делаем рекламу. Мы создаем реальность, <br class='hidden md:block'/> в которой бренды становятся незаменимыми.",
+    descTwo: t("ourDirections.directionsData.one.descTwo"),
     video:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/MONSTER_MARKETING_2/MONSTER_MARKETING_2/720p_mp4/stream.m3u8",
   },
   {
     title: "Monster Design & Branding",
     titleGradient: "blue-gradient-1lvl",
-    descOne:
-      "Форма, которая передает смысл. Мир визуального потребления требует айдентики, которая выделяется. Мы создаем дизайн, который становится языком бренда и говорит за него, даже без слов.",
+    descOne: t("ourDirections.directionsData.two.descOne"),
     list: [
-      "Глобальные концепции",
-      "Айдентика, логотип, упаковка",
-      "Графический и digital-дизайн",
-      "Luxury & premium брендинг",
+      t("ourDirections.directionsData.two.list.one"),
+      t("ourDirections.directionsData.two.list.two"),
+      t("ourDirections.directionsData.two.list.three"),
+      t("ourDirections.directionsData.two.list.four"),
     ],
-    descTwo: "Когда ваш бренд имеет голос, он звучит громче конкурентов.",
+    descTwo: t("ourDirections.directionsData.two.descTwo"),
     video:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/MONSTER_BRANDING/MONSTER_BRANDING/720p_mp4/stream.m3u8",
   },
   {
     title: "Soul Media",
     titleGradient: "linear-gradient(248.03deg, #E19500 0.74%, #FFCF15 89.3%)",
-    descOne:
-      "В современном мире контент — это валюта доверия. Люди не просто покупают, они переживают опыт бренда. Мы создаем визуальные истории, которые хочется пересматривать.",
+    descOne: t("ourDirections.directionsData.three.descOne"),
     list: [
-      "Рекламные ролики, документальные истории, бренд-фильмы",
-      "Фотоконтент, который продаёт без слов",
-      "YouTube и видеомаркетинг нового поколения",
+      t("ourDirections.directionsData.three.list.one"),
+      t("ourDirections.directionsData.three.list.two"),
+      t("ourDirections.directionsData.three.list.three"),
     ],
-    descTwo:
-      "Контент, который не просто рассказывает, <br/> а заставляет чувствовать.",
+    descTwo: t("ourDirections.directionsData.three.descTwo"),
     video:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/SOUL_MEDIA/SOUL_MEDIA/720p_mp4/stream.m3u8",
   },
   {
     title: "Monster CGI/VFX",
     titleGradient: "linear-gradient(240.51deg, #D36BF8 2.7%, #862DCD 97.64%)",
-    upcText: "ИСКУССТВО ДОСТУПА К НЕВОЗМОЖНОМУ",
-    descOne:
-      "Мы раздвигаем границы реальности. Там, где раньше были ограничения, мы создаем визуальные вселенные.",
+    upcText: t("ourDirections.directionsData.four.descTwo"),
+    descOne: t("ourDirections.directionsData.four.upperText"),
     list: [
-      "Кинематографический VFX & CGI",
-      "Графика для игр, фильмов, рекламы",
-      "3D-визуализация архитектуры и продуктов",
+      t("ourDirections.directionsData.four.list.one"),
+      t("ourDirections.directionsData.four.list.two"),
+      t("ourDirections.directionsData.four.list.three"),
     ],
-    descTwo: "Когда технология становится искусством, создаются легенды.",
+    descTwo: t("ourDirections.directionsData.four.descTwo"),
     video:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/MONSTER_CG/MONSTER_CG/720p_mp4/stream.m3u8",
   },
   {
     title: "Monster AI Marketing",
     titleGradient: "linear-gradient(234.73deg, #2CFF50 25.35%, #009218 97.98%)",
-    descOne: "БУДУЩЕЕ УЖЕ НАСТУПИЛО",
+    descOne: t("ourDirections.directionsData.five.descOne"),
     list: [
-      "Искусственный интеллект, который понимает клиентов лучше, чем они сами.",
-      "Автоматизированные маркетинговые стратегии и AI-анализ поведения аудитории.",
-      "Data-driven рекламные кампании, прогнозирование трендов, персонализация контента.",
+      t("ourDirections.directionsData.five.list.one"),
+      t("ourDirections.directionsData.five.list.two"),
+      t("ourDirections.directionsData.five.list.three"),
     ],
-    descTwo:
-      "Будущее маркетинга — это гиперточность. <br/> Мы помогаем вам говорить с клиентами на их языке.",
+    descTwo: t("ourDirections.directionsData.five.descTwo"),
     video:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/MONSTER_AI/MONSTER_AI/720p_mp4/stream.m3u8",
   },
   {
     title: "Monster DEVZ",
     titleGradient: "linear-gradient(241.54deg, #DF1733 -1.8%, #F5B715 102.39%)",
-    descOne: "IT-РЕШЕНИЯ ДЛЯ ЛИДЕРОВ",
+    descOne: t("ourDirections.directionsData.six.descOne"),
     list: [
-      "От прототипа до идеального цифрового продукта.",
-      "Разработка сайтов, мобильных приложений, CRM, ERP, AI-систем.",
-      "Интеграция AI, UX/UI-дизайн, масштабируемые IT-решения.",
+      t("ourDirections.directionsData.six.list.one"),
+      t("ourDirections.directionsData.six.list.two"),
+      t("ourDirections.directionsData.six.list.three"),
     ],
-    descTwo:
-      "Технологии должны работать на ваш успех. <br/> Мы знаем, как это сделать.",
+    descTwo: t("ourDirections.directionsData.six.descTwo"),
     video:
       "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/MONSTER_DEVZ_2/MONSTER_DEVZ_2/720p_mp4/stream.m3u8",
   },
@@ -102,6 +97,9 @@ const directionsData = [
 
 const Directions: FC = () => {
   const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const { t } = useTranslation();
+
+  const directionsDataFunRet = useMemo(() => directionsData(t), [t]);
 
   return (
     <div className="Our-Directions" ref={ref}>
@@ -112,7 +110,7 @@ const Directions: FC = () => {
         animate={inView ? { opacity: 1 } : undefined}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        Наши направления
+        {t("ourDirections.title")}
       </AnimatedComponent>
 
       <div className="w-full max-w-[3000px] mx-auto relative">
@@ -130,13 +128,12 @@ const Directions: FC = () => {
             1: { slidesPerView: 1 },
           }}
           allowTouchMove={true}
-          // centeredSlides={true}
           navigation={{
             nextEl: ".nextButton393919",
             prevEl: ".prevButton393218",
           }}
         >
-          {directionsData?.map((item, index) => (
+          {directionsDataFunRet?.map((item, index) => (
             <SwiperSlide key={index}>
               <DirectionsItems item={item} />
             </SwiperSlide>
@@ -147,64 +144,6 @@ const Directions: FC = () => {
             nextClass="nextButton393919"
             prevClass="prevButton393218"
           />
-          {/* <div className="w-full max-w-[1080px] mx-auto flex gap-5 justify-end mt-5">
-            <button className={"nextButton393919"}>
-              <svg
-                width="36"
-                height="37"
-                viewBox="0 0 36 37"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  y="0.385864"
-                  width="36"
-                  height="36"
-                  rx="18"
-                  fill="#ECECEE"
-                />
-                <path
-                  d="M20 11.3859L14 18.3859L20 25.3859"
-                  stroke="#B8B8B9"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M20 11.3859L14 18.3859L20 25.3859"
-                  stroke="#535354"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-
-            <button className={"prevButton393218"}>
-              <svg
-                width="36"
-                height="37"
-                viewBox="0 0 36 37"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  y="0.385864"
-                  width="36"
-                  height="36"
-                  rx="18"
-                  fill="#E6E6EA"
-                />
-                <path
-                  d="M16 11.3859L22 18.3859L16 25.3859"
-                  stroke="#535354"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-          </div> */}
         </Swiper>
       </div>
     </div>

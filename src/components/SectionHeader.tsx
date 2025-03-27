@@ -2,6 +2,7 @@ import { type FC, useEffect, useState } from "react";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 import { useMediaQuery } from "usehooks-ts";
 import { motion } from "motion/react";
+import { useTranslation } from "react-i18next";
 // import { useInView } from "react-intersection-observer";
 
 import VideoPlayerHLSv2 from "components/VideoPlayerHLSv2";
@@ -13,6 +14,7 @@ const SectionHeader: FC = () => {
   const matches = useMediaQuery("(min-width: 650px)");
   const [showHint, setShowHint] = useState(true);
   // const [langRef, langInView] = useInView();
+  const { t } = useTranslation();
 
   const [aiGCVideo, setAIGCVideo] = useState<string>(
     matches
@@ -38,8 +40,6 @@ const SectionHeader: FC = () => {
         : "https://storage.googleapis.com/mkit_monster_bucket/Video/hls/AICG_VERTICAL/720p_mp4/stream.m3u8"
     );
   }, [matches]);
-
-  // Вы можете переключать между роликами, нажмите на AIGC REEL
 
   return (
     <>
@@ -122,13 +122,11 @@ const SectionHeader: FC = () => {
             transition={{ duration: 0.5, delay: 0.8 }}
           >
             <p className="leading-relaxed">
-              MONSTER CORP — ЦИФРОВАЯ ЭКОСИСТЕМА УСЛУГ. <br />
+              MONSTER CORP — {t("header.upperRightText")} <br />
             </p>
             <p>
-              Первый цифровой медиакит для бизнеса — это ваш личный навигатор в
-              мире маркетинга, продакшна, брендинга, VFX и IT. <br />
-              Забудьте про бесконечные PDF — всё, что вам нужно, доступно онлайн
-              в один клик.
+              {t("header.upperRightDescTextOne")} <br />
+              {t("header.upperRightDescTextTwo")}
             </p>
           </AnimatedComponent>
         </div>
@@ -186,7 +184,8 @@ const SectionHeader: FC = () => {
                       }}
                       className="absolute -translate-y-[6.6rem] md:-translate-y-28 left-[-30px] md:left-[18px] bg-white px-4 py-2 rounded-xl text-black text-sm md:text-base"
                     >
-                      <div>Жмите и переключайте ролики</div>
+                      <div>{t("settings.form.btn.tabTutorial")}</div>
+                      {/* <div>Жмите и переключайте ролики</div> */}
                       <div className="tooltip-arrow"></div>
                     </div>
                   </AnimatedComponent>

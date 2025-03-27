@@ -6,7 +6,7 @@ import { uzLang } from "./lang/uz";
 import { kzLang } from "./lang/kz";
 import type { langsType } from "fusion/type";
 
-const lng = "ru";
+const lng = "en";
 // const lng = window.location.pathname.split("/")[1];
 
 i18n
@@ -54,7 +54,16 @@ function settings(lang: langsType) {
     case "ru":
       return {};
     case "en":
-      return {};
+      return {
+        form: {
+          btn: {
+            send: "Send",
+            orderProject: "Order a project",
+            tabTutorial: "Click and toggle clips",
+            leaveRequest: "Leave a request",
+          },
+        } as const,
+      };
     case "uz":
       return {};
     case "kz":

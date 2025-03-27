@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { useMediaQuery } from "usehooks-ts";
 import { CustomScroll } from "react-custom-scroll";
+import { useTranslation } from "react-i18next";
 import type { Swiper as SwiperType } from "swiper/types";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -33,6 +34,9 @@ const swiperProps = {
 };
 
 const Tariff: FC = () => {
+  const { t } = useTranslation();
+
+  // #region
   const swiperRef = useRef<SwiperType>();
   const swiperHeadRef = useRef<SwiperType>();
   const [realIndex, setRealIndex] = useState(0);
@@ -132,6 +136,7 @@ const Tariff: FC = () => {
       window.removeEventListener("scroll", handleScroll); // Очистка при unmount
     };
   }, [openAccordionKeys, swiperIndex]);
+  // #endregion
 
   return (
     <section className="relative xl:pt-[100px] pt-[50px] bg-[#f5f5f7]">
@@ -145,7 +150,7 @@ const Tariff: FC = () => {
             className="legend-3lvl"
             ref={tabPanelRef}
           >
-            Изучите тарифы.
+            {t("tariff.title")}
           </AnimatedComponent>
         </Container>
 
@@ -283,7 +288,7 @@ const Tariff: FC = () => {
                       {item.head.content ? <p className="mt-1 w-full h-full font-semibold text-center">{item.head.content}</p> : null}
 
                       <AnimatedComponent tag="button" whileHover={{ scale: 1.04 }} className="w-[192px] h-11 p-2 md:p-2.5 bg-[#0071e3] rounded-full text-base justify-center items-center gap-2.5 inline-flex mt-[40px] text-white">
-                        Оставить заявку
+                        {t('settings.form.btn.leaveRequest')}
                       </AnimatedComponent>
                     </div>
 

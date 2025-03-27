@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState, type FC } from "react";
+import { useEffect, useMemo, useState, type FC } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useMediaQuery } from "usehooks-ts";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 import {
   Select,
@@ -18,6 +19,7 @@ import { cn } from "helpers/style";
 import PhoneNumberInput from "./ui/phoneNumberInput";
 import { BASE_URL } from "data/hero";
 import { AnimatedComponent } from "./ui/animatedComponent";
+import type { TTranslation } from "fusion/type";
 
 const typesProjects = [
     { value: "CG", label: "CG" },
@@ -26,23 +28,23 @@ const typesProjects = [
     // { value: "Веб", label: "Веб" },
     // { value: "Продвижение", label: "Продвижение" },
   ],
-  typesBudget = [
-    { value: "1000", label: "От 1000$" },
-    { value: "3500", label: "От 3500$" },
-    { value: "7500", label: "От 7500$" },
+  typesBudget = (t: TTranslation) => [
+    { value: "1000", label: t("contactForm.form.budget.one") },
+    { value: "3500", label: t("contactForm.form.budget.two") },
+    { value: "7500", label: t("contactForm.form.budget.three") },
   ],
-  typesTerm = [
-    { value: "Вчера", label: "Вчера" },
-    { value: "Сейчас", label: "Сейчас" },
-    { value: "Завтра", label: "Завтра" },
+  typesTerm = (t: TTranslation) => [
+    { value: "Вчера", label: t("contactForm.form.iNeed.one") },
+    { value: "Сейчас", label: t("contactForm.form.iNeed.two") },
+    { value: "Завтра", label: t("contactForm.form.iNeed.three") },
   ];
 
-const selectData = [
-  "Рейтинги",
-  "Рекоммендация",
-  "Соц.сети",
-  "Давно знаю",
-  "По запросу",
+const selectData = (t: TTranslation) => [
+  t("contactForm.form.select.one"),
+  t("contactForm.form.select.two"),
+  t("contactForm.form.select.three"),
+  t("contactForm.form.select.four"),
+  t("contactForm.form.select.five"),
 ];
 
 const schema = yup.object().shape({
@@ -75,6 +77,9 @@ const inputStyle =
   "w-full h-16 bg-transparent border_solid p-5 placeholder:text-black placeholder:opacity-40 text-lg outline-none";
 
 const ContactForm: FC = () => {
+  const { t } = useTranslation();
+
+  // #region
   const [status, setStatus] = useState<"ok" | "no" | null>(null);
   const [loading, setLoading] = useState(false);
   const matches = useMediaQuery("(min-width: 650px)");
@@ -148,42 +153,32 @@ const ContactForm: FC = () => {
 
     return () => clearTimeout(time);
   }, [status]);
+  // #endregion
+
+  const typesBudgetFunRet = useMemo(() => typesBudget(t), [t]);
+  const typesTermFunRet = useMemo(() => typesTerm(t), [t]);
+  const selectDataFunRet = useMemo(() => selectData(t), [t]);
 
   return (
     <>
       <div
-        id={"contactform"}
+        id="contactform"
         className="relative grid xl:grid-cols-2 w-full bg-[#161617]"
       >
         {matches && (
           <div className="flex flex-col justify-between px-7 py-6 md:px-50 2xl:px-120 md:py-10 2xl:py-28 bg-[#161617]">
             <div>
               <span className="text-white text-[32px] md:text-[44px] leading-[39px] md:leading-[52px] xl:text-[56px] xl:leading-[64px]">
-                Заполните анкету, <br /> чтобы обсудить проект
+                {t("contactForm.titleOne")}
+                <br />
+                {t("contactForm.titleTwo")}
               </span>
-              <p
-                className={
-                  "text-balance text-white text-xl mt-5 w-full max-w-[900px] leading-normal"
-                }
-              >
-                Для того чтобы обеспечить максимальную релевантность и
-                эффективность обсуждения, просим вас заполнить небольшую анкету.
-                Ваши ответы помогут нам лучше понять ваши потребности и
-                ожидания, а также сделать проект более соответствующим вашим
-                интересам.
+              <p className="text-balance text-white text-xl mt-5 w-full max-w-[900px] leading-normal">
+                {t("contactForm.descriptionOne")}
               </p>
             </div>
           </div>
         )}
-        {/*<div className="mt-12 lg:mt-8">*/}
-        {/*  <div className="flex flex-col gap-2 md:gap-3 text-white">*/}
-        {/*    <span className="text-xl opacity-50">Для связи</span>*/}
-
-        {/*    <NavLink className="max-w-fit" to="mailto:hello@monstrcorp.com">*/}
-        {/*      <span className="text-2xl">hello@monstrcorp.com</span>*/}
-        {/*    </NavLink>*/}
-        {/*  </div>*/}
-        {/*</div>*/}
 
         {/* _*_*_*_ */}
 
@@ -194,25 +189,22 @@ const ContactForm: FC = () => {
           {!matches ? (
             <div>
               <span className="text-black mb-10 text-[32px] md:text-[44px] leading-[39px] md:leading-[52px] xl:text-[56px] xl:leading-[55px]">
-                Заполните анкету, <br /> чтобы обсудить проект
+                {t("contactForm.titleOne")}
+                <br />
+                {t("contactForm.titleTwo")}
               </span>
-              <p
-                className={
-                  "text-balance text-black text-xl mt-1 mb-5 w-full max-w-[900px] leading-normal"
-                }
-              >
-                Для того чтобы обеспечить максимальную релевантность и
-                эффективность обсуждения, просим вас заполнить небольшую анкету.
+              <p className="text-balance text-black text-xl mt-1 mb-5 w-full max-w-[900px] leading-normal">
+                {t("contactForm.descriptionTwo")}
               </p>
             </div>
           ) : null}
 
-          <span className="text-3xl">Ваши контакты</span>
+          <span className="text-3xl">{t("contactForm.form.yourContacts")}</span>
 
           <fieldset className="grid grid-cols-2 gap-6 mt-6 md:mt-9">
             <Input
               className={cn(inputStyle, "max-sm:col-span-2")}
-              placeholder="Имя"
+              placeholder={t("contactForm.form.name")}
               type="text"
               {...register("name")}
               error={!!errors.name?.message}
@@ -229,19 +221,21 @@ const ContactForm: FC = () => {
                 )}
               />
               <span className=" text-base absolute opacity-70">
-                с рабочим WhatsApp
+                {t("contactForm.form.whatsAppText")}
               </span>
             </div>
             <Input
               className={cn(inputStyle, "col-span-2 mt-2")}
-              placeholder="Почта"
+              placeholder={t("contactForm.form.email")}
               type="email"
               {...register("email")}
               error={!!errors.email?.message}
             />
           </fieldset>
 
-          <legend className="text-[22px] mt-7 md:mt-50">О проекте</legend>
+          <legend className="text-[22px] mt-7 md:mt-50">
+            {t("contactForm.form.aboutProject")}
+          </legend>
           <SelectBtn
             arr={typesProjects}
             name="type_project"
@@ -251,25 +245,31 @@ const ContactForm: FC = () => {
             type="checkbox"
           />
 
-          <legend className="text-[22px] mt-6">Бюджет</legend>
+          <legend className="text-[22px] mt-6">
+            {t("contactForm.form.budget.title")}
+          </legend>
           <SelectBtn
-            arr={typesBudget}
+            arr={typesBudgetFunRet}
             name="budget"
             register={register}
             watch={[watch("budget")]}
             error={!!errors.budget?.message}
           />
 
-          <legend className="text-[22px] mt-6">Мне нужно</legend>
+          <legend className="text-[22px] mt-6">
+            {t("contactForm.form.iNeed.title")}
+          </legend>
           <SelectBtn
-            arr={typesTerm}
+            arr={typesTermFunRet}
             name="term"
             register={register}
             watch={[watch("term")]}
             error={!!errors.term?.message}
           />
 
-          <legend className="text-[22px] mt-6">Описание проекта</legend>
+          <legend className="text-[22px] mt-6">
+            {t("contactForm.form.description.title")}
+          </legend>
 
           <textarea
             className={cn(
@@ -278,7 +278,7 @@ const ContactForm: FC = () => {
                 ? "border-[red]"
                 : "border-black"
             )}
-            placeholder="Ответьте на вопросы с 1 по 4"
+            placeholder={t("contactForm.form.description.placeholder")}
             {...register("projectDescription")}
           />
 
@@ -316,12 +316,12 @@ const ContactForm: FC = () => {
                           error && "text-[red] opacity-60"
                         )}
                       >
-                        Прикрепить файл
+                        {t("contactForm.form.file.title")}
                       </p>
                     )}
                     {file && (
                       <p className="text-lg text-nowrap">
-                        Выбран файл: {file?.name}
+                        {t("contactForm.form.file.fileSelected")}: {file?.name}
                       </p>
                     )}
                   </div>
@@ -333,16 +333,10 @@ const ContactForm: FC = () => {
                         error && "text-[red]"
                       )}
                     >
-                      <li>
-                        Как называется ваша компания и чем она занимается?
-                      </li>
-                      <li>
-                        Какую задачу вы хотите решить с помощью наших услуг?
-                      </li>
-                      <li>
-                        За какой срок и бюджет вы хотите получить результат?
-                      </li>
-                      <li>Когда вам позвонить?</li>
+                      <li>{t("contactForm.form.file.one")}</li>
+                      <li>{t("contactForm.form.file.two")}</li>
+                      <li>{t("contactForm.form.file.three")}</li>
+                      <li>{t("contactForm.form.file.four")}</li>
                     </ul>
                   )}
                 </label>
@@ -361,10 +355,12 @@ const ContactForm: FC = () => {
                     error ? "border-[red]" : "border-black"
                   )}
                 >
-                  <SelectValue placeholder="Откуда вы узнали про Monster?" />
+                  <SelectValue
+                    placeholder={t("contactForm.form.select.title")}
+                  />
                 </SelectTrigger>
                 <SelectContent className="rounded-none bg-white outline-none">
-                  {selectData.map((item) => (
+                  {selectDataFunRet.map((item) => (
                     <SelectItem
                       className="hover:bg-[#eee] [&[data-state='checked']]:bg-[#eee]"
                       key={item}
@@ -384,16 +380,14 @@ const ContactForm: FC = () => {
                 type="submit"
                 className="w-[240px] py-4 px-10 bg-black text-white rounded-full"
               >
-                Отправить
+                {t("settings.form.btn.send")}
               </button>
             </AnimatedComponent>
-            <p className="md:ml-6 text-sm text-black">
-              Нажимая кнопку вы соглашаетесь <br /> на обработку персональных
-              данных. {/*<br className="max-md:hidden" />*/}
-              {/*на обработку{" "}*/}
-              {/*<a className="text-black underline" href="">*/}
-              {/*  персональных данных*/}
-              {/*</a>*/}
+            <p className="md:ml-6 text-sm text-black max-w-[245px]">
+              {t("contactForm.form.policyOne")}{" "}
+              <span className="underline">
+                {t("contactForm.form.policyTwo")}
+              </span>
             </p>
           </fieldset>
         </form>
@@ -406,13 +400,13 @@ const ContactForm: FC = () => {
               className={`text-lg ss:text-3xl ${status === "ok" ? "text-[#3ab648]" : "text-[red]"}`}
             >
               {status === "ok"
-                ? "Заявка успешно отправлено"
-                : "Что то пошло не так"}
+                ? t("contactForm.form.modal.ok.one")
+                : t("contactForm.form.modal.ok.two")}
             </p>
             <p className="mt-1 ss:mt-3 text-sm ss:text-lg">
               {status === "ok"
-                ? "Ждите, пока с вами не свяжутся"
-                : "Повторите снова или попробуйте позже"}
+                ? t("contactForm.form.modal.no.one")
+                : t("contactForm.form.modal.no.two")}
             </p>
             <div className="flex justify-center mt-6">
               <button

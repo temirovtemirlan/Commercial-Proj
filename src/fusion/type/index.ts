@@ -1,3 +1,5 @@
+import type { TFunction } from "i18next";
+
 export type TimeZone =
   | "Asia/Bishkek"
   | "Asia/Dubai"
@@ -9,6 +11,7 @@ export type TimeZone =
 export type directionType = "CG" | "VFX" | "AI" | "WEBSITE";
 
 export type langsType = "uz" | "en" | "ru" | "kz";
+export type TTranslation = TFunction<"translation", undefined>;
 
 // * Tariff
 

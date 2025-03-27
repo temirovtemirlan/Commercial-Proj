@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import { useInView } from "react-intersection-observer";
+import { useTranslation } from "react-i18next";
 import { divideArray } from "helpers/array";
 import CompanyLogoCubeAnimation from "./CubeAnimationSwiper";
 import { AnimatedComponent } from "common/ui/animatedComponent";
@@ -37,6 +38,8 @@ const companyLogo = [
 
 const LogoCubeAnimation: FC = () => {
   const [ref, inView] = useInView({ threshold: 0.6, triggerOnce: true });
+  const { t } = useTranslation();
+
   const dataOne = divideArray(divideArray(companyLogo, 2)[0], 7);
   const dataTwo = divideArray(divideArray(companyLogo, 2)[1], 7);
 
@@ -50,7 +53,7 @@ const LogoCubeAnimation: FC = () => {
           tag="legend"
           className="legend-3lvl"
         >
-          Наши клиенты
+          {t("logoCubeAnimation.title")}
         </AnimatedComponent>
 
         <AnimatedComponent
@@ -59,8 +62,11 @@ const LogoCubeAnimation: FC = () => {
           transition={{ duration: 0.6 }}
           className="text-[32px] leading-9 md:leading-[36px] font-semibold text-balance"
         >
-          Мы гордимся работой с компаниями, <br className="hidden lg:block" />{" "}
-          которые задают правила игры на своих рынках.
+          <p
+            dangerouslySetInnerHTML={{
+              __html: t("logoCubeAnimation.description"),
+            }}
+          />
         </AnimatedComponent>
       </div>
 
