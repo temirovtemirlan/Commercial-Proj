@@ -8,18 +8,18 @@ import type { VideoFrameProps } from "components/VideoFrame";
 import { AnimatedComponent } from "common/ui/animatedComponent";
 import VideoPlayerHLSv2 from "./VideoPlayerHLSv2";
 
-import CHAK from "/BRANDINGL/CHAK.png";
-import COMETA from "/BRANDINGL/COMETA.png";
-import FRUNZE from "/BRANDINGL/FRUNZE.mp4";
-import HLEB from "/BRANDINGL/HLEB.mp4";
-import HTP from "/BRANDINGL/HTP.mp4";
-import KG from "/BRANDINGL/KG.mp4";
-import NB_FIT from "/BRANDINGL/NB_FIT.png";
-import PRESTIGE from "/BRANDINGL/PRESTIGE.png";
-import PROVOD from "/BRANDINGL/PROVOD.mp4";
-import SUNBOX from "/BRANDINGL/SUNBOX.png";
-import TICKET_RENDER from "/BRANDINGL/TICKET_RENDER.mp4";
-import TRUFFLE from "/BRANDINGL/TRUFFLE.mp4";
+import CHAK from "/BRANDING/CHAK.png";
+import COMETA from "/BRANDING/COMETA.png";
+import FRUNZE from "/BRANDING/FRUNZE.mp4";
+import HLEB from "/BRANDING/HLEB.mp4";
+import HTP from "/BRANDING/HTP.mp4";
+import KG from "/BRANDING/KG.mp4";
+import NB_FIT from "/BRANDING/NB_FIT.png";
+import PRESTIGE from "/BRANDING/PRESTIGE.png";
+import PROVOD from "/BRANDING/PROVOD.mp4";
+import SUNBOX from "/BRANDING/SUNBOX.png";
+import TICKET_RENDER from "/BRANDING/TICKET_RENDER.mp4";
+import TRUFFLE from "/BRANDING/TRUFFLE.mp4";
 
 interface MonsReelsProps {
   inView: boolean;
