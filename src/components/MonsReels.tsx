@@ -487,7 +487,7 @@ const brandingData = [
   "FRUNZE.webm",
   "HLEB.mp4",
   "HTP.mp4",
-  "KG.mp4",
+  "KG.webm",
   "NB_FIT.webp",
   "PRESTIGE.webp",
   "PROVOD.mp4",

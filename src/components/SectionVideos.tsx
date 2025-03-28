@@ -29,6 +29,7 @@ const SectionVideos: FC = () => {
             "https://storage.googleapis.com/mkit_monster_bucket/Poster/COLA_H.webp"
           }
           className="rounded-[28px] overflow-hidden h-full lg:h-auto"
+          isFullScreen={true}
         />
       </AnimatedComponent>
 
@@ -52,6 +53,7 @@ const SectionVideos: FC = () => {
               "https://storage.googleapis.com/mkit_monster_bucket/Poster/BAKAI_BUSINESS.webp"
             }
             className="h-full w-full rounded-[28px] overflow-hidden md:h-[900px] lg:h-[518px]"
+            isFullScreen={true}
           />
         </AnimatedComponent>
 
@@ -67,6 +69,7 @@ const SectionVideos: FC = () => {
             }
             posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/INTERSPORT_H.webp"
             className="w-full bg-[#f5f5f7] rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
+            isFullScreen={true}
           />
         </AnimatedComponent>
       </AnimatedComponent>
@@ -81,6 +84,7 @@ const SectionVideos: FC = () => {
           }
           posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/ORGANIC_2_H.webp"
           className="mt-5 rounded-[28px] h-[full] md:h-[900px] lg:h-auto overflow-hidden"
+          isFullScreen={true}
         />
       </AnimatedComponent>
       <div className="grid lg:grid-cols-2 gap-5 mt-5 h-full" ref={videoTwoRef}>
@@ -96,6 +100,7 @@ const SectionVideos: FC = () => {
             }
             posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/BMW_H.webp"
             className="w-full rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
+            isFullScreen={true}
           />
         </AnimatedComponent>
 
@@ -111,6 +116,7 @@ const SectionVideos: FC = () => {
             }
             posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/JOY_COMMERCIAL_H.webp"
             className="w-full bg-[#f5f5f7] rounded-[28px] overflow-hidden h-[400px] md:h-[518px]"
+            isFullScreen={true}
           />
         </AnimatedComponent>
       </div>
@@ -127,6 +133,7 @@ const SectionVideos: FC = () => {
           }
           posterSrc="https://storage.googleapis.com/mkit_monster_bucket/Poster/ENESAI.webp"
           className="h-[400px] lg:h-auto rounded-[28px] overflow-hidden"
+          isFullScreen={true}
         />
       </AnimatedComponent>
     </Container>
