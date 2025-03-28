@@ -1,9 +1,25 @@
-import type { CSSProperties, FC } from "react";
+import { useEffect, useState, type CSSProperties, type FC } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import { useMediaQuery } from "usehooks-ts";
+import { m } from "motion/react";
 import MonstriliCarousel from "components/MonstriliCarousel";
 import LazyVideoFrame from "components/LazyVideoFrame";
 import type { VideoFrameProps } from "components/VideoFrame";
 import { AnimatedComponent } from "common/ui/animatedComponent";
+import VideoPlayerHLSv2 from "./VideoPlayerHLSv2";
+
+import CHAK from "/BRANDINGL/CHAK.png";
+import COMETA from "/BRANDINGL/COMETA.png";
+import FRUNZE from "/BRANDINGL/FRUNZE.mp4";
+import HLEB from "/BRANDINGL/HLEB.mp4";
+import HTP from "/BRANDINGL/HTP.mp4";
+import KG from "/BRANDINGL/KG.mp4";
+import NB_FIT from "/BRANDINGL/NB_FIT.png";
+import PRESTIGE from "/BRANDINGL/PRESTIGE.png";
+import PROVOD from "/BRANDINGL/PROVOD.mp4";
+import SUNBOX from "/BRANDINGL/SUNBOX.png";
+import TICKET_RENDER from "/BRANDINGL/TICKET_RENDER.mp4";
+import TRUFFLE from "/BRANDINGL/TRUFFLE.mp4";
 
 interface MonsReelsProps {
   inView: boolean;
@@ -479,6 +495,21 @@ const AIReelData = [
   },
 ];
 
+const brandingData = [
+  CHAK,
+  COMETA,
+  FRUNZE,
+  HLEB,
+  HTP,
+  KG,
+  NB_FIT,
+  PRESTIGE,
+  PROVOD,
+  SUNBOX,
+  TICKET_RENDER,
+  TRUFFLE,
+];
+
 function videoCreaterComponents(data: VideoFrameProps[]) {
   return data?.map((el, index) => (
     <div key={index} className={"overflow-hidden"} style={carouselStyle}>
@@ -487,7 +518,33 @@ function videoCreaterComponents(data: VideoFrameProps[]) {
   ));
 }
 
+const staggeredAnimation = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: index * 0.15,
+      duration: 0.4,
+    },
+  }),
+};
+
 const MonsReels: FC<MonsReelsProps> = ({ inView }) => {
+  const [visibleCount, setVisibleCount] = useState(6);
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
+  useEffect(() => {
+    setVisibleCount(isMobile ? 4 : 6);
+  }, [isMobile]);
+
+  const handleShowMore = () => {
+    setVisibleCount((prev) => prev + (isMobile ? 2 : 3));
+  };
+
+  const isAllVisible = visibleCount >= brandingData.length;
+  const animatedLimit = isMobile ? 4 : 6;
+
   return (
     <Tabs className="Mosnreel-tabs">
       <AnimatedComponent
@@ -502,9 +559,9 @@ const MonsReels: FC<MonsReelsProps> = ({ inView }) => {
           <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
             AIGC REEL
           </Tab>
-          {/*<Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">*/}
-          {/*  DESIGN BRANDING*/}
-          {/*</Tab>*/}
+          <Tab className="tab__delivery_panels whitespace-nowrap px-6 py-2.5">
+            BRANDING
+          </Tab>
         </TabList>
       </AnimatedComponent>
 
@@ -529,8 +586,58 @@ const MonsReels: FC<MonsReelsProps> = ({ inView }) => {
           inView={inView}
         />
       </TabPanel>
+
+      <TabPanel>
+        <div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-[30px]">
+            {brandingData.slice(0, visibleCount).map((item, index) =>
+              index < animatedLimit ? (
+                <m.div
+                  key={index}
+                  custom={index}
+                  initial="hidden"
+                  animate="visible"
+                  variants={staggeredAnimation}
+                >
+                  <Card src={item} key={index} />
+                </m.div>
+              ) : (
+                <Card src={item} key={index} />
+              )
+            )}
+          </div>
+
+          <div className="flex justify-center mt-8">
+            {!isAllVisible && (
+              <button
+                onClick={handleShowMore}
+                className="bg-[#0171e3] text-white rounded-full px-5 py-2 w-full max-w-[200px] md:text-lg"
+              >
+                Показать ещё
+              </button>
+            )}
+          </div>
+        </div>
+      </TabPanel>
     </Tabs>
   );
 };
 
 export default MonsReels;
+
+const isVideo = (src: string): boolean =>
+  [".mp4", ".mov"].some((ext) => src.toLowerCase().includes(ext));
+
+const Card: FC<{ src: string }> = ({ src }) => (
+  <div className="w-full rounded-xl overflow-hidden">
+    {isVideo(src) ? (
+      <VideoPlayerHLSv2 src={src} posterSrc="" autoPlay playsInline loop />
+    ) : (
+      <img
+        className="w-full h-full pointer-events-none"
+        src={src}
+        alt="BRANDING photo"
+      />
+    )}
+  </div>
+);

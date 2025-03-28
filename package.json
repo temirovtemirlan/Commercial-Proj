@@ -23,6 +23,7 @@
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
     "hls.js": "^1.5.20",
+    "lottie-react": "^2.4.1",
     "lucide-react": "^0.440.0",
     "motion": "^12.4.11",
     "react": "^18.3.1",

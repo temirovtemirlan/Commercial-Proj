@@ -47,7 +47,7 @@ const selectData = [
 
 const schema = yup.object().shape({
   name: yup.string().required("Пожалуйста, введите ваше имя"),
-  phone: yup.string().required().min(3),
+  phone: yup.string().required().min(5),
   email: yup
     .string()
     .required("Пожалуйста, введите адрес электронной почты")
@@ -149,10 +149,13 @@ const ContactForm: FC = () => {
     return () => clearTimeout(time);
   }, [status]);
 
+  console.log("QQQ: ", watch("phone"));
+  console.log("ERROR: ", errors.phone);
+
   return (
     <>
       <div
-        id={"contactform"}
+        id="contactform"
         className="relative grid xl:grid-cols-2 w-full bg-[#161617]"
       >
         {matches && (
@@ -161,11 +164,7 @@ const ContactForm: FC = () => {
               <span className="text-white text-[32px] md:text-[44px] leading-[39px] md:leading-[52px] xl:text-[56px] xl:leading-[64px]">
                 Заполните анкету, <br /> чтобы обсудить проект
               </span>
-              <p
-                className={
-                  "text-balance text-white text-xl mt-5 w-full max-w-[900px] leading-normal"
-                }
-              >
+              <p className="text-balance text-white text-xl mt-5 w-full max-w-[900px] leading-normal">
                 Для того чтобы обеспечить максимальную релевантность и
                 эффективность обсуждения, просим вас заполнить небольшую анкету.
                 Ваши ответы помогут нам лучше понять ваши потребности и
@@ -175,15 +174,6 @@ const ContactForm: FC = () => {
             </div>
           </div>
         )}
-        {/*<div className="mt-12 lg:mt-8">*/}
-        {/*  <div className="flex flex-col gap-2 md:gap-3 text-white">*/}
-        {/*    <span className="text-xl opacity-50">Для связи</span>*/}
-
-        {/*    <NavLink className="max-w-fit" to="mailto:hello@monstrcorp.com">*/}
-        {/*      <span className="text-2xl">hello@monstrcorp.com</span>*/}
-        {/*    </NavLink>*/}
-        {/*  </div>*/}
-        {/*</div>*/}
 
         {/* _*_*_*_ */}
 
@@ -196,11 +186,7 @@ const ContactForm: FC = () => {
               <span className="text-black mb-10 text-[32px] md:text-[44px] leading-[39px] md:leading-[52px] xl:text-[56px] xl:leading-[55px]">
                 Заполните анкету, <br /> чтобы обсудить проект
               </span>
-              <p
-                className={
-                  "text-balance text-black text-xl mt-1 mb-5 w-full max-w-[900px] leading-normal"
-                }
-              >
+              <p className="text-balance text-black text-xl mt-1 mb-5 w-full max-w-[900px] leading-normal">
                 Для того чтобы обеспечить максимальную релевантность и
                 эффективность обсуждения, просим вас заполнить небольшую анкету.
               </p>
@@ -388,12 +374,10 @@ const ContactForm: FC = () => {
               </button>
             </AnimatedComponent>
             <p className="md:ml-6 text-sm text-black">
-              Нажимая кнопку вы соглашаетесь <br /> на обработку персональных
-              данных. {/*<br className="max-md:hidden" />*/}
-              {/*на обработку{" "}*/}
-              {/*<a className="text-black underline" href="">*/}
-              {/*  персональных данных*/}
-              {/*</a>*/}
+              Нажимая кнопку вы соглашаетесь <br /> на обработку{" "}
+              <a className="underline" href="">
+                персональных данных.
+              </a>
             </p>
           </fieldset>
         </form>

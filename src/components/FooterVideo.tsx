@@ -41,12 +41,13 @@ const FooterVideo: FC<FooterVideoProps> = () => {
   let containerStyle;
 
   if (isMobile) {
-    containerStyle = "3000px";
+    containerStyle = "1000px";
   } else if (isTablet) {
     containerStyle = "1500px";
   } else if (isDesktop) {
     containerStyle = "3000px";
   }
+  console.log("containerStyle: ", containerStyle);
 
   return (
     <div
