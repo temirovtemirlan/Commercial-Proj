@@ -14,6 +14,9 @@ export interface VideoFrameProps {
   className?: string;
   title?: string;
   isFullScreen?: boolean;
+  autoPlay?: boolean;
+  playsInline?: boolean;
+  loop?: boolean;
 }
 
 const VideoFrame: FC<VideoFrameProps> = ({
@@ -24,6 +27,9 @@ const VideoFrame: FC<VideoFrameProps> = ({
   className,
   title,
   isFullScreen,
+  autoPlay,
+  playsInline = false,
+  loop = false,
 }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -90,8 +96,10 @@ const VideoFrame: FC<VideoFrameProps> = ({
         className="w-full h-full object-cover"
         width={width}
         height={height}
-        playsInline
+        playsInline={playsInline}
         preload="none"
+        autoPlay={autoPlay}
+        loop={loop}
       >
         {typeof src === "string" ? (
           <source src={src.trim()} type={getVideoType(src)} />

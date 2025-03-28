@@ -4,22 +4,8 @@ import { useMediaQuery } from "usehooks-ts";
 import { m } from "motion/react";
 import MonstriliCarousel from "components/MonstriliCarousel";
 import LazyVideoFrame from "components/LazyVideoFrame";
-import type { VideoFrameProps } from "components/VideoFrame";
+import VideoFrame, { VideoFrameProps } from "components/VideoFrame";
 import { AnimatedComponent } from "common/ui/animatedComponent";
-import VideoPlayerHLSv2 from "./VideoPlayerHLSv2";
-
-import CHAK from "/BRANDING/CHAK.png";
-import COMETA from "/BRANDING/COMETA.png";
-import FRUNZE from "/BRANDING/FRUNZE.mp4";
-import HLEB from "/BRANDING/HLEB.mp4";
-import HTP from "/BRANDING/HTP.mp4";
-import KG from "/BRANDING/KG.mp4";
-import NB_FIT from "/BRANDING/NB_FIT.png";
-import PRESTIGE from "/BRANDING/PRESTIGE.png";
-import PROVOD from "/BRANDING/PROVOD.mp4";
-import SUNBOX from "/BRANDING/SUNBOX.png";
-import TICKET_RENDER from "/BRANDING/TICKET_RENDER.mp4";
-import TRUFFLE from "/BRANDING/TRUFFLE.mp4";
 
 interface MonsReelsProps {
   inView: boolean;
@@ -496,18 +482,18 @@ const AIReelData = [
 ];
 
 const brandingData = [
-  CHAK,
-  COMETA,
-  FRUNZE,
-  HLEB,
-  HTP,
-  KG,
-  NB_FIT,
-  PRESTIGE,
-  PROVOD,
-  SUNBOX,
-  TICKET_RENDER,
-  TRUFFLE,
+  "CHAK.webp",
+  "COMETA.webp",
+  "FRUNZE.mp4",
+  "HLEB.mp4",
+  "HTP.mp4",
+  "KG.mp4",
+  "NB_FIT.webp",
+  "PRESTIGE.webp",
+  "PROVOD.mp4",
+  "SUNBOX.webp",
+  "TICKET_RENDER.mp4",
+  "TRUFFLE.mp4",
 ];
 
 function videoCreaterComponents(data: VideoFrameProps[]) {
@@ -626,17 +612,23 @@ const MonsReels: FC<MonsReelsProps> = ({ inView }) => {
 export default MonsReels;
 
 const isVideo = (src: string): boolean =>
-  [".mp4", ".mov"].some((ext) => src.toLowerCase().includes(ext));
+  [".mp4", ".mov", "webm"].some((ext) => src.toLowerCase().includes(ext));
 
 const Card: FC<{ src: string }> = ({ src }) => (
   <div className="w-full rounded-xl overflow-hidden">
     {isVideo(src) ? (
-      <VideoPlayerHLSv2 src={src} posterSrc="" autoPlay playsInline loop />
+      <VideoFrame
+        src={`https://storage.googleapis.com/mkit_monster_bucket/Video/BRANDING/${src}`}
+        posterSrc=""
+        autoPlay
+        playsInline
+        loop
+      />
     ) : (
       <img
         className="w-full h-full pointer-events-none"
-        src={src}
-        alt="BRANDING photo"
+        src={`https://storage.googleapis.com/mkit_monster_bucket/Video/BRANDING/${src}`}
+        alt={src}
       />
     )}
   </div>
