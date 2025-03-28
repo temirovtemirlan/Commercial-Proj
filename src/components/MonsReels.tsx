@@ -484,7 +484,7 @@ const AIReelData = [
 const brandingData = [
   "CHAK.webp",
   "COMETA.webp",
-  "FRUNZE.mp4",
+  "FRUNZE.webm",
   "HLEB.mp4",
   "HTP.mp4",
   "KG.mp4",
