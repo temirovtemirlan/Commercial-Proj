@@ -3,11 +3,25 @@ import { AnimatePresence, motion } from "motion/react";
 import { NavLink } from "react-router-dom";
 import { cn } from "helpers/style";
 
-const btnStl =
-  "inline-flex justify-center items-center w-12 h-12 bg-white rounded-full shadow-[0px_8px_16px_0px_rgba(0,0,0,0.06)]";
-const scrollThreshold = 1000;
-
 const icons = [
+  {
+    icon: (
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M6.62 10.79C8.06 13.62 10.38 15.93 13.21 17.38L15.41 15.18C15.68 14.91 16.08 14.82 16.43 14.94C17.55 15.31 18.76 15.51 20 15.51C20.55 15.51 21 15.96 21 16.51V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z"
+          fill="black"
+        />
+      </svg>
+    ),
+    name: "Phone",
+    link: "tel:+996 509 711 811",
+  },
   {
     icon: (
       <svg
@@ -46,6 +60,10 @@ const icons = [
   },
 ];
 
+const btnStl =
+  "inline-flex justify-center items-center w-12 h-12 bg-white rounded-full shadow-[0px_8px_16px_0px_rgba(0,0,0,0.06)]";
+const scrollThreshold = 1000;
+
 // prettier-ignore
 const containerVariants = {
   open: { transition: { staggerChildren: 0.1, staggerDirection: -1 } },
@@ -62,8 +80,6 @@ const FloatingActionButtons: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const onOpenHandler = () => setIsOpen(false);
-
-  // #region Scroll To
   const onScrollTo = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   useEffect(() => {
@@ -81,71 +97,88 @@ const FloatingActionButtons: FC = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [scrollThreshold]);
-  // #endregion
+
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    // Проверка на сенсорное устройство
+    const checkIfTouchDevice = () => {
+      setIsTouchDevice(window.matchMedia("(pointer: coarse)").matches);
+    };
+
+    // Проверка при монтировании компонента
+    checkIfTouchDevice();
+
+    // Прослушивание изменений при изменении типа устройства
+    window.addEventListener("resize", checkIfTouchDevice);
+
+    return () => {
+      window.removeEventListener("resize", checkIfTouchDevice);
+    };
+  }, []);
 
   return (
     <div className="fixed right-8 ss:right-10 bottom-[50px] ss:bottom-[100px] z-[10]">
       <div className="flex flex-col gap-4">
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial="closed"
-              animate="open"
-              exit="closed"
-              variants={containerVariants}
-              className="flex flex-col items-center space-y-3"
-            >
-              {icons.map((item, index) => (
-                <motion.button
-                  key={index}
-                  className={cn(btnStl)}
-                  variants={itemVariants}
-                  onClick={onOpenHandler}
-                >
-                  <NavLink to={item?.link} target="_blank">
-                    {item.icon}
-                  </NavLink>
-                </motion.button>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {isScrollTo && (
-          <button
-            className={cn(btnStl)}
-            onClick={() => setIsOpen((prev) => !prev)}
-          >
-            {isOpen ? (
-              <span className="rotate-180">
-                <Arrow />
-              </span>
-            ) : (
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+        <div
+          className="flex flex-col gap-4"
+          onMouseEnter={!isTouchDevice ? () => setIsOpen(true) : undefined}
+          onMouseLeave={!isTouchDevice ? () => setIsOpen(false) : undefined}
+        >
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                initial="closed"
+                animate="open"
+                exit="closed"
+                variants={containerVariants}
+                className="flex flex-col items-center space-y-3"
               >
-                <path
-                  d="M11.3342 7.20358C11.3342 6.97291 11.3342 6.85758 11.3689 6.75491C11.4696 6.45624 11.7356 6.34091 12.0022 6.21958C12.3009 6.08291 12.4502 6.01491 12.5989 6.00291C12.7669 5.98958 12.9356 6.02558 13.0796 6.10624C13.2702 6.21291 13.4036 6.41691 13.5396 6.58224C14.1682 7.34624 14.4829 7.72824 14.5976 8.14891C14.6909 8.48891 14.6909 8.84491 14.5976 9.18424C14.4302 9.79891 13.9002 10.3136 13.5076 10.7909C13.3069 11.0342 13.2062 11.1562 13.0796 11.2276C12.9331 11.3088 12.7658 11.3448 12.5989 11.3309C12.4502 11.3189 12.3009 11.2509 12.0016 11.1142C11.7349 10.9929 11.4696 10.8776 11.3689 10.5789C11.3342 10.4762 11.3342 10.3609 11.3342 10.1302V7.20358ZM4.66758 7.20358C4.66758 6.91291 4.65958 6.65224 4.42492 6.44824C4.33958 6.37424 4.22625 6.32291 4.00025 6.21958C3.70092 6.08358 3.55158 6.01491 3.40292 6.00291C2.95825 5.96691 2.71892 6.27091 2.46292 6.58291C1.83358 7.34624 1.51892 7.72824 1.40358 8.14958C1.31079 8.48845 1.31079 8.84604 1.40358 9.18491C1.57158 9.79891 2.10225 10.3142 2.49425 10.7909C2.74158 11.0909 2.97825 11.3649 3.40292 11.3309C3.55158 11.3189 3.70092 11.2509 4.00025 11.1142C4.22692 11.0116 4.33958 10.9596 4.42492 10.8856C4.65958 10.6816 4.66758 10.4209 4.66758 10.1309V7.20358Z"
-                  stroke="black"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M3.33398 6C3.33398 3.79067 5.42332 2 8.00065 2C10.578 2 12.6673 3.79067 12.6673 6M12.6673 11.3333V11.8667C12.6673 13.0447 11.474 14 10.0007 14H8.66732"
-                  stroke="black"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+                {icons.map((item, index) => (
+                  <motion.button
+                    key={index}
+                    className={cn(btnStl)}
+                    variants={itemVariants}
+                    onClick={onOpenHandler}
+                  >
+                    <NavLink
+                      to={item?.link}
+                      target={item.link.includes("https") ? "_blank" : "_self"}
+                    >
+                      {item.icon}
+                    </NavLink>
+                  </motion.button>
+                ))}
+              </motion.div>
             )}
-          </button>
-        )}
+          </AnimatePresence>
+
+          {isScrollTo && (
+            <button
+              className={cn(btnStl)}
+              onClick={() => setIsOpen((prev) => !prev)}
+            >
+              {isOpen ? (
+                <span className="rotate-180">
+                  <Arrow />
+                </span>
+              ) : (
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.62 10.79C8.06 13.62 10.38 15.93 13.21 17.38L15.41 15.18C15.68 14.91 16.08 14.82 16.43 14.94C17.55 15.31 18.76 15.51 20 15.51C20.55 15.51 21 15.96 21 16.51V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z"
+                    fill="black"
+                  />
+                </svg>
+              )}
+            </button>
+          )}
+        </div>
 
         <div className="h-12">
           <AnimatePresence>

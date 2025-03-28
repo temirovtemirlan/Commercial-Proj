@@ -49,7 +49,7 @@ const selectData = (t: TTranslation) => [
 
 const schema = yup.object().shape({
   name: yup.string().required("Пожалуйста, введите ваше имя"),
-  phone: yup.string().required().min(3),
+  phone: yup.string().required().min(5),
   email: yup
     .string()
     .required("Пожалуйста, введите адрес электронной почты")

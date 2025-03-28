@@ -132,6 +132,7 @@ const Directions: FC = () => {
             nextEl: ".nextButton393919",
             prevEl: ".prevButton393218",
           }}
+          lazyPreloadPrevNext={6}
         >
           {directionsDataFunRet?.map((item, index) => (
             <SwiperSlide key={index}>

@@ -45,3 +45,11 @@
 .scroll-style::-webkit-scrollbar-track {
   background-color: #ffffff;
 }
+
+
+// добавил чтобы когда выбрал из автофилла — не менялся цвет
+input:-webkit-autofill {
+  background-color: transparent !important; /* Или укажите нужный цвет */
+  box-shadow: 0 0 0px 1000px #86efac inset !important; /* Подстраивайте под ваш фон */
+  color: black !important; /* Если нужно изменить цвет текста */
+}
