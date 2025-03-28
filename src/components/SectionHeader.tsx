@@ -49,20 +49,20 @@ const SectionHeader: FC = () => {
 
       // Анимация перемещения стиля между табами
       await controls.start({
-        x: "120%", // Перемещаем выделение на второй таб
-        transition: { duration: 0.5 },
+        x: "114%", // Перемещаем выделение на второй таб
+        transition: { duration: 0.7 },
       });
       await controls.start({
         x: "0%", // Возвращаемся на первый таб
-        transition: { duration: 0.5 },
+        transition: { duration: 0.7 },
       });
       await controls.start({
-        x: "120%", // Опять на второй таб
-        transition: { duration: 0.5 },
+        x: "114%", // Опять на второй таб
+        transition: { duration: 0.7 },
       });
       await controls.start({
         x: "0%", // Окончательное возвращение на первый таб
-        transition: { duration: 0.5 },
+        transition: { duration: 0.7 },
       });
 
       // После завершения анимации
