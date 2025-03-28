@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { type FC, useEffect, useState } from "react";
 import { domAnimation, LazyMotion } from "motion/react";
 import { useInView } from "react-intersection-observer";
 
@@ -31,12 +31,6 @@ const App: FC = () => {
   });
 
   const [isScrollTo, setIsScrollTo] = useState(false);
-  // const [isOpen, setIsOpen] = useState(false);
-
-  // const onOpenHandler = () => setIsOpen(false);
-
-  // #region Scroll To
-  // const onScrollTo = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -144,7 +138,7 @@ const App: FC = () => {
           </Container>
         </LazyLoadLayout>
 
-        <div className="relative">
+        <div className="relative bg-[#161617]">
           <div className="sticky top-0">
             <div className="relative">
               <FooterVideo />
@@ -159,7 +153,7 @@ const App: FC = () => {
             }}
           />
 
-          <div className="sticky top-0" draggable="false">
+          <div className="sticky top-0">
             <ContactForm />
           </div>
         </div>
