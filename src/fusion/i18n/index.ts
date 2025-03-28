@@ -5,6 +5,7 @@ import { enLang } from "./lang/en";
 import { uzLang } from "./lang/uz";
 import { kzLang } from "./lang/kz";
 import type { langsType } from "fusion/type";
+import { DEFAULT_LANG } from "data/hero";
 
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
@@ -38,7 +39,7 @@ i18n
         },
       },
     },
-    fallbackLng: "ru",
+    fallbackLng: DEFAULT_LANG,
 
     interpolation: {
       escapeValue: false, // react already safes from xss => https://www.i18next.com/translation-function/interpolation#unescape

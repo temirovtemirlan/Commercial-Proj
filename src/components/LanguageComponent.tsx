@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import i18next from "i18next";
 import { cn } from "helpers/style";
 import type { langsType } from "fusion/type";
-import { LANG_STORAGE } from "data/hero";
+import { DEFAULT_LANG, LANG_STORAGE } from "data/hero";
 
 // prettier-ignore
 const containerVariants = {
@@ -30,7 +30,7 @@ const langData: ILangData[] = [
 
 const LanguageComponent: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const langStorage = localStorage.getItem(LANG_STORAGE) || "ru";
+  const langStorage = localStorage.getItem(LANG_STORAGE) || DEFAULT_LANG;
   const [langSelect, setLangSelect] = useState(langStorage as langsType);
 
   const onOpenHandler = (lang: langsType) => {

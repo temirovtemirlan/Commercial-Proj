@@ -7,7 +7,7 @@ import { store } from "store";
 import "styles/index.scss";
 import "fusion/i18n/index.ts";
 import type { langsType } from "fusion/type";
-import { LANG_STORAGE } from "data/hero";
+import { DEFAULT_LANG, LANG_STORAGE } from "data/hero";
 
 const getCountry = (countryCode: string): langsType => {
   switch (countryCode) {
@@ -20,7 +20,7 @@ const getCountry = (countryCode: string): langsType => {
     case "us":
       return "en";
     default:
-      return "ru";
+      return DEFAULT_LANG;
   }
 };
 
