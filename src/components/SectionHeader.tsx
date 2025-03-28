@@ -43,18 +43,6 @@ const SectionHeader: FC = () => {
 
   return (
     <>
-      {/* <AnimatePresence>
-        {langInView && (
-          <motion.div
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <LanguageComponent />
-          </motion.div>
-        )}
-      </AnimatePresence> */}
-
       <Container className="py-[70px]">
         <div className="flex justify-between xl:flex-row flex-col gap-y-6 gap-x-[200px]">
           {/* <div className="flex justify-between xl:flex-row flex-col gap-y-6 gap-x-[200px]"> */}
