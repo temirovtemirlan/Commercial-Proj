@@ -2,6 +2,8 @@ import { useEffect, useState, type CSSProperties, type FC } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { useMediaQuery } from "usehooks-ts";
 import { m } from "motion/react";
+import { useTranslation } from "react-i18next";
+
 import MonstriliCarousel from "components/MonstriliCarousel";
 import LazyVideoFrame from "components/LazyVideoFrame";
 import type { VideoFrameProps } from "components/VideoFrame";
@@ -531,6 +533,7 @@ function videoCreaterComponents(data: VideoFrameProps[]) {
 }
 
 const MonsReels: FC<MonsReelsProps> = ({ inView }) => {
+  const { t } = useTranslation();
   const [visibleCount, setVisibleCount] = useState(6);
   const isMobile = useMediaQuery("(max-width: 768px)");
 
@@ -612,7 +615,7 @@ const MonsReels: FC<MonsReelsProps> = ({ inView }) => {
                 onClick={handleShowMore}
                 className="bg-[#0171e3] text-white rounded-full px-5 py-2 w-full max-w-[200px] md:text-lg"
               >
-                Показать ещё
+                {t("settings.form.btn.showMore")}
               </button>
             )}
           </div>

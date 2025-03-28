@@ -56,6 +56,7 @@ function settings(lang: langsType) {
             orderProject: "Заказать проект",
             tabTutorial: "Нажимайте и переключайте клипы",
             leaveRequest: "Оставить заявку",
+            showMore: "Показать ещё",
           },
         },
       };
@@ -67,6 +68,7 @@ function settings(lang: langsType) {
             orderProject: "Order a project",
             tabTutorial: "Click and toggle clips",
             leaveRequest: "Leave a request",
+            showMore: "Show more",
           },
         },
       };
@@ -78,6 +80,7 @@ function settings(lang: langsType) {
             orderProject: "Loyihani buyurtma qiling",
             tabTutorial: "Kliplarni bosing va almashtiring",
             leaveRequest: "So'rov qoldiring",
+            showMore: "Ko'proq ko'rsatish",
           },
         },
       };
@@ -89,6 +92,7 @@ function settings(lang: langsType) {
             orderProject: "Жобаға тапсырыс беріңіз",
             tabTutorial: "Клиптерді нұқыңыз және ауыстырыңыз",
             leaveRequest: "Өтініш қалдыру",
+            showMore: "Көбірек көрсету",
           },
         },
       };
@@ -100,6 +104,7 @@ function settings(lang: langsType) {
             orderProject: "Заказать проект",
             tabTutorial: "Нажимайте и переключайте клипы",
             leaveRequest: "Оставить заявку",
+            showMore: "Показать ещё",
           },
         },
       };
