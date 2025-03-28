@@ -1,20 +1,20 @@
 import { type FC, useEffect, useState } from "react";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 import { useMediaQuery } from "usehooks-ts";
-import { motion } from "motion/react";
+import { motion, useAnimation } from "motion/react";
 import { useTranslation } from "react-i18next";
-// import { useInView } from "react-intersection-observer";
-
 import VideoPlayerHLSv2 from "components/VideoPlayerHLSv2";
 import Container from "./Container";
 import { AnimatedComponent } from "common/ui/animatedComponent";
-// import LanguageComponent from "./LanguageComponent";
+import { cn } from "helpers/style";
+
+const tabStyle =
+  "relative whitespace-nowrap px-6 py-2.5 z-10 cursor-pointer focus:outline-none";
+const tabSelectedStyle = "bg-[#0171e3] text-white rounded-[100px]";
 
 const SectionHeader: FC = () => {
-  const matches = useMediaQuery("(min-width: 650px)");
-  const [showHint, setShowHint] = useState(true);
-  // const [langRef, langInView] = useInView();
   const { t } = useTranslation();
+  const matches = useMediaQuery("(min-width: 650px)");
 
   const [aiGCVideo, setAIGCVideo] = useState<string>(
     matches
@@ -41,23 +41,42 @@ const SectionHeader: FC = () => {
     );
   }, [matches]);
 
+  const controls = useAnimation();
+  const [isAnimating, setIsAnimating] = useState(true);
+
+  useEffect(() => {
+    const sequence = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      // Анимация перемещения стиля между табами
+      await controls.start({
+        x: "114%", // Перемещаем выделение на второй таб
+        transition: { duration: 0.7 },
+      });
+      await controls.start({
+        x: "0%", // Возвращаемся на первый таб
+        transition: { duration: 0.7 },
+      });
+      await controls.start({
+        x: "114%", // Опять на второй таб
+        transition: { duration: 0.7 },
+      });
+      await controls.start({
+        x: "0%", // Окончательное возвращение на первый таб
+        transition: { duration: 0.7 },
+      });
+
+      // После завершения анимации
+      setIsAnimating(false);
+    };
+
+    sequence();
+  }, [controls]);
+
   return (
     <>
-      {/* <AnimatePresence>
-        {langInView && (
-          <motion.div
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <LanguageComponent />
-          </motion.div>
-        )}
-      </AnimatePresence> */}
-
       <Container className="py-[70px]">
         <div className="flex justify-between xl:flex-row flex-col gap-y-6 gap-x-[200px]">
-          {/* <div className="flex justify-between xl:flex-row flex-col gap-y-6 gap-x-[200px]"> */}
           <AnimatedComponent
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -133,10 +152,7 @@ const SectionHeader: FC = () => {
       </Container>
 
       {/* Showreel */}
-      <section
-        className="text-center"
-        //  ref={langRef}
-      >
+      <section className="text-center">
         <Tabs className="Monstr-Showreel">
           <TabPanel>
             <VideoPlayerHLSv2
@@ -166,44 +182,26 @@ const SectionHeader: FC = () => {
             animate={{ y: 0, scale: 1 }}
             transition={{ duration: 0.9, ease: "backOut", delay: 0.2 }}
           >
-            <TabList className="flex p-[5px] bg-white rounded-full my-first-tab-step">
-              <Tab className="relative tab__delivery_panels whitespace-nowrap px-6 py-2.5">
+            <TabList className="relative flex p-[5px] bg-white rounded-full my-first-tab-step overflow-hidden">
+              <Tab
+                className={cn(tabStyle)}
+                selectedClassName={cn(!isAnimating && tabSelectedStyle)}
+              >
                 CG REEL
-                {/* _*_ */}
-                {showHint && (
-                  <AnimatedComponent
-                    initial={{ y: 100, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 1, delay: 1 }}
-                    className="relative z-[-1] cursor-auto"
-                  >
-                    <div
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        e.preventDefault();
-                      }}
-                      className="absolute -translate-y-[6.6rem] md:-translate-y-28 left-[-30px] md:left-[18px] bg-white px-4 py-2 rounded-xl text-black text-sm md:text-base"
-                    >
-                      <div>{t("settings.form.btn.tabTutorial")}</div>
-                      {/* <div>Жмите и переключайте ролики</div> */}
-                      <div className="tooltip-arrow"></div>
-                    </div>
-                  </AnimatedComponent>
-                )}
               </Tab>
               <Tab
-                className="relative tab__delivery_panels whitespace-nowrap px-6 py-2.5"
-                onClick={() => setShowHint(false)}
+                className={cn(tabStyle)}
+                selectedClassName={cn(!isAnimating && tabSelectedStyle)}
               >
                 AIGC REEL
-                {showHint && (
-                  <div className="absolute top-0 left-[34%]">
-                    <div className="relative w-[44px] h-[44px] flex justify-center items-center">
-                      <div className="w-[26px] h-[26px] rounded-full bg-[#0171e3cc] shadow-[0_0_10px_4px_rgba(1,113,227,0.6)] pulse-ring"></div>
-                    </div>
-                  </div>
-                )}
               </Tab>
+
+              {isAnimating && (
+                <motion.div
+                  className="absolute top-[5px] left-[5px] w-[112px] h-11 bg-[#0171e3] rounded-full pointer-events-none"
+                  animate={controls}
+                />
+              )}
             </TabList>
           </motion.div>
         </Tabs>

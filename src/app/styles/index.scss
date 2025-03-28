@@ -299,22 +299,67 @@ body {
   transition: height 0.3s cubic-bezier(0, 0, 0, 1);
 }
 
-// * Phone Number
-.react-tel-input .flag-dropdown {
-  display: none !important;
+// #region // * Phone Number
+.tel-input-box-error {
+  border: 1px solid red !important;
 }
+
+.tel-input-box-no-error {
+  border: 1px solid #2d2d2d !important;
+}
+
+.react-tel-input {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+.react-tel-input .country-list {
+  background-color: #ffffff !important;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.react-tel-input .country-list .country.highlight {
+  background-color: #eeeeee !important;
+}
+
+.react-tel-input .country-list .country:hover {
+  background-color: #eeeeee !important;
+}
+
 .react-tel-input .form-control {
-  font-family: "Nunito Sans", sans-serif;
+  width: 100% !important;
+  font-size: 1rem !important;
+  line-height: 1.5rem !important;
+  color: #494949 !important;
 
   background: transparent !important;
-  font-size: 18px !important;
-  line-height: 28px !important;
-  padding: 20px !important;
-  height: 64px !important;
-  width: 100%;
+  border: none !important;
   border-radius: 0px !important;
-  color: #000;
+
+  padding-right: 20px !important;
+  padding-left: 50px !important;
 }
+
+.react-tel-input .flag-dropdown {
+  background-color: transparent !important;
+  border: none !important;
+  padding-left: 7px !important;
+}
+
+.react-tel-input .selected-flag:hover,
+.react-tel-input .selected-flag:focus {
+  background-color: transparent !important;
+}
+.react-tel-input .flag-dropdown.open .selected-flag {
+  background-color: transparent !important;
+}
+// #endregion
 
 .text-block-jpa {
   height: 100px;

@@ -52,7 +52,16 @@ i18n
 function settings(lang: langsType) {
   switch (lang) {
     case "ru":
-      return {};
+      return {
+        form: {
+          btn: {
+            send: "Отправить",
+            orderProject: "Заказать проект",
+            tabTutorial: "Нажимайте и переключайте клипы",
+            leaveRequest: "Оставить заявку",
+          },
+        },
+      };
     case "en":
       return {
         form: {
@@ -65,7 +74,16 @@ function settings(lang: langsType) {
         },
       };
     case "uz":
-      return {};
+      return {
+        form: {
+          btn: {
+            send: "Yuborish",
+            orderProject: "Loyihani buyurtma qiling",
+            tabTutorial: "Kliplarni bosing va almashtiring",
+            leaveRequest: "So'rov qoldiring",
+          },
+        },
+      };
     case "kz":
       return {
         form: {
@@ -78,6 +96,15 @@ function settings(lang: langsType) {
         },
       };
     default:
-      return {};
+      return {
+        form: {
+          btn: {
+            send: "Отправить",
+            orderProject: "Заказать проект",
+            tabTutorial: "Нажимайте и переключайте клипы",
+            leaveRequest: "Оставить заявку",
+          },
+        },
+      };
   }
 }

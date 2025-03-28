@@ -138,7 +138,7 @@ const App: FC = () => {
           </Container>
         </LazyLoadLayout>
 
-        <div className="relative">
+        <div className="relative bg-[#161617]">
           <div className="sticky top-0">
             <div className="relative">
               <FooterVideo />
@@ -153,7 +153,7 @@ const App: FC = () => {
             }}
           />
 
-          <div className="sticky top-0" draggable="false">
+          <div className="sticky top-0">
             <ContactForm />
           </div>
         </div>
