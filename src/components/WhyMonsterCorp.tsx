@@ -66,7 +66,7 @@ const WhyMonsterCorp: FC = () => {
               transition={{
                 duration: 0.6,
                 repeat: 1,
-                delay: 3,
+                delay: 2,
               }}
             >
               <svg
