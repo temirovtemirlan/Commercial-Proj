@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRef, useState, useEffect, type FC, CSSProperties } from "react";
 import Hls from "hls.js";
 import { cn } from "helpers/style";
@@ -36,42 +37,53 @@ const VideoPlayerHLSv2: FC<VideoPlayerHLSv2Props> = ({
 }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isHlsError, setIsHlsError] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    if (src.endsWith(".m3u8")) {
-      if (Hls.isSupported()) {
-        const hls = new Hls();
-        hls.loadSource(src);
-        hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
-          // console.log("HLS Manifest загружен");
-        });
-        hls.on(Hls.Events.ERROR, (_event, data) => {
-          if (data.fatal) {
-            switch (data.type) {
-              case Hls.ErrorTypes.NETWORK_ERROR:
-                // console.log("Ошибка сети, перезапуск загрузки...");
-                hls.startLoad();
-                break;
-              case Hls.ErrorTypes.MEDIA_ERROR:
-                // console.log("Ошибка медиа, попытка восстановления...");
-                hls.recoverMediaError();
-                break;
-              default:
-                // console.log("Критическая ошибка", data);
-                hls.destroy();
-                break;
-            }
-          }
-        });
-      } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-        video.src = src;
+    const hls = new Hls();
+
+    const handleHlsError = (_event: any, data: any) => {
+      if (data.fatal) {
+        setIsHlsError(true); // Отслеживаем ошибку
+        switch (data.type) {
+          case Hls.ErrorTypes.NETWORK_ERROR:
+          case Hls.ErrorTypes.MEDIA_ERROR:
+            // Пробуем восстановить или перезагрузить
+            hls.startLoad();
+            break;
+          default:
+            // Если ошибка критическая, уничтожаем экземпляр HLS
+            hls.destroy();
+            break;
+        }
       }
+    };
+
+    if (Hls.isSupported()) {
+      hls.loadSource(src);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.ERROR, handleHlsError);
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      // Если HLS не поддерживается, используем нативный механизм
+      video.src = src;
     }
+
+    // Очистка ресурсов HLS при размонтировании компонента
+    return () => {
+      hls.destroy();
+    };
   }, [src]);
+
+  useEffect(() => {
+    if (isHlsError && videoRef.current) {
+      // Если ошибка HLS, сбрасываем поток на обычный src
+      videoRef.current.src = src;
+      setIsHlsError(false); // Сбрасываем флаг ошибки
+    }
+  }, [isHlsError, src]);
 
   const togglePlay = () => {
     if (!videoRef.current) return;

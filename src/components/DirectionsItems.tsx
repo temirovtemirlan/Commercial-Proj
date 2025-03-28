@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { type FC, useEffect, useState } from "react";
 import { cn } from "helpers/style";
 import { useInView } from "react-intersection-observer";
 import VideoPlayerHLS from "components/VideoPlayerHLS.tsx";
@@ -36,24 +36,21 @@ const DirectionsItems: FC<DirectionsItemsProps> = ({ className, item }) => {
       ref={ref}
       className={cn(
         "directions-items flex flex-col md:flex-row md:rounded-3xl rounded-xl overflow-hidden bg-black h-[910px] md:h-[850px] lg:max-h-[680px] lg:min-h-[680px] w-full",
-        // "flex flex-col md:flex-row md:rounded-3xl rounded-xl overflow-hidden bg-black h-[910px] md:h-[850px] lg:max-h-[680px] lg:min-h-[680px] ",
-        // "grid lg:grid-cols-2 w-full bg-black max-h-[900px] min-h-[900px] md:max-h-[680px] md:min-h-[680px] rounded-[28px] overflow-hidden",
         className
       )}
     >
       <div className="w-full h-[280px] bg-[#111111] lg:hidden">
         <div className={cn("w-full h-full")}>
-          {isLoaded ? (
-            <video
-              className={"size-full object-cover pointer-events-none"}
-              src={item.video}
-              loop
-              muted
-              playsInline
-              controls={false}
-              autoPlay={true}
-            />
-          ) : null}
+          <video
+            className={"size-full object-cover pointer-events-none"}
+            src={item.video}
+            loop
+            muted
+            playsInline
+            controls={false}
+            autoPlay={true}
+            preload="auto"
+          />
         </div>
       </div>
 
@@ -105,36 +102,15 @@ const DirectionsItems: FC<DirectionsItemsProps> = ({ className, item }) => {
 
       <div className="h-[680px] bg-[#111111] w-full max-lg:hidden">
         <div className={cn("h-full")} ref={ref}>
-          {isLoaded ? (
-            <VideoPlayerHLS
-              className={"size-full object-cover pointer-events-none"}
-              src={item.video}
-              autoPlay
-              muted
-              controls={false}
-              loop
-            />
-          ) : (
-            // <video
-            //   className={"size-full object-cover pointer-events-none"}
-            //   src={item.video}
-            //   loop
-            //   muted
-            //   playsInline
-            //   controls={false}
-            //   autoPlay={isLoaded}
-            // />
-            // <VideoFrame {...props} />
-            <div className={"size-full bg-[#111111]"} />
-          )}
+          <VideoPlayerHLS
+            className={"size-full object-cover pointer-events-none"}
+            src={item.video}
+            autoPlay
+            muted
+            controls={false}
+            loop
+          />
         </div>
-        {/*<video*/}
-        {/*  src={item.video}*/}
-        {/*  loop*/}
-        {/*  muted*/}
-        {/*  controls={false}*/}
-        {/*  playsInline*/}
-        {/*></video>*/}
       </div>
     </div>
   );

@@ -47,7 +47,6 @@ const FooterVideo: FC<FooterVideoProps> = () => {
   } else if (isDesktop) {
     containerStyle = "3000px";
   }
-  console.log("containerStyle: ", containerStyle);
 
   return (
     <div

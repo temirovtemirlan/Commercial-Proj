@@ -149,9 +149,6 @@ const ContactForm: FC = () => {
     return () => clearTimeout(time);
   }, [status]);
 
-  console.log("QQQ: ", watch("phone"));
-  console.log("ERROR: ", errors.phone);
-
   return (
     <>
       <div
