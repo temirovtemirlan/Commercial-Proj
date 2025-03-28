@@ -25,13 +25,12 @@ import { inViewProps } from "data/index";
 const scrollThreshold = 1000;
 
 const App: FC = () => {
+  const { t } = useTranslation();
   const [monsterCorpRef, monsterCorpInView] = useInView(inViewProps);
   const [monsReelsRef, monsReelsInView] = useInView({
     ...inViewProps,
     threshold: 0.9,
   });
-  const { t } = useTranslation();
-
   const [isScrollTo, setIsScrollTo] = useState(false);
 
   useEffect(() => {
@@ -42,9 +41,7 @@ const App: FC = () => {
         setIsScrollTo(false);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };

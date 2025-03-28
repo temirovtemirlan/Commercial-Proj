@@ -1,7 +1,9 @@
 import { useState, type FC } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import i18next from "i18next";
 import { cn } from "helpers/style";
 import type { langsType } from "fusion/type";
+import { LANG_STORAGE } from "data/hero";
 
 // prettier-ignore
 const containerVariants = {
@@ -20,19 +22,24 @@ interface ILangData {
 }
 
 const langData: ILangData[] = [
-  // { language: "uzbekistan", lang: "uz" },
+  { language: "uzbekistan", lang: "uz" },
   { language: "english", lang: "en" },
   { language: "russian", lang: "ru" },
-  // { language: "kazakhstan", lang: "kz" },
+  { language: "kazakhstan", lang: "kz" },
 ];
 
 const LanguageComponent: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [langSelect, setLangSelect] = useState<langsType>("ru");
+  const langStorage = localStorage.getItem(LANG_STORAGE) || "ru";
+  const [langSelect, setLangSelect] = useState(langStorage as langsType);
 
   const onOpenHandler = (lang: langsType) => {
+    localStorage.setItem(LANG_STORAGE, lang);
+    i18next.changeLanguage(lang);
     setLangSelect(lang);
     setIsOpen(false);
+
+    setTimeout(() => window.location.reload(), 1000);
   };
 
   return (
@@ -46,7 +53,6 @@ const LanguageComponent: FC = () => {
               exit="closed"
               variants={containerVariants}
               className="flex items-center gap-0 h-10 z-[9] overflow-hidden"
-              //   className="flex items-center gap-0 bg-white h-10 pr-5 translate-x-4 z-[9]"
               style={{ borderRadius: "50px 0px 0px 50px" }}
             >
               {langData.map((item, index) => (

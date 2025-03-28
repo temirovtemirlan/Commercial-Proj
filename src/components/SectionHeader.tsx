@@ -1,12 +1,15 @@
 import { type FC, useEffect, useState } from "react";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 import { useMediaQuery } from "usehooks-ts";
-import { motion, useAnimation } from "motion/react";
+import { motion, useAnimation, AnimatePresence } from "motion/react";
 import { useTranslation } from "react-i18next";
+import { useInView } from "react-intersection-observer";
+
 import VideoPlayerHLSv2 from "components/VideoPlayerHLSv2";
 import Container from "./Container";
 import { AnimatedComponent } from "common/ui/animatedComponent";
 import { cn } from "helpers/style";
+import LanguageComponent from "./LanguageComponent";
 
 const tabStyle =
   "relative whitespace-nowrap px-6 py-2.5 z-10 cursor-pointer focus:outline-none";
@@ -15,6 +18,7 @@ const tabSelectedStyle = "bg-[#0171e3] text-white rounded-[100px]";
 const SectionHeader: FC = () => {
   const { t } = useTranslation();
   const matches = useMediaQuery("(min-width: 650px)");
+  const [langRef, langInView] = useInView();
 
   const [aiGCVideo, setAIGCVideo] = useState<string>(
     matches
@@ -50,20 +54,26 @@ const SectionHeader: FC = () => {
 
       // Анимация перемещения стиля между табами
       await controls.start({
-        x: "114%", // Перемещаем выделение на второй таб
-        transition: { duration: 0.7 },
+        x: "90%", // Перемещаем выделение на второй таб
+        // x: "114%", // Перемещаем выделение на второй таб
+        width: "126px",
+        transition: { duration: 0.7, delay: 0 },
       });
       await controls.start({
         x: "0%", // Возвращаемся на первый таб
-        transition: { duration: 0.7 },
+        width: "112px",
+        transition: { duration: 0.7, delay: 0.4 },
       });
       await controls.start({
-        x: "114%", // Опять на второй таб
-        transition: { duration: 0.7 },
+        x: "90%", // Опять на второй таб
+        // x: "114%", // Опять на второй таб
+        width: "126px",
+        transition: { duration: 0.7, delay: 0.4 },
       });
       await controls.start({
         x: "0%", // Окончательное возвращение на первый таб
-        transition: { duration: 0.7 },
+        width: "112px",
+        transition: { duration: 0.7, delay: 0.4 },
       });
 
       // После завершения анимации
@@ -75,6 +85,18 @@ const SectionHeader: FC = () => {
 
   return (
     <>
+      <AnimatePresence>
+        {langInView && (
+          <motion.div
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <LanguageComponent />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <Container className="py-[70px]">
         <div className="flex justify-between xl:flex-row flex-col gap-y-6 gap-x-[200px]">
           <AnimatedComponent
@@ -152,7 +174,7 @@ const SectionHeader: FC = () => {
       </Container>
 
       {/* Showreel */}
-      <section className="text-center">
+      <section className="text-center" ref={langRef}>
         <Tabs className="Monstr-Showreel">
           <TabPanel>
             <VideoPlayerHLSv2

@@ -6,9 +6,6 @@ import { uzLang } from "./lang/uz";
 import { kzLang } from "./lang/kz";
 import type { langsType } from "fusion/type";
 
-const lng = "kz";
-// const lng = window.location.pathname.split("/")[1];
-
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
@@ -41,7 +38,6 @@ i18n
         },
       },
     },
-    lng: lng || "ru", // if you're using a language detector, do not define the lng option
     fallbackLng: "ru",
 
     interpolation: {

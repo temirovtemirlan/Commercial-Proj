@@ -50,7 +50,8 @@ const WhyMonsterCorp: FC = () => {
       </div>
 
       <div>
-        <div className="w-full max-w-[1200px] mx-auto flex flex-col items-center lg:flex-row gap-x-[50px] xl:gap-x-[100px] gap-y-[40px] justify-between text-left text-2xl font-semibold leading-tight mt-[70px] *:flex *:flex-col *:max-lg:items-center *:gap-5 *:max-lg:text-center">
+        <div className="w-full max-w-[1200px] mx-auto grid lg:grid-cols-3 gap-x-[50px] xl:gap-x-[100px] gap-y-[40px] text-left text-2xl font-semibold leading-tight mt-[70px] *:flex *:flex-col *:max-lg:items-center *:gap-5 *:max-lg:text-center">
+          {/* <div className="w-full max-w-[1200px] mx-auto flex flex-col items-center lg:flex-row gap-x-[50px] xl:gap-x-[100px] gap-y-[40px] justify-between text-left text-2xl font-semibold leading-tight mt-[70px] *:flex *:flex-col *:max-lg:items-center *:gap-5 *:max-lg:text-center"> */}
           <AnimatedComponent
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : undefined}

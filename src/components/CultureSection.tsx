@@ -163,7 +163,8 @@ const CultureSection: FC = () => {
           className="max-md:w-full bg-[#424245] h-px md:h-24 lg:h-[60px]"
         />
 
-        <p className="max-w-[466px] max-md:text-center w-full text-[#6e6e7b] text-2xl font-semibold uppercase">
+        <p className="max-md:text-center w-full text-[#6e6e7b] text-2xl font-semibold uppercase">
+          {/* <p className="max-w-[466px] max-md:text-center w-full text-[#6e6e7b] text-2xl font-semibold uppercase"> */}
           {t("weDonTCreateContent.logoOne")}
           <br />
           {t("weDonTCreateContent.logoTwo")}

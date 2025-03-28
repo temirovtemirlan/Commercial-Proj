@@ -1,7 +1,7 @@
 export const enLang = {
   header: {
     upperRightText: "DIGITAL ECOSYSTEM OF SERVICES.",
-    upperRightDescTextOne: `The first digital media kit for business — your personal navigator in the world of marketing, production, branding, VFX, and IT. thumb_upthumb_down`,
+    upperRightDescTextOne: `The first digital media kit for business — your personal navigator in the world of marketing, production, branding, VFX, and IT.`,
     upperRightDescTextTwo: `Forget endless PDFs — everything you need is available online with just one click.`,
   },
   monsterCorp: {
@@ -161,7 +161,7 @@ export const enLang = {
         five: "On request",
       },
       policyOne: "By clicking on the button, I agree to the processing ",
-      policyTwo: "personal data.",
+      policyTwo: "personal data",
       modal: {
         ok: {
           one: "Application successfully sent",

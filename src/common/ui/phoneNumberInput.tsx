@@ -1,5 +1,7 @@
 import { useState, type FC } from "react";
 import PhoneInput from "react-phone-input-2";
+import { LANG_STORAGE } from "data/hero";
+import type { langsType } from "fusion/type";
 import "react-phone-input-2/lib/style.css";
 
 interface IPhoneNumberInputProps {
@@ -12,10 +14,8 @@ const PhoneNumberInput: FC<IPhoneNumberInputProps> = ({
   error,
 }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
-
-  const onBlurCollectorValue = () => {
-    collectorPhoneValue(phoneNumber);
-  };
+  const onBlurCollectorValue = () => collectorPhoneValue(phoneNumber);
+  const langStorage = localStorage.getItem(LANG_STORAGE);
 
   return (
     <div className={error ? "tel-input-box-error" : "tel-input-box-no-error"}>
@@ -26,7 +26,7 @@ const PhoneNumberInput: FC<IPhoneNumberInputProps> = ({
         alwaysDefaultMask={true}
         onBlur={onBlurCollectorValue}
         prefix="+"
-        country="kg"
+        country={langStorage as langsType}
         value={phoneNumber}
         onChange={(phone) => setPhoneNumber(phone)}
       />
