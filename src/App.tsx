@@ -48,6 +48,26 @@ const App: FC = () => {
     };
   }, [scrollThreshold]);
 
+  const [ip, setIp] = useState<string | null>(null);
+  const [location, setLocation] = useState<any>(null);
+
+  useEffect(() => {
+    fetch("https://api64.ipify.org?format=json")
+      .then((res) => res.json())
+      .then((data) => {
+        setIp(data.ip);
+        return fetch(`https://ipapi.co/${data.ip}/json/`); // Второй запрос для определения местоположения
+      })
+      .then((res) => res.json())
+      .then((data) => setLocation(data))
+      .catch((error) => console.error("Ошибка получения IP:", error));
+  }, []);
+
+  useEffect(() => {
+    console.log("IP:", ip);
+    console.log("Location:", location);
+  }, [ip, location]);
+
   return (
     <>
       <LazyMotion features={domAnimation}>
