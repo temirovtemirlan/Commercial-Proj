@@ -155,7 +155,7 @@ const VideoPlayerHLSv2: FC<VideoPlayerHLSv2Props> = ({
       </button>
       {isFullScreen && (
         <button
-          className="absolute bottom-5 right-16 z-50"
+          className="absolute bottom-5 right-16 z-10"
           onClick={handleEnterFullScreen}
         >
           {fullScreenIcon}

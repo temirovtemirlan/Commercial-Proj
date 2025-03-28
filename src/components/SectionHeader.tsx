@@ -162,7 +162,7 @@ const SectionHeader: FC = () => {
               src="https://storage.googleapis.com/mkit_monster_bucket/Video/hls/CG_REEL_HORIZONTAL_2/CG_REEL_HORIZONTAL_2/720p_mp4/stream.m3u8"
               posterSrc={""}
               autoPlay
-              isFullScreen
+              isFullScreen={true}
               playsInline={true}
               loop
             />
@@ -174,7 +174,7 @@ const SectionHeader: FC = () => {
               src={aiGCVideo}
               posterSrc=""
               autoPlay
-              isFullScreen
+              isFullScreen={true}
               playsInline={true}
               loop
             />
