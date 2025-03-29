@@ -1,6 +1,6 @@
 import { type FC } from "react";
-import { AnimatedComponent } from "common/ui/animatedComponent.tsx";
-import { useInView } from "react-intersection-observer";
+// import { AnimatedComponent } from "common/ui/animatedComponent.tsx";
+// import { useInView } from "react-intersection-observer";
 import { cn } from "helpers/style.ts";
 import HowWeWork from "components/HowWeWork.tsx";
 import Container from "components/Container.tsx";
@@ -11,33 +11,39 @@ interface Props {
 }
 
 const WhatClientGet: FC<Props> = ({ className }) => {
-  const [ref, inView] = useInView({
-    threshold: 0.6,
-    triggerOnce: true,
-  });
+  // const [ref, inView] = useInView({
+  //   threshold: 0.6,
+  //   triggerOnce: true,
+  // });
 
   return (
-    <div ref={ref} className={cn("py-[100px]", className)}>
-      <AnimatedComponent
-        tag="legend"
-        initial={{ y: 60, opacity: 0 }}
-        animate={inView ? { y: 0, opacity: 1 } : undefined}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className="gradient-legend-1lvl"
-      >
+    //ref={ref}
+    <div className={cn("py-[100px]", className)}>
+      {/*<AnimatedComponent*/}
+      {/*  tag="legend"*/}
+      {/*  initial={{ y: 60, opacity: 0 }}*/}
+      {/*  animate={inView ? { y: 0, opacity: 1 } : undefined}*/}
+      {/*  transition={{ duration: 0.5, delay: 0.2 }}*/}
+      {/*  className="gradient-legend-1lvl"*/}
+      {/*>*/}
+
+      <legend className={"gradient-legend-1lvl"}>
         Результаты, которые <br /> становятся стандартом
-      </AnimatedComponent>
-      <AnimatedComponent
-        tag="p"
-        initial={{ y: 60, opacity: 0 }}
-        animate={inView ? { y: 0, opacity: 1 } : undefined}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        className="legend-2lvl text-balance"
-      >
+      </legend>
+      {/*</AnimatedComponent>*/}
+      {/*<AnimatedComponent*/}
+      {/*  tag="p"*/}
+      {/*  initial={{ y: 60, opacity: 0 }}*/}
+      {/*  animate={inView ? { y: 0, opacity: 1 } : undefined}*/}
+      {/*  transition={{ duration: 0.5, delay: 0.3 }}*/}
+      {/*  className="legend-2lvl text-balance"*/}
+      {/*>*/}
+      <p className="legend-2lvl text-balance">
         В мире, где контент не замечают,
         <br /> бренды теряются, а бюджеты сгорают <br /> без результата —
         Monster Corp. <br /> даёт измеримое влияние.
-      </AnimatedComponent>
+      </p>
+      {/*</AnimatedComponent>*/}
 
       <Container
         className={
@@ -148,6 +154,8 @@ interface WhatClientGetBlockProps {
   prefix?: string;
 }
 
+export default WhatClientGet;
+
 const WhatClientGetBlock: FC<WhatClientGetBlockProps> = (props) => {
   return (
     <div
@@ -178,5 +186,3 @@ const WhatClientGetBlock: FC<WhatClientGetBlockProps> = (props) => {
     </div>
   );
 };
-
-export default WhatClientGet;

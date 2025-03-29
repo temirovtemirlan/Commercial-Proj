@@ -25,8 +25,8 @@ const BenefitsItem: FC<BenefitsItemProps> = ({ className }) => {
         />
       </svg>
       <p className={"inline-block leading-tight text-left"}>
-        Мы помогаем брендам <br />{" "}
-        <span className="text-blue-1000">становиться иконами.</span>
+        Biz brendlarga yordam beramiz <br />
+        <span className="text-blue-1000">piktogrammalarga aylanadi.</span>
       </p>
     </div>
   );

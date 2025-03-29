@@ -1,5 +1,7 @@
+import { DEFAULT_LANG } from "data/hero";
 import { parseISO, format } from "date-fns";
 import { ru } from "date-fns/locale";
+import type { langsType } from "fusion/type";
 
 // *-*-*- NUMBER -*-*-*
 
@@ -73,3 +75,20 @@ export function formatDate(dateString: string) {
 
 export const formatDateToRussian = (isoDate: string) =>
   format(parseISO(isoDate), "d MMMM yyyy", { locale: ru }); // 12 июля 2024
+
+// *-*-*-* LANG
+
+export const getCountry = (countryCode: string): langsType => {
+  switch (countryCode) {
+    case "ru":
+      return "ru";
+    case "uz":
+      return "uz";
+    case "kz":
+      return "kz";
+    case "us":
+      return "en";
+    default:
+      return DEFAULT_LANG;
+  }
+};
