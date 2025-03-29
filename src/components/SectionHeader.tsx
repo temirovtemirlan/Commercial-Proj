@@ -55,7 +55,6 @@ const SectionHeader: FC = () => {
       // Анимация перемещения стиля между табами
       await controls.start({
         x: "90%", // Перемещаем выделение на второй таб
-        // x: "114%", // Перемещаем выделение на второй таб
         width: "126px",
         transition: { duration: 0.7, delay: 0 },
       });
@@ -66,7 +65,6 @@ const SectionHeader: FC = () => {
       });
       await controls.start({
         x: "90%", // Опять на второй таб
-        // x: "114%", // Опять на второй таб
         width: "126px",
         transition: { duration: 0.7, delay: 0.4 },
       });
