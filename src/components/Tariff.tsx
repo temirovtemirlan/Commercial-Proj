@@ -91,6 +91,7 @@ const Tariff: FC = () => {
 
   const [openAccordionKeys, setOpenAccordionKeys] = useState<string[]>([]);
   const [headViewIsAccordionOpen, setHeadViewIsAccordionOpen] = useState(false);
+
   const descRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -287,16 +288,25 @@ const Tariff: FC = () => {
 
                       {item.head.content ? <p className="mt-1 w-full h-full font-semibold text-center">{item.head.content}</p> : null}
 
-                      <AnimatedComponent tag="button" whileHover={{ scale: 1.04 }} className="w-[192px] h-11 p-2 md:p-2.5 bg-[#0071e3] rounded-full text-base justify-center items-center gap-2.5 inline-flex mt-[40px] text-white">
+                      <AnimatedComponent tag="button" whileHover={{ scale: 1.04 }} className="w-[192px] h-11 p-2 md:p-2.5 bg-[#0071e3] rounded-full text-base justify-center items-center gap-2.5 inline-flex mt-[40px] mb-4 text-white">
                         {t('settings.form.btn.leaveRequest')}
                       </AnimatedComponent>
+
                     </div>
 
                     <hr className="border-[#d2d2d7] w-full max-md:hidden my-10" />
 
-                    <Accordion className="w-full mt-10 md:mt-0 text-center px-2.5" transition transitionTimeout={300}>
+                    <Accordion className="w-full mt-10 md:mt-0 text-center px-2.5 relative" transition transitionTimeout={300}>
                       <AccordionItem
                         header={({ state }) => (
+                          <>
+                            <p
+                              onClick={() => handleAccordionStateChange(`${index}-${item.tabCategory}`, !state.isEnter)}
+                              className={'learn-more-button absolute -top-16 md:-top-28 left-0 w-full text-center p-2'}>
+                              Learn more
+                            </p>
+
+
                           <div className="relative flex flex-col items-center w-full" onClick={() => handleAccordionStateChange(`${index}-${item.tabCategory}`, !state.isEnter)}>
                             <Arrow isEnter={state.isEnter} />
 
@@ -304,6 +314,7 @@ const Tariff: FC = () => {
                               <TariffEnd head={item.footer[0].title} descriptions={item.footer[0].descriptions} before={item.footer[0].before} />
                             </div>
                           </div>
+                          </>
                         )}
                         itemKey={`${index}-${item.tabCategory}`}
                       >

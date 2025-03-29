@@ -433,3 +433,26 @@ body {
   border-right: 10px solid transparent;
   border-top: 10px solid white; /* Белый цвет для верхней части (треугольник) */
 }
+
+.learn-more-button {
+  @apply text-base text-[#0066CC] mt-4 hover:underline cursor-pointer;
+
+  &::after {
+    content: " >";
+  }
+
+
+}
+
+.beige-graident-text {
+background: -webkit-linear-gradient(135deg, #E1C099, #B68455);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+  font-weight: 600;
+}
+
+.box-reflect {
+  color: #ddbc98; /* Цвет текста на изображении */
+  -webkit-box-reflect: below -100px linear-gradient(to bottom, rgba(221, 188, 152, 0.0), rgba(221, 188, 152, 0.2));
+
+}

@@ -21,6 +21,7 @@ import SectionVideos from "components/SectionVideos";
 import SectionHeader from "components/SectionHeader";
 import FixedHeader from "components/FixedHeader.tsx";
 import { inViewProps } from "data/index";
+import WhatClientGet from "components/WhatClientGet.tsx";
 
 const scrollThreshold = 1000;
 
@@ -120,6 +121,10 @@ const App: FC = () => {
           <Directions />
 
           <OurIndicators />
+        </div>
+
+        <div>
+          <WhatClientGet />
         </div>
 
         {/* Мы не создаем контент. */}
