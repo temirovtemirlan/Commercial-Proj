@@ -1,4 +1,4 @@
-import { type FC, useEffect, useState } from "react";
+import type { FC } from "react";
 import { domAnimation, LazyMotion } from "motion/react";
 import { useInView } from "react-intersection-observer";
 import { useTranslation } from "react-i18next";
@@ -19,10 +19,7 @@ import FloatingActionButtons from "components/FloatingActionButtons";
 import { AnimatedComponent } from "common/ui/animatedComponent";
 import SectionVideos from "components/SectionVideos";
 import SectionHeader from "components/SectionHeader";
-import FixedHeader from "components/FixedHeader.tsx";
 import { inViewProps } from "data/index";
-
-const scrollThreshold = 1000;
 
 const App: FC = () => {
   const { t } = useTranslation();
@@ -31,26 +28,11 @@ const App: FC = () => {
     ...inViewProps,
     threshold: 0.9,
   });
-  const [isScrollTo, setIsScrollTo] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > scrollThreshold) {
-        setIsScrollTo(true);
-      } else {
-        setIsScrollTo(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [scrollThreshold]);
 
   return (
     <>
       <LazyMotion features={domAnimation}>
-        {isScrollTo && <FixedHeader />}
+        {/* {isScrollTo && <FixedHeader />} */}
         <SectionHeader />
 
         {/* Monster Corp. */}

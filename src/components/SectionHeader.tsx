@@ -1,24 +1,23 @@
 import { type FC, useEffect, useState } from "react";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 import { useMediaQuery } from "usehooks-ts";
-import { motion, useAnimation, AnimatePresence } from "motion/react";
+import { motion, useAnimation } from "motion/react";
 import { useTranslation } from "react-i18next";
-import { useInView } from "react-intersection-observer";
 
 import VideoPlayerHLSv2 from "components/VideoPlayerHLSv2";
 import Container from "./Container";
 import { AnimatedComponent } from "common/ui/animatedComponent";
 import { cn } from "helpers/style";
-import LanguageComponent from "./LanguageComponent";
+import FixedHeader from "./FixedHeader";
 
 const tabStyle =
   "relative whitespace-nowrap px-6 py-2.5 z-10 cursor-pointer focus:outline-none";
 const tabSelectedStyle = "bg-[#0171e3] text-white rounded-[100px]";
+const scrollThreshold = 1000;
 
 const SectionHeader: FC = () => {
   const { t } = useTranslation();
   const matches = useMediaQuery("(min-width: 650px)");
-  const [langRef, langInView] = useInView();
 
   const [aiGCVideo, setAIGCVideo] = useState<string>(
     matches
@@ -83,19 +82,25 @@ const SectionHeader: FC = () => {
     sequence();
   }, [controls]);
 
+  const [isScrollTo, setIsScrollTo] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > scrollThreshold) {
+        setIsScrollTo(true);
+      } else {
+        setIsScrollTo(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [scrollThreshold]);
+
   return (
     <>
-      <AnimatePresence>
-        {langInView && (
-          <motion.div
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <LanguageComponent />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {isScrollTo && <FixedHeader theme="light" />}
 
       <Container className="py-[70px]">
         <div className="flex justify-between xl:flex-row flex-col gap-y-6 gap-x-[200px]">
@@ -173,8 +178,10 @@ const SectionHeader: FC = () => {
         </div>
       </Container>
 
+      <FixedHeader theme="dark" />
+
       {/* Showreel */}
-      <section className="text-center" ref={langRef}>
+      <section className="text-center">
         <Tabs className="Monstr-Showreel">
           <TabPanel>
             <VideoPlayerHLSv2
