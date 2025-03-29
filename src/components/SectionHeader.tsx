@@ -13,6 +13,7 @@ import FixedHeader from "./FixedHeader";
 const tabStyle =
   "relative whitespace-nowrap px-6 py-2.5 z-10 cursor-pointer focus:outline-none";
 const tabSelectedStyle = "bg-[#0171e3] text-white rounded-[100px]";
+
 const scrollThreshold = 1000;
 
 const SectionHeader: FC = () => {
