@@ -67,8 +67,8 @@ const WhyMonsterCorp: FC = () => {
               }}
             >
               <svg
-                width="31"
-                height="30"
+                width="40"
+                height="39"
                 viewBox="0 0 31 30"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -105,8 +105,8 @@ const WhyMonsterCorp: FC = () => {
               }}
             >
               <svg
-                width="37"
-                height="30"
+                width="40"
+                height="33"
                 viewBox="0 0 37 30"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -139,8 +139,8 @@ const WhyMonsterCorp: FC = () => {
               }}
             >
               <svg
-                width="31"
-                height="30"
+                width="40"
+                height="39"
                 viewBox="0 0 31 30"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"

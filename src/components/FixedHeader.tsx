@@ -12,40 +12,35 @@ interface FixedHeaderProps {
 const FixedHeader: FC<FixedHeaderProps> = ({ theme }) => {
   const matches = useMediaQuery("(min-width: 650px)");
 
-  return (
-    <>
-      {theme === "light" ? (
-        <div className="fixed top-0 flex items-center w-full bg-white px-[100px] z-50 box-border py-2.5 h-[60px]">
-          <div className="flex items-center justify-between h-full w-full">
-            <div>
-              {matches ? (
-                <img
-                  className="h-full max-h-9 py-1"
-                  src="https://storage.googleapis.com/mkit_monster_bucket/Logo/MONSTER-LOGO-TEXT.svg"
-                  alt="monster-text"
-                />
-              ) : (
-                <img
-                  className="h-full py-1"
-                  src="https://storage.googleapis.com/mkit_monster_bucket/Logo/MONSTER-LOGO.svg"
-                  alt="monster-text"
-                />
-              )}
-            </div>
+  return theme === "light" ? (
+    <div className="flex items-center justify-between h-full w-full">
+      <div>
+        {matches ? (
+          <img
+            className="h-full max-h-9 py-1"
+            src="https://storage.googleapis.com/mkit_monster_bucket/Logo/MONSTER-LOGO-TEXT.svg"
+            alt="monster-text"
+          />
+        ) : (
+          <img
+            className="h-full py-1"
+            src="https://storage.googleapis.com/mkit_monster_bucket/Logo/MONSTER-LOGO.svg"
+            alt="monster-text"
+          />
+        )}
+      </div>
 
-            <TwoBlock theme="light" />
-          </div>
-        </div>
-      ) : (
-        <div className="flex items-center w-full bg-[#262829] px-[100px] z-50 box-border py-2.5 h-[60px]">
-          <div className="flex items-center justify-between h-full w-full">
-            <div></div>
+      <TwoBlock theme="light" />
+    </div>
+  ) : (
+    // </div>
+    <div className="flex items-center w-full bg-[#262829] px-[100px] z-50 box-border py-2.5 h-[60px]">
+      <div className="flex items-center justify-between h-full w-full">
+        <div></div>
 
-            <TwoBlock theme="dark" />
-          </div>
-        </div>
-      )}
-    </>
+        <TwoBlock theme="dark" />
+      </div>
+    </div>
   );
 };
 

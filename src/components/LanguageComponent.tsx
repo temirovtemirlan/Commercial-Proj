@@ -1,4 +1,4 @@
-import { useState, type FC } from "react";
+import { useEffect, useState, type FC } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import i18next from "i18next";
 import { cn } from "helpers/style";
@@ -43,6 +43,12 @@ const LanguageComponent: FC<{ theme?: "dark" | "light" }> = ({
 
     setTimeout(() => window.location.reload(), 1000);
   };
+
+  useEffect(() => {
+    if (langStorage) {
+      setLangSelect(langStorage as langsType);
+    }
+  }, [langStorage]);
 
   return (
     <div className="flex">

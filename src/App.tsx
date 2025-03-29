@@ -1,7 +1,8 @@
-import type { FC } from "react";
+import { useEffect, type FC } from "react";
 import { domAnimation, LazyMotion } from "motion/react";
 import { useInView } from "react-intersection-observer";
 import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 import Container from "components/Container";
 import MonsReels from "components/MonsReels";
@@ -20,6 +21,26 @@ import { AnimatedComponent } from "common/ui/animatedComponent";
 import SectionVideos from "components/SectionVideos";
 import SectionHeader from "components/SectionHeader";
 import { inViewProps } from "data/index";
+import { DEFAULT_LANG, LANG_STORAGE } from "data/hero";
+import { getCountry } from "helpers/formatNumStrDate";
+
+const getLang = async () => {
+  try {
+    //? IP стран для теста
+    // const ru = "178.248.232.1";
+    // const uz = "195.158.31.255";
+    // const kz = "178.89.255.255";
+    // const en = "8.8.8.8";
+
+    const responseIp = await fetch("https://api64.ipify.org?format=json");
+    const resIp = await responseIp.json();
+    const response = await fetch(`https://ipapi.co/${resIp.ip}/json/`);
+    const responseData = await response.json();
+    return getCountry(responseData.country.toLowerCase());
+  } catch {
+    return DEFAULT_LANG; // Используем дефолтный язык при ошибке
+  }
+};
 
 const App: FC = () => {
   const { t } = useTranslation();
@@ -28,6 +49,21 @@ const App: FC = () => {
     ...inViewProps,
     threshold: 0.9,
   });
+
+  useEffect(() => {
+    const initLang = async () => {
+      const langStorage = localStorage.getItem(LANG_STORAGE);
+      if (!langStorage) {
+        const lang = await getLang();
+        localStorage.setItem(LANG_STORAGE, lang);
+        i18next.changeLanguage(lang);
+      } else {
+        i18next.changeLanguage(langStorage);
+      }
+    };
+
+    initLang();
+  }, []);
 
   return (
     <>
