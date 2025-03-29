@@ -271,7 +271,7 @@ const Tariff: FC = () => {
                         ) : (
                           <div className="flex size-full justify-center items-center">
                             <span className="text-center inline-block my-auto text-lg">
-                              Скоро
+                            Tez orada
                             </span>
                           </div>
                         )}
